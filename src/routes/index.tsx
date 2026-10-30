@@ -6,7 +6,7 @@ const WHATSAPP = "5527998737600";
 
 export const Route = createFileRoute("/")({
   head: () => ({ meta: [
-    { title: "Daiene Daiene Descomplica Crédito | Consórcios e Financiamentos" },
+    { title: "Daiene Descomplica Crédito | Consórcios e Financiamentos" },
     { name: "description", content: "Compare possibilidades de consórcio imobiliário, consórcio de veículos e financiamento de imóveis e carros. Atendimento consultivo e simulação pelo WhatsApp." },
     { name: "robots", content: "index, follow, max-image-preview:large" },
     { name: "googlebot", content: "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" },
@@ -67,9 +67,12 @@ function Index() {
 
   return (
     <main className="min-h-screen bg-[#F7F3EB] text-[#292522]">
-      <header className="sticky top-0 z-20 bg-[#171310] text-white shadow-sm">
-        <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-4">
-          <a href="#inicio" className="text-lg font-semibold">Descomplica <span className="text-[#E7CC91]">Crédito</span></a>
+      <header className="sticky top-0 z-20 border-b border-[#D6B36A]/25 bg-[#100D0B]/95 text-white shadow-[0_8px_35px_rgba(0,0,0,0.28)] backdrop-blur-xl">
+        <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-3">
+          <a href="#inicio" aria-label="Daiene Descomplica Crédito, início" className="flex items-center gap-3">
+            <span className="flex h-11 w-11 items-center justify-center rounded-xl border border-[#D6B36A]/60 bg-gradient-to-br from-[#F4D99B] via-[#C79A48] to-[#78521E] text-2xl font-serif font-bold text-[#17110A] shadow-[0_0_22px_rgba(214,179,106,0.22)]">D</span>
+            <span className="leading-tight"><span className="block font-serif text-lg tracking-[0.12em] text-[#F2D9A5]">DAIENE</span><span className="block text-[9px] font-medium tracking-[0.22em] text-white/75">DESCOMPLICA CRÉDITO</span></span>
+          </a>
           <nav className="hidden gap-6 text-sm text-white/85 md:flex">
             <a href="#inicio">Início</a><a href="#quem-sou">Quem sou</a><a href="#administradoras">Administradoras</a><a href="#solucoes">Soluções</a><a href="#duvidas">Dúvidas</a><a href="#simulacao">Simulação</a><a href="#contato">Contato</a>
           </nav>
