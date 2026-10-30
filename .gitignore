@@ -32,6 +32,4 @@ dist-ssr
 *.sw?
 
 # Environment files (keep only the example template)
-.env
-.env.*
 !.env.example
