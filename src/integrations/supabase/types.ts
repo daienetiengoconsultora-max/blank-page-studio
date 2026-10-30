@@ -347,6 +347,7 @@ export type Database = {
     }
     Functions: {
       is_crm_admin: { Args: never; Returns: boolean }
+      receive_public_lead: { Args: { p_name: string; p_phone: string; p_city: string; p_objective: string; p_estimated_value?: number | null; p_consent?: boolean }; Returns: string }
     }
     Enums: {
       [_ in never]: never
