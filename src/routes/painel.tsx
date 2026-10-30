@@ -16,6 +16,10 @@ function SellerPanel() {
   const [userId, setUserId] = useState("");
   const [isAdmin, setIsAdmin] = useState(false);
   const [checking, setChecking] = useState(true);
+  const [passwordOpen, setPasswordOpen] = useState(false);
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [passwordMessage, setPasswordMessage] = useState("");
 
   useEffect(() => {
     let active = true;
@@ -45,6 +49,16 @@ function SellerPanel() {
     };
   }, []);
 
+  async function changePassword(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setPasswordMessage("");
+    if (newPassword.length < 8) { setPasswordMessage("Use pelo menos 8 caracteres."); return; }
+    if (newPassword !== confirmPassword) { setPasswordMessage("As senhas não conferem."); return; }
+    const { error } = await supabase.auth.updateUser({ password: newPassword });
+    if (error) { setPasswordMessage("Não foi possível alterar a senha. Tente novamente."); return; }
+    setNewPassword(""); setConfirmPassword(""); setPasswordMessage("Senha alterada com sucesso.");
+  }
+
   async function signOut() {
     await supabase.auth.signOut();
     window.location.replace("/");
@@ -57,8 +71,9 @@ function SellerPanel() {
       <div className="mx-auto max-w-[1480px]">
         <header className="flex flex-wrap items-center justify-between gap-4 rounded-3xl border border-[#E9DFD1] bg-white/90 px-5 py-4 shadow-sm backdrop-blur sm:px-7">
           <div className="flex items-center gap-4"><div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-[#541D2B] to-[#8A6538] text-lg font-bold text-[#F5DCA7] shadow-md">D</div><div><p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-[#A47B36]">Área administrativa exclusiva</p><h1 className="mt-1 text-xl font-semibold tracking-tight text-[#541D2B] sm:text-2xl">Descomplica Crédito</h1><p className="text-xs text-[#766D64]">CRM · Gestão comercial e relacionamento</p></div></div>
-          <div className="flex items-center gap-3"><div className="hidden text-right sm:block"><p className="text-xs font-medium text-[#541D2B]">{email}</p><p className="text-[10px] uppercase tracking-wider text-[#A47B36]">{isAdmin ? "Administradora" : "Acesso restrito"}</p></div><button onClick={signOut} className="rounded-full border border-[#DED5C9] bg-white px-5 py-2.5 text-xs font-semibold text-[#541D2B] transition hover:border-[#B58A45] hover:bg-[#FCFAF7]">Sair</button></div>
+          <div className="flex items-center gap-3"><div className="hidden text-right sm:block"><p className="text-xs font-medium text-[#541D2B]">{email}</p><p className="text-[10px] uppercase tracking-wider text-[#A47B36]">{isAdmin ? "Administradora" : "Acesso restrito"}</p></div><button onClick={() => { setPasswordOpen(v => !v); setPasswordMessage(""); }} className="rounded-full border border-[#DED5C9] bg-white px-4 py-2.5 text-xs font-semibold text-[#541D2B] transition hover:border-[#B58A45] hover:bg-[#FCFAF7]">Alterar senha</button><button onClick={signOut} className="rounded-full border border-[#DED5C9] bg-white px-5 py-2.5 text-xs font-semibold text-[#541D2B] transition hover:border-[#B58A45] hover:bg-[#FCFAF7]">Sair</button></div>
         </header>
+        {passwordOpen && <section className="mt-5 rounded-2xl border border-[#E9DFD1] bg-white p-5 shadow-sm"><div className="flex items-center justify-between"><h2 className="font-semibold text-[#541D2B]">Segurança da conta</h2><button onClick={() => setPasswordOpen(false)} className="text-xs text-[#8A6B3C] underline">Fechar</button></div><form onSubmit={changePassword} className="mt-4 grid gap-3 sm:max-w-xl sm:grid-cols-2"><input required minLength={8} type="password" autoComplete="new-password" placeholder="Nova senha (mínimo 8 caracteres)" value={newPassword} onChange={e=>setNewPassword(e.target.value)} className="w-full rounded-xl border border-[#DED5C9] px-3 py-2.5 text-sm"/><input required minLength={8} type="password" autoComplete="new-password" placeholder="Confirme a nova senha" value={confirmPassword} onChange={e=>setConfirmPassword(e.target.value)} className="w-full rounded-xl border border-[#DED5C9] px-3 py-2.5 text-sm"/><button className="rounded-full bg-[#541D2B] px-5 py-2.5 text-xs font-semibold text-white sm:col-span-2 sm:justify-self-start">Salvar nova senha</button></form>{passwordMessage&&<p role="status" className="mt-3 text-xs text-[#766D64]">{passwordMessage}</p>}</section>}
         <LeadsCrm userId={userId} isAdmin={isAdmin} />
       </div>
     </main>
