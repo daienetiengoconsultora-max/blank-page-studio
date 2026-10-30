@@ -569,6 +569,20 @@ export type Database = {
         }
         Returns: string
       }
+      receive_public_simulation_lead: {
+        Args: {
+          p_consent?: boolean
+          p_email: string
+          p_estimated_value: number
+          p_monthly_estimate: number
+          p_name: string
+          p_objective: string
+          p_phone: string
+          p_product_type: string
+          p_term_months: number
+        }
+        Returns: string
+      }
     }
     Enums: {
       [_ in never]: never
