@@ -54,13 +54,34 @@ function SellerLogin() {
       setMessage("A recuperação está disponível somente para o e-mail administrador autorizado.");
       return;
     }
+
     setBusy(true);
     setMessage("");
-    const { error } = await supabase.auth.resetPasswordForEmail(ADMIN_EMAIL, {
-      redirectTo: window.location.origin + "/acesso-vendedor",
-    });
-    setBusy(false);
-    setMessage(error ? "Não foi possível solicitar a recuperação agora." : "Se o e-mail estiver cadastrado, você receberá as instruções de recuperação.");
+
+    try {
+      const request = supabase.auth.resetPasswordForEmail(ADMIN_EMAIL, {
+        redirectTo: window.location.origin + "/acesso-vendedor",
+      });
+      const timeout = new Promise<never>((_, reject) => {
+        window.setTimeout(() => reject(new Error("RECOVERY_TIMEOUT")), 15000);
+      });
+      const { error } = await Promise.race([request, timeout]);
+
+      if (error) {
+        setMessage("Não foi possível solicitar a recuperação. Confira a conexão e as configurações de e-mail do Supabase e tente novamente.");
+      } else {
+        setMessage("Solicitação concluída. Confira sua caixa de entrada e a pasta de spam. Se não chegar, será necessário configurar o envio de e-mails no Supabase.");
+      }
+    } catch (error) {
+      console.error("Password recovery request failed:", error);
+      setMessage(
+        error instanceof Error && error.message === "RECOVERY_TIMEOUT"
+          ? "A solicitação demorou demais e foi interrompida. Verifique sua conexão e as configurações do Supabase antes de tentar novamente."
+          : "Não foi possível conectar ao serviço de recuperação. Tente novamente mais tarde."
+      );
+    } finally {
+      setBusy(false);
+    }
   }
 
   async function updatePassword(event: FormEvent<HTMLFormElement>) {
