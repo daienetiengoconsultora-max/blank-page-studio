@@ -37,10 +37,11 @@ function Index() {
       "Autorizo o contato para tratar desta solicitação."
     ].join("\n");
     window.open("https://wa.me/" + WHATSAPP + "?text=" + encodeURIComponent(message), "_blank", "noopener,noreferrer");
-    const digits = amount.replace(/\D/g, "");
+    const normalizedAmount = amount.trim().replace(/[^0-9,.-]/g, "").replace(/\.(?=.*\.)/g, "").replace(",", ".");
+    const numericAmount = normalizedAmount ? Number(normalizedAmount.replace(/\.(?=\d{3}(?:\D|$))/g, "")) : NaN;
     const { error } = await supabase.rpc("receive_public_lead", {
       p_name: name.trim(), p_phone: phone.trim(), p_city: city.trim(),
-      p_objective: objective, p_estimated_value: digits ? Number(digits) : null, p_consent: consent,
+      p_objective: objective, p_estimated_value: Number.isFinite(numericAmount) ? numericAmount : null, p_consent: consent,
     });
     setSubmitting(false);
     setSubmitMessage(error ? "O WhatsApp foi aberto, mas não conseguimos registrar o pedido no CRM. A equipe ainda poderá receber sua mensagem pelo WhatsApp." : "Solicitação registrada! Seus dados já estão no CRM e o WhatsApp foi aberto para continuar o atendimento.");
