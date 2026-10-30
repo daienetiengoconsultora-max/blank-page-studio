@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { supabase } from "../integrations/supabase/client";
 
+const ADMIN_EMAIL = "daienetiengoconsultora@gmail.com";
+
 export const Route = createFileRoute("/painel")({
   head: () => ({ meta: [{ title: "Painel | Descomplica Crédito" }] }),
   component: SellerPanel,
@@ -15,7 +17,8 @@ function SellerPanel() {
     let active = true;
     supabase.auth.getSession().then(({ data }) => {
       if (!active) return;
-      if (!data.session) {
+      if (!data.session || data.session.user.email?.toLowerCase() !== ADMIN_EMAIL) {
+        await supabase.auth.signOut();
         window.location.replace("/acesso-vendedor");
         return;
       }
@@ -23,7 +26,10 @@ function SellerPanel() {
       setChecking(false);
     });
     const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
-      if (!session) window.location.replace("/acesso-vendedor");
+      if (!session || session.user.email?.toLowerCase() !== ADMIN_EMAIL) {
+        void supabase.auth.signOut();
+        window.location.replace("/acesso-vendedor");
+      }
     });
     return () => {
       active = false;
