@@ -113,7 +113,7 @@ function Index() {
           <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[#A47B36]">Solicite sua simulação</p>
           <h2 className="mt-4 text-3xl font-semibold leading-tight text-[#541D2B] sm:text-4xl">Conte um pouco sobre o que deseja realizar.</h2>
           <p className="mt-5 leading-8 text-[#756C63]">Escolha entre consórcio e financiamento, informe o crédito desejado e veja uma estimativa. Seus dados entram no CRM antes da exibição do resultado.</p>
-          <div className="mt-8 rounded-2xl bg-[#F1ECE5] p-6"><p className="text-sm font-semibold text-[#541D2B]">Fale diretamente comigo</p><a href="https://wa.me/5527998737600" target="_blank" rel="noreferrer" className="mt-2 inline-block text-lg font-semibold text-[#8A6330]">(27) 99873-7600</a><p className="mt-2 text-xs leading-5 text-[#82776C]">Ao enviar o formulário, sua solicitação é registrada no CRM e o WhatsApp é aberto para você confirmar o envio da mensagem.</p></div>
+          <div className="mt-8 rounded-2xl bg-[#F1ECE5] p-6"><p className="text-sm font-semibold text-[#541D2B]">Fale diretamente comigo</p><a href="https://wa.me/5527998737600" target="_blank" rel="noreferrer" className="mt-2 inline-block text-lg font-semibold text-[#8A6330]">(27) 99873-7600</a><p className="mt-2 text-xs leading-5 text-[#82776C]">Após a simulação, você poderá falar com a equipe pelo WhatsApp.</p></div>
         </div>
         <form onSubmit={submit} className="rounded-3xl border border-[#E8E0D6] bg-white p-6 shadow-[0_18px_60px_rgba(50,19,28,0.07)] sm:p-9">
           <h3 className="text-xl font-semibold text-[#541D2B]">Seus dados</h3><p className="mt-2 text-sm text-[#82776C]">Preencha os campos obrigatórios.</p>
