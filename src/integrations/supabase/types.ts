@@ -16,30 +16,39 @@ export type Database = {
     Tables: {
       client_documents: {
         Row: {
+          category: string
           content_type: string | null
           created_at: string
           file_name: string
           id: string
           lead_id: string
+          notes: string | null
           owner_id: string
+          status: string
           storage_path: string
         }
         Insert: {
+          category?: string
           content_type?: string | null
           created_at?: string
           file_name: string
           id?: string
           lead_id: string
+          notes?: string | null
           owner_id: string
+          status?: string
           storage_path: string
         }
         Update: {
+          category?: string
           content_type?: string | null
           created_at?: string
           file_name?: string
           id?: string
           lead_id?: string
+          notes?: string | null
           owner_id?: string
+          status?: string
           storage_path?: string
         }
         Relationships: [
@@ -56,29 +65,44 @@ export type Database = {
         Row: {
           contact: string | null
           created_at: string
+          expected_return: number | null
           id: string
+          investment_amount: number | null
+          investment_horizon: string | null
           name: string
           notes: string | null
+          objective: string | null
           owner_id: string
           profile: string | null
+          risk_profile: string | null
         }
         Insert: {
           contact?: string | null
           created_at?: string
+          expected_return?: number | null
           id?: string
+          investment_amount?: number | null
+          investment_horizon?: string | null
           name: string
           notes?: string | null
+          objective?: string | null
           owner_id: string
           profile?: string | null
+          risk_profile?: string | null
         }
         Update: {
           contact?: string | null
           created_at?: string
+          expected_return?: number | null
           id?: string
+          investment_amount?: number | null
+          investment_horizon?: string | null
           name?: string
           notes?: string | null
+          objective?: string | null
           owner_id?: string
           profile?: string | null
+          risk_profile?: string | null
         }
         Relationships: []
       }
@@ -120,8 +144,23 @@ export type Database = {
           },
         ]
       }
+      investor_simulations: {
+        Row: { id: string; investor_id: string; owner_id: string; title: string; principal: number; annual_rate: number; months: number; estimated_value: number; created_at: string }
+        Insert: { id?: string; investor_id: string; owner_id: string; title: string; principal: number; annual_rate: number; months: number; estimated_value: number; created_at?: string }
+        Update: { id?: string; investor_id?: string; owner_id?: string; title?: string; principal?: number; annual_rate?: number; months?: number; estimated_value?: number; created_at?: string }
+        Relationships: [{ foreignKeyName: "investor_simulations_investor_id_fkey"; columns: ["investor_id"]; isOneToOne: false; referencedRelation: "investors"; referencedColumns: ["id"] }]
+      }
+      lead_proposals: {
+        Row: { id: string; lead_id: string; owner_id: string; title: string; product_type: string; amount: number | null; monthly_payment: number | null; status: string; details: Json; created_at: string; updated_at: string }
+        Insert: { id?: string; lead_id: string; owner_id: string; title: string; product_type: string; amount?: number | null; monthly_payment?: number | null; status?: string; details?: Json; created_at?: string; updated_at?: string }
+        Update: { id?: string; lead_id?: string; owner_id?: string; title?: string; product_type?: string; amount?: number | null; monthly_payment?: number | null; status?: string; details?: Json; created_at?: string; updated_at?: string }
+        Relationships: [{ foreignKeyName: "lead_proposals_lead_id_fkey"; columns: ["lead_id"]; isOneToOne: false; referencedRelation: "leads"; referencedColumns: ["id"] }]
+      }
       leads: {
         Row: {
+          commission_value: number | null
+          closed_at: string | null
+          last_contact_at: string | null
           address: string | null
           birth_date: string | null
           city: string | null
@@ -142,6 +181,9 @@ export type Database = {
           updated_at: string
         }
         Insert: {
+          commission_value?: number | null
+          closed_at?: string | null
+          last_contact_at?: string | null
           address?: string | null
           birth_date?: string | null
           city?: string | null
@@ -185,7 +227,10 @@ export type Database = {
       }
       partners: {
         Row: {
+          administration_fee: number | null
+          category: string | null
           company: string | null
+          contact_person: string | null
           created_at: string
           email: string | null
           id: string
@@ -193,9 +238,15 @@ export type Database = {
           notes: string | null
           owner_id: string
           phone: string | null
+          reserve_fund: number | null
+          term_months: number | null
+          website: string | null
         }
         Insert: {
+          administration_fee?: number | null
+          category?: string | null
           company?: string | null
+          contact_person?: string | null
           created_at?: string
           email?: string | null
           id?: string
@@ -203,9 +254,15 @@ export type Database = {
           notes?: string | null
           owner_id: string
           phone?: string | null
+          reserve_fund?: number | null
+          term_months?: number | null
+          website?: string | null
         }
         Update: {
+          administration_fee?: number | null
+          category?: string | null
           company?: string | null
+          contact_person?: string | null
           created_at?: string
           email?: string | null
           id?: string
@@ -213,6 +270,9 @@ export type Database = {
           notes?: string | null
           owner_id?: string
           phone?: string | null
+          reserve_fund?: number | null
+          term_months?: number | null
+          website?: string | null
         }
         Relationships: []
       }
