@@ -1,12 +1,13 @@
 import { useEffect, useState, type FormEvent } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { supabase } from "../integrations/supabase/client";
+import { supabaseConfigured } from "../lib/supabase-ready";
 
 const ADMIN_EMAIL = "daienetiengoconsultora@gmail.com";
 
 export const Route = createFileRoute("/acesso-vendedor")({
   head: () => ({ meta: [{ title: "Acesso do Vendedor | Descomplica Crédito" }] }),
-  component: SellerLogin,
+  component: () => (supabaseConfigured ? <SellerLogin /> : <Unavailable />),
 });
 
 function SellerLogin() {
@@ -151,6 +152,14 @@ function SellerLogin() {
           <p className="mt-7 border-t border-[#EEE8E0] pt-5 text-xs leading-5 text-[#93877A]">O cadastro de usuários é controlado pela administração. Não existe criação pública de contas.</p>
         </section>
       </div>
+    </main>
+  );
+}
+
+function Unavailable() {
+  return (
+    <main className="flex min-h-screen items-center justify-center bg-[#FCFAF7] px-5 text-center text-sm text-[#766D64]">
+      <p>A área restrita está temporariamente indisponível. Tente novamente mais tarde. <a href="/" className="text-[#8A6B3C] underline">Voltar ao site</a></p>
     </main>
   );
 }
