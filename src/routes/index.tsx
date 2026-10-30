@@ -6,8 +6,19 @@ const WHATSAPP = "5527998737600";
 
 export const Route = createFileRoute("/")({
   head: () => ({ meta: [
-    { title: "Descomplica Crédito | Soluções para seus planos" },
-    { name: "description", content: "Consórcios, financiamento de veículos e imóveis e soluções para investir. Solicite uma simulação." },
+    { title: "Consórcio e Financiamento de Imóveis e Veículos | Descomplica Crédito" },
+    { name: "description", content: "Compare possibilidades de consórcio imobiliário, consórcio de veículos e financiamento de imóveis e carros. Atendimento consultivo e simulação pelo WhatsApp." },
+    { name: "robots", content: "index, follow, max-image-preview:large" },
+    { name: "googlebot", content: "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" },
+    { name: "keywords", content: "consórcio imobiliário, consórcio de imóveis, consórcio de carros, consórcio de veículos, financiamento imobiliário, financiamento de veículos, simulação de consórcio, simulação de financiamento, carta de crédito" },
+    { name: "author", content: "Descomplica Crédito" },
+    { name: "theme-color", content: "#541D2B" },
+    { property: "og:locale", content: "pt_BR" },
+    { property: "og:type", content: "website" },
+    { property: "og:site_name", content: "Descomplica Crédito" },
+    { property: "og:title", content: "Consórcio e Financiamento de Imóveis e Veículos | Descomplica Crédito" },
+    { property: "og:description", content: "Entenda opções de consórcio e financiamento para seus planos. Solicite uma simulação e converse pelo WhatsApp." },
+    { name: "twitter:card", content: "summary" },
   ] }),
   component: Index,
 });
@@ -60,7 +71,7 @@ function Index() {
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-4">
           <a href="#inicio" className="text-lg font-semibold">Descomplica <span className="text-[#D9BC83]">Crédito</span></a>
           <nav className="hidden gap-6 text-sm text-white/85 md:flex">
-            <a href="#inicio">Início</a><a href="#quem-sou">Quem Sou</a><a href="#solucoes">Soluções</a><a href="#simulacao">Solicite Simulação</a><a href="#contato">Contato</a>
+            <a href="#inicio">Início</a><a href="#quem-sou">Quem sou</a><a href="#solucoes">Consórcio e financiamento</a><a href="#duvidas">Dúvidas</a><a href="#simulacao">Simulação</a><a href="#contato">Contato</a>
           </nav>
           <a href="#simulacao" className="rounded-full bg-[#C5A267] px-4 py-2 text-sm font-semibold text-[#32131C]">Fazer simulação</a>
         </div>
@@ -70,8 +81,8 @@ function Index() {
         <div className="pointer-events-none absolute -right-24 -top-24 h-96 w-96 rounded-full border border-[#D9BC83]/20" />
         <div className="relative mx-auto max-w-6xl">
           <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[#D9BC83]">Crédito com clareza e planejamento</p>
-          <h1 className="mt-6 max-w-3xl text-4xl font-medium leading-tight sm:text-6xl">Seus planos merecem caminhos claros.</h1>
-          <p className="mt-6 max-w-2xl text-lg leading-8 text-white/75">Conheça possibilidades para conquistar seu imóvel, seu veículo ou organizar seus objetivos. Atendimento próximo, explicações simples e decisões no seu ritmo.</p>
+          <h1 className="mt-6 max-w-3xl text-4xl font-medium leading-tight sm:text-6xl">Consórcio e financiamento para realizar seus planos.</h1>
+          <p className="mt-6 max-w-2xl text-lg leading-8 text-white/75">Pesquise alternativas de consórcio imobiliário, consórcio de veículos, financiamento de imóveis e financiamento de carros. Compare possibilidades com orientação clara e uma simulação alinhada ao seu objetivo.</p>
           <a href="#simulacao" className="mt-9 inline-block rounded-full bg-[#C5A267] px-7 py-3.5 text-sm font-semibold text-[#32131C]">Solicitar uma simulação</a>
           <p className="mt-10 text-xs text-white/50">Atendimento consultivo • Transparência • Condições sujeitas à análise</p>
         </div>
@@ -89,8 +100,8 @@ function Index() {
       <section id="solucoes" className="bg-[#F1ECE5] px-5 py-20">
         <div className="mx-auto max-w-6xl">
           <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[#A47B36]">Soluções</p>
-          <h2 className="mt-4 text-3xl font-semibold text-[#541D2B] sm:text-4xl">Alternativas para diferentes objetivos</h2>
-          <p className="mt-4 max-w-2xl leading-7 text-[#756C63]">Conheça as possibilidades e entenda as condições antes de tomar sua decisão.</p>
+          <h2 className="mt-4 text-3xl font-semibold text-[#541D2B] sm:text-4xl">Encontre a solução de crédito adequada ao seu objetivo</h2>
+          <p className="mt-4 max-w-2xl leading-7 text-[#756C63]">Se você está pesquisando consórcio ou financiamento, conheça as diferenças entre as modalidades, avalie custos e prazos e peça uma simulação antes de decidir.</p>
           <div className="mt-9 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {solutions.map(([number, title, description]) => <article key={number} className="rounded-2xl border border-[#E6DED3] bg-[#FCFAF7] p-6 transition hover:-translate-y-1 hover:shadow-lg"><span className="text-xs font-semibold tracking-widest text-[#B18B4C]">{number}</span><h3 className="mt-5 text-xl font-semibold text-[#541D2B]">{title}</h3><p className="mt-4 text-sm leading-7 text-[#766D64]">{description}</p><a href="#simulacao" className="mt-6 inline-block text-sm font-semibold text-[#7A3445]">Tenho interesse →</a></article>)}
           </div>
@@ -117,6 +128,18 @@ function Index() {
           <button type="submit" disabled={submitting} className="mt-7 w-full rounded-full bg-[#541D2B] px-6 py-4 text-sm font-semibold text-white hover:bg-[#6A2A39] disabled:opacity-60">{submitting ? "Registrando solicitação..." : "Enviar solicitação pelo WhatsApp"}</button>{submitMessage&&<p role="status" className="mt-3 rounded-xl bg-[#F1ECE5] p-3 text-xs leading-5 text-[#6D655D]">{submitMessage}</p>}
           <p className="mt-4 text-center text-xs leading-5 text-[#9A8F83]">A simulação não representa aprovação de crédito nem garantia de contemplação. Condições sujeitas à análise e às regras da instituição responsável.</p>
         </form>
+      </section>
+
+
+      <section id="duvidas" className="mx-auto max-w-6xl px-5 py-20">
+        <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[#A47B36]">Perguntas frequentes</p>
+        <h2 className="mt-4 text-3xl font-semibold text-[#541D2B] sm:text-4xl">Dúvidas sobre consórcio e financiamento</h2>
+        <div className="mt-8 grid gap-5 md:grid-cols-2">
+          <article className="rounded-2xl border border-[#E6DED3] bg-white p-6"><h3 className="text-lg font-semibold text-[#541D2B]">Qual é a diferença entre consórcio e financiamento?</h3><p className="mt-3 text-sm leading-7 text-[#766D64]">No consórcio, pessoas participam de um grupo e a carta de crédito é disponibilizada por contemplação, conforme sorteios ou lances e as regras do contrato. No financiamento, a instituição analisa o crédito e, se aprovado, libera o valor com pagamento de parcelas e encargos.</p></article>
+          <article className="rounded-2xl border border-[#E6DED3] bg-white p-6"><h3 className="text-lg font-semibold text-[#541D2B]">Como funciona o consórcio imobiliário?</h3><p className="mt-3 text-sm leading-7 text-[#766D64]">Você escolhe o valor da carta e o prazo disponíveis em um grupo. A contemplação ocorre por sorteio ou lance, conforme contrato. Não há garantia de contemplação em uma data específica.</p></article>
+          <article className="rounded-2xl border border-[#E6DED3] bg-white p-6"><h3 className="text-lg font-semibold text-[#541D2B]">É possível simular financiamento de veículos?</h3><p className="mt-3 text-sm leading-7 text-[#766D64]">Sim. A simulação pode considerar valor do veículo, entrada, prazo e taxa estimada. A proposta final depende da análise de crédito e das condições oferecidas pela instituição financeira.</p></article>
+          <article className="rounded-2xl border border-[#E6DED3] bg-white p-6"><h3 className="text-lg font-semibold text-[#541D2B]">Quais informações preciso para pedir uma simulação?</h3><p className="mt-3 text-sm leading-7 text-[#766D64]">Informe seu objetivo, valor aproximado, cidade e um contato. A equipe poderá entender sua necessidade e orientar os próximos passos, sem compromisso de aprovação.</p></article>
+        </div>
       </section>
 
       <section id="contato" className="bg-[#32131C] px-5 py-16 text-white"><div className="mx-auto flex max-w-6xl flex-col justify-between gap-7 sm:flex-row sm:items-center"><div><p className="text-xs font-semibold uppercase tracking-[0.25em] text-[#D9BC83]">Contato</p><h2 className="mt-3 text-3xl font-semibold">Vamos conversar sobre seus planos?</h2><p className="mt-3 text-sm text-white/65">Atendimento pelo WhatsApp.</p></div><a href="https://wa.me/5527998737600" target="_blank" rel="noreferrer" className="inline-flex rounded-full bg-[#C5A267] px-7 py-3.5 text-sm font-semibold text-[#32131C]">(27) 99873-7600</a></div></section>
