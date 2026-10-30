@@ -61,6 +61,60 @@ export type Database = {
           },
         ]
       }
+      consortium_administrators: {
+        Row: {
+          admin_fee: number | null
+          city: string | null
+          cnpj8: string | null
+          created_at: string
+          id: string
+          name: string
+          reference_period: string
+          reserve_fund: number | null
+          segment: string | null
+          source: string
+          source_url: string
+          state: string | null
+          term_months: number | null
+          updated_at: string
+          website: string | null
+        }
+        Insert: {
+          admin_fee?: number | null
+          city?: string | null
+          cnpj8?: string | null
+          created_at?: string
+          id?: string
+          name: string
+          reference_period: string
+          reserve_fund?: number | null
+          segment?: string | null
+          source: string
+          source_url: string
+          state?: string | null
+          term_months?: number | null
+          updated_at?: string
+          website?: string | null
+        }
+        Update: {
+          admin_fee?: number | null
+          city?: string | null
+          cnpj8?: string | null
+          created_at?: string
+          id?: string
+          name?: string
+          reference_period?: string
+          reserve_fund?: number | null
+          segment?: string | null
+          source?: string
+          source_url?: string
+          state?: string | null
+          term_months?: number | null
+          updated_at?: string
+          website?: string | null
+        }
+        Relationships: []
+      }
       investor_simulations: {
         Row: {
           annual_rate: number
@@ -388,6 +442,72 @@ export type Database = {
           full_name?: string | null
           role?: string
           user_id?: string
+        }
+        Relationships: []
+      }
+      rate_references: {
+        Row: {
+          annual_rate: number
+          category: string
+          created_at: string
+          id: string
+          institution: string
+          modality: string
+          monthly_rate: number
+          position: number
+          reference_period: string
+          source: string
+          source_url: string
+          updated_at: string
+        }
+        Insert: {
+          annual_rate: number
+          category: string
+          created_at?: string
+          id?: string
+          institution: string
+          modality: string
+          monthly_rate: number
+          position?: number
+          reference_period: string
+          source: string
+          source_url: string
+          updated_at?: string
+        }
+        Update: {
+          annual_rate?: number
+          category?: string
+          created_at?: string
+          id?: string
+          institution?: string
+          modality?: string
+          monthly_rate?: number
+          position?: number
+          reference_period?: string
+          source?: string
+          source_url?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      rate_update_log: {
+        Row: {
+          created_at: string
+          details: string
+          id: string
+          source: string
+        }
+        Insert: {
+          created_at?: string
+          details: string
+          id?: string
+          source: string
+        }
+        Update: {
+          created_at?: string
+          details?: string
+          id?: string
+          source?: string
         }
         Relationships: []
       }
