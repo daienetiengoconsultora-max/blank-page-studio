@@ -41,7 +41,7 @@ function Index() {
     const numericAmount = normalizedAmount ? Number(normalizedAmount.replace(/\.(?=\d{3}(?:\D|$))/g, "")) : NaN;
     const { error } = await supabase.rpc("receive_public_lead", {
       p_name: name.trim(), p_phone: phone.trim(), p_city: city.trim(),
-      p_objective: objective, p_estimated_value: Number.isFinite(numericAmount) ? numericAmount : undefined, p_consent: consent,
+      p_objective: objective, ...(Number.isFinite(numericAmount) ? { p_estimated_value: numericAmount } : {}), p_consent: consent,
     });
     setSubmitting(false);
     setSubmitMessage(error ? "O WhatsApp foi aberto, mas não conseguimos registrar o pedido no CRM. A equipe ainda poderá receber sua mensagem pelo WhatsApp." : "Solicitação registrada! Seus dados já estão no CRM e o WhatsApp foi aberto para continuar o atendimento.");
