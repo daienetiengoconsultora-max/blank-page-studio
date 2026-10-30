@@ -26,8 +26,9 @@ supabase db push
 
 Confira o SQL e o projeto selecionado antes de confirmar qualquer alteração no banco.
 
-## Criar o primeiro acesso administrativo
-1. No Supabase, abra Authentication > Users e convide o e-mail autorizado.
+## Criar o único acesso administrativo
+1. No Supabase, abra Authentication > Settings e desative novos cadastros (Allow new users to sign up).
+2. Em Authentication > Users, convide somente `daienetiengoconsultora@gmail.com`.
 2. Depois que o usuário existir, copie o UUID dele.
 3. No SQL Editor do projeto, execute, substituindo o marcador pelo UUID correto:
 
@@ -37,7 +38,7 @@ set role = 'admin'
 where user_id = '<UUID_DO_USUARIO_AUTORIZADO>';
 ```
 
-Os usuários criados pelo Supabase Auth recebem o perfil padrão de vendedor. A promoção para administrador é manual e não existe cadastro público no site.
+Os usuários criados pelo Supabase Auth recebem o perfil padrão de vendedor. A promoção para administrador é manual. O frontend também restringe o login ao e-mail `daienetiengoconsultora@gmail.com`, mas a proteção real contra novas contas depende de desativar cadastros no Supabase e manter apenas esse usuário em Authentication > Users. Não compartilhe a senha.
 
 ## Estado e limites atuais
 - A tela de login usa Supabase Auth e não oferece cadastro público.
