@@ -14,6 +14,12 @@ const btn="rounded-full bg-[#541D2B] px-4 py-2.5 text-sm font-semibold text-whit
 const soft="rounded-full border border-[#DED5C9] px-4 py-2 text-sm text-[#541D2B] hover:bg-[#FCFAF7]";
 const money=(n:number|null|undefined)=>n==null?"—":n.toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
 const fmtDate=(s:string|null)=>s?new Date(s).toLocaleString("pt-BR"):"Sem data";
+const effectiveAnnualRate=(payment:number,netAmount:number,months:number)=>{
+ if(payment<=0||netAmount<=0||months<=0)return 0;
+ let low=0,high=1;
+ for(let i=0;i<80;i++){const mid=(low+high)/2;const pv=mid===0?payment*months:payment*(1-Math.pow(1+mid,-months))/mid;if(pv>netAmount)low=mid;else high=mid;}
+ return (Math.pow(1+high,12)-1)*100;
+};
 
 export function LeadsCrm({userId}:{userId:string;isAdmin:boolean}) {
  const [tab,setTab]=useState("Visão geral"),[leads,setLeads]=useState<Lead[]>([]),[activities,setActivities]=useState<Activity[]>([]),[partners,setPartners]=useState<Person[]>([]),[investors,setInvestors]=useState<Person[]>([]),[docs,setDocs]=useState<Doc[]>([]),[simulations,setSimulations]=useState<Simulation[]>([]);
@@ -70,12 +76,12 @@ export function LeadsCrm({userId}:{userId:string;isAdmin:boolean}) {
   let installment=0,details:Record<string,string|number|boolean>={months,monthly_rate_percent:sim.rate,simulator};
   if(simulator==="consorcio"){
    const admin=Number(simExtra.admin)/100,reserve=Number(simExtra.reserve)/100,bid=Number(simExtra.bid);
-   installment=(amount*(1+admin+reserve)-bid)/months;
+   installment=Math.max(0,(amount*(1+admin+reserve)-bid)/months);
    details={...details,administration_fee_percent:simExtra.admin,reserve_fund_percent:simExtra.reserve,bid,estimated_total:amount*(1+admin+reserve)-bid};
   }else if(simulator==="veiculos"){
    const down=Number(simExtra.down),iof=Number(simExtra.iof)/100,financed=Math.max(0,amount-down),principal=financed*(1+iof);
    installment=rate===0?principal/months:principal*rate/(1-Math.pow(1+rate,-months));
-   details={...details,down_payment:down,iof_percent:simExtra.iof,financed_amount:financed,estimated_iof:financed*iof,estimated_total:installment*months,comparison_consorcio:(amount*(1+Number(simExtra.admin)/100+Number(simExtra.reserve)/100))/months};
+   details={...details,down_payment:down,iof_percent:simExtra.iof,financed_amount:financed,estimated_iof:financed*iof,estimated_total:installment*months,effective_annual_cost_percent:effectiveAnnualRate(installment,financed,months),comparison_consorcio:(amount*(1+Number(simExtra.admin)/100+Number(simExtra.reserve)/100))/months};
   }else if(simulator==="imobiliario"){
    const itbi=Number(simExtra.itbi)/100,insurance=Number(simExtra.insurance),principal=amount;
    const price=rate===0?principal/months:principal*rate/(1-Math.pow(1+rate,-months));
@@ -137,7 +143,7 @@ export function LeadsCrm({userId}:{userId:string;isAdmin:boolean}) {
     </div>
     <div className="mt-4 rounded-2xl bg-[#FCFAF7] p-4"><p className="text-xs text-[#766D64]">{simulator==="refinanciamento"?"Nova parcela estimada":simulator==="imobiliario"?"Parcela Price estimada + seguro":simulator==="consorcio"?"Parcela estimada com taxas e lance":"Parcela estimada pela Tabela Price"}</p><b className="mt-1 block text-2xl text-[#541D2B]">{money((()=>{const a=Number(sim.amount),n=Number(sim.months),r=Number(sim.rate)/100;if(!a||!n)return 0;if(simulator==="consorcio")return (a*(1+Number(simExtra.admin)/100+Number(simExtra.reserve)/100)-Number(simExtra.bid))/n;if(simulator==="refinanciamento")return Number(simExtra.newPayment);const principal=simulator==="veiculos"?Math.max(0,a-Number(simExtra.down))*(1+Number(simExtra.iof)/100):a;const p=r===0?principal/n:principal*r/(1-Math.pow(1+r,-n));return p+(simulator==="imobiliario"?Number(simExtra.insurance):0)})())}</b>
      {simulator==="imobiliario"&&<p className="mt-2 text-xs text-[#766D64]">ITBI estimado: {money(Number(sim.amount)*Number(simExtra.itbi)/100)} · SAC começa com parcela maior e reduz ao longo do tempo. Primeira parcela SAC estimada: {money(Number(sim.amount)/Math.max(1,Number(sim.months))+Number(sim.amount)*Number(sim.rate)/100+Number(simExtra.insurance))}.</p>}
-     {simulator==="veiculos"&&<p className="mt-2 text-xs text-[#766D64]">Consórcio equivalente sem lance: {money(Number(sim.amount)*(1+Number(simExtra.admin)/100+Number(simExtra.reserve)/100)/Math.max(1,Number(sim.months)))}. CET real depende das tarifas e condições do contrato.</p>}
+     {simulator==="veiculos"&&<p className="mt-2 text-xs text-[#766D64]">Consórcio equivalente sem lance: {money(Number(sim.amount)*(1+Number(simExtra.admin)/100+Number(simExtra.reserve)/100)/Math.max(1,Number(sim.months)))}. Custo efetivo anual aproximado, considerando IOF informado: {effectiveAnnualRate((()=>{const principal=Math.max(0,Number(sim.amount)-Number(simExtra.down))*(1+Number(simExtra.iof)/100),r=Number(sim.rate)/100,n=Math.max(1,Number(sim.months));return r===0?principal/n:principal*r/(1-Math.pow(1+r,-n))})(),Math.max(0,Number(sim.amount)-Number(simExtra.down)),Math.max(1,Number(sim.months))).toFixed(2)}% a.a. Estimativa simplificada, não substitui o CET oficial da instituição.</p>}
      {simulator==="refinanciamento"&&<p className="mt-2 text-xs text-[#766D64]">Diferença mensal: {money(Number(simExtra.currentPayment)-Number(simExtra.newPayment))} · economia anual estimada: {money((Number(simExtra.currentPayment)-Number(simExtra.newPayment))*12)}</p>}
     </div>
     <div className="mt-4 flex flex-wrap gap-2"><button disabled={busy} className={btn} onClick={e=>saveSim(e as unknown as FormEvent)}>Salvar simulação e proposta</button><button type="button" className={soft} onClick={()=>window.print()}>Gerar PDF / imprimir</button></div>
