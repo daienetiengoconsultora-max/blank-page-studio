@@ -1,129 +1,87 @@
-import { useEffect, useState, type FormEvent } from "react";
+import { useEffect, useMemo, useState, type FormEvent } from "react";
 import { supabase } from "../../integrations/supabase/client";
 
-type Lead = {
-  id: string;
-  full_name: string;
-  phone: string;
-  email: string | null;
-  city: string | null;
-  objective: string | null;
-  estimated_value: number | null;
-  status: string;
-  notes: string | null;
-  created_at: string;
-};
+type Lead = {id:string;full_name:string;phone:string;email:string|null;city:string|null;source:string|null;objective:string|null;estimated_value:number|null;status:string;notes:string|null;created_at:string};
+type Activity = {id:string;lead_id:string;description:string;activity_type:string;due_at:string|null;created_at:string};
+type Person = {id:string;name:string;company?:string|null;phone?:string|null;email?:string|null;contact?:string|null;profile?:string|null;notes:string|null};
+type Doc = {id:string;lead_id:string;file_name:string;storage_path:string;created_at:string};
+type Simulation = {id:string;lead_id:string;product_type:string;requested_amount:number|null;created_at:string};
+const stages=[["novo","Lead"],["contato_inicial","Em atendimento"],["qualificado","Qualificado"],["simulacao","Simulação"],["proposta","Proposta enviada"],["negociacao","Negociação"],["ganho","Fechado"],["perdido","Perdido"]] as const;
+const input="w-full rounded-xl border border-[#DED5C9] bg-white px-3 py-2.5 text-sm outline-none focus:border-[#B58A45]";
+const btn="rounded-full bg-[#541D2B] px-4 py-2.5 text-sm font-semibold text-white hover:bg-[#6A2A39] disabled:opacity-50";
+const soft="rounded-full border border-[#DED5C9] px-4 py-2 text-sm text-[#541D2B] hover:bg-[#FCFAF7]";
+const money=(n:number|null|undefined)=>n==null?"—":n.toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
+const fmtDate=(s:string|null)=>s?new Date(s).toLocaleString("pt-BR"):"Sem data";
 
-const STATUSES = [
-  ["novo", "Novo"],
-  ["em_contato", "Em contato"],
-  ["em_analise", "Em análise"],
-  ["aprovado", "Aprovado"],
-  ["perdido", "Perdido"],
-] as const;
+export function LeadsCrm({userId}:{userId:string;isAdmin:boolean}) {
+ const [tab,setTab]=useState("Visão geral"),[leads,setLeads]=useState<Lead[]>([]),[activities,setActivities]=useState<Activity[]>([]),[partners,setPartners]=useState<Person[]>([]),[investors,setInvestors]=useState<Person[]>([]),[docs,setDocs]=useState<Doc[]>([]),[simulations,setSimulations]=useState<Simulation[]>([]);
+ const [loading,setLoading]=useState(true),[busy,setBusy]=useState(false),[error,setError]=useState(""),[notice,setNotice]=useState(""),[search,setSearch]=useState(""),[filter,setFilter]=useState("todos");
+ const [lead,setLead]=useState({full_name:"",phone:"",email:"",city:"",source:"Instagram",objective:"Consórcio imobiliário",estimated_value:"",notes:""});
+ const [task,setTask]=useState({lead_id:"",description:"",activity_type:"whatsapp",due_at:""});
+ const [partner,setPartner]=useState({name:"",company:"",phone:"",email:"",notes:""});
+ const [investor,setInvestor]=useState({name:"",contact:"",profile:"",notes:""});
+ const [sim,setSim]=useState({lead_id:"",product_type:"Consórcio imobiliário",amount:"",months:"180",rate:"0"});
+ const [docLead,setDocLead]=useState("");
 
-const input = "w-full rounded-xl border border-[#DED5C9] bg-white px-3 py-2 text-sm outline-none focus:border-[#B58A45]";
-
-export function LeadsCrm({ userId, isAdmin }: { userId: string; isAdmin: boolean }) {
-  const [leads, setLeads] = useState<Lead[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
-  const [saving, setSaving] = useState(false);
-  const [form, setForm] = useState({ full_name: "", phone: "", email: "", city: "", objective: "", estimated_value: "", notes: "" });
-
-  async function load() {
-    setLoading(true);
-    const { data, error } = await supabase.from("leads").select("*").order("created_at", { ascending: false });
-    if (error) setError("Não foi possível carregar os clientes.");
-    else setLeads(data as Lead[]);
-    setLoading(false);
-  }
-
-  useEffect(() => { void load(); }, []);
-
-  async function addLead(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    setSaving(true);
-    setError("");
-    const value = form.estimated_value ? Number(form.estimated_value.replace(/\./g, "").replace(",", ".")) : null;
-    const { error } = await supabase.from("leads").insert({
-      owner_id: userId,
-      full_name: form.full_name.trim(),
-      phone: form.phone.trim(),
-      email: form.email.trim() || null,
-      city: form.city.trim() || null,
-      objective: form.objective.trim() || null,
-      estimated_value: value !== null && !Number.isNaN(value) ? value : null,
-      notes: form.notes.trim() || null,
-    });
-    setSaving(false);
-    if (error) { setError("Não foi possível salvar o cliente."); return; }
-    setForm({ full_name: "", phone: "", email: "", city: "", objective: "", estimated_value: "", notes: "" });
-    void load();
-  }
-
-  async function setStatus(id: string, status: string) {
-    const { error } = await supabase.from("leads").update({ status }).eq("id", id);
-    if (error) setError("Não foi possível atualizar o status.");
-    else setLeads(ls => ls.map(l => (l.id === id ? { ...l, status } : l)));
-  }
-
-  async function remove(id: string) {
-    if (!window.confirm("Excluir este cliente definitivamente?")) return;
-    const { error } = await supabase.from("leads").delete().eq("id", id);
-    if (error) setError("Não foi possível excluir o cliente.");
-    else setLeads(ls => ls.filter(l => l.id !== id));
-  }
-
-  const f = (k: keyof typeof form) => ({ value: form[k], onChange: (e: { target: { value: string } }) => setForm(s => ({ ...s, [k]: e.target.value })) });
-
-  return (
-    <div className="mt-8 space-y-8">
-      <section className="rounded-2xl border border-[#EAE3D9] bg-white p-6">
-        <h2 className="text-lg font-semibold text-[#541D2B]">Novo cliente</h2>
-        <form onSubmit={addLead} className="mt-4 grid gap-3 sm:grid-cols-2">
-          <input required placeholder="Nome completo *" className={input} {...f("full_name")} />
-          <input required placeholder="Telefone *" className={input} {...f("phone")} />
-          <input type="email" placeholder="E-mail" className={input} {...f("email")} />
-          <input placeholder="Cidade" className={input} {...f("city")} />
-          <input placeholder="Objetivo (ex.: consórcio imóvel)" className={input} {...f("objective")} />
-          <input inputMode="decimal" placeholder="Valor estimado (R$)" className={input} {...f("estimated_value")} />
-          <textarea placeholder="Observações" className={`${input} sm:col-span-2`} rows={2} {...f("notes")} />
-          <button disabled={saving} className="rounded-full bg-[#541D2B] px-5 py-2.5 text-sm font-semibold text-white hover:bg-[#6A2A39] disabled:opacity-60 sm:col-span-2 sm:justify-self-start">{saving ? "Salvando..." : "Adicionar cliente"}</button>
-        </form>
-      </section>
-
-      {error && <p role="alert" className="rounded-xl bg-[#F8EDED] p-3 text-sm text-[#7A2E2E]">{error}</p>}
-
-      <section>
-        <h2 className="text-lg font-semibold text-[#541D2B]">{isAdmin ? "Todos os clientes" : "Meus clientes"} ({leads.length})</h2>
-        {loading ? (
-          <p className="mt-4 text-sm text-[#766D64]">Carregando...</p>
-        ) : leads.length === 0 ? (
-          <p className="mt-4 text-sm text-[#766D64]">Nenhum cliente cadastrado ainda.</p>
-        ) : (
-          <ul className="mt-4 space-y-3">
-            {leads.map(l => (
-              <li key={l.id} className="rounded-2xl border border-[#EAE3D9] bg-white p-5">
-                <div className="flex flex-wrap items-start justify-between gap-3">
-                  <div>
-                    <p className="font-semibold">{l.full_name}</p>
-                    <p className="text-sm text-[#766D64]">{[l.phone, l.email, l.city].filter(Boolean).join(" · ")}</p>
-                    {l.objective && <p className="mt-1 text-sm">{l.objective}{l.estimated_value != null && ` — R$ ${Number(l.estimated_value).toLocaleString("pt-BR", { minimumFractionDigits: 2 })}`}</p>}
-                    {l.notes && <p className="mt-1 text-xs text-[#93877A]">{l.notes}</p>}
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <select aria-label="Status" value={l.status} onChange={e => setStatus(l.id, e.target.value)} className="rounded-full border border-[#DED5C9] bg-white px-3 py-1.5 text-xs">
-                      {STATUSES.map(([v, label]) => <option key={v} value={v}>{label}</option>)}
-                    </select>
-                    {isAdmin && <button onClick={() => remove(l.id)} className="rounded-full border border-[#E5CFCF] px-3 py-1.5 text-xs text-[#7A2E2E] hover:bg-[#F8EDED]">Excluir</button>}
-                  </div>
-                </div>
-              </li>
-            ))}
-          </ul>
-        )}
-      </section>
-    </div>
-  );
+ async function load(){
+  setLoading(true);setError("");
+  const r=await Promise.all([
+   supabase.from("leads").select("*").order("created_at",{ascending:false}),
+   supabase.from("lead_activities").select("*").order("due_at",{ascending:true}),
+   supabase.from("partners").select("*").order("created_at",{ascending:false}),
+   supabase.from("investors").select("*").order("created_at",{ascending:false}),
+   supabase.from("client_documents").select("*").order("created_at",{ascending:false}),
+   supabase.from("simulations").select("*").order("created_at",{ascending:false})
+  ]);
+  if(r[0].error)setError("Não foi possível carregar clientes. Verifique se as tabelas do CRM foram instaladas no Supabase.");
+  setLeads((r[0].data??[]) as Lead[]);setActivities((r[1].data??[]) as Activity[]);setPartners((r[2].data??[]) as Person[]);setInvestors((r[3].data??[]) as Person[]);setDocs((r[4].data??[]) as Doc[]);setSimulations((r[5].data??[]) as Simulation[]);setLoading(false);
+ }
+ useEffect(()=>{void load()},[]);
+ const filtered=useMemo(()=>leads.filter(l=>{
+  const q=search.toLowerCase();const text=[l.full_name,l.phone,l.email??"",l.city??"",l.objective??""].join(" ").toLowerCase();
+  return text.includes(q)&&(filter==="todos"||l.status===filter)
+ }),[leads,search,filter]);
+ const total=leads.length,won=leads.filter(l=>l.status==="ganho").length;
+ const pipeline=leads.filter(l=>!["ganho","perdido"].includes(l.status)).reduce((n,l)=>n+Number(l.estimated_value??0),0);
+ const name=(id:string)=>leads.find(l=>l.id===id)?.full_name??"Cliente";
+ async function addLead(e:FormEvent){e.preventDefault();setBusy(true);setError("");
+  const raw=lead.estimated_value.trim().replace(/\./g,"").replace(",",".");const value=raw?Number(raw):null;
+  const r=await supabase.from("leads").insert({owner_id:userId,full_name:lead.full_name.trim(),phone:lead.phone.trim(),email:lead.email.trim()||null,city:lead.city.trim()||null,source:lead.source,objective:lead.objective,estimated_value:value!==null&&!Number.isNaN(value)?value:null,notes:lead.notes.trim()||null});
+  setBusy(false);if(r.error){setError("Não foi possível salvar o cliente.");return;}setLead({full_name:"",phone:"",email:"",city:"",source:"Instagram",objective:"Consórcio imobiliário",estimated_value:"",notes:""});setNotice("Cliente cadastrado.");await load();
+ }
+ async function stage(id:string,status:string){const r=await supabase.from("leads").update({status}).eq("id",id);if(r.error){setError("Não foi possível atualizar a etapa.");return;}setLeads(p=>p.map(l=>l.id===id?{...l,status}:l))}
+ async function addTask(e:FormEvent){e.preventDefault();if(!task.lead_id){setError("Selecione um cliente.");return;}setBusy(true);const r=await supabase.from("lead_activities").insert({owner_id:userId,lead_id:task.lead_id,description:task.description,activity_type:task.activity_type,due_at:task.due_at?new Date(task.due_at).toISOString():null});setBusy(false);if(r.error){setError("Não foi possível salvar o compromisso.");return;}setTask({lead_id:"",description:"",activity_type:"whatsapp",due_at:""});setNotice("Compromisso salvo.");await load()}
+ async function addPerson(e:FormEvent,kind:"partners"|"investors"){e.preventDefault();setBusy(true);const r=kind==="partners"?await supabase.from("partners").insert({owner_id:userId,...partner}):await supabase.from("investors").insert({owner_id:userId,...investor});setBusy(false);if(r.error){setError("Não foi possível salvar o cadastro.");return;}if(kind==="partners")setPartner({name:"",company:"",phone:"",email:"",notes:""});else setInvestor({name:"",contact:"",profile:"",notes:""});setNotice("Cadastro salvo.");await load()}
+ function exportCsv(){const rows=[["Nome","Telefone","E-mail","Cidade","Origem","Objetivo","Valor","Etapa","Observações"],...filtered.map(l=>[l.full_name,l.phone,l.email??"",l.city??"",l.source??"",l.objective??"",String(l.estimated_value??""),stages.find(s=>s[0]===l.status)?.[1]??l.status,l.notes??""])];const csv="\uFEFF"+rows.map(r=>r.map(v=>'"'+String(v).replace(/"/g,'""')+'"').join(";")).join("\r\n");const url=URL.createObjectURL(new Blob([csv],{type:"text/csv;charset=utf-8;"}));const a=document.createElement("a");a.href=url;a.download="descomplica-clientes.csv";a.click();URL.revokeObjectURL(url)}
+ async function saveSim(e:FormEvent){e.preventDefault();if(!sim.lead_id){setError("Vincule a simulação a um cliente.");return;}const amount=Number(sim.amount),months=Number(sim.months),rate=Number(sim.rate)/100;if(!(amount>0&&months>0)){setError("Informe valor e prazo válidos.");return;}const installment=rate===0?amount/months:amount*rate/(1-Math.pow(1+rate,-months));setBusy(true);const r=await supabase.from("simulations").insert({owner_id:userId,lead_id:sim.lead_id,product_type:sim.product_type,requested_amount:amount,details:{months,monthly_rate_percent:sim.rate,estimated_installment:installment},status:"em_analise"});setBusy(false);if(r.error){setError("Não foi possível salvar a simulação.");return;}setNotice("Simulação salva no histórico.");await load()}
+ async function uploadDoc(e:FormEvent<HTMLFormElement>){e.preventDefault();const form=e.currentTarget;const f=(form.elements.namedItem("document") as HTMLInputElement).files?.[0];if(!f||!docLead){setError("Selecione cliente e arquivo.");return;}setBusy(true);const path=userId+"/"+docLead+"/"+Date.now()+"-"+f.name.replace(/[^a-zA-Z0-9._-]/g,"_");const up=await supabase.storage.from("client-documents").upload(path,f);if(up.error){setBusy(false);setError("Falha no envio. O armazenamento client-documents precisa ser criado no Supabase.");return;}const saved=await supabase.from("client_documents").insert({owner_id:userId,lead_id:docLead,file_name:f.name,storage_path:path,content_type:f.type||null});setBusy(false);if(saved.error){setError("Arquivo enviado, mas não foi vinculado ao cadastro.");return;}form.reset();setDocLead("");setNotice("Documento anexado.");await load()}
+ async function openDoc(path:string){const r=await supabase.storage.from("client-documents").createSignedUrl(path,60);if(r.error||!r.data?.signedUrl){setError("Não foi possível abrir o documento.");return;}window.open(r.data.signedUrl,"_blank","noopener,noreferrer")}
+ const months=Number(sim.months),rate=Number(sim.rate)/100,amount=Number(sim.amount);const installment=amount>0&&months>0?(rate===0?amount/months:amount*rate/(1-Math.pow(1+rate,-months))):0;
+ const tabs=["Visão geral","Clientes e funil","Agenda","Simuladores","Investidores","Parceiros","Documentos","Relatórios"];
+ return <div className="mt-8 space-y-6">
+  <nav className="flex gap-2 overflow-x-auto pb-2 print:hidden">{tabs.map(t=><button key={t} onClick={()=>setTab(t)} className={tab===t?"whitespace-nowrap rounded-full bg-[#541D2B] px-4 py-2 text-xs font-semibold text-white":"whitespace-nowrap rounded-full border border-[#DED5C9] bg-white px-4 py-2 text-xs text-[#541D2B]"}>{t}</button>)}</nav>
+  {error&&<p role="alert" className="rounded-xl bg-[#F8EDED] p-3 text-sm text-[#7A2E2E]">{error}</p>}{notice&&<p role="status" className="rounded-xl bg-[#F1F6EF] p-3 text-sm text-[#3F6840]">{notice}</p>}
+  {loading?<p className="text-sm text-[#766D64]">Carregando CRM...</p>:<>
+  {tab==="Visão geral"&&<section className="space-y-5">
+   <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">{[["Clientes",String(total)],["Em andamento",String(leads.filter(l=>!["ganho","perdido"].includes(l.status)).length)],["Vendas fechadas",String(won)],["Valor no funil",money(pipeline)]].map(x=><article key={x[0]} className="rounded-2xl border border-[#EAE3D9] bg-white p-5"><p className="text-xs text-[#766D64]">{x[0]}</p><p className="mt-2 text-2xl font-semibold text-[#541D2B]">{x[1]}</p></article>)}</div>
+   <div className="grid gap-4 lg:grid-cols-2"><article className="rounded-2xl border border-[#EAE3D9] bg-white p-5"><h2 className="font-semibold text-[#541D2B]">Funil de vendas</h2>{stages.map(([k,v])=><div key={k} className="mt-3"><div className="flex justify-between text-xs"><span>{v}</span><b>{leads.filter(l=>l.status===k).length}</b></div><div className="mt-1 h-2 rounded-full bg-[#F1ECE5]"><div className="h-2 rounded-full bg-[#A47B36]" style={{width:total?(leads.filter(l=>l.status===k).length/total*100)+"%":"0%"}}/></div></div>)}</article><article className="rounded-2xl border border-[#EAE3D9] bg-white p-5"><h2 className="font-semibold text-[#541D2B]">Próximos contatos</h2>{activities.filter(a=>a.due_at).slice(0,7).map(a=><p key={a.id} className="mt-3 border-b border-[#F0EBE4] pb-2 text-sm"><b>{name(a.lead_id)}</b><br/>{a.description}<br/><span className="text-xs text-[#766D64]">{fmtDate(a.due_at)}</span></p>)}{activities.length===0&&<p className="mt-3 text-sm text-[#766D64]">Nenhum contato agendado.</p>}</article></div>
+  </section>}
+  {tab==="Clientes e funil"&&<section className="space-y-4">
+   <article className="rounded-2xl border border-[#EAE3D9] bg-white p-5"><h2 className="font-semibold text-[#541D2B]">Cadastrar cliente</h2><form onSubmit={addLead} className="mt-4 grid gap-3 sm:grid-cols-2">
+    <input required placeholder="Nome completo *" className={input} value={lead.full_name} onChange={e=>setLead({...lead,full_name:e.target.value})}/><input required placeholder="Telefone / WhatsApp *" className={input} value={lead.phone} onChange={e=>setLead({...lead,phone:e.target.value})}/><input type="email" placeholder="E-mail" className={input} value={lead.email} onChange={e=>setLead({...lead,email:e.target.value})}/><input placeholder="Cidade" className={input} value={lead.city} onChange={e=>setLead({...lead,city:e.target.value})}/>
+    <select className={input} value={lead.source} onChange={e=>setLead({...lead,source:e.target.value})}>{["Instagram","WhatsApp","Indicação","Facebook","Site","Tráfego pago","Outro"].map(x=><option key={x}>{x}</option>)}</select><select className={input} value={lead.objective} onChange={e=>setLead({...lead,objective:e.target.value})}>{["Consórcio imobiliário","Consórcio de veículos","Financiamento imobiliário","Refinanciamento","Investimento","Outro"].map(x=><option key={x}>{x}</option>)}</select>
+    <input placeholder="Valor estimado (R$)" className={input} value={lead.estimated_value} onChange={e=>setLead({...lead,estimated_value:e.target.value})}/><textarea placeholder="Anotações / informações de crédito" className={input} rows={2} value={lead.notes} onChange={e=>setLead({...lead,notes:e.target.value})}/><button disabled={busy} className={btn+" sm:col-span-2 sm:justify-self-start"}>Salvar cliente</button>
+   </form></article>
+   <div className="flex flex-col gap-2 sm:flex-row"><input className={input} placeholder="Buscar nome, telefone, e-mail ou cidade" value={search} onChange={e=>setSearch(e.target.value)}/><select className={input} value={filter} onChange={e=>setFilter(e.target.value)}><option value="todos">Todas as etapas</option>{stages.map(([k,v])=><option key={k} value={k}>{v}</option>)}</select><button className={soft} onClick={exportCsv}>Exportar Excel (CSV)</button></div>
+   <div className="space-y-3">{filtered.map(l=><article key={l.id} className="rounded-2xl border border-[#EAE3D9] bg-white p-4"><div className="flex flex-col justify-between gap-3 sm:flex-row"><div><b className="text-[#541D2B]">{l.full_name}</b><p className="text-xs text-[#766D64]">{[l.phone,l.email,l.city,l.source].filter(Boolean).join(" · ")}</p><p className="mt-1 text-sm">{l.objective??"Sem objetivo"} · {money(l.estimated_value)}</p>{l.notes&&<p className="mt-1 text-xs">{l.notes}</p>}</div><select className={input+" sm:max-w-48"} value={l.status} onChange={e=>stage(l.id,e.target.value)}>{stages.map(([k,v])=><option key={k} value={k}>{v}</option>)}</select></div><div className="mt-3 flex gap-2"><button className={soft} onClick={()=>{setTask({...task,lead_id:l.id});setTab("Agenda")}}>Agendar contato</button><button className={soft} onClick={()=>{setDocLead(l.id);setTab("Documentos")}}>Anexar documento</button></div></article>)}{filtered.length===0&&<p className="text-sm text-[#766D64]">Nenhum cliente encontrado.</p>}</div>
+  </section>}
+  {tab==="Agenda"&&<section className="space-y-4"><article className="rounded-2xl border border-[#EAE3D9] bg-white p-5"><h2 className="font-semibold text-[#541D2B]">Novo compromisso</h2><form onSubmit={addTask} className="mt-4 grid gap-3 sm:grid-cols-2"><select required className={input} value={task.lead_id} onChange={e=>setTask({...task,lead_id:e.target.value})}><option value="">Selecione o cliente</option>{leads.map(l=><option key={l.id} value={l.id}>{l.full_name}</option>)}</select><select className={input} value={task.activity_type} onChange={e=>setTask({...task,activity_type:e.target.value})}>{[["whatsapp","WhatsApp"],["ligacao","Ligação"],["reuniao","Reunião"],["tarefa","Tarefa"],["nota","Nota"]].map(x=><option key={x[0]} value={x[0]}>{x[1]}</option>)}</select><input required placeholder="Descrição" className={input} value={task.description} onChange={e=>setTask({...task,description:e.target.value})}/><input type="datetime-local" className={input} value={task.due_at} onChange={e=>setTask({...task,due_at:e.target.value})}/><button className={btn+" sm:col-span-2 sm:justify-self-start"}>Salvar agenda</button></form></article><article className="rounded-2xl border border-[#EAE3D9] bg-white p-5"><h2 className="font-semibold text-[#541D2B]">Compromissos e histórico</h2>{activities.map(a=><p key={a.id} className="border-b border-[#F0EBE4] py-3 text-sm"><b>{name(a.lead_id)}</b> · {a.activity_type}<br/>{a.description}<br/><span className="text-xs text-[#766D64]">{fmtDate(a.due_at)}</span></p>)}</article></section>}
+  {tab==="Simuladores"&&<section className="space-y-4"><article className="rounded-2xl border border-[#EAE3D9] bg-white p-5"><h2 className="font-semibold text-[#541D2B]">Simulador de crédito e parcelas</h2><p className="mt-1 text-xs text-[#766D64]">Estimativa matemática, não é proposta ou garantia de aprovação. Consórcios podem ter taxas, reajustes e regras próprias.</p><form onSubmit={saveSim} className="mt-4 grid gap-3 sm:grid-cols-2"><select className={input} value={sim.lead_id} onChange={e=>setSim({...sim,lead_id:e.target.value})}><option value="">Vincular a cliente</option>{leads.map(l=><option key={l.id} value={l.id}>{l.full_name}</option>)}</select><select className={input} value={sim.product_type} onChange={e=>setSim({...sim,product_type:e.target.value})}>{["Consórcio imobiliário","Consórcio de veículos","Financiamento imobiliário","Refinanciamento"].map(x=><option key={x}>{x}</option>)}</select><input required type="number" min="1" placeholder="Valor do crédito (R$)" className={input} value={sim.amount} onChange={e=>setSim({...sim,amount:e.target.value})}/><input type="number" min="1" placeholder="Prazo em meses" className={input} value={sim.months} onChange={e=>setSim({...sim,months:e.target.value})}/><input type="number" min="0" step="0.01" placeholder="Taxa mensal estimada (%)" className={input} value={sim.rate} onChange={e=>setSim({...sim,rate:e.target.value})}/><div className="rounded-xl bg-[#FCFAF7] p-3"><p className="text-xs text-[#766D64]">Parcela estimada (Price)</p><b className="text-xl text-[#541D2B]">{money(installment)}</b></div><button className={btn+" sm:col-span-2 sm:justify-self-start"}>Salvar simulação</button></form></article><article className="rounded-2xl border border-[#EAE3D9] bg-white p-5"><h2 className="font-semibold text-[#541D2B]">Simulações salvas</h2>{simulations.map(s=><p key={s.id} className="border-b py-2 text-sm">{name(s.lead_id)} · {s.product_type} · {money(s.requested_amount)} · {fmtDate(s.created_at)}</p>)}</article></section>}
+  {tab==="Investidores"&&<section className="space-y-4"><article className="rounded-2xl border border-[#EAE3D9] bg-white p-5"><h2 className="font-semibold text-[#541D2B]">Cadastrar investidor</h2><form onSubmit={e=>addPerson(e,"investors")} className="mt-4 grid gap-3 sm:grid-cols-2"><input required placeholder="Nome" className={input} value={investor.name} onChange={e=>setInvestor({...investor,name:e.target.value})}/><input placeholder="Telefone / e-mail" className={input} value={investor.contact} onChange={e=>setInvestor({...investor,contact:e.target.value})}/><input placeholder="Perfil / interesse" className={input} value={investor.profile} onChange={e=>setInvestor({...investor,profile:e.target.value})}/><input placeholder="Observações" className={input} value={investor.notes} onChange={e=>setInvestor({...investor,notes:e.target.value})}/><button className={btn+" sm:col-span-2 sm:justify-self-start"}>Salvar investidor</button></form></article><People items={investors} detail={p=>p.profile??p.contact??""}/></section>}
+  {tab==="Parceiros"&&<section className="space-y-4"><article className="rounded-2xl border border-[#EAE3D9] bg-white p-5"><h2 className="font-semibold text-[#541D2B]">Cadastrar parceiro</h2><form onSubmit={e=>addPerson(e,"partners")} className="mt-4 grid gap-3 sm:grid-cols-2"><input required placeholder="Nome" className={input} value={partner.name} onChange={e=>setPartner({...partner,name:e.target.value})}/><input placeholder="Empresa" className={input} value={partner.company} onChange={e=>setPartner({...partner,company:e.target.value})}/><input placeholder="Telefone" className={input} value={partner.phone} onChange={e=>setPartner({...partner,phone:e.target.value})}/><input type="email" placeholder="E-mail" className={input} value={partner.email} onChange={e=>setPartner({...partner,email:e.target.value})}/><input placeholder="Observações" className={input} value={partner.notes} onChange={e=>setPartner({...partner,notes:e.target.value})}/><button className={btn+" sm:col-span-2 sm:justify-self-start"}>Salvar parceiro</button></form></article><People items={partners} detail={p=>p.company??p.phone??""}/></section>}
+  {tab==="Documentos"&&<section className="space-y-4"><article className="rounded-2xl border border-[#EAE3D9] bg-white p-5"><h2 className="font-semibold text-[#541D2B]">Anexar documento</h2><form onSubmit={uploadDoc} className="mt-4 grid gap-3 sm:grid-cols-2"><select required className={input} value={docLead} onChange={e=>setDocLead(e.target.value)}><option value="">Selecione o cliente</option>{leads.map(l=><option key={l.id} value={l.id}>{l.full_name}</option>)}</select><input required name="document" type="file" className={input}/><button disabled={busy} className={btn+" sm:col-span-2 sm:justify-self-start"}>Enviar documento</button></form><p className="mt-2 text-xs text-[#766D64]">O armazenamento privado client-documents precisa existir no Supabase.</p></article><article className="rounded-2xl border border-[#EAE3D9] bg-white p-5"><h2 className="font-semibold text-[#541D2B]">Arquivos enviados</h2>{docs.map(d=><div key={d.id} className="flex flex-wrap justify-between gap-2 border-b py-3"><p className="text-sm">{d.file_name} · {name(d.lead_id)}</p><button className={soft} onClick={()=>openDoc(d.storage_path)}>Abrir</button></div>)}</article></section>}
+  {tab==="Relatórios"&&<section className="space-y-4"><article className="rounded-2xl border border-[#EAE3D9] bg-white p-5"><h2 className="font-semibold text-[#541D2B]">Relatório comercial</h2><div className="mt-4 grid gap-3 sm:grid-cols-3">{[["Clientes",String(total)],["Fechados",String(won)],["Valor no funil",money(pipeline)]].map(x=><div key={x[0]} className="rounded-xl bg-[#FCFAF7] p-4"><p className="text-xs text-[#766D64]">{x[0]}</p><b className="text-xl">{x[1]}</b></div>)}</div><div className="mt-4 flex flex-wrap gap-2 print:hidden"><button className={btn} onClick={exportCsv}>Baixar planilha Excel (CSV)</button><button className={soft} onClick={()=>window.print()}>Imprimir / salvar PDF</button></div></article><article className="rounded-2xl border border-[#EAE3D9] bg-white p-5"><h2 className="font-semibold text-[#541D2B]">Resumo por etapa</h2>{stages.map(([k,v])=><p key={k} className="flex justify-between border-b py-2 text-sm"><span>{v}</span><b>{leads.filter(l=>l.status===k).length}</b></p>)}</article></section>}
+  </>}
+ </div>
 }
+function People({items,detail}:{items:Person[];detail:(p:Person)=>string}){return <article className="rounded-2xl border border-[#EAE3D9] bg-white p-5"><h2 className="font-semibold text-[#541D2B]">Cadastros</h2>{items.map(p=><div key={p.id} className="border-b py-3"><b className="text-sm">{p.name}</b><p className="text-xs text-[#766D64]">{detail(p)} {p.email??""} {p.phone??""}</p>{p.notes&&<p className="text-xs">{p.notes}</p>}</div>)}{items.length===0&&<p className="mt-3 text-sm text-[#766D64]">Nenhum cadastro ainda.</p>}</article>}
