@@ -15,9 +15,5 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
-  return (
-    <main className="flex min-h-screen items-center justify-center bg-background">
-      <div className="h-40 w-40 bg-green-600" aria-label="Quadrado verde" />
-    </main>
-  );
+  return <main className="min-h-screen bg-background" />;
 }
