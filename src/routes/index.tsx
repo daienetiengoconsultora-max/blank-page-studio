@@ -24,40 +24,40 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
-  const [objective, setObjective] = useState("Imóvel");
-  const [amount, setAmount] = useState("");
-  const [name, setName] = useState("");
-  const [phone, setPhone] = useState("");
-  const [city, setCity] = useState("");
-  const [consent, setConsent] = useState(false);
-  const [submitting, setSubmitting] = useState(false);
-  const [submitMessage, setSubmitMessage] = useState("");
-
-  async function submit(event: FormEvent<HTMLFormElement>) {
+  const [objective,setObjective]=useState("Imóvel");
+  const [productType,setProductType]=useState("Consórcio");
+  const [amount,setAmount]=useState("");
+  const [term,setTerm]=useState("180");
+  const [name,setName]=useState("");
+  const [email,setEmail]=useState("");
+  const [phone,setPhone]=useState("");
+  const [consent,setConsent]=useState(false);
+  const [submitting,setSubmitting]=useState(false);
+  const [submitMessage,setSubmitMessage]=useState("");
+  const [result,setResult]=useState<{monthly:number;total:number}|null>(null);
+  const amountNumber=Number(amount);
+  const months=Number(term);
+  const adminFee=20;
+  const monthlyRate=1.8;
+  const monthlyEstimate=productType==="Consórcio"
+    ? amountNumber*(1+adminFee/100)/months
+    : amountNumber*(monthlyRate/100)/(1-Math.pow(1+monthlyRate/100,-months));
+  const totalEstimate=monthlyEstimate*months;
+  const money=(v:number)=>v.toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
+  async function submit(event:FormEvent<HTMLFormElement>){
     event.preventDefault();
-    if (!consent || submitting) return;
-    setSubmitting(true);
-    setSubmitMessage("");
-    const message = [
-      "Olá! Quero solicitar uma simulação com a Descomplica Crédito.",
-      "Objetivo: " + objective,
-      "Valor aproximado: " + (amount || "Não informado"),
-      "Nome: " + name,
-      "Meu WhatsApp: " + phone,
-      "Cidade: " + city,
-      "Autorizo o contato para tratar desta solicitação."
-    ].join("\n");
-    window.open("https://wa.me/" + WHATSAPP + "?text=" + encodeURIComponent(message), "_blank", "noopener,noreferrer");
-    const normalizedAmount = amount.trim().replace(/[^0-9,.-]/g, "").replace(/\.(?=.*\.)/g, "").replace(",", ".");
-    const numericAmount = normalizedAmount ? Number(normalizedAmount.replace(/\.(?=\d{3}(?:\D|$))/g, "")) : NaN;
-    const { error } = await supabase.rpc("receive_public_lead", {
-      p_name: name.trim(), p_phone: phone.trim(), p_city: city.trim(),
-      p_objective: objective, ...(Number.isFinite(numericAmount) ? { p_estimated_value: numericAmount } : {}), p_consent: consent,
+    if(!consent||submitting||!Number.isFinite(amountNumber)||amountNumber<1000)return;
+    setSubmitting(true);setSubmitMessage("");setResult(null);
+    const {data,error}=await supabase.rpc("receive_public_simulation_lead",{
+      p_name:name.trim(),p_email:email.trim(),p_phone:phone.trim(),
+      p_objective:objective,p_estimated_value:amountNumber,p_product_type:productType,
+      p_term_months:months,p_monthly_estimate:monthlyEstimate,p_consent:consent
     });
     setSubmitting(false);
-    setSubmitMessage(error ? "O WhatsApp foi aberto, mas não conseguimos registrar o pedido no CRM. A equipe ainda poderá receber sua mensagem pelo WhatsApp." : "Solicitação registrada! Seus dados já estão no CRM e o WhatsApp foi aberto para continuar o atendimento.");
+    if(error||!data){setSubmitMessage("Não foi possível registrar seus dados agora. Tente novamente em instantes.");return;}
+    setResult({monthly:monthlyEstimate,total:totalEstimate});
+    setSubmitMessage("Simulação gerada! Seus dados e esta simulação foram registrados para nossa equipe.");
   }
-
   const solutions = [
     ["01", "Consórcios", "Planejamento para aquisição de imóveis, veículos e outros bens, conforme as regras do grupo."],
     ["02", "Financiamento de veículos", "Alternativas para aquisição de carro ou outro veículo, sujeitas à análise."],
@@ -112,21 +112,24 @@ function Index() {
         <div className="lg:pt-8">
           <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[#A47B36]">Solicite sua simulação</p>
           <h2 className="mt-4 text-3xl font-semibold leading-tight text-[#541D2B] sm:text-4xl">Conte um pouco sobre o que deseja realizar.</h2>
-          <p className="mt-5 leading-8 text-[#756C63]">Preencha os dados. Vamos abrir uma conversa no WhatsApp com as informações para iniciar seu atendimento.</p>
+          <p className="mt-5 leading-8 text-[#756C63]">Escolha entre consórcio e financiamento, informe o crédito desejado e veja uma estimativa. Seus dados entram no CRM antes da exibição do resultado.</p>
           <div className="mt-8 rounded-2xl bg-[#F1ECE5] p-6"><p className="text-sm font-semibold text-[#541D2B]">Fale diretamente comigo</p><a href="https://wa.me/5527998737600" target="_blank" rel="noreferrer" className="mt-2 inline-block text-lg font-semibold text-[#8A6330]">(27) 99873-7600</a><p className="mt-2 text-xs leading-5 text-[#82776C]">Ao enviar o formulário, sua solicitação é registrada no CRM e o WhatsApp é aberto para você confirmar o envio da mensagem.</p></div>
         </div>
         <form onSubmit={submit} className="rounded-3xl border border-[#E8E0D6] bg-white p-6 shadow-[0_18px_60px_rgba(50,19,28,0.07)] sm:p-9">
           <h3 className="text-xl font-semibold text-[#541D2B]">Seus dados</h3><p className="mt-2 text-sm text-[#82776C]">Preencha os campos obrigatórios.</p>
           <div className="mt-7 grid gap-5 sm:grid-cols-2">
-            <div className="sm:col-span-2"><label htmlFor="objective" className="mb-2 block text-sm font-medium">Qual é seu objetivo? *</label><select id="objective" required value={objective} onChange={e=>setObjective(e.target.value)} className="w-full rounded-xl border border-[#DED5C9] bg-white px-4 py-3 text-sm"><option>Imóvel</option><option>Veículo</option><option>Investir</option><option>Outro</option></select></div>
-            <div className="sm:col-span-2"><label htmlFor="amount" className="mb-2 block text-sm font-medium">Valor aproximado desejado</label><input id="amount" value={amount} onChange={e=>setAmount(e.target.value)} placeholder="Ex.: R$ 150.000" className="w-full rounded-xl border border-[#DED5C9] px-4 py-3 text-sm" /></div>
-            <div><label htmlFor="name" className="mb-2 block text-sm font-medium">Nome completo *</label><input id="name" required value={name} onChange={e=>setName(e.target.value)} autoComplete="name" placeholder="Seu nome" className="w-full rounded-xl border border-[#DED5C9] px-4 py-3 text-sm" /></div>
-            <div><label htmlFor="phone" className="mb-2 block text-sm font-medium">Seu WhatsApp *</label><input id="phone" required value={phone} onChange={e=>setPhone(e.target.value)} inputMode="tel" autoComplete="tel" placeholder="(00) 00000-0000" className="w-full rounded-xl border border-[#DED5C9] px-4 py-3 text-sm" /></div>
-            <div className="sm:col-span-2"><label htmlFor="city" className="mb-2 block text-sm font-medium">Cidade *</label><input id="city" required value={city} onChange={e=>setCity(e.target.value)} autoComplete="address-level2" placeholder="Sua cidade" className="w-full rounded-xl border border-[#DED5C9] px-4 py-3 text-sm" /></div>
+            <div><label htmlFor="name" className="mb-2 block text-sm font-medium">Primeiro nome *</label><input id="name" required value={name} onChange={e=>setName(e.target.value)} autoComplete="given-name" placeholder="Seu primeiro nome" className="w-full rounded-xl border border-[#DED5C9] px-4 py-3 text-sm" /></div>
+            <div><label htmlFor="email" className="mb-2 block text-sm font-medium">E-mail *</label><input id="email" type="email" required value={email} onChange={e=>setEmail(e.target.value)} autoComplete="email" placeholder="voce@email.com" className="w-full rounded-xl border border-[#DED5C9] px-4 py-3 text-sm" /></div>
+            <div className="sm:col-span-2"><label htmlFor="phone" className="mb-2 block text-sm font-medium">Telefone / WhatsApp *</label><input id="phone" required value={phone} onChange={e=>setPhone(e.target.value)} inputMode="tel" autoComplete="tel" placeholder="(00) 00000-0000" className="w-full rounded-xl border border-[#DED5C9] px-4 py-3 text-sm" /></div>
+            <div><label htmlFor="objective" className="mb-2 block text-sm font-medium">Para que será o crédito? *</label><select id="objective" required value={objective} onChange={e=>setObjective(e.target.value)} className="w-full rounded-xl border border-[#DED5C9] bg-white px-4 py-3 text-sm"><option>Imóvel</option><option>Veículo</option><option>Construção ou reforma</option><option>Investimento</option><option>Outro objetivo</option></select></div>
+            <div><label htmlFor="productType" className="mb-2 block text-sm font-medium">Modalidade *</label><select id="productType" required value={productType} onChange={e=>setProductType(e.target.value)} className="w-full rounded-xl border border-[#DED5C9] bg-white px-4 py-3 text-sm"><option>Consórcio</option><option>Financiamento</option></select></div>
+            <div><label htmlFor="amount" className="mb-2 block text-sm font-medium">Valor do crédito (R$) *</label><input id="amount" required type="number" min="1000" step="100" value={amount} onChange={e=>setAmount(e.target.value)} placeholder="Ex.: 150000" className="w-full rounded-xl border border-[#DED5C9] px-4 py-3 text-sm" /></div>
+            <div><label htmlFor="term" className="mb-2 block text-sm font-medium">Prazo desejado *</label><select id="term" required value={term} onChange={e=>setTerm(e.target.value)} className="w-full rounded-xl border border-[#DED5C9] bg-white px-4 py-3 text-sm"><option value="60">60 meses</option><option value="120">120 meses</option><option value="180">180 meses</option><option value="240">240 meses</option></select></div>
           </div>
-          <label className="mt-6 flex items-start gap-3 text-xs leading-5 text-[#766D64]"><input type="checkbox" required checked={consent} onChange={e=>setConsent(e.target.checked)} className="mt-1 accent-[#541D2B]" /><span>Autorizo o uso dos meus dados para receber retorno sobre esta solicitação.</span></label>
-          <button type="submit" disabled={submitting} className="mt-7 w-full rounded-full bg-[#541D2B] px-6 py-4 text-sm font-semibold text-white hover:bg-[#6A2A39] disabled:opacity-60">{submitting ? "Registrando solicitação..." : "Enviar solicitação pelo WhatsApp"}</button>{submitMessage&&<p role="status" className="mt-3 rounded-xl bg-[#F1ECE5] p-3 text-xs leading-5 text-[#6D655D]">{submitMessage}</p>}
-          <p className="mt-4 text-center text-xs leading-5 text-[#9A8F83]">A simulação não representa aprovação de crédito nem garantia de contemplação. Condições sujeitas à análise e às regras da instituição responsável.</p>
+          <label className="mt-6 flex items-start gap-3 text-xs leading-5 text-[#766D64]"><input type="checkbox" required checked={consent} onChange={e=>setConsent(e.target.checked)} className="mt-1 accent-[#541D2B]" /><span>Autorizo o uso dos meus dados para registrar esta simulação e receber contato sobre ela.</span></label>
+          <button type="submit" disabled={submitting} className="mt-7 w-full rounded-full bg-[#541D2B] px-6 py-4 text-sm font-semibold text-white hover:bg-[#6A2A39] disabled:opacity-60">{submitting ? "Registrando e calculando..." : "Ver minha simulação"}</button>{submitMessage&&<p role="status" className="mt-3 rounded-xl bg-[#F1ECE5] p-3 text-xs leading-5 text-[#6D655D]">{submitMessage}</p>}
+          {result&&<div className="mt-5 rounded-2xl border border-[#D9BC83] bg-[#FCFAF7] p-5"><p className="text-xs font-semibold uppercase tracking-wider text-[#8A6330]">Sua estimativa inicial</p><p className="mt-2 text-sm text-[#766D64]">{productType} para {objective.toLowerCase()} · {months} meses</p><p className="mt-2 text-xs text-[#766D64]">Parcela mensal estimada</p><p className="text-3xl font-semibold text-[#541D2B]">{money(result.monthly)}</p><p className="mt-2 text-xs text-[#766D64]">Total estimado: {money(result.total)}</p><p className="mt-3 text-xs leading-5 text-[#766D64]">{productType==="Consórcio"?"Hipótese de taxa administrativa total de 20%, sem reajustes, fundo de reserva, seguros ou regras específicas de grupo. Não há garantia de contemplação.":"Hipótese de juros de 1,8% ao mês, sem entrada, tarifas, seguros ou CET oficial. A taxa real depende da instituição e da análise."}</p><a href="https://wa.me/5527998737600" target="_blank" rel="noreferrer" className="mt-4 inline-block rounded-full bg-[#C5A267] px-5 py-3 text-sm font-semibold text-[#32131C]">Conversar sobre minha simulação</a></div>}
+          <p className="mt-4 text-center text-xs leading-5 text-[#9A8F83]">Estimativa educativa, não é proposta, aprovação de crédito ou garantia de contemplação. Valores reais dependem da instituição, do contrato e da análise.</p>
         </form>
       </section>
 
