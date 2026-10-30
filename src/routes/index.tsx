@@ -16,7 +16,7 @@ export const Route = createFileRoute("/")({
     { property: "og:locale", content: "pt_BR" },
     { property: "og:type", content: "website" },
     { property: "og:site_name", content: "Daiene Descomplica Crédito" },
-    { property: "og:title", content: "Daiene Daiene Descomplica Crédito | Consórcios e Financiamentos" },
+    { property: "og:title", content: "Daiene Descomplica Crédito | Consórcios e Financiamentos" },
     { property: "og:description", content: "Entenda opções de consórcio e financiamento para seus planos. Solicite uma simulação e converse pelo WhatsApp." },
     { name: "twitter:card", content: "summary" },
   ] }),
