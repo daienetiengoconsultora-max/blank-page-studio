@@ -33,8 +33,27 @@ export function LeadsCrm({userId}:{userId:string;isAdmin:boolean}) {
  const [investor,setInvestor]=useState({name:"",contact:"",profile:"",notes:"",objective:"",investment_amount:"",risk_profile:"Moderado",expected_return:"10",investment_horizon:"24"});
  const [sim,setSim]=useState({lead_id:"",product_type:"Consórcio imobiliário",amount:"",months:"180",rate:"0"});
  const [docLead,setDocLead]=useState(""),[docCategory,setDocCategory]=useState("documentos pessoais");
+ const [aiQuestion,setAiQuestion]=useState(""),[aiAnswer,setAiAnswer]=useState(""),[aiBusy,setAiBusy]=useState(false),[aiOpen,setAiOpen]=useState(true);
 
- async function load(){
+
+ async function askCrmAI(e:FormEvent){
+  e.preventDefault();const question=aiQuestion.trim();if(!question||aiBusy)return;
+  setAiBusy(true);setAiAnswer("");
+  const context={
+   section:tab,
+   totals:{leads:total,won,proposals:proposals.length,overdueActivities:overdue,pipelineValue:pipeline,expectedCommissions:commissions,pendingCommissions},
+   stages:stages.map(([key,label])=>({stage:label,count:leads.filter(l=>l.status===key).length})),
+   simulation: {type:simulator,product:sim.product_type,amount:sim.amount,months:sim.months,monthlyRate:sim.rate,adminFee:simExtra.admin,reserveFund:simExtra.reserve,bid:simExtra.bid},
+   partners:partners.map(p=>({name:p.name,category:p.category,administrationFee:p.administration_fee,reserveFund:p.reserve_fund,termMonths:p.term_months})),
+   guidance:"Não inclua dados pessoais de clientes. Use somente os indicadores e dados comerciais resumidos acima."
+  };
+  const {data,error}=await supabase.functions.invoke("crm-ai-assistant",{body:{question,context}});
+  setAiBusy(false);
+  if(error){setAiAnswer("A assistente ainda não está conectada ao serviço de IA. A função crm-ai-assistant precisa ser publicada no Supabase e receber a chave OPENAI_API_KEY. Seus dados do CRM continuam intactos.");return;}
+  setAiAnswer(String(data?.answer??"Não consegui gerar uma orientação agora."));
+  setAiQuestion("");
+ }
+\n async function load(){
   setLoading(true);setError("");
   const r=await Promise.all([
    supabase.from("leads").select("*").order("created_at",{ascending:false}),
