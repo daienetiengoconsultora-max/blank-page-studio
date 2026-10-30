@@ -61,6 +61,50 @@ export type Database = {
           },
         ]
       }
+      investor_simulations: {
+        Row: {
+          annual_rate: number
+          created_at: string
+          estimated_value: number
+          id: string
+          investor_id: string
+          months: number
+          owner_id: string
+          principal: number
+          title: string
+        }
+        Insert: {
+          annual_rate: number
+          created_at?: string
+          estimated_value: number
+          id?: string
+          investor_id: string
+          months: number
+          owner_id: string
+          principal: number
+          title: string
+        }
+        Update: {
+          annual_rate?: number
+          created_at?: string
+          estimated_value?: number
+          id?: string
+          investor_id?: string
+          months?: number
+          owner_id?: string
+          principal?: number
+          title?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "investor_simulations_investor_id_fkey"
+            columns: ["investor_id"]
+            isOneToOne: false
+            referencedRelation: "investors"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       investors: {
         Row: {
           contact: string | null
@@ -144,37 +188,75 @@ export type Database = {
           },
         ]
       }
-      investor_simulations: {
-        Row: { id: string; investor_id: string; owner_id: string; title: string; principal: number; annual_rate: number; months: number; estimated_value: number; created_at: string }
-        Insert: { id?: string; investor_id: string; owner_id: string; title: string; principal: number; annual_rate: number; months: number; estimated_value: number; created_at?: string }
-        Update: { id?: string; investor_id?: string; owner_id?: string; title?: string; principal?: number; annual_rate?: number; months?: number; estimated_value?: number; created_at?: string }
-        Relationships: [{ foreignKeyName: "investor_simulations_investor_id_fkey"; columns: ["investor_id"]; isOneToOne: false; referencedRelation: "investors"; referencedColumns: ["id"] }]
-      }
       lead_proposals: {
-        Row: { id: string; lead_id: string; owner_id: string; title: string; product_type: string; amount: number | null; monthly_payment: number | null; status: string; details: Json; created_at: string; updated_at: string }
-        Insert: { id?: string; lead_id: string; owner_id: string; title: string; product_type: string; amount?: number | null; monthly_payment?: number | null; status?: string; details?: Json; created_at?: string; updated_at?: string }
-        Update: { id?: string; lead_id?: string; owner_id?: string; title?: string; product_type?: string; amount?: number | null; monthly_payment?: number | null; status?: string; details?: Json; created_at?: string; updated_at?: string }
-        Relationships: [{ foreignKeyName: "lead_proposals_lead_id_fkey"; columns: ["lead_id"]; isOneToOne: false; referencedRelation: "leads"; referencedColumns: ["id"] }]
+        Row: {
+          amount: number | null
+          created_at: string
+          details: Json
+          id: string
+          lead_id: string
+          monthly_payment: number | null
+          owner_id: string
+          product_type: string
+          status: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          amount?: number | null
+          created_at?: string
+          details?: Json
+          id?: string
+          lead_id: string
+          monthly_payment?: number | null
+          owner_id: string
+          product_type: string
+          status?: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          amount?: number | null
+          created_at?: string
+          details?: Json
+          id?: string
+          lead_id?: string
+          monthly_payment?: number | null
+          owner_id?: string
+          product_type?: string
+          status?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "lead_proposals_lead_id_fkey"
+            columns: ["lead_id"]
+            isOneToOne: false
+            referencedRelation: "leads"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       leads: {
         Row: {
-          commission_value: number | null
-          commission_rate: number
-          commission_installments: number
-          commission_paid_amount: number
-          closed_at: string | null
-          last_contact_at: string | null
           address: string | null
           birth_date: string | null
           city: string | null
+          closed_at: string | null
+          commission_installments: number
+          commission_paid_amount: number
+          commission_rate: number
+          commission_value: number | null
           cpf_cnpj: string | null
+          created_at: string
           credit_notes: string | null
           credit_profile: string | null
-          created_at: string
           email: string | null
           estimated_value: number | null
           full_name: string
           id: string
+          last_contact_at: string | null
           notes: string | null
           objective: string | null
           owner_id: string
@@ -184,23 +266,23 @@ export type Database = {
           updated_at: string
         }
         Insert: {
-          commission_value?: number | null
-          commission_rate?: number
-          commission_installments?: number
-          commission_paid_amount?: number
-          closed_at?: string | null
-          last_contact_at?: string | null
           address?: string | null
           birth_date?: string | null
           city?: string | null
+          closed_at?: string | null
+          commission_installments?: number
+          commission_paid_amount?: number
+          commission_rate?: number
+          commission_value?: number | null
           cpf_cnpj?: string | null
+          created_at?: string
           credit_notes?: string | null
           credit_profile?: string | null
-          created_at?: string
           email?: string | null
           estimated_value?: number | null
           full_name: string
           id?: string
+          last_contact_at?: string | null
           notes?: string | null
           objective?: string | null
           owner_id: string
@@ -210,23 +292,23 @@ export type Database = {
           updated_at?: string
         }
         Update: {
-          commission_value?: number | null
-          commission_rate?: number
-          commission_installments?: number
-          commission_paid_amount?: number
-          closed_at?: string | null
-          last_contact_at?: string | null
           address?: string | null
           birth_date?: string | null
           city?: string | null
+          closed_at?: string | null
+          commission_installments?: number
+          commission_paid_amount?: number
+          commission_rate?: number
+          commission_value?: number | null
           cpf_cnpj?: string | null
+          created_at?: string
           credit_notes?: string | null
           credit_profile?: string | null
-          created_at?: string
           email?: string | null
           estimated_value?: number | null
           full_name?: string
           id?: string
+          last_contact_at?: string | null
           notes?: string | null
           objective?: string | null
           owner_id?: string
@@ -356,7 +438,17 @@ export type Database = {
     }
     Functions: {
       is_crm_admin: { Args: never; Returns: boolean }
-      receive_public_lead: { Args: { p_name: string; p_phone: string; p_city: string; p_objective: string; p_estimated_value?: number | null; p_consent?: boolean }; Returns: string }
+      receive_public_lead: {
+        Args: {
+          p_city: string
+          p_consent?: boolean
+          p_estimated_value?: number
+          p_name: string
+          p_objective: string
+          p_phone: string
+        }
+        Returns: string
+      }
     }
     Enums: {
       [_ in never]: never
