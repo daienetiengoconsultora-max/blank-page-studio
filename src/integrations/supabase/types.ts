@@ -122,7 +122,12 @@ export type Database = {
       }
       leads: {
         Row: {
+          address: string | null
+          birth_date: string | null
           city: string | null
+          cpf_cnpj: string | null
+          credit_notes: string | null
+          credit_profile: string | null
           created_at: string
           email: string | null
           estimated_value: number | null
@@ -137,7 +142,12 @@ export type Database = {
           updated_at: string
         }
         Insert: {
+          address?: string | null
+          birth_date?: string | null
           city?: string | null
+          cpf_cnpj?: string | null
+          credit_notes?: string | null
+          credit_profile?: string | null
           created_at?: string
           email?: string | null
           estimated_value?: number | null
@@ -152,7 +162,12 @@ export type Database = {
           updated_at?: string
         }
         Update: {
+          address?: string | null
+          birth_date?: string | null
           city?: string | null
+          cpf_cnpj?: string | null
+          credit_notes?: string | null
+          credit_profile?: string | null
           created_at?: string
           email?: string | null
           estimated_value?: number | null
