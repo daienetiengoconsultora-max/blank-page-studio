@@ -36,18 +36,31 @@ export function LeadsCrm({userId}:{userId:string;isAdmin:boolean}) {
 
 async function load(){
   setLoading(true);setError("");
-  const r=await Promise.all([
-   supabase.from("leads").select("*").order("created_at",{ascending:false}),
-   supabase.from("lead_activities").select("*").order("due_at",{ascending:true}),
-   supabase.from("partners").select("*").order("created_at",{ascending:false}),
-   supabase.from("investors").select("*").order("created_at",{ascending:false}),
-   supabase.from("client_documents").select("*").order("created_at",{ascending:false}),
-   supabase.from("simulations").select("*").order("created_at",{ascending:false}),
-   supabase.from("lead_proposals").select("*").order("created_at",{ascending:false}),
-   supabase.from("investor_simulations").select("*").order("created_at",{ascending:false})
-  ]);
-  if(r[0].error)setError("Não foi possível carregar clientes. Verifique se as tabelas do CRM foram instaladas no Supabase.");
-  setLeads((r[0].data??[]) as Lead[]);setActivities((r[1].data??[]) as Activity[]);setPartners((r[2].data??[]) as Person[]);setInvestors((r[3].data??[]) as Person[]);setDocs((r[4].data??[]) as Doc[]);setSimulations((r[5].data??[]) as Simulation[]);setProposals((r[6].data??[]) as Proposal[]);setInvestorSims((r[7].data??[]) as InvestorSimulation[]);setLoading(false);
+  try {
+   const r=await Promise.all([
+    supabase.from("leads").select("*").order("created_at",{ascending:false}),
+    supabase.from("lead_activities").select("*").order("due_at",{ascending:true}),
+    supabase.from("partners").select("*").order("created_at",{ascending:false}),
+    supabase.from("investors").select("*").order("created_at",{ascending:false}),
+    supabase.from("client_documents").select("*").order("created_at",{ascending:false}),
+    supabase.from("simulations").select("*").order("created_at",{ascending:false}),
+    supabase.from("lead_proposals").select("*").order("created_at",{ascending:false}),
+    supabase.from("investor_simulations").select("*").order("created_at",{ascending:false})
+   ]);
+   const labels=["clientes","compromissos","administradoras e parceiros","investidores","documentos","simulações","propostas","simulações de investimento"];
+   const failed=r.map((item,index)=>item.error?labels[index]:null).filter(Boolean);
+   if(failed.length)setError("Não foi possível carregar: "+failed.join(", ")+". Confira as migrações e as permissões do Supabase.");
+   if(!r[0].error)setLeads((r[0].data??[]) as Lead[]);
+   if(!r[1].error)setActivities((r[1].data??[]) as Activity[]);
+   if(!r[2].error)setPartners((r[2].data??[]) as Person[]);
+   if(!r[3].error)setInvestors((r[3].data??[]) as Person[]);
+   if(!r[4].error)setDocs((r[4].data??[]) as Doc[]);
+   if(!r[5].error)setSimulations((r[5].data??[]) as Simulation[]);
+   if(!r[6].error)setProposals((r[6].data??[]) as Proposal[]);
+   if(!r[7].error)setInvestorSims((r[7].data??[]) as InvestorSimulation[]);
+  } catch {
+   setError("Falha de conexão ao carregar o CRM. Seus dados não foram apagados. Tente atualizar a página.");
+  } finally { setLoading(false); }
  }
  useEffect(()=>{void load()},[]);
  useEffect(()=>{
