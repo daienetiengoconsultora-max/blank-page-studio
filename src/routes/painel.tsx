@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { supabase } from "../integrations/supabase/client";
+import { supabaseConfigured } from "../lib/supabase-ready";
 
 const ADMIN_EMAIL = "daienetiengoconsultora@gmail.com";
 
 export const Route = createFileRoute("/painel")({
   head: () => ({ meta: [{ title: "Painel | Descomplica Crédito" }] }),
-  component: SellerPanel,
+  component: () => (supabaseConfigured ? <SellerPanel /> : <Unavailable />),
 });
 
 function SellerPanel() {
@@ -58,6 +59,14 @@ function SellerPanel() {
           <p className="mt-4 text-xs leading-6 text-[#9A8F83]">Essa etapa evita que informações pessoais e financeiras fiquem acessíveis sem as permissões corretas.</p>
         </section>
       </div>
+    </main>
+  );
+}
+
+function Unavailable() {
+  return (
+    <main className="flex min-h-screen items-center justify-center bg-[#FCFAF7] px-5 text-center text-sm text-[#766D64]">
+      <p>A área restrita está temporariamente indisponível. Tente novamente mais tarde. <a href="/" className="text-[#8A6B3C] underline">Voltar ao site</a></p>
     </main>
   );
 }
