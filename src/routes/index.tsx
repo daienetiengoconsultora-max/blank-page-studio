@@ -1,5 +1,6 @@
 import { useState, type FormEvent } from "react";
 import { createFileRoute } from "@tanstack/react-router";
+import { supabase } from "../integrations/supabase/client";
 
 const WHATSAPP = "5527998737600";
 
@@ -18,10 +19,14 @@ function Index() {
   const [phone, setPhone] = useState("");
   const [city, setCity] = useState("");
   const [consent, setConsent] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitMessage, setSubmitMessage] = useState("");
 
-  function submit(event: FormEvent<HTMLFormElement>) {
+  async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    if (!consent) return;
+    if (!consent || submitting) return;
+    setSubmitting(true);
+    setSubmitMessage("");
     const message = [
       "Olá! Quero solicitar uma simulação com a Descomplica Crédito.",
       "Objetivo: " + objective,
@@ -32,6 +37,13 @@ function Index() {
       "Autorizo o contato para tratar desta solicitação."
     ].join("\n");
     window.open("https://wa.me/" + WHATSAPP + "?text=" + encodeURIComponent(message), "_blank", "noopener,noreferrer");
+    const digits = amount.replace(/\D/g, "");
+    const { error } = await supabase.rpc("receive_public_lead", {
+      p_name: name.trim(), p_phone: phone.trim(), p_city: city.trim(),
+      p_objective: objective, p_estimated_value: digits ? Number(digits) : null, p_consent: consent,
+    });
+    setSubmitting(false);
+    setSubmitMessage(error ? "O WhatsApp foi aberto, mas não conseguimos registrar o pedido no CRM. A equipe ainda poderá receber sua mensagem pelo WhatsApp." : "Solicitação registrada! Seus dados já estão no CRM e o WhatsApp foi aberto para continuar o atendimento.");
   }
 
   const solutions = [
@@ -89,7 +101,7 @@ function Index() {
           <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[#A47B36]">Solicite sua simulação</p>
           <h2 className="mt-4 text-3xl font-semibold leading-tight text-[#541D2B] sm:text-4xl">Conte um pouco sobre o que deseja realizar.</h2>
           <p className="mt-5 leading-8 text-[#756C63]">Preencha os dados. Vamos abrir uma conversa no WhatsApp com as informações para iniciar seu atendimento.</p>
-          <div className="mt-8 rounded-2xl bg-[#F1ECE5] p-6"><p className="text-sm font-semibold text-[#541D2B]">Fale diretamente comigo</p><a href="https://wa.me/5527998737600" target="_blank" rel="noreferrer" className="mt-2 inline-block text-lg font-semibold text-[#8A6330]">(27) 99873-7600</a><p className="mt-2 text-xs leading-5 text-[#82776C]">O envio só acontece após sua confirmação no WhatsApp. Os dados não são armazenados neste site nesta etapa.</p></div>
+          <div className="mt-8 rounded-2xl bg-[#F1ECE5] p-6"><p className="text-sm font-semibold text-[#541D2B]">Fale diretamente comigo</p><a href="https://wa.me/5527998737600" target="_blank" rel="noreferrer" className="mt-2 inline-block text-lg font-semibold text-[#8A6330]">(27) 99873-7600</a><p className="mt-2 text-xs leading-5 text-[#82776C]">O envio só acontece após sua confirmação no WhatsApp. Com sua autorização, seus dados são registrados para organizar seu atendimento e também são encaminhados ao WhatsApp.</p></div>
         </div>
         <form onSubmit={submit} className="rounded-3xl border border-[#E8E0D6] bg-white p-6 shadow-[0_18px_60px_rgba(50,19,28,0.07)] sm:p-9">
           <h3 className="text-xl font-semibold text-[#541D2B]">Seus dados</h3><p className="mt-2 text-sm text-[#82776C]">Preencha os campos obrigatórios.</p>
@@ -100,8 +112,8 @@ function Index() {
             <div><label htmlFor="phone" className="mb-2 block text-sm font-medium">Seu WhatsApp *</label><input id="phone" required value={phone} onChange={e=>setPhone(e.target.value)} inputMode="tel" autoComplete="tel" placeholder="(00) 00000-0000" className="w-full rounded-xl border border-[#DED5C9] px-4 py-3 text-sm" /></div>
             <div className="sm:col-span-2"><label htmlFor="city" className="mb-2 block text-sm font-medium">Cidade *</label><input id="city" required value={city} onChange={e=>setCity(e.target.value)} autoComplete="address-level2" placeholder="Sua cidade" className="w-full rounded-xl border border-[#DED5C9] px-4 py-3 text-sm" /></div>
           </div>
-          <label className="mt-6 flex items-start gap-3 text-xs leading-5 text-[#766D64]"><input type="checkbox" required checked={consent} onChange={e=>setConsent(e.target.checked)} className="mt-1 accent-[#541D2B]" /><span>Autorizo o contato da Descomplica Crédito para tratar desta solicitação e entendo que os dados serão encaminhados ao WhatsApp após minha confirmação.</span></label>
-          <button type="submit" className="mt-7 w-full rounded-full bg-[#541D2B] px-6 py-4 text-sm font-semibold text-white hover:bg-[#6A2A39]">Enviar solicitação pelo WhatsApp</button>
+          <label className="mt-6 flex items-start gap-3 text-xs leading-5 text-[#766D64]"><input type="checkbox" required checked={consent} onChange={e=>setConsent(e.target.checked)} className="mt-1 accent-[#541D2B]" /><span>Autorizo o contato da Descomplica Crédito para tratar desta solicitação e autorizo o registro dos meus dados no CRM e o encaminhamento das informações ao WhatsApp para atendimento desta solicitação.</span></label>
+          <button type="submit" disabled={submitting} className="mt-7 w-full rounded-full bg-[#541D2B] px-6 py-4 text-sm font-semibold text-white hover:bg-[#6A2A39] disabled:opacity-60">{submitting ? "Registrando solicitação..." : "Enviar solicitação pelo WhatsApp"}</button>{submitMessage&&<p role="status" className="mt-3 rounded-xl bg-[#F1ECE5] p-3 text-xs leading-5 text-[#6D655D]">{submitMessage}</p>}
           <p className="mt-4 text-center text-xs leading-5 text-[#9A8F83]">A simulação não representa aprovação de crédito nem garantia de contemplação. Condições sujeitas à análise e às regras da instituição responsável.</p>
         </form>
       </section>
