@@ -67,7 +67,7 @@ export function LeadsCrm({userId}:{userId:string;isAdmin:boolean}) {
   if(!sim.lead_id){setError("Selecione um cliente para vincular a simulação e gerar a proposta.");return;}
   const amount=Number(sim.amount),months=Number(sim.months),rate=Number(sim.rate)/100;
   if(!(amount>0&&months>0)){setError("Informe valor e prazo válidos.");return;}
-  let installment=0,details:Record<string,unknown>={months,monthly_rate_percent:sim.rate,simulator};
+  let installment=0,details:Record<string,string|number|boolean>={months,monthly_rate_percent:sim.rate,simulator};
   if(simulator==="consorcio"){
    const admin=Number(simExtra.admin)/100,reserve=Number(simExtra.reserve)/100,bid=Number(simExtra.bid);
    installment=(amount*(1+admin+reserve)-bid)/months;
