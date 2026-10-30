@@ -46,17 +46,37 @@ function Index() {
   const money=(v:number)=>v.toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
   async function submit(event:FormEvent<HTMLFormElement>){
     event.preventDefault();
-    if(!consent||submitting||!Number.isFinite(amountNumber)||amountNumber<1000)return;
+    if(!consent||submitting)return;
+    if(!Number.isFinite(amountNumber)||amountNumber<1000||amountNumber>1000000000){
+      setSubmitMessage("Informe um valor entre R$ 1.000 e R$ 1 bilhão.");
+      return;
+    }
+    if(!Number.isFinite(months)||![60,120,180,240].includes(months)){
+      setSubmitMessage("Selecione um prazo válido.");
+      return;
+    }
+    if(!Number.isFinite(monthlyEstimate)||monthlyEstimate<=0){
+      setSubmitMessage("Não foi possível calcular esta estimativa. Confira os dados.");
+      return;
+    }
     setSubmitting(true);setSubmitMessage("");setResult(null);
-    const {data,error}=await supabase.rpc("receive_public_simulation_lead",{
-      p_name:name.trim(),p_email:email.trim(),p_phone:phone.trim(),
-      p_objective:objective,p_estimated_value:amountNumber,p_product_type:productType,
-      p_term_months:months,p_monthly_estimate:monthlyEstimate,p_consent:consent
-    });
-    setSubmitting(false);
-    if(error||!data){setSubmitMessage("Não foi possível registrar seus dados agora. Tente novamente em instantes.");return;}
-    setResult({monthly:monthlyEstimate,total:totalEstimate});
-    setSubmitMessage("Simulação gerada! Seus dados e esta simulação foram registrados para nossa equipe.");
+    try {
+      const {data,error}=await supabase.rpc("receive_public_simulation_lead",{
+        p_name:name.trim(),p_email:email.trim(),p_phone:phone.trim(),
+        p_objective:objective,p_estimated_value:amountNumber,p_product_type:productType,
+        p_term_months:months,p_monthly_estimate:monthlyEstimate,p_consent:consent
+      });
+      if(error||!data){
+        setSubmitMessage("Não foi possível registrar seus dados agora. Tente novamente mais tarde.");
+        return;
+      }
+      setResult({monthly:monthlyEstimate,total:totalEstimate});
+      setSubmitMessage("Simulação gerada! Seus dados e esta simulação foram registrados para nossa equipe.");
+    } catch {
+      setSubmitMessage("Falha de conexão ao enviar. Seus dados não foram confirmados. Tente novamente mais tarde.");
+    } finally {
+      setSubmitting(false);
+    }
   }
   const solutions = [
     ["01", "Consórcios", "Planejamento para aquisição de imóveis, veículos e outros bens, conforme as regras do grupo."],
