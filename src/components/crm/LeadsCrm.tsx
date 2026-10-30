@@ -62,7 +62,39 @@ export function LeadsCrm({userId}:{userId:string;isAdmin:boolean}) {
  async function addTask(e:FormEvent){e.preventDefault();if(!task.lead_id){setError("Selecione um cliente.");return;}setBusy(true);const r=await supabase.from("lead_activities").insert({owner_id:userId,lead_id:task.lead_id,description:task.description,activity_type:task.activity_type,due_at:task.due_at?new Date(task.due_at).toISOString():null});setBusy(false);if(r.error){setError("Não foi possível salvar o compromisso.");return;}setTask({lead_id:"",description:"",activity_type:"whatsapp",due_at:""});setNotice("Compromisso salvo.");await load()}
  async function addPerson(e:FormEvent,kind:"partners"|"investors"){e.preventDefault();setBusy(true);const r=kind==="partners"?await supabase.from("partners").insert({owner_id:userId,...partner}):await supabase.from("investors").insert({owner_id:userId,...investor});setBusy(false);if(r.error){setError("Não foi possível salvar o cadastro.");return;}if(kind==="partners")setPartner({name:"",company:"",phone:"",email:"",notes:""});else setInvestor({name:"",contact:"",profile:"",notes:""});setNotice("Cadastro salvo.");await load()}
  function exportCsv(){const rows=[["Nome","CPF/CNPJ","Nascimento/Abertura","Telefone","E-mail","Cidade","Endereço","Origem","Objetivo","Valor","Perfil de crédito","Observações de crédito","Etapa","Observações"],...filtered.map(l=>[l.full_name,l.cpf_cnpj??"",l.birth_date??"",l.phone,l.email??"",l.city??"",l.address??"",l.source??"",l.objective??"",String(l.estimated_value??""),l.credit_profile??"",l.credit_notes??"",stages.find(s=>s[0]===l.status)?.[1]??l.status,l.notes??""])];const csv="\uFEFF"+rows.map(r=>r.map(v=>'"'+String(v).replace(/"/g,'""')+'"').join(";")).join("\r\n");const url=URL.createObjectURL(new Blob([csv],{type:"text/csv;charset=utf-8;"}));const a=document.createElement("a");a.href=url;a.download="descomplica-clientes.csv";a.click();URL.revokeObjectURL(url)}
- async function saveSim(e:FormEvent){e.preventDefault();if(!sim.lead_id){setError("Vincule a simulação a um cliente.");return;}const amount=Number(sim.amount),months=Number(sim.months),rate=Number(sim.rate)/100;if(!(amount>0&&months>0)){setError("Informe valor e prazo válidos.");return;}const installment=rate===0?amount/months:amount*rate/(1-Math.pow(1+rate,-months));setBusy(true);const r=await supabase.from("simulations").insert({owner_id:userId,lead_id:sim.lead_id,product_type:sim.product_type,requested_amount:amount,details:{months,monthly_rate_percent:sim.rate,estimated_installment:installment},status:"em_analise"});setBusy(false);if(r.error){setError("Não foi possível salvar a simulação.");return;}setNotice("Simulação salva no histórico.");await load()}
+ async function saveSim(e:FormEvent){
+  e.preventDefault();
+  const amount=Number(sim.amount),months=Number(sim.months),rate=Number(sim.rate)/100;
+  if(!(amount>0&&months>0)){setError("Informe valor e prazo válidos.");return;}
+  let installment=0,details:Record<string,unknown>={months,monthly_rate_percent:sim.rate,simulator};
+  if(simulator==="consorcio"){
+   const admin=Number(simExtra.admin)/100,reserve=Number(simExtra.reserve)/100,bid=Number(simExtra.bid);
+   installment=(amount*(1+admin+reserve)-bid)/months;
+   details={...details,administration_fee_percent:simExtra.admin,reserve_fund_percent:simExtra.reserve,bid,estimated_total:amount*(1+admin+reserve)-bid};
+  }else if(simulator==="veiculos"){
+   const down=Number(simExtra.down),iof=Number(simExtra.iof)/100,financed=Math.max(0,amount-down),principal=financed*(1+iof);
+   installment=rate===0?principal/months:principal*rate/(1-Math.pow(1+rate,-months));
+   details={...details,down_payment:down,iof_percent:simExtra.iof,financed_amount:financed,estimated_iof:financed*iof,estimated_total:installment*months,comparison_consorcio:(amount*(1+Number(simExtra.admin)/100+Number(simExtra.reserve)/100))/months};
+  }else if(simulator==="imobiliario"){
+   const itbi=Number(simExtra.itbi)/100,insurance=Number(simExtra.insurance),principal=amount;
+   const price=rate===0?principal/months:principal*rate/(1-Math.pow(1+rate,-months));
+   const sac=principal/months+principal*rate+insurance;
+   installment=price+insurance;
+   details={...details,itbi_percent:simExtra.itbi,estimated_itbi:amount*itbi,insurance_monthly:insurance,price_first_installment:price+insurance,sac_first_installment:sac,price_total:installment*months,sac_total:(principal/months)*months+rate*principal*(months+1)/2+insurance*months};
+  }else{
+   const current=Number(simExtra.currentPayment),next=Number(simExtra.newPayment);
+   installment=next;
+   details={...details,current_monthly_payment:current,new_monthly_payment:next,monthly_savings:current-next,annual_savings:(current-next)*12};
+  }
+  setBusy(true);setError("");
+  const r=await supabase.from("simulations").insert({owner_id:userId,lead_id:sim.lead_id,product_type:sim.product_type,requested_amount:amount,details,status:"em_analise"});
+  if(r.error){setBusy(false);setError("Não foi possível salvar a simulação. Confira a instalação das tabelas do CRM.");return;}
+  if(sim.lead_id){
+   const p=await supabase.from("lead_proposals").insert({owner_id:userId,lead_id:sim.lead_id,title:sim.product_type+" · "+money(amount),product_type:sim.product_type,amount,monthly_payment:installment,status:"rascunho",details});
+   if(p.error){setBusy(false);setError("Simulação salva, mas não foi possível criar a proposta. Confira a migração mais recente.");await load();return;}
+  }
+  setBusy(false);setNotice("Simulação salva. A proposta foi adicionada ao histórico.");await load();
+ }
  async function uploadDoc(e:FormEvent<HTMLFormElement>){e.preventDefault();const form=e.currentTarget;const f=(form.elements.namedItem("document") as HTMLInputElement).files?.[0];if(!f||!docLead){setError("Selecione cliente e arquivo.");return;}setBusy(true);const path=userId+"/"+docLead+"/"+Date.now()+"-"+f.name.replace(/[^a-zA-Z0-9._-]/g,"_");const up=await supabase.storage.from("client-documents").upload(path,f);if(up.error){setBusy(false);setError("Falha no envio. O armazenamento client-documents precisa ser criado no Supabase.");return;}const saved=await supabase.from("client_documents").insert({owner_id:userId,lead_id:docLead,file_name:f.name,storage_path:path,content_type:f.type||null});setBusy(false);if(saved.error){setError("Arquivo enviado, mas não foi vinculado ao cadastro.");return;}form.reset();setDocLead("");setNotice("Documento anexado.");await load()}
  async function openDoc(path:string){const r=await supabase.storage.from("client-documents").createSignedUrl(path,60);if(r.error||!r.data?.signedUrl){setError("Não foi possível abrir o documento.");return;}window.open(r.data.signedUrl,"_blank","noopener,noreferrer")}
  const months=Number(sim.months),rate=Number(sim.rate)/100,amount=Number(sim.amount);const installment=amount>0&&months>0?(rate===0?amount/months:amount*rate/(1-Math.pow(1+rate,-months))):0;
