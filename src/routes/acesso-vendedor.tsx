@@ -20,6 +20,33 @@ function SellerLogin() {
   const [message, setMessage] = useState("");
 
   useEffect(() => {
+    const hash = new URLSearchParams(window.location.hash.replace(/^#/, ""));
+    const query = new URLSearchParams(window.location.search);
+    const errorCode = hash.get("error_code") || query.get("error_code");
+    if (errorCode) {
+      setMessage(
+        errorCode === "otp_expired"
+          ? "Este link de recuperação expirou ou já foi usado. Digite seu e-mail e clique em \"Esqueci minha senha\" para receber um novo link (use sempre o mais recente)."
+          : "Não foi possível validar o link de recuperação. Solicite um novo link.",
+      );
+      window.history.replaceState(null, "", window.location.pathname);
+    } else if (hash.get("type") === "recovery") {
+      setRecoveryMode(true);
+      setMessage("Link confirmado. Agora cadastre sua nova senha.");
+    }
+
+    const code = query.get("code");
+    if (code) {
+      supabase.auth.exchangeCodeForSession(code).then(({ error }) => {
+        window.history.replaceState(null, "", window.location.pathname);
+        if (error) setMessage("Este link de recuperação expirou ou já foi usado. Solicite um novo link.");
+        else {
+          setRecoveryMode(true);
+          setMessage("Link confirmado. Agora cadastre sua nova senha.");
+        }
+      });
+    }
+
     const { data } = supabase.auth.onAuthStateChange((event, session) => {
       if (event === "PASSWORD_RECOVERY" && session) {
         setRecoveryMode(true);
