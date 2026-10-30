@@ -2,6 +2,8 @@ import { useState, type FormEvent } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { supabase } from "../integrations/supabase/client";
 
+const ADMIN_EMAIL = "daienetiengoconsultora@gmail.com";
+
 export const Route = createFileRoute("/acesso-vendedor")({
   head: () => ({ meta: [{ title: "Acesso do Vendedor | Descomplica Crédito" }] }),
   component: SellerLogin,
@@ -17,23 +19,30 @@ function SellerLogin() {
     event.preventDefault();
     setBusy(true);
     setMessage("");
-    const { error } = await supabase.auth.signInWithPassword({ email, password });
-    setBusy(false);
-    if (error) {
-      setMessage("Não foi possível entrar. Confira seus dados ou use a recuperação de senha.");
+    if (email.trim().toLowerCase() !== ADMIN_EMAIL) {
+      setBusy(false);
+      setMessage("Este acesso é exclusivo da administradora.");
       return;
     }
+    const { data, error } = await supabase.auth.signInWithPassword({ email: ADMIN_EMAIL, password });
+    if (error || data.user?.email?.toLowerCase() !== ADMIN_EMAIL) {
+      await supabase.auth.signOut();
+      setBusy(false);
+      setMessage("Não foi possível entrar. Confira sua senha ou use a recuperação.");
+      return;
+    }
+    setBusy(false);
     window.location.assign("/painel");
   }
 
   async function recoverPassword() {
-    if (!email.trim()) {
-      setMessage("Informe seu e-mail para receber o link de recuperação.");
+    if (email.trim().toLowerCase() !== ADMIN_EMAIL) {
+      setMessage("A recuperação está disponível somente para o e-mail administrador autorizado.");
       return;
     }
     setBusy(true);
     setMessage("");
-    const { error } = await supabase.auth.resetPasswordForEmail(email, {
+    const { error } = await supabase.auth.resetPasswordForEmail(ADMIN_EMAIL, {
       redirectTo: window.location.origin + "/acesso-vendedor",
     });
     setBusy(false);
@@ -47,7 +56,7 @@ function SellerLogin() {
         <section className="mt-6 rounded-3xl border border-[#EAE3D9] bg-white p-8 shadow-sm sm:p-10">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#A47B36]">Área restrita</p>
           <h1 className="mt-3 text-3xl font-semibold text-[#541D2B]">Acesso do Vendedor</h1>
-          <p className="mt-3 text-sm leading-6 text-[#766D64]">Entre com o e-mail autorizado para acessar a área interna.</p>
+          <p className="mt-3 text-sm leading-6 text-[#766D64]">Acesso exclusivo da administradora: {ADMIN_EMAIL}</p>
           <form onSubmit={signIn} className="mt-8 space-y-5">
             <div><label htmlFor="email" className="mb-2 block text-sm font-medium">E-mail</label><input id="email" type="email" autoComplete="username" required value={email} onChange={e=>setEmail(e.target.value)} className="w-full rounded-xl border border-[#DED5C9] px-4 py-3 text-sm outline-none focus:border-[#B58A45]" /></div>
             <div><label htmlFor="password" className="mb-2 block text-sm font-medium">Senha</label><input id="password" type="password" autoComplete="current-password" required value={password} onChange={e=>setPassword(e.target.value)} className="w-full rounded-xl border border-[#DED5C9] px-4 py-3 text-sm outline-none focus:border-[#B58A45]" /></div>
