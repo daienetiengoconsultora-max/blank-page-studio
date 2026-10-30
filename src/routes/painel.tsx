@@ -15,7 +15,7 @@ function SellerPanel() {
 
   useEffect(() => {
     let active = true;
-    supabase.auth.getSession().then(({ data }) => {
+    supabase.auth.getSession().then(async ({ data }) => {
       if (!active) return;
       if (!data.session || data.session.user.email?.toLowerCase() !== ADMIN_EMAIL) {
         await supabase.auth.signOut();
