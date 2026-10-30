@@ -67,28 +67,28 @@ function Index() {
 
   return (
     <main className="min-h-screen bg-[#F7F3EB] text-[#292522]">
-      <header className="sticky top-0 z-20 border-b border-[#D6B36A]/25 bg-[#100D0B]/95 text-white shadow-[0_8px_35px_rgba(0,0,0,0.28)] backdrop-blur-xl">
+      <header className="sticky top-0 z-20 border-b border-[#7A2638]/55 bg-[#100D0B]/95 text-white shadow-[0_8px_35px_rgba(0,0,0,0.28)] backdrop-blur-xl">
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-3">
           <a href="#inicio" aria-label="Daiene Descomplica Crédito, início" className="flex items-center gap-3">
-            <span className="flex h-11 w-11 items-center justify-center rounded-xl border border-[#D6B36A]/60 bg-gradient-to-br from-[#F4D99B] via-[#C79A48] to-[#78521E] text-2xl font-serif font-bold text-[#17110A] shadow-[0_0_22px_rgba(214,179,106,0.22)]">D</span>
+            <span className="flex h-11 w-11 items-center justify-center rounded-xl border border-[#D6B36A]/60 bg-gradient-to-br from-[#F4D99B] via-[#C79A48] to-[#7A2638] text-2xl font-serif font-bold text-[#17110A] shadow-[0_0_22px_rgba(214,179,106,0.22)]">D</span>
             <span className="leading-tight"><span className="block font-serif text-lg tracking-[0.12em] text-[#F2D9A5]">DAIENE</span><span className="block text-[9px] font-medium tracking-[0.22em] text-white/75">DESCOMPLICA CRÉDITO</span></span>
           </a>
           <nav className="hidden gap-6 text-sm text-white/85 md:flex">
             <a href="#inicio">Início</a><a href="#quem-sou">Quem sou</a><a href="#administradoras">Administradoras</a><a href="#solucoes">Soluções</a><a href="#duvidas">Dúvidas</a><a href="#simulacao">Simulação</a><a href="#contato">Contato</a>
           </nav>
-          <a href="#simulacao" className="rounded-full bg-[#D6B36A] px-4 py-2 text-sm font-semibold text-[#100D0B]">Fazer simulação</a>
+          <a href="#simulacao" className="rounded-full bg-gradient-to-r from-[#7A2638] to-[#541D2B] px-4 py-2 text-sm font-semibold text-white shadow-[0_5px_18px_rgba(122,38,56,0.28)]">Fazer simulação</a>
         </div>
       </header>
 
       <section id="inicio" className="relative isolate overflow-hidden bg-[radial-gradient(ellipse_at_78%_20%,rgba(184,137,61,0.22),transparent_34%),linear-gradient(125deg,#080706_0%,#17120D_52%,#302113_100%)] px-5 py-28 text-white sm:py-36">
-        <div className="pointer-events-none absolute -right-24 -top-24 h-[30rem] w-[30rem] rounded-full border border-[#E7CC91]/20" />
-        <div className="pointer-events-none absolute -right-8 top-10 h-80 w-80 rounded-full border border-[#D6B36A]/10" />
+        <div className="pointer-events-none absolute -right-24 -top-24 h-[30rem] w-[30rem] rounded-full border border-[#8B2D43]/35" />
+        <div className="pointer-events-none absolute -right-8 top-10 h-80 w-80 rounded-full border border-[#8B2D43]/20" />
         <div className="relative mx-auto max-w-6xl">
-          <div className="mb-8 flex items-center gap-4"><span className="h-px w-12 bg-[#D6B36A]"/><p className="text-xs font-semibold uppercase tracking-[0.32em] text-[#E7CC91]">Crédito com clareza e planejamento</p></div>
+          <div className="mb-8 flex items-center gap-4"><span className="h-px w-12 bg-[#8B2D43]"/><p className="text-xs font-semibold uppercase tracking-[0.32em] text-[#E7CC91]">Crédito com clareza e planejamento</p></div>
           <p className="mb-4 font-serif text-sm tracking-[0.35em] text-[#D6B36A]">DAIENE DESCOMPLICA CRÉDITO</p>
           <h1 className="mt-6 max-w-4xl font-serif text-4xl font-medium leading-tight sm:text-6xl">Seus planos merecem uma escolha <span className="text-[#E7CC91]">inteligente.</span></h1>
           <p className="mt-6 max-w-2xl text-lg leading-8 text-white/75">Pesquise alternativas de consórcio imobiliário, consórcio de veículos, financiamento de imóveis e financiamento de carros. Compare possibilidades com orientação clara e uma simulação alinhada ao seu objetivo.</p>
-          <a href="#simulacao" className="mt-9 inline-block rounded-full bg-[#D6B36A] px-7 py-3.5 text-sm font-semibold text-[#100D0B]">Solicitar uma simulação</a>
+          <a href="#simulacao" className="mt-9 inline-block rounded-full bg-gradient-to-r from-[#7A2638] to-[#541D2B] px-7 py-3.5 text-sm font-semibold text-white shadow-[0_5px_18px_rgba(122,38,56,0.25)]">Solicitar uma simulação</a>
           <p className="mt-10 text-xs tracking-[0.12em] text-white/55">ATENDIMENTO CONSULTIVO <span className="px-2 text-[#D6B36A]">•</span> TRANSPARÊNCIA <span className="px-2 text-[#D6B36A]">•</span> CONDIÇÕES SUJEITAS À ANÁLISE</p>
           <div className="mt-16 grid max-w-2xl grid-cols-3 gap-4 border-t border-white/15 pt-7"><div><p className="font-serif text-2xl text-[#E7CC91]">01</p><p className="mt-1 text-[10px] uppercase tracking-widest text-white/55">Planejamento</p></div><div><p className="font-serif text-2xl text-[#E7CC91]">02</p><p className="mt-1 text-[10px] uppercase tracking-widest text-white/55">Orientação</p></div><div><p className="font-serif text-2xl text-[#E7CC91]">03</p><p className="mt-1 text-[10px] uppercase tracking-widest text-white/55">Conquista</p></div></div>
         </div>
