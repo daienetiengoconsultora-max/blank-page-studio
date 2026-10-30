@@ -65,6 +65,7 @@ function SellerPanel() {
   }
 
   if (checking) return <main className="flex min-h-screen items-center justify-center bg-[#FCFAF7] text-sm text-[#766D64]">Verificando acesso...</main>;
+  if (!isAdmin) return <main className="flex min-h-screen items-center justify-center bg-[#FCFAF7] px-5 text-center"><div className="max-w-md rounded-3xl border border-[#EAE3D9] bg-white p-8 shadow-sm"><h1 className="text-xl font-semibold text-[#541D2B]">Acesso administrativo pendente</h1><p className="mt-3 text-sm leading-6 text-[#766D64]">Sua conta foi autenticada, mas ainda não recebeu a função de administradora no banco de dados. As migrações do CRM precisam ser aplicadas no Supabase.</p><button onClick={signOut} className="mt-5 rounded-full bg-[#541D2B] px-5 py-2.5 text-xs font-semibold text-white">Voltar</button></div></main>;
 
   return (
     <main className="min-h-screen bg-[radial-gradient(ellipse_at_top,_#F4EBDD_0%,_#FCFAF7_46%,_#F7F3ED_100%)] px-4 py-6 text-[#252321] sm:px-6 lg:px-8 lg:py-10">
