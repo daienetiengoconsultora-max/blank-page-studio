@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { supabase } from "../integrations/supabase/client";
 import { supabaseConfigured } from "../lib/supabase-ready";
+import { LeadsCrm } from "../components/crm/LeadsCrm";
 
 const ADMIN_EMAIL = "daienetiengoconsultora@gmail.com";
 
@@ -12,6 +13,8 @@ export const Route = createFileRoute("/painel")({
 
 function SellerPanel() {
   const [email, setEmail] = useState("");
+  const [userId, setUserId] = useState("");
+  const [isAdmin, setIsAdmin] = useState(false);
   const [checking, setChecking] = useState(true);
 
   useEffect(() => {
@@ -23,7 +26,11 @@ function SellerPanel() {
         window.location.replace("/acesso-vendedor");
         return;
       }
+      const { data: admin } = await supabase.rpc("is_crm_admin");
+      if (!active) return;
       setEmail(data.session.user.email ?? "");
+      setUserId(data.session.user.id);
+      setIsAdmin(admin === true);
       setChecking(false);
     });
     const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
@@ -52,12 +59,8 @@ function SellerPanel() {
           <div><p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#A47B36]">Área restrita</p><h1 className="mt-2 text-2xl font-semibold text-[#541D2B]">Descomplica Crédito</h1></div>
           <button onClick={signOut} className="rounded-full border border-[#DED5C9] px-4 py-2 text-xs font-medium hover:bg-white">Sair</button>
         </header>
-        <section className="mt-10 rounded-2xl border border-[#EAE3D9] bg-white p-7">
-          <p className="text-sm text-[#766D64]">Sessão autenticada: {email}</p>
-          <h2 className="mt-4 text-xl font-semibold text-[#541D2B]">Configuração do CRM pendente</h2>
-          <p className="mt-3 text-sm leading-7 text-[#766D64]">O acesso está protegido por autenticação. O painel de clientes só será ativado depois da criação das tabelas e das políticas de segurança do banco de dados. Nenhum dado de cliente será exibido ou armazenado antes dessa etapa.</p>
-          <p className="mt-4 text-xs leading-6 text-[#9A8F83]">Essa etapa evita que informações pessoais e financeiras fiquem acessíveis sem as permissões corretas.</p>
-        </section>
+        <p className="mt-6 text-sm text-[#766D64]">Sessão autenticada: {email}{isAdmin ? " · Administradora" : ""}</p>
+        <LeadsCrm userId={userId} isAdmin={isAdmin} />
       </div>
     </main>
   );
