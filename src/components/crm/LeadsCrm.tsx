@@ -3,8 +3,8 @@ import { supabase } from "../../integrations/supabase/client";
 
 type Lead = {id:string;full_name:string;phone:string;email:string|null;city:string|null;address:string|null;cpf_cnpj:string|null;birth_date:string|null;credit_profile:string|null;credit_notes:string|null;source:string|null;objective:string|null;estimated_value:number|null;commission_value?:number|null;status:string;notes:string|null;created_at:string};
 type Activity = {id:string;lead_id:string;description:string;activity_type:string;due_at:string|null;created_at:string};
-type Person = {id:string;name:string;company?:string|null;phone?:string|null;email?:string|null;contact?:string|null;profile?:string|null;notes:string|null};
-type Doc = {id:string;lead_id:string;file_name:string;storage_path:string;created_at:string};
+type Person = {id:string;name:string;company?:string|null;phone?:string|null;email?:string|null;contact?:string|null;profile?:string|null;notes:string|null;category?:string|null;administration_fee?:number|null;reserve_fund?:number|null;term_months?:number|null;contact_person?:string|null;website?:string|null;objective?:string|null;investment_amount?:number|null;risk_profile?:string|null;expected_return?:number|null;investment_horizon?:string|null};
+type Doc = {id:string;lead_id:string;file_name:string;storage_path:string;created_at:string;category:string;status:string;notes:string|null};
 type Simulation = {id:string;lead_id:string;product_type:string;requested_amount:number|null;created_at:string;details:Record<string,unknown>};
 type Proposal = {id:string;lead_id:string;title:string;product_type:string;amount:number|null;monthly_payment:number|null;status:string;created_at:string};
 type InvestorSimulation = {id:string;investor_id:string;title:string;principal:number;annual_rate:number;months:number;estimated_value:number;created_at:string};
