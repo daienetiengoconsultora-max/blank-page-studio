@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, type FormEvent } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { supabase } from "../integrations/supabase/client";
 import { supabaseConfigured } from "../lib/supabase-ready";
@@ -49,7 +49,7 @@ function SellerPanel() {
     };
   }, []);
 
-  async function changePassword(event: React.FormEvent<HTMLFormElement>) {
+  async function changePassword(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setPasswordMessage("");
     if (newPassword.length < 8) { setPasswordMessage("Use pelo menos 8 caracteres."); return; }
