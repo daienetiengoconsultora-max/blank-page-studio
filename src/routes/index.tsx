@@ -80,14 +80,14 @@ function Index() {
         </div>
       </header>
 
-      <section id="inicio" className="relative isolate overflow-hidden bg-[radial-gradient(ellipse_at_78%_20%,rgba(184,137,61,0.22),transparent_34%),linear-gradient(125deg,#080706_0%,#17120D_52%,#302113_100%)] px-5 py-28 text-white sm:py-36">
+      <section id="inicio" className="relative isolate overflow-hidden bg-[radial-gradient(ellipse_at_78%_20%,rgba(184,137,61,0.22),transparent_34%),linear-gradient(125deg,#080706_0%,#17120D_52%,#302113_100%)] px-5 py-20 text-white sm:py-28">
         <div className="pointer-events-none absolute -right-24 -top-24 h-[30rem] w-[30rem] rounded-full border border-[#8B2D43]/35" />
         <div className="pointer-events-none absolute -right-8 top-10 h-80 w-80 rounded-full border border-[#8B2D43]/20" />
         <div className="relative mx-auto max-w-6xl">
           <div className="mb-8 flex items-center gap-4"><span className="h-px w-12 bg-[#8B2D43]"/><p className="text-xs font-semibold uppercase tracking-[0.32em] text-[#E7CC91]">Crédito com clareza e planejamento</p></div>
           <p className="mb-4 font-serif text-sm tracking-[0.35em] text-[#D6B36A]">DAIENE DESCOMPLICA CRÉDITO</p>
           <h1 className="mt-6 max-w-4xl font-serif text-4xl font-medium leading-tight sm:text-6xl">Seus planos merecem uma escolha <span className="text-[#E7CC91]">inteligente.</span></h1>
-          <p className="mt-6 max-w-2xl text-lg leading-8 text-white/75">Pesquise alternativas de consórcio imobiliário, consórcio de veículos, financiamento de imóveis e financiamento de carros. Compare possibilidades com orientação clara e uma simulação alinhada ao seu objetivo.</p>
+          <p className="mt-6 max-w-2xl text-lg leading-8 text-white/75">Consórcio imobiliário e de veículos, além de opções de financiamento. Compare caminhos com orientação clara e uma simulação inicial para organizar sua decisão.</p>
           <a href="#simulacao" className="mt-9 inline-block rounded-full bg-gradient-to-r from-[#7A2638] to-[#541D2B] px-7 py-3.5 text-sm font-semibold text-white shadow-[0_5px_18px_rgba(122,38,56,0.25)]">Solicitar uma simulação</a>
           <p className="mt-10 text-xs tracking-[0.12em] text-white/55">ATENDIMENTO CONSULTIVO <span className="px-2 text-[#D6B36A]">•</span> TRANSPARÊNCIA <span className="px-2 text-[#D6B36A]">•</span> CONDIÇÕES SUJEITAS À ANÁLISE</p>
           <div className="mt-16 grid max-w-2xl grid-cols-3 gap-4 border-t border-white/15 pt-7"><div><p className="font-serif text-2xl text-[#E7CC91]">01</p><p className="mt-1 text-[10px] uppercase tracking-widest text-white/55">Planejamento</p></div><div><p className="font-serif text-2xl text-[#E7CC91]">02</p><p className="mt-1 text-[10px] uppercase tracking-widest text-white/55">Orientação</p></div><div><p className="font-serif text-2xl text-[#E7CC91]">03</p><p className="mt-1 text-[10px] uppercase tracking-widest text-white/55">Conquista</p></div></div>
@@ -100,8 +100,19 @@ function Index() {
           <p className="text-[10px] font-semibold uppercase tracking-[0.32em] text-[#D6B36A]">Marcas com as quais atuamos</p>
           <h2 className="mt-3 font-serif text-3xl text-white sm:text-4xl">Administradoras de consórcio</h2>
           <p className="mx-auto mt-3 max-w-2xl text-sm leading-7 text-white/60">Atuação como representante autorizado, com orientação para comparar opções e condições de cada administradora.</p>
-          <div className="mt-9 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
-            {["EMBRACON","BANCO DO BRASIL","CNP","RODOBENS","MAGALU CONSÓRCIOS","ITAÚ"].map((brand)=><div key={brand} className="flex min-h-24 items-center justify-center rounded-xl border border-[#D6B36A]/30 bg-gradient-to-b from-white/[0.08] to-white/[0.02] px-3 py-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]"><span className="text-center font-semibold tracking-[0.12em] text-[#F2D9A5]">{brand}</span></div>)}
+          <div className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
+            {[
+              { name: "Embracon", src: "https://www.embracon.com.br/img/embracon-logo2.svg", fit: "contain" },
+              { name: "Banco do Brasil", src: "https://www.bb.com.br/docs/pub/inst/img/LogoBB.svg", fit: "contain" },
+              { name: "CNP", src: "https://www.embracon.com.br/img/marcas/cnp-logo.svg", fit: "contain" },
+              { name: "Rodobens", src: "https://www.rodobens.com.br/assets/icons/icon-128x128.png", fit: "contain" },
+              { name: "Consórcio Magalu", src: "https://consorciomagalu.com.br/wp-content/uploads/2023/02/Logo_Slogan_RGB-1-1.png", fit: "contain" },
+              { name: "Itaú", src: "https://www.itau.com.br/media/dam/m/4ee2c952e1fa91a2/original/Novo_itau.svg", fit: "contain" },
+            ].map((brand) => (
+              <div key={brand.name} className="group flex min-h-24 items-center justify-center rounded-2xl border border-[#D6B36A]/20 bg-[#F8F5EF] px-4 py-5 shadow-[0_8px_24px_rgba(0,0,0,0.16)] transition duration-300 hover:-translate-y-1 hover:border-[#D6B36A]/60 hover:shadow-[0_14px_32px_rgba(0,0,0,0.24)]">
+                <img src={brand.src} alt={`Logomarca oficial ${brand.name}`} loading="lazy" decoding="async" className="h-12 w-full object-contain transition duration-300 group-hover:scale-[1.04]" />
+              </div>
+            ))}
           </div>
           <p className="mt-5 text-[10px] leading-5 text-white/40">Marcas e nomes pertencem aos respectivos titulares. Daiene Descomplica Crédito é uma atuação independente; condições e propostas dependem das regras de cada administradora.</p>
         </div>
@@ -131,7 +142,7 @@ function Index() {
         <div className="lg:pt-8">
           <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[#A77D36]">Solicite sua simulação</p>
           <h2 className="mt-4 text-3xl font-semibold leading-tight text-[#171310] sm:text-4xl">Conte um pouco sobre o que deseja realizar.</h2>
-          <p className="mt-5 leading-8 text-[#756C63]">Escolha entre consórcio e financiamento, informe o crédito desejado e veja uma estimativa. Seus dados entram no CRM antes da exibição do resultado.</p>
+          <p className="mt-5 leading-8 text-[#756C63]">Informe seu objetivo e o valor desejado para receber uma estimativa inicial. Os cálculos usam hipóteses simplificadas e não substituem uma proposta da instituição.</p>
           <div className="mt-8 rounded-2xl bg-[#EDE5D8] p-6"><p className="text-sm font-semibold text-[#171310]">Fale diretamente comigo</p><a href="https://wa.me/5527998737600" target="_blank" rel="noreferrer" className="mt-2 inline-block text-lg font-semibold text-[#9B7435]">(27) 99873-7600</a><p className="mt-2 text-xs leading-5 text-[#82776C]">Após a simulação, você poderá falar com a equipe pelo WhatsApp.</p></div>
         </div>
         <form onSubmit={submit} className="rounded-3xl border border-[#D6B36A]/35 bg-white p-6 shadow-[0_24px_70px_rgba(30,20,10,0.13)] sm:p-9">
@@ -145,7 +156,7 @@ function Index() {
             <div><label htmlFor="amount" className="mb-2 block text-sm font-medium">Valor do crédito (R$) *</label><input id="amount" required type="number" min="1000" step="100" value={amount} onChange={e=>setAmount(e.target.value)} placeholder="Ex.: 150000" className="w-full rounded-xl border border-[#DED5C9] px-4 py-3 text-sm" /></div>
             <div><label htmlFor="term" className="mb-2 block text-sm font-medium">Prazo desejado *</label><select id="term" required value={term} onChange={e=>setTerm(e.target.value)} className="w-full rounded-xl border border-[#DED5C9] bg-white px-4 py-3 text-sm"><option value="60">60 meses</option><option value="120">120 meses</option><option value="180">180 meses</option><option value="240">240 meses</option></select></div>
           </div>
-          <label className="mt-6 flex items-start gap-3 text-xs leading-5 text-[#766D64]"><input type="checkbox" required checked={consent} onChange={e=>setConsent(e.target.checked)} className="mt-1 accent-[#171310]" /><span>Autorizo o uso dos meus dados para registrar esta simulação e receber contato sobre ela.</span></label>
+          <label className="mt-6 flex items-start gap-3 text-xs leading-5 text-[#766D64]"><input type="checkbox" required checked={consent} onChange={e=>setConsent(e.target.checked)} className="mt-1 accent-[#171310]" /><span>Autorizo o uso dos meus dados para registrar esta solicitação e receber contato sobre ela. Consulte nossa equipe para informações sobre privacidade e tratamento dos dados.</span></label>
           <button type="submit" disabled={submitting} className="mt-7 w-full rounded-full bg-[#171310] px-6 py-4 text-sm font-semibold text-white hover:bg-[#6A2A39] disabled:opacity-60">{submitting ? "Registrando e calculando..." : "Ver minha simulação"}</button>{submitMessage&&<p role="status" className="mt-3 rounded-xl bg-[#EDE5D8] p-3 text-xs leading-5 text-[#6D655D]">{submitMessage}</p>}
           {result&&<div className="mt-5 rounded-2xl border border-[#E7CC91] bg-[#F7F3EB] p-5"><p className="text-xs font-semibold uppercase tracking-wider text-[#9B7435]">Sua estimativa inicial</p><p className="mt-2 text-sm text-[#766D64]">{productType} para {objective.toLowerCase()} · {months} meses</p><p className="mt-2 text-xs text-[#766D64]">Parcela mensal estimada</p><p className="text-3xl font-semibold text-[#171310]">{money(result.monthly)}</p><p className="mt-2 text-xs text-[#766D64]">Total estimado: {money(result.total)}</p><p className="mt-3 text-xs leading-5 text-[#766D64]">{productType==="Consórcio"?"Hipótese de taxa administrativa total de 20%, sem reajustes, fundo de reserva, seguros ou regras específicas de grupo. Não há garantia de contemplação.":"Hipótese de juros de 1,8% ao mês, sem entrada, tarifas, seguros ou CET oficial. A taxa real depende da instituição e da análise."}</p><a href="https://wa.me/5527998737600" target="_blank" rel="noreferrer" className="mt-4 inline-block rounded-full bg-[#D6B36A] px-5 py-3 text-sm font-semibold text-[#100D0B]">Conversar sobre minha simulação</a></div>}
           <p className="mt-4 text-center text-xs leading-5 text-[#9A8F83]">Estimativa educativa, não é proposta, aprovação de crédito ou garantia de contemplação. Valores reais dependem da instituição, do contrato e da análise.</p>
