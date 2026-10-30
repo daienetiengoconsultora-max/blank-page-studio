@@ -204,6 +204,9 @@ export type Database = {
           updated_at?: string
         }
         Update: {
+          commission_value?: number | null
+          closed_at?: string | null
+          last_contact_at?: string | null
           address?: string | null
           birth_date?: string | null
           city?: string | null
