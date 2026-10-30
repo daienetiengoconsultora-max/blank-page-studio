@@ -159,6 +159,9 @@ export type Database = {
       leads: {
         Row: {
           commission_value: number | null
+          commission_rate: number
+          commission_installments: number
+          commission_paid_amount: number
           closed_at: string | null
           last_contact_at: string | null
           address: string | null
@@ -182,6 +185,9 @@ export type Database = {
         }
         Insert: {
           commission_value?: number | null
+          commission_rate?: number
+          commission_installments?: number
+          commission_paid_amount?: number
           closed_at?: string | null
           last_contact_at?: string | null
           address?: string | null
