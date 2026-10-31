@@ -698,3 +698,8 @@ begin
 end;
 $$;
 revoke all on function public.consume_public_submission_limit(text) from public, anon, authenticated;
+
+alter function public.receive_public_lead(text,text,text,text,numeric,boolean)
+  set search_path = pg_catalog, public, auth;
+alter function public.receive_public_simulation_lead(text,text,text,text,numeric,text,integer,numeric,boolean)
+  set search_path = pg_catalog, public, auth;
