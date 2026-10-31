@@ -683,8 +683,9 @@ begin
   exception when others then
     v_headers := '{}'::jsonb;
   end;
-  v_ip := split_part(coalesce(v_headers ->> 'x-forwarded-for', v_headers ->> 'x-real-ip', 'unknown'), ',', 1);
-  v_bucket := p_scope || ':' || md5(coalesce(nullif(trim(v_ip), ''), 'unknown'));
+  v_ip := split_part(coalesce(v_headers ->> 'x-forwarded-for', v_headers ->> 'x-real-ip', v_headers ->> 'cf-connecting-ip', ''), ',', 1);
+  if nullif(trim(v_ip), '') is null then return; end if;
+  v_bucket := p_scope || ':' || md5(trim(v_ip));
   insert into public.public_submission_limits(bucket_key, request_count, window_started_at, updated_at)
   values (v_bucket, 1, now(), now())
   on conflict (bucket_key) do update
