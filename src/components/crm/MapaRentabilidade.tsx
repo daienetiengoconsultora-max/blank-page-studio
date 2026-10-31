@@ -136,7 +136,6 @@ export function MapaRentabilidade({ userId }: { userId: string }) {
         {history.length ? <div className="overflow-x-auto"><table className="w-full min-w-[680px] text-left text-xs"><thead><tr className="border-b border-[#EAE3D9] text-[#766D64]"><th className="p-3">Cliente</th><th className="p-3">Administradora</th><th className="p-3">Crédito</th><th className="p-3">Parcela estimada</th><th className="p-3">Data</th></tr></thead><tbody>{history.map(s => <tr key={s.id} className="border-b border-[#F0EBE4]"><td className="p-3 font-medium">{leads.find(l => l.id === s.lead_id)?.full_name ?? "Cliente"}</td><td className="p-3">{String(s.details.administrator ?? "—")}</td><td className="p-3">{money(Number(s.requested_amount ?? 0))}</td><td className="p-3">{money(Number(s.details.monthly_payment_estimate ?? 0))}</td><td className="p-3">{new Date(s.created_at).toLocaleDateString("pt-BR")}</td></tr>)}</tbody></table></div> : <p className="rounded-xl bg-[#F8F4ED] p-5 text-sm text-[#766D64]">Ainda não há simulações salvas para este filtro.</p>}
       </div>}
 
-      </div>}
     </div>
     <p className="text-[11px] leading-5 text-[#8A8178]">Aviso obrigatório: ROI, patrimônio projetado, parcelas e janela de contemplação são estimativas calculadas a partir dos dados informados. Não representam garantia de retorno, valorização, prazo ou contemplação. A contemplação ocorre por sorteio ou lance e depende das regras e dos recursos do grupo.</p>
   </section>;
