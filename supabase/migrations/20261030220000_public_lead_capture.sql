@@ -16,6 +16,7 @@ declare
   v_owner uuid;
   v_lead_id uuid;
 begin
+  perform public.consume_public_submission_limit('public_lead');
   if p_consent is not true then
     raise exception 'Consent is required to submit this request.';
   end if;
