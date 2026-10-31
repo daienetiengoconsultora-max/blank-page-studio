@@ -143,6 +143,25 @@ function Index() {
         </div>
       </section>
 
+      <section id="administradoras" className="border-y border-[#E8DECE] bg-white px-5 py-20">
+        <div className="mx-auto max-w-6xl">
+          <div className="mx-auto max-w-2xl text-center">
+            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[#A77D36]">Administradoras de consórcio</p>
+            <h2 className="mt-4 font-serif text-3xl font-semibold text-[#171310] sm:text-4xl">Marcas com as quais trabalhamos</h2>
+            <p className="mt-4 text-sm leading-7 text-[#756C63]">Conheça algumas das administradoras disponíveis para consulta de planos e condições, conforme produto, grupo e análise.</p>
+          </div>
+          <div className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
+            <a href="https://www.embracon.com.br/" target="_blank" rel="noreferrer" aria-label="Embracon, site oficial" className="flex min-h-28 items-center justify-center rounded-2xl border border-[#E9E1D6] bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"><img src="https://www.embracon.com.br/img/embracon-logo2.svg" alt="Embracon" className="max-h-14 max-w-full object-contain" /></a>
+            <a href="https://www.bb.com.br/" target="_blank" rel="noreferrer" aria-label="Banco do Brasil, site oficial" className="flex min-h-28 flex-col items-center justify-center gap-2 rounded-2xl border border-[#E9E1D6] bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"><span className="flex h-12 w-12 items-center justify-center rounded-xl border-2 border-[#F2D500] bg-[#F2D500] text-2xl font-black text-[#173A78]">BB</span><span className="text-center text-xs font-bold text-[#173A78]">BANCO DO BRASIL</span></a>
+            <a href="https://www.cnp.com.br/" target="_blank" rel="noreferrer" aria-label="CNP, site oficial" className="flex min-h-28 items-center justify-center rounded-2xl border border-[#E9E1D6] bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"><img src="https://www.embracon.com.br/img/marcas/cnp-logo.svg" alt="CNP" className="max-h-14 max-w-full object-contain" /></a>
+            <a href="https://rodobens.com.br/" target="_blank" rel="noreferrer" aria-label="Rodobens, site oficial" className="flex min-h-28 items-center justify-center rounded-2xl border border-[#E9E1D6] bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"><img src="https://rodobens.com.br/blog/seguros/assets/svg/logo-rodobens-primary.svg" alt="Rodobens" className="max-h-14 max-w-full object-contain" /></a>
+            <a href="https://consorcio.magalu.com/" target="_blank" rel="noreferrer" aria-label="Consórcio Magalu, site oficial" className="flex min-h-28 flex-col items-center justify-center gap-2 rounded-2xl border border-[#E9E1D6] bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"><span className="font-sans text-3xl font-black tracking-tight text-[#0086D6]">magalu</span><span className="text-center text-[10px] font-semibold uppercase tracking-wider text-[#555]">Consórcios</span></a>
+            <a href="https://www.itau.com.br/" target="_blank" rel="noreferrer" aria-label="Itaú, site oficial" className="flex min-h-28 flex-col items-center justify-center gap-2 rounded-2xl border border-[#E9E1D6] bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"><span className="flex h-12 w-12 items-center justify-center rounded-xl border-2 border-[#F58220] bg-[#064B8D] font-sans text-xl font-black text-white">itaú</span><span className="text-center text-[10px] font-semibold uppercase tracking-wider text-[#555]">Consórcios</span></a>
+          </div>
+          <p className="mt-7 text-center text-[11px] leading-5 text-[#8B8176]">As marcas pertencem às respectivas empresas. Daiene Descomplica Crédito é uma operação independente de atendimento e orientação; disponibilidade, taxas e condições devem ser confirmadas na proposta de cada administradora.</p>
+        </div>
+      </section>
+
       <section id="solucoes" className="bg-gradient-to-b from-[#F7F3EB] to-[#EDE5D8] px-5 py-24">
         <div className="mx-auto max-w-6xl">
           <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[#A77D36]">Soluções</p>
