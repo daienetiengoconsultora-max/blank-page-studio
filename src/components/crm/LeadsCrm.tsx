@@ -65,7 +65,7 @@ async function load(){
  useEffect(()=>{void load()},[]);
  useEffect(()=>{
   if(typeof window==="undefined"||!("Notification" in window)||Notification.permission!=="granted")return;
-  const check=()=>{const now=Date.now();activities.filter(a=>a.due_at&&!notifiedReminders.current.has(a.id)&&new Date(a.due_at).getTime()<=now+5*60*1000&&new Date(a.due_at).getTime()>=now-30*60*1000).forEach(a=>{new Notification("Lembrete · Descomplica Crédito",{body:name(a.lead_id)+": "+a.description});notifiedReminders.current.add(a.id);});};
+  const check=()=>{const now=Date.now();activities.filter(a=>a.due_at&&!notifiedReminders.current.has(a.id)&&new Date(a.due_at).getTime()<=now+5*60*1000&&new Date(a.due_at).getTime()>=now-30*60*1000).forEach(a=>{new Notification("Lembrete · Descomplica Crédito",{body:"Você tem um retorno agendado no CRM. Entre no painel para consultar os detalhes."});notifiedReminders.current.add(a.id);});};
   check();const timer=window.setInterval(check,60000);return()=>window.clearInterval(timer);
  },[activities]);
  const filtered=useMemo(()=>leads.filter(l=>{
