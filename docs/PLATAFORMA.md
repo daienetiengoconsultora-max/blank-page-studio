@@ -1,6 +1,10 @@
 # Escopo funcional — Daiene Descomplica Crédito
 
-## Objetivo
+## Objetivo e acesso
+
+- **Site comercial:** público, acessível aos clientes para conhecer soluções e iniciar contato.
+- **CRM e painel administrativo:** privados e exclusivos da proprietária/administradora. Clientes não terão login nem acesso ao CRM.
+- Não criar perfis de equipe, planos empresariais, teste pago ou cobrança de assinatura para este uso exclusivo.
 
 Evoluir o projeto existente para uma plataforma comercial integrada, responsiva e persistente, sem transformar estimativas em promessas de crédito, contemplação ou rentabilidade.
 
@@ -15,7 +19,7 @@ Evoluir o projeto existente para uma plataforma comercial integrada, responsiva 
 | Módulo solicitado | Estado identificado |
 |---|---|
 | Site comercial | Rota inicial existente |
-| Cadastro/login | Login Supabase existente; fluxo de cadastro de equipe precisa ser validado |
+| Cadastro/login | Login administrativo privado existente; não oferecer login de clientes |
 | Painel administrativo | Rota /painel existente |
 | CRM e funil | LeadsCrm existente, com clientes, etapas e atividades |
 | Simuladores de consórcio | Simuladores existentes no CRM e Mapa da Rentabilidade |
@@ -28,7 +32,7 @@ Evoluir o projeto existente para uma plataforma comercial integrada, responsiva 
 | Comissões | Campos e totais no CRM; conciliação e regras de estorno ainda precisam de validação |
 | Relatórios | Área existente; métricas precisam ser conferidas contra os dados persistidos |
 | Produtos e conteúdo | Parceiros/administradoras existem; gestão editorial/publicação precisa ser validada |
-| Equipes, permissões e quotas | Perfis admin/vendedor previstos; gestão de equipes e limites por plano não confirmados |
+| Acesso ao CRM | Exclusivo da proprietária/administradora; validar bloqueio de qualquer outra conta |
 
 ## Prioridade de implementação
 
@@ -113,3 +117,4 @@ Segredos administrativos nunca devem usar prefixo `VITE_`. Guardar em Edge Funct
 - Domínio e variáveis de produção no host.
 
 Não adicionar chaves privadas, senhas ou tokens ao Git.
+\n## Regra de acesso obrigatória\n\nO site comercial é público. As rotas de painel, CRM, simulações internas, documentos, agenda, comissões e relatórios devem exigir autenticação da proprietária/administradora. Não implementar portal do cliente, cadastro de clientes com senha, multiusuário, planos de assinatura ou teste pago. Clientes são cadastrados e gerenciados internamente pela proprietária.\n
