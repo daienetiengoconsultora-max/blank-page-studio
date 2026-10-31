@@ -1,5 +1,22 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 210" role="img" aria-labelledby="title desc">
-<title id="title">Daiene Descomplica Crédito</title><desc id="desc">Marca luxuosa em dourado com monograma D, telhado de casa e o nome Daiene Descomplica Crédito.</desc>
-<defs><linearGradient id="gold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFF1BC"/><stop offset=".42" stop-color="#E3BD70"/><stop offset=".72" stop-color="#B98236"/><stop offset="1" stop-color="#F7DFA0"/></linearGradient><filter id="glow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="2.2" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
-<g filter="url(#glow)" fill="none" stroke="url(#gold)" stroke-linecap="round" stroke-linejoin="round"><path d="M34 105C34 47 75 18 124 18c58 0 91 42 91 91s-33 91-91 91H55" stroke-width="10"/><path d="M30 106 117 39l86 67M58 93v52h119V93M98 145v-38h39v38" stroke-width="7"/><path d="M14 119c47-31 113-42 205-13" stroke-width="3"/></g>
-<text x="250" y="94" fill="url(#gold)" font-family="Georgia,serif" font-size="82" letter-spacing="-2">Daiene</text><text x="255" y="143" fill="#F5DFA9" font-family="Georgia,serif" font-size="39">Descomplica Crédito</text><path d="M255 161h440" stroke="#B98236" stroke-width="1.5"/><text x="258" y="190" fill="#E3BD70" font-family="Arial,sans-serif" font-size="17" letter-spacing="5">REALIZE SEUS PLANOS</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 900" role="img" aria-labelledby="title desc">
+<title id="title">Daiene Descomplica Crédito</title>
+<desc id="desc">Logotipo Daiene em dourado sobre fundo preto, com monograma D e seta ascendente.</desc>
+<defs>
+ <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff0b8"/><stop offset=".28" stop-color="#d9a94f"/><stop offset=".52" stop-color="#fff0b0"/><stop offset=".78" stop-color="#b77b2d"/><stop offset="1" stop-color="#f9d98a"/></linearGradient>
+ <filter id="glow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+</defs>
+<rect width="1100" height="900" fill="#090806"/>
+<g fill="none" stroke="url(#gold)" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)">
+ <path d="M345 105h205c122 0 198 80 198 194 0 105-69 181-168 196" stroke-width="24"/>
+ <path d="M470 190h112c83 0 132 52 132 125 0 67-47 112-113 126" stroke-width="19"/>
+ <path d="M354 105v365c0 45-24 68-69 68h-30" stroke-width="24"/>
+ <path d="M420 548c112-117 233-184 350-143 50 18 84 49 112 87" stroke-width="17"/>
+ <path d="M610 570c115 7 222-38 291-129 28-37 46-80 54-126" stroke-width="15"/>
+ <path d="m919 320 39-62 19 71" stroke-width="15"/>
+ <path d="M735 550c61-5 112-26 153-65" stroke-width="13"/>
+</g>
+<text x="550" y="690" text-anchor="middle" fill="url(#gold)" font-family="Georgia, 'Times New Roman', serif" font-size="145" letter-spacing="7">DAIENE</text>
+<path d="M115 742h180M805 742h180" stroke="url(#gold)" stroke-width="3"/>
+<text x="550" y="760" text-anchor="middle" fill="#f5f0e7" font-family="Arial, sans-serif" font-size="43" letter-spacing="12">DESCOMPLICA CRÉDITO</text>
+<text x="550" y="832" text-anchor="middle" fill="url(#gold)" font-family="Georgia, serif" font-size="31" letter-spacing="5">CONSÓRCIOS  •  FINANCIAMENTOS  •  SOLUÇÕES FINANCEIRAS</text>
+</svg>
