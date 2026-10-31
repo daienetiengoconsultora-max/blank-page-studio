@@ -445,6 +445,27 @@ export type Database = {
         }
         Relationships: []
       }
+      public_lead_rate_limits: {
+        Row: {
+          key_hash: string
+          request_count: number
+          updated_at: string
+          window_started_at: string
+        }
+        Insert: {
+          key_hash: string
+          request_count?: number
+          updated_at?: string
+          window_started_at: string
+        }
+        Update: {
+          key_hash?: string
+          request_count?: number
+          updated_at?: string
+          window_started_at?: string
+        }
+        Relationships: []
+      }
       public_submission_limits: {
         Row: {
           bucket_key: string
@@ -578,6 +599,10 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      check_public_lead_rate_limit: {
+        Args: { p_identity: string }
+        Returns: undefined
+      }
       consume_public_submission_limit: {
         Args: { p_scope: string }
         Returns: undefined
