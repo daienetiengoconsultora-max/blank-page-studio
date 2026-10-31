@@ -445,6 +445,27 @@ export type Database = {
         }
         Relationships: []
       }
+      public_submission_limits: {
+        Row: {
+          bucket_key: string
+          request_count: number
+          updated_at: string
+          window_started_at: string
+        }
+        Insert: {
+          bucket_key: string
+          request_count?: number
+          updated_at?: string
+          window_started_at: string
+        }
+        Update: {
+          bucket_key?: string
+          request_count?: number
+          updated_at?: string
+          window_started_at?: string
+        }
+        Relationships: []
+      }
       rate_references: {
         Row: {
           annual_rate: number
@@ -557,6 +578,10 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      consume_public_submission_limit: {
+        Args: { p_scope: string }
+        Returns: undefined
+      }
       is_crm_admin: { Args: never; Returns: boolean }
       receive_public_lead: {
         Args: {
