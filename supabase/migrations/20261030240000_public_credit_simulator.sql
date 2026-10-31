@@ -19,6 +19,7 @@ declare
   v_owner uuid;
   v_lead_id uuid;
 begin
+  perform public.consume_public_submission_limit('public_simulation');
   if p_consent is not true then raise exception 'Consent is required.'; end if;
   if length(trim(coalesce(p_name,''))) < 2 or length(trim(p_name)) > 80 then raise exception 'Invalid first name.'; end if;
   if length(trim(coalesce(p_email,''))) > 254 or trim(p_email) !~* '^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$' then raise exception 'Invalid email.'; end if;
