@@ -93,7 +93,6 @@ export function MapaRentabilidade({ userId }: { userId: string }) {
       <nav className="flex flex-wrap gap-2 border-b border-[#EEE7DE] p-3">
         <button onClick={() => setTab("simulador")} className={tab === "simulador" ? "rounded-full bg-[#641B2D] px-4 py-2 text-xs font-semibold text-white" : "rounded-full border border-[#DED5C9] px-4 py-2 text-xs text-[#641B2D]"}>Simulador</button>
         <button onClick={() => setTab("historico")} className={tab === "historico" ? "rounded-full bg-[#641B2D] px-4 py-2 text-xs font-semibold text-white" : "rounded-full border border-[#DED5C9] px-4 py-2 text-xs text-[#641B2D]"}>Histórico por cliente</button>
-        <button onClick={() => setTab("planos")} className={tab === "planos" ? "rounded-full bg-[#641B2D] px-4 py-2 text-xs font-semibold text-white" : "rounded-full border border-[#DED5C9] px-4 py-2 text-xs text-[#641B2D]"}>Planos e teste</button>
       </nav>
       {error && <p role="alert" className="mx-5 mt-4 rounded-xl bg-red-50 p-3 text-sm text-red-800">{error}</p>}
       {message && <p role="status" className="mx-5 mt-4 rounded-xl bg-green-50 p-3 text-sm text-green-800">{message}</p>}
