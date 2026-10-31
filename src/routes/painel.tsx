@@ -3,6 +3,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { supabase } from "../integrations/supabase/client";
 import { supabaseConfigured } from "../lib/supabase-ready";
 import { LeadsCrm } from "../components/crm/LeadsCrm";
+import { MapaRentabilidade } from "../components/crm/MapaRentabilidade";
 
 const ADMIN_EMAIL = "daienetiengoconsultora@gmail.com";
 
@@ -75,6 +76,7 @@ function SellerPanel() {
           <div className="flex items-center gap-3"><div className="hidden text-right sm:block"><p className="text-xs font-medium text-[#541D2B]">{email}</p><p className="text-[10px] uppercase tracking-wider text-[#A47B36]">{isAdmin ? "Administradora" : "Acesso restrito"}</p></div><button onClick={() => { setPasswordOpen(v => !v); setPasswordMessage(""); }} className="rounded-full border border-[#DED5C9] bg-white px-4 py-2.5 text-xs font-semibold text-[#541D2B] transition hover:border-[#B58A45] hover:bg-[#FCFAF7]">Alterar senha</button><button onClick={signOut} className="rounded-full border border-[#DED5C9] bg-white px-5 py-2.5 text-xs font-semibold text-[#541D2B] transition hover:border-[#B58A45] hover:bg-[#FCFAF7]">Sair</button></div>
         </header>
         {passwordOpen && <section className="mt-5 rounded-2xl border border-[#E9DFD1] bg-white p-5 shadow-sm"><div className="flex items-center justify-between"><h2 className="font-semibold text-[#541D2B]">Segurança da conta</h2><button onClick={() => setPasswordOpen(false)} className="text-xs text-[#8A6B3C] underline">Fechar</button></div><form onSubmit={changePassword} className="mt-4 grid gap-3 sm:max-w-xl sm:grid-cols-2"><input required minLength={8} type="password" autoComplete="new-password" placeholder="Nova senha (mínimo 8 caracteres)" value={newPassword} onChange={e=>setNewPassword(e.target.value)} className="w-full rounded-xl border border-[#DED5C9] px-3 py-2.5 text-sm"/><input required minLength={8} type="password" autoComplete="new-password" placeholder="Confirme a nova senha" value={confirmPassword} onChange={e=>setConfirmPassword(e.target.value)} className="w-full rounded-xl border border-[#DED5C9] px-3 py-2.5 text-sm"/><button className="rounded-full bg-[#541D2B] px-5 py-2.5 text-xs font-semibold text-white sm:col-span-2 sm:justify-self-start">Salvar nova senha</button></form>{passwordMessage&&<p role="status" className="mt-3 text-xs text-[#766D64]">{passwordMessage}</p>}</section>}
+        <MapaRentabilidade userId={userId} />
         <LeadsCrm userId={userId} isAdmin={isAdmin} />
       </div>
     </main>
