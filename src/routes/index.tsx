@@ -122,15 +122,16 @@ function Index() {
           <p className="mx-auto mt-3 max-w-2xl text-sm leading-7 text-white/60">Atuação como representante autorizado, com orientação para comparar opções e condições de cada administradora.</p>
           <div className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
             {[
-              { name: "Embracon", src: "https://www.embracon.com.br/img/embracon-logo2.svg", fit: "contain" },
-              { name: "Banco do Brasil", src: "https://www.bb.com.br/docs/pub/inst/img/LogoBB.svg", fit: "contain" },
-              { name: "CNP", src: "https://www.embracon.com.br/img/marcas/cnp-logo.svg", fit: "contain" },
-              { name: "Rodobens", src: "https://www.rodobens.com.br/assets/icons/icon-128x128.png", fit: "contain" },
-              { name: "Consórcio Magalu", src: "https://consorciomagalu.com.br/wp-content/uploads/2023/02/Logo_Slogan_RGB-1-1.png", fit: "contain" },
-              { name: "Itaú", src: "https://www.itau.com.br/media/dam/m/4ee2c952e1fa91a2/original/Novo_itau.svg", fit: "contain" },
+              { name: "Embracon", mark: "embracon", color: "#176B45", sub: "CONSÓRCIO" },
+              { name: "Banco do Brasil", mark: "BB", color: "#E6B800", sub: "BANCO DO BRASIL" },
+              { name: "CNP", mark: "CNP", color: "#263B73", sub: "CONSÓRCIOS" },
+              { name: "Rodobens", mark: "RODOBENS", color: "#174A78", sub: "CONSÓRCIO" },
+              { name: "Consórcio Magalu", mark: "magalu", color: "#0876C9", sub: "CONSÓRCIO" },
+              { name: "Itaú", mark: "itaú", color: "#174A78", sub: "CONSÓRCIO" },
             ].map((brand) => (
-              <div key={brand.name} className="group flex min-h-24 items-center justify-center rounded-2xl border border-[#D6B36A]/20 bg-[#F8F5EF] px-4 py-5 shadow-[0_8px_24px_rgba(0,0,0,0.16)] transition duration-300 hover:-translate-y-1 hover:border-[#D6B36A]/60 hover:shadow-[0_14px_32px_rgba(0,0,0,0.24)]">
-                <img src={brand.src} alt={`Logomarca oficial ${brand.name}`} loading="lazy" decoding="async" className="h-12 w-full object-contain transition duration-300 group-hover:scale-[1.04]" />
+              <div key={brand.name} role="img" aria-label={brand.name} className="group flex min-h-24 flex-col items-center justify-center gap-1 rounded-2xl border border-[#D6B36A]/20 bg-[#F8F5EF] px-3 py-5 shadow-[0_8px_24px_rgba(0,0,0,0.16)] transition duration-300 hover:-translate-y-1 hover:border-[#D6B36A]/60 hover:shadow-[0_14px_32px_rgba(0,0,0,0.24)]">
+                <span style={{ color: brand.color }} className={`font-sans font-extrabold leading-none tracking-tight transition duration-300 group-hover:scale-[1.04] ${brand.mark === "BB" ? "text-4xl" : brand.mark === "embracon" || brand.mark === "magalu" || brand.mark === "itaú" ? "text-3xl" : "text-2xl"}`}>{brand.mark}</span>
+                <span className="text-[8px] font-semibold tracking-[0.16em] text-[#655D54]">{brand.sub}</span>
               </div>
             ))}
           </div>
