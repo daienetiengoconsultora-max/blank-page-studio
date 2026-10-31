@@ -115,10 +115,13 @@ async function load(){
    details={...details,current_monthly_payment:current,new_monthly_payment:next,monthly_savings:current-next,annual_savings:(current-next)*12};
   }
   setBusy(true);setError("");
-  const r=await supabase.from("simulations").insert({owner_id:userId,lead_id:sim.lead_id,product_type:sim.product_type,requested_amount:amount,details,status:"em_analise"});
+  const isRefinancing=simulator==="refinanciamento";
+  const requestedAmount=isRefinancing?null:amount;
+  const proposalTitle=isRefinancing?sim.product_type+" · Comparativo de parcelas":sim.product_type+" · "+money(amount);
+  const r=await supabase.from("simulations").insert({owner_id:userId,lead_id:sim.lead_id,product_type:sim.product_type,requested_amount:requestedAmount,details,status:"em_analise"});
   if(r.error){setBusy(false);setError("Não foi possível salvar a simulação. Confira a instalação das tabelas do CRM.");return;}
   if(sim.lead_id){
-   const p=await supabase.from("lead_proposals").insert({owner_id:userId,lead_id:sim.lead_id,title:sim.product_type+" · "+money(amount),product_type:sim.product_type,amount,monthly_payment:installment,status:"rascunho",details});
+   const p=await supabase.from("lead_proposals").insert({owner_id:userId,lead_id:sim.lead_id,title:proposalTitle,product_type:sim.product_type,amount:requestedAmount,monthly_payment:installment,status:"rascunho",details});
    if(p.error){setBusy(false);setError("Simulação salva, mas não foi possível criar a proposta. Confira a migração mais recente.");await load();return;}
   }
   setBusy(false);setNotice("Simulação salva. A proposta foi adicionada ao histórico.");await load();
