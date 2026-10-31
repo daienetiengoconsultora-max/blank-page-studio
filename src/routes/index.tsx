@@ -158,6 +158,25 @@ function Index() {
         </div>
       </section>
 
+      <section id="como-escolher" className="bg-[#100D0B] px-5 py-20 text-white">
+        <div className="mx-auto max-w-6xl">
+          <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[#D6B36A]">Orientação antes de decidir</p>
+          <h2 className="mt-4 max-w-3xl font-serif text-3xl text-white sm:text-4xl">Consórcio ou financiamento: entenda o que muda.</h2>
+          <p className="mt-4 max-w-3xl text-sm leading-7 text-white/65">A melhor alternativa depende do prazo, da urgência, do orçamento e das condições disponíveis. Não existe uma resposta igual para todo mundo.</p>
+          <div className="mt-9 grid gap-5 md:grid-cols-2">
+            <article className="rounded-2xl border border-[#D6B36A]/25 bg-white/[0.04] p-6"><h3 className="font-serif text-2xl text-[#E7CC91]">Consórcio</h3><p className="mt-3 text-sm leading-7 text-white/70">É uma modalidade de autofinanciamento em grupo. A contemplação acontece por sorteio ou lance, conforme contrato e regras do grupo. Não há garantia de contemplação em data determinada.</p><ul className="mt-4 space-y-2 text-sm text-white/65"><li>• Planejamento de médio ou longo prazo</li><li>• Taxa de administração e possíveis encargos</li><li>• Crédito sujeito à atualização e regras contratuais</li></ul></article>
+            <article className="rounded-2xl border border-[#D6B36A]/25 bg-white/[0.04] p-6"><h3 className="font-serif text-2xl text-[#E7CC91]">Financiamento</h3><p className="mt-3 text-sm leading-7 text-white/70">É uma operação de crédito com análise da instituição financeira. Quando aprovado e contratado, permite adquirir o bem conforme as condições, entrada, taxas e prazos do contrato.</p><ul className="mt-4 space-y-2 text-sm text-white/65"><li>• Pode atender quem precisa adquirir o bem antes</li><li>• Juros, tarifas, seguros e tributos podem compor o custo</li><li>• Aprovação depende da análise de crédito</li></ul></article>
+          </div>
+          <p className="mt-6 text-xs leading-6 text-white/45">As informações são educativas. Taxas, custos, prazos, disponibilidade e aprovação dependem da instituição, do produto e da análise individual.</p>
+        </div>
+      </section>
+      <section className="mx-auto max-w-6xl px-5 py-20">
+        <div className="grid gap-10 md:grid-cols-[0.8fr_1.2fr]">
+          <div><p className="text-xs font-semibold uppercase tracking-[0.25em] text-[#A77D36]">Como funciona</p><h2 className="mt-4 text-3xl font-semibold text-[#171310]">Uma conversa clara, do primeiro passo à proposta.</h2><p className="mt-4 text-sm leading-7 text-[#756C63]">Você entende as possibilidades antes de tomar uma decisão. Sem promessa de aprovação ou contemplação.</p></div>
+          <ol className="space-y-5">{[["01","Entendemos seu objetivo","Imóvel, veículo, valor aproximado e prazo desejado."],["02","Organizamos as possibilidades","Explicamos diferenças, custos envolvidos e pontos de atenção."],["03","Preparamos uma estimativa","Os números iniciais ajudam no planejamento e não substituem a proposta oficial."],["04","Você decide com informação","A contratação só avança após conhecer e aceitar as condições formais."]].map(([n,t,d])=><li key={n} className="flex gap-4 border-b border-[#E8E0D5] pb-5"><span className="font-serif text-2xl text-[#A77D36]">{n}</span><div><h3 className="font-semibold text-[#292522]">{t}</h3><p className="mt-1 text-sm leading-6 text-[#766D64]">{d}</p></div></li>)}</ol>
+        </div>
+      </section>
+
       <section id="simulacao" className="mx-auto grid max-w-6xl gap-10 px-5 py-24 lg:grid-cols-[0.8fr_1.2fr]">
         <div className="lg:pt-8">
           <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[#A77D36]">Solicite sua simulação</p>
