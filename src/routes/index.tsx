@@ -94,7 +94,7 @@ function Index() {
             <span className="leading-tight"><span className="block font-serif text-lg tracking-[0.12em] text-[#F2D9A5]">DAIENE</span><span className="block text-[9px] font-medium tracking-[0.22em] text-white/75">DESCOMPLICA CRÉDITO</span><span className="mt-1 block text-[8px] tracking-[0.16em] text-[#D6B36A]">SEU SONHO, MAIS PERTO.</span></span>
           </a>
           <nav className="hidden gap-6 text-sm text-white/85 md:flex">
-            <a href="#inicio">Início</a><a href="#quem-sou">Quem sou</a><a href="#administradoras">Administradoras</a><a href="#solucoes">Soluções</a><a href="#duvidas">Dúvidas</a><a href="#simulacao">Simulação</a><a href="#contato">Contato</a>
+            <a href="#inicio">Início</a><a href="#quem-sou">Quem sou</a><a href="#administradoras">Administradoras</a><a href="#solucoes">Soluções</a><a href="#como-escolher">Como escolher</a><a href="#duvidas">Dúvidas</a><a href="#simulacao">Simulação</a><a href="#contato">Contato</a>
           </nav>
           <a href="#simulacao" className="rounded-full bg-gradient-to-r from-[#7A2638] to-[#541D2B] px-4 py-2 text-sm font-semibold text-white shadow-[0_5px_18px_rgba(122,38,56,0.28)]">Fazer simulação</a>
         </div>
