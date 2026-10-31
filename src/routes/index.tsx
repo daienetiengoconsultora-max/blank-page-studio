@@ -99,41 +99,38 @@ function Index() {
         </div>
       </header>
 
-      <section id="inicio" className="relative isolate overflow-hidden bg-[radial-gradient(ellipse_at_78%_20%,rgba(184,137,61,0.22),transparent_34%),linear-gradient(125deg,#080706_0%,#17120D_52%,#302113_100%)] px-5 py-20 text-white sm:py-28">
-        <div className="pointer-events-none absolute -right-24 -top-24 h-[30rem] w-[30rem] rounded-full border border-[#8B2D43]/35" />
-        <div className="pointer-events-none absolute -right-8 top-10 h-80 w-80 rounded-full border border-[#8B2D43]/20" />
-        <div className="relative mx-auto max-w-6xl">
-          <div className="mb-8 flex items-center gap-4"><span className="h-px w-12 bg-[#8B2D43]"/><p className="text-xs font-semibold uppercase tracking-[0.32em] text-[#E7CC91]">Crédito com clareza e planejamento</p></div>
-          <p className="mb-4 font-serif text-sm tracking-[0.35em] text-[#D6B36A]">DAIENE DESCOMPLICA CRÉDITO</p>
-          <h1 className="mt-6 max-w-4xl font-serif text-4xl font-medium leading-tight sm:text-6xl">Seus planos merecem uma escolha <span className="text-[#E7CC91]">inteligente.</span></h1>
-          <p className="mt-6 max-w-2xl text-lg leading-8 text-white/75">Consórcio imobiliário e de veículos, além de opções de financiamento. Compare caminhos com orientação clara e uma simulação inicial para organizar sua decisão.</p>
-          <a href="#simulacao" className="mt-9 inline-block rounded-full bg-gradient-to-r from-[#7A2638] to-[#541D2B] px-7 py-3.5 text-sm font-semibold text-white shadow-[0_5px_18px_rgba(122,38,56,0.25)]">Solicitar uma simulação</a>
-          <p className="mt-10 text-xs tracking-[0.12em] text-white/55">ATENDIMENTO CONSULTIVO <span className="px-2 text-[#D6B36A]">•</span> TRANSPARÊNCIA <span className="px-2 text-[#D6B36A]">•</span> CONDIÇÕES SUJEITAS À ANÁLISE</p>
-          <div className="mt-16 grid max-w-2xl grid-cols-3 gap-4 border-t border-white/15 pt-7"><div><p className="font-serif text-2xl text-[#E7CC91]">01</p><p className="mt-1 text-[10px] uppercase tracking-widest text-white/55">Planejamento</p></div><div><p className="font-serif text-2xl text-[#E7CC91]">02</p><p className="mt-1 text-[10px] uppercase tracking-widest text-white/55">Orientação</p></div><div><p className="font-serif text-2xl text-[#E7CC91]">03</p><p className="mt-1 text-[10px] uppercase tracking-widest text-white/55">Conquista</p></div></div>
-        </div>
-      </section>
-
-
-      <section id="administradoras" className="border-y border-[#D6B36A]/20 bg-[#100D0B] px-5 py-16 text-white">
-        <div className="mx-auto max-w-6xl text-center">
-          <p className="text-[10px] font-semibold uppercase tracking-[0.32em] text-[#D6B36A]">Marcas com as quais atuamos</p>
-          <h2 className="mt-3 font-serif text-3xl text-white sm:text-4xl">Administradoras de consórcio</h2>
-          <p className="mx-auto mt-3 max-w-2xl text-sm leading-7 text-white/60">Atuação como representante autorizado, com orientação para comparar opções e condições de cada administradora.</p>
-          <div className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
-            {[
-              { name: "Embracon", src: "https://www.embracon.com.br/img/embracon-logo2.svg", alt: "Logotipo oficial Embracon" },
-              { name: "Banco do Brasil", src: "https://www.gov.br/mcom/pt-br/assuntos/5g/seminarios-5g.br/imagens/LOGOBBAZUL.png", alt: "Logotipo Banco do Brasil" },
-              { name: "CNP", src: "https://www.embracon.com.br/img/marcas/cnp-logo.svg", alt: "Logotipo oficial CNP" },
-              { name: "Rodobens", src: "https://www.rodobens.com.br/assets/icons/icon-128x128.png", alt: "Símbolo Rodobens" },
-              { name: "Consórcio Magalu", src: "https://consorciomagalu.com.br/wp-content/uploads/2023/02/Logo_Slogan_RGB-1-1.png", alt: "Logotipo oficial Consórcio Magalu" },
-              { name: "Itaú", src: "https://www.itau.com.br/media/dam/m/4ee2c952e1fa91a2/original/Novo_itau.svg", alt: "Logotipo Itaú" },
-            ].map((brand) => (
-              <div key={brand.name} className="flex min-h-24 items-center justify-center rounded-2xl border border-[#D6B36A]/20 bg-[#F8F5EF] px-4 py-5 shadow-[0_8px_24px_rgba(0,0,0,0.16)]">
-                <img src={brand.src} alt={brand.alt} loading="lazy" decoding="async" referrerPolicy="no-referrer" className="h-12 w-full max-w-[150px] object-contain" />
-              </div>
-            ))}
+      <section id="inicio" className="relative isolate overflow-hidden bg-[radial-gradient(ellipse_at_82%_35%,rgba(214,179,106,0.2),transparent_35%),linear-gradient(120deg,#080706_0%,#17100C_55%,#32131C_100%)] px-5 py-20 text-white sm:py-28">
+        <div className="pointer-events-none absolute -right-24 -top-24 h-[34rem] w-[34rem] rounded-full border border-[#D6B36A]/25" />
+        <div className="pointer-events-none absolute right-8 top-12 h-[26rem] w-[26rem] rounded-full border border-[#D6B36A]/15" />
+        <div className="relative mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
+          <div>
+            <div className="mb-7 flex items-center gap-4"><span className="h-px w-12 bg-[#D6B36A]"/><p className="text-xs font-semibold uppercase tracking-[0.32em] text-[#E7CC91]">Crédito com clareza e planejamento</p></div>
+            <h1 className="max-w-3xl font-serif text-4xl font-medium leading-tight sm:text-6xl">Daiene Descomplica Crédito</h1>
+            <p className="mt-5 max-w-2xl text-2xl leading-snug text-white/90 sm:text-3xl">Consórcio e financiamento de forma <span className="font-semibold text-[#E7CC91]">simples, segura e descomplicada.</span></p>
+            <p className="mt-6 max-w-xl text-base leading-8 text-white/70">Encontre caminhos para realizar seus planos com atendimento consultivo, orientação clara e transparência em cada etapa.</p>
+            <a href="#simulacao" className="mt-9 inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-[#F5D995] via-[#D6B36A] to-[#A87832] px-7 py-4 text-sm font-bold text-[#17100C] shadow-[0_8px_30px_rgba(214,179,106,0.25)] transition hover:-translate-y-0.5">Simular agora <span aria-hidden="true">→</span></a>
+            <p className="mt-8 text-xs tracking-[0.12em] text-white/55">ATENDIMENTO CONSULTIVO <span className="px-2 text-[#D6B36A]">•</span> TRANSPARÊNCIA <span className="px-2 text-[#D6B36A]">•</span> CONDIÇÕES SUJEITAS À ANÁLISE</p>
           </div>
-          <p className="mt-5 text-[10px] leading-5 text-white/40">Marcas e nomes pertencem aos respectivos titulares. Daiene Descomplica Crédito é uma atuação independente; condições e propostas dependem das regras de cada administradora.</p>
+          <div className="relative mx-auto w-full max-w-xl">
+            <div className="absolute inset-5 rounded-[2.5rem] bg-[#D6B36A]/10 blur-2xl" />
+            <div className="relative overflow-hidden rounded-[2rem] border border-[#D6B36A]/45 bg-gradient-to-br from-[#2A1B12] via-[#130F0C] to-[#080706] p-6 shadow-[0_25px_80px_rgba(0,0,0,0.5)] sm:p-8">
+              <div className="flex items-center justify-between border-b border-[#D6B36A]/25 pb-5"><span className="text-xs uppercase tracking-[0.25em] text-[#E7CC91]">Realize seus planos</span><span className="font-serif text-2xl text-[#D6B36A]">D.</span></div>
+              <svg viewBox="0 0 520 300" role="img" aria-label="Ilustração dourada de uma casa e um veículo, representando consórcio imobiliário e de veículos" className="my-5 w-full">
+                <defs><linearGradient id="heroGold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#FFF0B7"/><stop offset=".55" stopColor="#D6B36A"/><stop offset="1" stopColor="#8F5D25"/></linearGradient></defs>
+                <path d="M40 180 190 55l150 125" fill="none" stroke="url(#heroGold)" strokeWidth="8" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M78 164v92h226v-92M160 256v-70h66v70M105 190h34v34h-34zM244 190h34v34h-34z" fill="none" stroke="url(#heroGold)" strokeWidth="6" strokeLinejoin="round"/>
+                <path d="M280 230h180l-18-52q-7-18-27-18h-91q-18 0-27 17l-17 53z" fill="#17110C" stroke="url(#heroGold)" strokeWidth="5" strokeLinejoin="round"/>
+                <path d="m319 177 16-25h75l20 25" fill="none" stroke="url(#heroGold)" strokeWidth="5" strokeLinejoin="round"/>
+                <circle cx="326" cy="233" r="17" fill="#090807" stroke="url(#heroGold)" strokeWidth="6"/><circle cx="425" cy="233" r="17" fill="#090807" stroke="url(#heroGold)" strokeWidth="6"/>
+                <path d="M30 278h460" stroke="#D6B36A" strokeOpacity=".45" strokeWidth="2"/>
+              </svg>
+              <div className="grid grid-cols-3 gap-3 border-t border-[#D6B36A]/25 pt-5 text-center">
+                <div><p className="text-lg text-[#E7CC91]">Imóveis</p><p className="mt-1 text-[10px] text-white/55">Consórcio e crédito</p></div>
+                <div><p className="text-lg text-[#E7CC91]">Veículos</p><p className="mt-1 text-[10px] text-white/55">Carros e motos</p></div>
+                <div><p className="text-lg text-[#E7CC91]">Planos</p><p className="mt-1 text-[10px] text-white/55">Sob medida</p></div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
