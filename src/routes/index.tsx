@@ -2,8 +2,6 @@ import { useState, type FormEvent } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { supabase } from "../integrations/supabase/client";
 
-const WHATSAPP = "5527998737600";
-
 export const Route = createFileRoute("/")({
   head: () => ({ meta: [
     { title: "Daiene Descomplica Crédito | Consórcios e Financiamentos" },
