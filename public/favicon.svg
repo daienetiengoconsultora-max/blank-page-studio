@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-label="Daiene Descomplica Crédito">
+  <defs>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FFF1BC"/>
+      <stop offset=".42" stop-color="#E3BD70"/>
+      <stop offset=".72" stop-color="#B98236"/>
+      <stop offset="1" stop-color="#F7DFA0"/>
+    </linearGradient>
+  </defs>
+  <rect width="240" height="240" rx="52" fill="#17100C"/>
+  <g transform="translate(120 120) scale(0.82) translate(-114 -107)" fill="none" stroke="url(#gold)" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M34 105C34 47 75 18 124 18c58 0 91 42 91 91s-33 91-91 91H55" stroke-width="10"/>
+    <path d="M30 106 117 39l86 67M58 93v52h119V93M98 145v-38h39v38" stroke-width="7"/>
+    <path d="M14 119c47-31 113-42 205-13" stroke-width="3"/>
+  </g>
+</svg>
