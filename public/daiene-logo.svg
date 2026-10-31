@@ -1,9 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 190" role="img" aria-labelledby="title desc">
-<title id="title">Daiene Descomplica Crédito</title><desc id="desc">Logotipo dourado com símbolo de casa e o nome Daiene Descomplica Crédito.</desc>
-<defs><linearGradient id="gold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff0b7"/><stop offset=".48" stop-color="#d6a84e"/><stop offset="1" stop-color="#9a6825"/></linearGradient></defs>
-<g fill="none" stroke="url(#gold)" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"><path d="M28 77 112 12l84 65M51 70v22M173 70v22M18 103q74-34 160 0"/></g>
-<path fill="url(#gold)" d="M98 55h28v28H98z"/><path fill="#17110a" d="M108 65h8v18h-8zM98 70h28v7H98z"/>
-<text x="218" y="88" fill="url(#gold)" font-family="Georgia,serif" font-size="78">Daiene</text>
-<text x="222" y="132" fill="#f2d9a5" font-family="Georgia,serif" font-size="35">Descomplica Crédito</text>
-<text x="25" y="174" fill="#d6b36a" font-family="Arial,sans-serif" font-size="17" letter-spacing="3">CONSÓRCIO • FINANCIAMENTO • SOLUÇÕES FINANCEIRAS</text>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 210" role="img" aria-labelledby="title desc">
+<title id="title">Daiene Descomplica Crédito</title><desc id="desc">Marca luxuosa em dourado com monograma D, telhado de casa e o nome Daiene Descomplica Crédito.</desc>
+<defs><linearGradient id="gold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFF1BC"/><stop offset=".42" stop-color="#E3BD70"/><stop offset=".72" stop-color="#B98236"/><stop offset="1" stop-color="#F7DFA0"/></linearGradient><filter id="glow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="2.2" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+<g filter="url(#glow)" fill="none" stroke="url(#gold)" stroke-linecap="round" stroke-linejoin="round"><path d="M34 105C34 47 75 18 124 18c58 0 91 42 91 91s-33 91-91 91H55" stroke-width="10"/><path d="M30 106 117 39l86 67M58 93v52h119V93M98 145v-38h39v38" stroke-width="7"/><path d="M14 119c47-31 113-42 205-13" stroke-width="3"/></g>
+<text x="250" y="94" fill="url(#gold)" font-family="Georgia,serif" font-size="82" letter-spacing="-2">Daiene</text><text x="255" y="143" fill="#F5DFA9" font-family="Georgia,serif" font-size="39">Descomplica Crédito</text><path d="M255 161h440" stroke="#B98236" stroke-width="1.5"/><text x="258" y="190" fill="#E3BD70" font-family="Arial,sans-serif" font-size="17" letter-spacing="5">REALIZE SEUS PLANOS</text></svg>
