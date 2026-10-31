@@ -297,6 +297,7 @@ export type Database = {
           address: string | null
           birth_date: string | null
           city: string | null
+          client_type: string
           closed_at: string | null
           commission_installments: number
           commission_paid_amount: number
@@ -323,6 +324,7 @@ export type Database = {
           address?: string | null
           birth_date?: string | null
           city?: string | null
+          client_type?: string
           closed_at?: string | null
           commission_installments?: number
           commission_paid_amount?: number
@@ -349,6 +351,7 @@ export type Database = {
           address?: string | null
           birth_date?: string | null
           city?: string | null
+          client_type?: string
           closed_at?: string | null
           commission_installments?: number
           commission_paid_amount?: number
