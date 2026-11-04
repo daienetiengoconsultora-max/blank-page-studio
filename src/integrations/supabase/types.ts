@@ -115,6 +115,83 @@ export type Database = {
         }
         Relationships: []
       }
+      contract_templates: {
+        Row: {
+          body: string
+          created_at: string
+          id: string
+          name: string
+          owner_id: string
+          updated_at: string
+        }
+        Insert: {
+          body: string
+          created_at?: string
+          id?: string
+          name: string
+          owner_id?: string
+          updated_at?: string
+        }
+        Update: {
+          body?: string
+          created_at?: string
+          id?: string
+          name?: string
+          owner_id?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      contracts: {
+        Row: {
+          amount: number
+          body: string
+          client_type: string
+          contract_date: string
+          created_at: string
+          id: string
+          lead_id: string
+          number: string
+          owner_id: string
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          amount: number
+          body?: string
+          client_type?: string
+          contract_date?: string
+          created_at?: string
+          id?: string
+          lead_id: string
+          number?: string
+          owner_id?: string
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          amount?: number
+          body?: string
+          client_type?: string
+          contract_date?: string
+          created_at?: string
+          id?: string
+          lead_id?: string
+          number?: string
+          owner_id?: string
+          status?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "contracts_lead_id_fkey"
+            columns: ["lead_id"]
+            isOneToOne: false
+            referencedRelation: "leads"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       investor_simulations: {
         Row: {
           annual_rate: number
@@ -376,6 +453,127 @@ export type Database = {
         }
         Relationships: []
       }
+      legal_processes: {
+        Row: {
+          created_at: string
+          documents_received_at: string | null
+          expected_date: string | null
+          id: string
+          lawyer_name: string | null
+          lead_id: string
+          notes: string | null
+          owner_id: string
+          process_number: string | null
+          sent_to_lawyer_at: string | null
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          documents_received_at?: string | null
+          expected_date?: string | null
+          id?: string
+          lawyer_name?: string | null
+          lead_id: string
+          notes?: string | null
+          owner_id?: string
+          process_number?: string | null
+          sent_to_lawyer_at?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          documents_received_at?: string | null
+          expected_date?: string | null
+          id?: string
+          lawyer_name?: string | null
+          lead_id?: string
+          notes?: string | null
+          owner_id?: string
+          process_number?: string | null
+          sent_to_lawyer_at?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "legal_processes_lead_id_fkey"
+            columns: ["lead_id"]
+            isOneToOne: false
+            referencedRelation: "leads"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      message_logs: {
+        Row: {
+          body: string
+          created_at: string
+          id: string
+          lead_id: string
+          owner_id: string
+          status: string
+          template_key: string | null
+        }
+        Insert: {
+          body: string
+          created_at?: string
+          id?: string
+          lead_id: string
+          owner_id?: string
+          status?: string
+          template_key?: string | null
+        }
+        Update: {
+          body?: string
+          created_at?: string
+          id?: string
+          lead_id?: string
+          owner_id?: string
+          status?: string
+          template_key?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "message_logs_lead_id_fkey"
+            columns: ["lead_id"]
+            isOneToOne: false
+            referencedRelation: "leads"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      message_templates: {
+        Row: {
+          body: string
+          created_at: string
+          id: string
+          key: string
+          owner_id: string | null
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          body: string
+          created_at?: string
+          id?: string
+          key: string
+          owner_id?: string | null
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          body?: string
+          created_at?: string
+          id?: string
+          key?: string
+          owner_id?: string | null
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       partners: {
         Row: {
           administration_fee: number | null
@@ -611,6 +809,18 @@ export type Database = {
         Returns: undefined
       }
       is_crm_admin: { Args: never; Returns: boolean }
+      is_dtm_owner: { Args: never; Returns: boolean }
+      receive_contact_lead: {
+        Args: {
+          p_client_type: string
+          p_consent?: boolean
+          p_email: string
+          p_message: string
+          p_name: string
+          p_phone: string
+        }
+        Returns: string
+      }
       receive_public_lead: {
         Args: {
           p_city: string
