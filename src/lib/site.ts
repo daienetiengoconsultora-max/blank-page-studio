@@ -1,5 +1,5 @@
 export const SITE_URL = "https://descomplicacredito.lovable.app";
-export const BRAND = "DTM Consultoria Financeira";
+export const BRAND = "DTM DESCOMPLICA CRÉDITO";
 export const WHATSAPP_NUMBER = "5527998737600";
 export const WHATSAPP_DISPLAY = "(27) 99873-7600";
 export const whatsappLink = (text = "Olá! Quero fazer meu diagnóstico financeiro.") =>
@@ -201,6 +201,6 @@ export const FAQ = [
   { q: "Vocês garantem a limpeza do nome?", a: "Não. Nenhuma empresa séria pode garantir exclusão de dívidas, aumento de score ou aprovação de crédito. Orientamos os caminhos legais e acompanhamos o processo." },
   { q: "Como funciona o diagnóstico?", a: "Você preenche o formulário, nossa equipe entra em contato pelo WhatsApp, coleta as informações necessárias e apresenta um panorama da sua situação com os próximos passos." },
   { q: "Atendem CPF e CNPJ?", a: "Sim. Atendemos pessoas físicas e empresas, considerando as particularidades de cada cadastro." },
-  { q: "Preciso pagar para enviar o formulário?", a: "Não. O envio do formulário é gratuito e não gera nenhuma obrigação." },
+  { q: "Quanto custa o diagnóstico financeiro?", a: "O diagnóstico financeiro custa R$ 29,99. A equipe explica as etapas e as condições antes de iniciar o atendimento." },
   { q: "Meus dados ficam protegidos?", a: "Sim. Usamos seus dados apenas para retornar o contato e conduzir o atendimento, conforme a nossa Política de Privacidade e a LGPD." },
 ];
