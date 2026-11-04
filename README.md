@@ -1,68 +1,217 @@
-# Daiene Descomplica Crédito
+ATUALIZAÇÃO COMPLETA DO PROJETO EXISTENTE — DTM DESCOMPLICA CRÉDITO
 
-Plataforma web responsiva para apresentação comercial, relacionamento com clientes e organização de operações de crédito e consórcio.
+OBJETIVO:
+Transformar o projeto atual em uma plataforma profissional, moderna e luxuosa, com site institucional integrado ao CRM existente.
 
-## Stack identificada
+REGRA FUNDAMENTAL:
+NÃO CRIE OUTRO PROJETO.
+NÃO RECONSTRUA O CRM.
+NÃO APAGUE DADOS.
+NÃO SUBSTITUA O SUPABASE.
+NÃO REMOVA FUNCIONALIDADES EXISTENTES.
 
-- React + TypeScript + Vite / TanStack Router
-- Supabase Auth para autenticação
-- Supabase Database para persistência
-- Políticas RLS e funções SQL para controle de acesso
-- Interface adaptável a celular e desktop
+1. AUDITORIA INICIAL
+Antes de modificar qualquer arquivo:
+- Analise toda a estrutura do projeto.
+- Identifique as páginas, componentes e rotas.
+- Analise o Supabase e suas tabelas.
+- Verifique autenticação e permissões.
+- Identifique como funciona o cadastro atual de clientes e leads.
+- Preserve todas as funcionalidades existentes.
 
-## Áreas já identificadas no código
+2. IDENTIDADE VISUAL
+A marca oficial será exclusivamente:
+DTM DESCOMPLICA CRÉDITO.
 
-- Site comercial na rota inicial
-- Login e recuperação de senha do vendedor
-- Painel administrativo
-- CRM com cadastro de clientes, etapas do funil, atividades e retornos
-- Simuladores e histórico de simulações
-- Mapa da Rentabilidade
-- Propostas, documentos, parceiros, investidores e relatórios no CRM
+Remova referências ao nome Daiene da identidade visual, títulos, cabeçalhos, rodapés e SEO.
 
-## Referência visual e funcional
+Utilize:
+- Magenta.
+- Rosa sofisticado.
+- Vinho.
+- Branco.
+- Detalhes elegantes.
 
-A referência informada foi [DTCred — Crédito Descomplicado](https://consortium-sales-pla-7yhw.bolt.host/). O conteúdo público foi consultado, mas a ferramenta de leitura não disponibilizou o HTML nem as telas internas. Portanto, não afirmamos ter reproduzido elementos que não puderam ser inspecionados. A evolução deve seguir os padrões gerais solicitados: interface comercial limpa, navegação objetiva, cards de indicadores, funil visual, simuladores e foco em uso móvel.
+Crie uma identidade visual luxuosa, moderna, profissional e responsiva.
 
-## Direção visual
+3. SITE INSTITUCIONAL
+Reformule a parte pública do site utilizando como referência de organização comercial:
+https://arrudacred.com.br/
 
-- Vermelho-escuro/bordô como cor principal
-- Preto para contraste e hierarquia
-- Branco para superfícies e leitura
-- Dourado em detalhes, indicadores e chamadas de ação
-- Layout responsivo, com formulários curtos e botões com estados de carregamento/erro/sucesso
+Não copie textos, identidade visual ou elementos exclusivos.
 
-## Configuração
+Crie:
+- Página inicial.
+- Sobre nós.
+- Serviços.
+- Como funciona.
+- Perguntas frequentes.
+- Blog DTM.
+- Contato.
+- Política de privacidade.
+- Termos de uso.
 
-Copie `.env.example` para `.env.local` e preencha as variáveis do Supabase:
+4. SERVIÇOS
+Apresente individualmente:
+- Limpa Nome.
+- Score de Crédito.
+- Rating Bancário.
+- Bacen/SCR.
+- CCF.
+- Cadin.
+- Diagnóstico Financeiro.
 
-- `VITE_SUPABASE_URL`
-- `VITE_SUPABASE_PUBLISHABLE_KEY`
-- `VITE_SUPABASE_PROJECT_ID`
+Cada serviço deverá possuir explicação própria, clara e profissional.
 
-Nunca coloque `service_role`, senha de banco, token privado ou segredo de gateway em variáveis expostas ao navegador. Segredos devem ficar em Supabase Edge Functions ou no ambiente seguro do servidor.
+Não prometa resultados garantidos, aprovação de crédito ou exclusão definitiva de dívidas.
 
-## Desenvolvimento e validação
+5. FORMULÁRIO DE DIAGNÓSTICO
 
-```bash
-npm install
-npm run dev
-npm run lint
-npm test
-npm run build
-```
+Destaque na página inicial:
 
-## Integrações externas
+QUER REGULARIZAR SEU NOME?
+FAÇA SEU DIAGNÓSTICO!
 
-Integrações reais com WhatsApp Business Platform, Google Calendar, assinatura digital, gateway de pagamento ou APIs de administradoras exigem credenciais, aprovação e configuração próprias. Não há credenciais inventadas nem taxas/condições de crédito presumidas. Até a configuração e teste dessas integrações, os respectivos pontos devem ser tratados como links/fluxos assistidos, não como integrações concluídas.
+Campos:
+- Primeiro nome.
+- Telefone/WhatsApp.
+- Tipo de cadastro: CPF ou CNPJ.
+- Valor aproximado da dívida.
+- Empresa ou instituição credora.
+- Serviço desejado.
 
-## Segurança e publicação
+Botão:
+QUERO FAZER MEU DIAGNÓSTICO.
 
-Antes de inserir dados reais:
-1. Aplicar e revisar todas as migrações SQL no projeto Supabase correto.
-2. Confirmar RLS em todas as tabelas e testar com contas de perfis diferentes.
-3. Configurar URLs de redirecionamento e SMTP de recuperação de senha no Supabase.
-4. Configurar domínios, variáveis de ambiente e políticas de segurança no provedor de hospedagem.
-5. Executar lint, testes e build; depois validar login, permissões e gravação no ambiente publicado.
+Inclua consentimento para tratamento de dados e aviso de privacidade.
 
-O detalhamento de escopo, integrações pendentes e critérios de aceite está em [docs/PLATAFORMA.md](docs/PLATAFORMA.md).
+INTEGRAÇÃO OBRIGATÓRIA:
+Conecte o formulário ao CRM e ao Supabase JÁ EXISTENTES.
+
+Os contatos deverão aparecer automaticamente no cadastro de leads atual.
+
+Não crie outro banco de dados, outro CRM ou outra tabela de leads se já existir estrutura compatível.
+
+Preserve as regras de segurança e permissões do Supabase.
+
+6. BLOG DTM
+
+Crie categorias:
+- Limpa Nome.
+- Score.
+- Rating Bancário.
+- CPF e CNPJ.
+- Bacen/SCR.
+- CCF.
+- Cadin.
+- Diagnóstico Financeiro.
+
+Implemente estrutura para publicação e edição de artigos pelo painel administrativo existente, se possível.
+
+Não crie outro painel administrativo.
+
+7. SEO E GOOGLE
+
+Implemente:
+- Títulos e descrições SEO individuais.
+- URLs amigáveis.
+- Sitemap XML.
+- Robots.txt.
+- Dados estruturados.
+- Open Graph.
+- Imagens otimizadas.
+- Carregamento rápido.
+- Responsividade.
+- Estrutura adequada para indexação no Google.
+
+8. CRM E SISTEMA EXISTENTE
+
+PRESERVE INTEGRALMENTE:
+- CRM atual.
+- Supabase.
+- Login.
+- Autenticação.
+- Permissões de usuários.
+- Cadastro de clientes.
+- Cadastro de leads.
+- Simuladores.
+- Painel administrativo.
+- Integrações.
+- Banco de dados.
+- Todas as funcionalidades existentes.
+
+Não exclua tabelas, registros, componentes ou funcionalidades.
+
+Não altere configurações de produção sem necessidade.
+
+Caso alguma mudança exija migração, preserve os dados e a compatibilidade com a estrutura atual.
+
+9. DESIGN
+
+Quero um site:
+- Luxuoso.
+- Elegante.
+- Moderno.
+- Leve.
+- Profissional.
+- Responsivo.
+
+Utilize cards sofisticados, tipografia profissional, ícones consistentes, botões destacados e navegação intuitiva.
+
+Evite excesso de animações, poluição visual e aparência genérica de template.
+
+10. SEGURANÇA E TRANSPARÊNCIA
+
+Não invente depoimentos, avaliações, parceiros ou certificações.
+
+Não utilize logotipos de instituições como se fossem parceiras.
+
+Não prometa aprovação de crédito, aumento garantido de score ou exclusão garantida de dívidas.
+
+Proteja os dados dos clientes e não exponha credenciais privadas no frontend.
+
+11. EXECUÇÃO
+
+Faça as alterações diretamente no projeto existente.
+
+Não entregue apenas planejamento ou sugestões.
+
+Implemente o máximo possível sem comprometer o sistema.
+
+Ao finalizar:
+- Verifique erros de compilação.
+- Corrija erros de navegação.
+- Teste todas as páginas.
+- Teste o formulário.
+- Verifique a integração com os leads do CRM.
+- Confira o funcionamento do Supabase.
+- Teste login e autenticação.
+- Verifique permissões.
+- Confira a versão mobile.
+
+Não declare testes como concluídos se não foram executados.
+
+12. RELATÓRIO FINAL
+
+Informe:
+- O que foi alterado.
+- Quais páginas foram criadas.
+- Quais funcionalidades foram implementadas.
+- Como ficou a integração com o CRM.
+- Se o Supabase foi preservado.
+- Quais testes foram executados.
+- Quais erros foram corrigidos.
+- O que ainda depende de configuração.
+
+PRIORIDADE ABSOLUTA:
+
+Transformar a DTM DESCOMPLICA CRÉDITO em uma plataforma profissional, elegante e confiável, com site institucional integrado ao CRM atual.
+
+PRESERVE TUDO O QUE JÁ FUNCIONA.
+
+
+
+
+
+
+
