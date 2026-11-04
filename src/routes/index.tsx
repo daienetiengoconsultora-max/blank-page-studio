@@ -5,7 +5,7 @@ import { BRAND, POSTS, SERVICES, SITE_URL, WHATSAPP_NUMBER, seo } from "@/lib/si
 
 export const Route = createFileRoute("/")({
   head: () => ({
-    ...seo("/", "DTM Consultoria Financeira | Limpa Nome, Score e Diagnóstico Financeiro", "Regularize seu nome com orientação transparente: Limpa Nome, Score, Rating Bancário, Bacen/SCR, CCF e Cadin. Faça seu diagnóstico gratuito pelo WhatsApp."),
+    ...seo("/", "DTM Descomplica Crédito | Limpa Nome e Diagnóstico Financeiro", "Regularize seu nome com orientação transparente: Limpa Nome, Score, Rating Bancário, Bacen/SCR, CCF e Cadin. Conheça os serviços de orientação para CPF e CNPJ."),
     scripts: [{
       type: "application/ld+json",
       children: JSON.stringify({
