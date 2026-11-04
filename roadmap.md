@@ -1,15 +1,15 @@
 # Roadmap
 
 ## Em andamento
-- [ ] Substituir módulo Parceiros por "Tabela de Taxas e Administradoras" (3 abas: financiamento imobiliário, veículos, administradoras de consórcio) com dados reais do Banco Central
-  - [x] Pesquisar fontes públicas (API Olinda/BCB de taxas por instituição — OK, dados reais de Set-2026)
-  - [ ] Buscar taxas de veículos (modalidade "Aquisição de veículos - Prefixado", endpoint diário)
-  - [ ] Buscar lista de administradoras de consórcio autorizadas pelo BCB
-  - [ ] Criar tabelas no Supabase (taxas + administradoras + histórico de atualizações) com RLS e dados iniciais
-  - [ ] Criar componente da nova aba (busca, filtro, ordenação por menor taxa, data de atualização, botão atualizar)
-  - [ ] Remover aba/cadastro manual de Parceiros do CRM (manter tabela `partners` no banco, sem apagar dados)
-  - [ ] Integrar taxas de referência aos simuladores (selecionar instituição preenche taxa; manter taxa manual)
-  - [ ] Testar build, filtros e simuladores
-
-## Na sequência
+- [ ] Ligar a "Tabela de Taxas e Administradoras" ao CRM
+  - [x] Dados reais do Banco Central obtidos e gravados (77 taxas de referência + 130 administradoras)
+  - [x] Tabelas no Supabase com regras de segurança (só administradora vê)
+  - [x] Componente da tela criado (busca, filtro, ordenação, botão atualizar)
+  - [ ] Substituir a aba "Parceiros" pela nova tela dentro do CRM
+  - [ ] Integrar as taxas de referência aos simuladores (escolher a instituição preenche a taxa)
+  - [ ] Ligar os 6 logotipos das administradoras à tela
+  - [ ] Testar filtros, simuladores e a tela de taxas
 - [ ] SEO do site para ser encontrado por quem busca consórcio e financiamento (títulos, descrições, palavras-chave, dados estruturados, sitemap, robots, conteúdo)
+
+## Pendente fora do meu alcance
+- [ ] Ligar a proteção de senhas vazadas no painel do Supabase (Authentication → Settings)
