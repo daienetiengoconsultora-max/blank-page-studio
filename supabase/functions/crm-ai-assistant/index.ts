@@ -4,14 +4,23 @@ const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
   "Access-Control-Allow-Methods": "POST, OPTIONS",
-  "Vary": "Origin",
+  Vary: "Origin",
 };
-const jsonHeaders = { ...corsHeaders, "Content-Type": "application/json", "Cache-Control": "no-store" };
+const jsonHeaders = {
+  ...corsHeaders,
+  "Content-Type": "application/json",
+  "Cache-Control": "no-store",
+};
 const reply = (body: Record<string, unknown>, status = 200) =>
   new Response(JSON.stringify(body), { status, headers: jsonHeaders });
 
 function safeText(value: unknown, max = 300): string {
-  return typeof value === "string" ? value.replace(/[\u0000-\u001F\u007F]/g, " ").trim().slice(0, max) : "";
+  return typeof value === "string"
+    ? value
+        .replace(/[\u0000-\u001F\u007F]/g, " ")
+        .trim()
+        .slice(0, max)
+    : "";
 }
 function safeNumber(value: unknown): number | null {
   if (typeof value !== "number" || !Number.isFinite(value)) return null;
@@ -34,7 +43,10 @@ Deno.serve(async (req) => {
       global: { headers: { Authorization: authorization } },
       auth: { persistSession: false, autoRefreshToken: false },
     });
-    const { data: { user }, error: authError } = await supabase.auth.getUser();
+    const {
+      data: { user },
+      error: authError,
+    } = await supabase.auth.getUser();
     if (authError || !user) return reply({ error: "Unauthorized" }, 401);
 
     const apiKey = Deno.env.get("OPENAI_API_KEY");
@@ -43,39 +55,59 @@ Deno.serve(async (req) => {
     const declaredLength = Number(req.headers.get("content-length") ?? 0);
     if (declaredLength > 20_000) return reply({ error: "Request too large" }, 413);
     const body = await req.json().catch(() => null);
-    if (!body || typeof body !== "object" || Array.isArray(body)) return reply({ error: "Invalid request" }, 400);
+    if (!body || typeof body !== "object" || Array.isArray(body))
+      return reply({ error: "Invalid request" }, 400);
 
     const question = safeText((body as Record<string, unknown>).question, 2000);
     if (!question) return reply({ error: "Question required" }, 400);
 
     // Allow-list context fields. Never forward arbitrary client-supplied objects or customer records.
     const raw = ((body as Record<string, unknown>).context ?? {}) as Record<string, unknown>;
-    const rawTotals = raw.totals && typeof raw.totals === "object" ? raw.totals as Record<string, unknown> : {};
-    const rawSimulation = raw.simulation && typeof raw.simulation === "object" ? raw.simulation as Record<string, unknown> : {};
+    const rawTotals =
+      raw.totals && typeof raw.totals === "object" ? (raw.totals as Record<string, unknown>) : {};
+    const rawSimulation =
+      raw.simulation && typeof raw.simulation === "object"
+        ? (raw.simulation as Record<string, unknown>)
+        : {};
     const context = {
       section: safeText(raw.section, 60),
       totals: {
-        leads: safeNumber(rawTotals.leads), won: safeNumber(rawTotals.won),
-        proposals: safeNumber(rawTotals.proposals), overdueActivities: safeNumber(rawTotals.overdueActivities),
-        pipelineValue: safeNumber(rawTotals.pipelineValue), expectedCommissions: safeNumber(rawTotals.expectedCommissions),
+        leads: safeNumber(rawTotals.leads),
+        won: safeNumber(rawTotals.won),
+        proposals: safeNumber(rawTotals.proposals),
+        overdueActivities: safeNumber(rawTotals.overdueActivities),
+        pipelineValue: safeNumber(rawTotals.pipelineValue),
+        expectedCommissions: safeNumber(rawTotals.expectedCommissions),
         pendingCommissions: safeNumber(rawTotals.pendingCommissions),
       },
-      stages: Array.isArray(raw.stages) ? raw.stages.slice(0, 12).map((item) => {
-        const row = item && typeof item === "object" ? item as Record<string, unknown> : {};
-        return { stage: safeText(row.stage, 50), count: safeNumber(row.count) };
-      }) : [],
+      stages: Array.isArray(raw.stages)
+        ? raw.stages.slice(0, 12).map((item) => {
+            const row = item && typeof item === "object" ? (item as Record<string, unknown>) : {};
+            return { stage: safeText(row.stage, 50), count: safeNumber(row.count) };
+          })
+        : [],
       simulation: {
-        type: safeText(rawSimulation.type, 40), product: safeText(rawSimulation.product, 80),
-        amount: safeText(rawSimulation.amount, 40), months: safeText(rawSimulation.months, 20),
-        monthlyRate: safeText(rawSimulation.monthlyRate, 20), adminFee: safeText(rawSimulation.adminFee, 20),
-        reserveFund: safeText(rawSimulation.reserveFund, 20), bid: safeText(rawSimulation.bid, 20),
+        type: safeText(rawSimulation.type, 40),
+        product: safeText(rawSimulation.product, 80),
+        amount: safeText(rawSimulation.amount, 40),
+        months: safeText(rawSimulation.months, 20),
+        monthlyRate: safeText(rawSimulation.monthlyRate, 20),
+        adminFee: safeText(rawSimulation.adminFee, 20),
+        reserveFund: safeText(rawSimulation.reserveFund, 20),
+        bid: safeText(rawSimulation.bid, 20),
       },
-      partners: Array.isArray(raw.partners) ? raw.partners.slice(0, 20).map((item) => {
-        const row = item && typeof item === "object" ? item as Record<string, unknown> : {};
-        return { name: safeText(row.name, 80), category: safeText(row.category, 50),
-          administrationFee: safeNumber(row.administrationFee), reserveFund: safeNumber(row.reserveFund),
-          termMonths: safeNumber(row.termMonths) };
-      }) : [],
+      partners: Array.isArray(raw.partners)
+        ? raw.partners.slice(0, 20).map((item) => {
+            const row = item && typeof item === "object" ? (item as Record<string, unknown>) : {};
+            return {
+              name: safeText(row.name, 80),
+              category: safeText(row.category, 50),
+              administrationFee: safeNumber(row.administrationFee),
+              reserveFund: safeNumber(row.reserveFund),
+              termMonths: safeNumber(row.termMonths),
+            };
+          })
+        : [],
     };
 
     const system = `Você é a especialista sênior em CONSÓRCIOS da Daiene Descomplica Crédito e assistente de todas as áreas do CRM. Responda em português brasileiro, com precisão, clareza e foco comercial ético.
@@ -106,12 +138,21 @@ Comece respondendo diretamente. Em simulações, apresente dados recebidos, prem
       response = await fetch("https://api.openai.com/v1/chat/completions", {
         method: "POST",
         signal: controller.signal,
-        headers: { "Authorization": `Bearer ${apiKey}`, "Content-Type": "application/json" },
+        headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" },
         body: JSON.stringify({
-          model: "gpt-4o-mini", temperature: 0.25, max_tokens: 900,
+          model: "gpt-4o-mini",
+          temperature: 0.25,
+          max_tokens: 900,
           messages: [
             { role: "system", content: system },
-            { role: "user", content: "Contexto permitido do CRM: " + JSON.stringify(context) + "\\n\\nSolicitação: " + question },
+            {
+              role: "user",
+              content:
+                "Contexto permitido do CRM: " +
+                JSON.stringify(context) +
+                "\\n\\nSolicitação: " +
+                question,
+            },
           ],
         }),
       });

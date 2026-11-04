@@ -24,24 +24,37 @@ export function seo(path: string, title: string, description: string, type = "we
   };
 }
 
-export type Service = { slug: string; name: string; short: string; body: string[]; steps: string[] };
+export type Service = {
+  slug: string;
+  name: string;
+  short: string;
+  body: string[];
+  steps: string[];
+};
 
 export const SERVICES: Service[] = [
   {
     slug: "limpa-nome",
     name: "Limpa Nome",
-    short: "Orientação para identificar, negociar e regularizar dívidas que deixam o CPF ou CNPJ negativado.",
+    short:
+      "Orientação para identificar, negociar e regularizar dívidas que deixam o CPF ou CNPJ negativado.",
     body: [
       "Levantamos em quais cadastros de inadimplência o seu nome aparece, quais são os credores e os valores informados.",
       "Com esse panorama, orientamos sobre caminhos possíveis: negociação direta, acordos, verificação de prazos e contestação de registros indevidos quando houver base legal.",
       "Cada caso é analisado individualmente. Não há garantia de exclusão de dívidas — dívidas legítimas precisam ser negociadas ou pagas.",
     ],
-    steps: ["Consulta dos registros", "Análise de credores e prazos", "Plano de regularização", "Acompanhamento"],
+    steps: [
+      "Consulta dos registros",
+      "Análise de credores e prazos",
+      "Plano de regularização",
+      "Acompanhamento",
+    ],
   },
   {
     slug: "score-de-credito",
     name: "Score de Crédito",
-    short: "Entenda o que influencia sua pontuação e quais hábitos podem ajudar a melhorá-la com o tempo.",
+    short:
+      "Entenda o que influencia sua pontuação e quais hábitos podem ajudar a melhorá-la com o tempo.",
     body: [
       "O score é calculado pelos birôs de crédito com base no histórico de pagamentos, dívidas em aberto, Cadastro Positivo e uso do crédito.",
       "Analisamos seu cenário e orientamos sobre atitudes que costumam pesar positivamente, como pagar contas em dia e manter dados atualizados.",
@@ -58,7 +71,12 @@ export const SERVICES: Service[] = [
       "Ajudamos a organizar documentos, entender o seu perfil e preparar o relacionamento com as instituições antes de uma solicitação de crédito.",
       "A decisão de crédito é sempre da instituição financeira.",
     ],
-    steps: ["Diagnóstico do perfil", "Organização financeira", "Preparação documental", "Orientação de relacionamento"],
+    steps: [
+      "Diagnóstico do perfil",
+      "Organização financeira",
+      "Preparação documental",
+      "Orientação de relacionamento",
+    ],
   },
   {
     slug: "bacen-scr",
@@ -69,7 +87,12 @@ export const SERVICES: Service[] = [
       "Ajudamos você a emitir e interpretar o relatório, identificar informações divergentes e orientar o pedido de correção junto à instituição responsável.",
       "Informações corretas permanecem no sistema pelo prazo regulamentar.",
     ],
-    steps: ["Emissão do Registrato", "Leitura das operações", "Identificação de divergências", "Orientação de correção"],
+    steps: [
+      "Emissão do Registrato",
+      "Leitura das operações",
+      "Identificação de divergências",
+      "Orientação de correção",
+    ],
   },
   {
     slug: "ccf",
@@ -79,7 +102,12 @@ export const SERVICES: Service[] = [
       "O CCF registra pessoas e empresas que emitiram cheques devolvidos por falta de fundos, entre outros motivos.",
       "Orientamos sobre como identificar os cheques registrados, quitar com o beneficiário e solicitar a exclusão ao banco com o comprovante adequado.",
     ],
-    steps: ["Consulta do registro", "Localização dos cheques", "Quitação e comprovação", "Pedido de exclusão ao banco"],
+    steps: [
+      "Consulta do registro",
+      "Localização dos cheques",
+      "Quitação e comprovação",
+      "Pedido de exclusão ao banco",
+    ],
   },
   {
     slug: "cadin",
@@ -89,21 +117,39 @@ export const SERVICES: Service[] = [
       "O Cadin reúne pendências com órgãos públicos federais, como tributos e débitos com autarquias.",
       "Ajudamos a identificar qual órgão gerou o registro e orientamos sobre parcelamentos, quitação ou contestação pelos canais oficiais.",
     ],
-    steps: ["Identificação do órgão", "Levantamento do débito", "Opções de regularização", "Acompanhamento da baixa"],
+    steps: [
+      "Identificação do órgão",
+      "Levantamento do débito",
+      "Opções de regularização",
+      "Acompanhamento da baixa",
+    ],
   },
   {
     slug: "diagnostico-financeiro",
     name: "Diagnóstico Financeiro",
-    short: "Uma visão completa da sua situação de crédito para decidir o próximo passo com segurança.",
+    short:
+      "Uma visão completa da sua situação de crédito para decidir o próximo passo com segurança.",
     body: [
       "Reunimos as informações de cadastros de inadimplência, SCR, score e endividamento em um único panorama.",
       "A partir dele, você recebe uma orientação clara sobre prioridades e caminhos possíveis, com linguagem simples e sem promessas de resultado.",
     ],
-    steps: ["Coleta de informações", "Consulta aos cadastros", "Relatório explicado", "Recomendação de próximos passos"],
+    steps: [
+      "Coleta de informações",
+      "Consulta aos cadastros",
+      "Relatório explicado",
+      "Recomendação de próximos passos",
+    ],
   },
 ];
 
-export type Post = { slug: string; title: string; category: string; date: string; excerpt: string; content: string[] };
+export type Post = {
+  slug: string;
+  title: string;
+  category: string;
+  date: string;
+  excerpt: string;
+  content: string[];
+};
 
 export const POSTS: Post[] = [
   {
@@ -123,7 +169,8 @@ export const POSTS: Post[] = [
     title: "Score de crédito: o que realmente influencia sua pontuação",
     category: "Score",
     date: "2026-11-03",
-    excerpt: "Pagamentos em dia, Cadastro Positivo e dívidas em aberto: veja o que pesa no cálculo.",
+    excerpt:
+      "Pagamentos em dia, Cadastro Positivo e dívidas em aberto: veja o que pesa no cálculo.",
     content: [
       "O score é uma estimativa da probabilidade de pagamento calculada pelos birôs de crédito. Cada birô usa seu próprio modelo.",
       "Pagar contas em dia, manter dados atualizados, participar do Cadastro Positivo e evitar muitas consultas em pouco tempo são fatores que costumam ajudar.",
@@ -199,9 +246,24 @@ export const POSTS: Post[] = [
 ];
 
 export const FAQ = [
-  { q: "Vocês garantem a limpeza do nome?", a: "Não. Nenhuma empresa séria pode garantir exclusão de dívidas, aumento de score ou aprovação de crédito. Orientamos os caminhos legais e acompanhamos o processo." },
-  { q: "Como funciona o diagnóstico?", a: "Você preenche o formulário, nossa equipe entra em contato pelo WhatsApp, coleta as informações necessárias e apresenta um panorama da sua situação com os próximos passos." },
-  { q: "Atendem CPF e CNPJ?", a: "Sim. Atendemos pessoas físicas e empresas, considerando as particularidades de cada cadastro." },
-  { q: "Quanto custa o diagnóstico financeiro?", a: "O diagnóstico financeiro custa R$ 29,99. A equipe explica as etapas e as condições antes de iniciar o atendimento." },
-  { q: "Meus dados ficam protegidos?", a: "Sim. Usamos seus dados apenas para retornar o contato e conduzir o atendimento, conforme a nossa Política de Privacidade e a LGPD." },
+  {
+    q: "Vocês garantem a limpeza do nome?",
+    a: "Não. Nenhuma empresa séria pode garantir exclusão de dívidas, aumento de score ou aprovação de crédito. Orientamos os caminhos legais e acompanhamos o processo.",
+  },
+  {
+    q: "Como funciona o diagnóstico?",
+    a: "Você preenche o formulário, nossa equipe entra em contato pelo WhatsApp, coleta as informações necessárias e apresenta um panorama da sua situação com os próximos passos.",
+  },
+  {
+    q: "Atendem CPF e CNPJ?",
+    a: "Sim. Atendemos pessoas físicas e empresas, considerando as particularidades de cada cadastro.",
+  },
+  {
+    q: "Quanto custa o diagnóstico financeiro?",
+    a: "O diagnóstico financeiro custa R$ 29,99. A equipe explica as etapas e as condições antes de iniciar o atendimento.",
+  },
+  {
+    q: "Meus dados ficam protegidos?",
+    a: "Sim. Usamos seus dados apenas para retornar o contato e conduzir o atendimento, conforme a nossa Política de Privacidade e a LGPD.",
+  },
 ];
