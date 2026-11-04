@@ -1,15 +1,26 @@
-# Roadmap
+# Plano de manutenção — DTM Consultoria Financeira
 
-## Em andamento
-- [ ] Ligar a "Tabela de Taxas e Administradoras" ao CRM
-  - [x] Dados reais do Banco Central obtidos e gravados (77 taxas de referência + 130 administradoras)
-  - [x] Tabelas no Supabase com regras de segurança (só administradora vê)
-  - [x] Componente da tela criado (busca, filtro, ordenação, botão atualizar)
-  - [ ] Substituir a aba "Parceiros" pela nova tela dentro do CRM
-  - [ ] Integrar as taxas de referência aos simuladores (escolher a instituição preenche a taxa)
-  - [ ] Ligar os 6 logotipos das administradoras à tela
-  - [ ] Testar filtros, simuladores e a tela de taxas
-- [ ] SEO do site para ser encontrado por quem busca consórcio e financiamento (títulos, descrições, palavras-chave, dados estruturados, sitemap, robots, conteúdo)
+## Prioridade 0 — preservar e estabilizar
+- [ ] Executar lint, testes e build e registrar resultados.
+- [ ] Validar formulário público e RPC `receive_public_lead`.
+- [ ] Validar login, recuperação de senha e proteção do painel.
+- [ ] Revisar navegação e responsividade em celular.
+- [ ] Conferir domínio canônico, sitemap e metadados SEO.
 
-## Pendente fora do meu alcance
-- [ ] Ligar a proteção de senhas vazadas no painel do Supabase (Authentication → Settings)
+## Prioridade 1 — site público
+- [ ] Confirmar identidade pública DTM CONSULTORIA FINANCEIRA em todas as páginas.
+- [ ] Remover referências antigas de consórcio e nomes pessoais da comunicação pública.
+- [ ] Revisar conteúdo dos serviços, blog, termos e política de privacidade.
+- [ ] Conferir links, botões, acessibilidade e mensagens de formulário.
+
+## Prioridade 2 — CRM e integrações
+- [ ] Testar persistência dos registros no Supabase.
+- [ ] Validar permissões e políticas RLS sem enfraquecê-las.
+- [ ] Conferir integrações existentes sem expor credenciais.
+- [ ] Avaliar módulos internos legados separadamente, sem removê-los sem autorização.
+
+## Regras de limpeza
+- Não apagar migrations, tabelas, dados, políticas, autenticação ou integrações.
+- Não apagar componentes do CRM apenas por conterem lógica legada.
+- Não remover assets até confirmar que não são usados.
+- Não publicar sem lint, testes, build e validação do site ao vivo.
