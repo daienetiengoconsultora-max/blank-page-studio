@@ -1,217 +1,591 @@
-ATUALIZAÇÃO COMPLETA DO PROJETO EXISTENTE — DTM DESCOMPLICA CRÉDITO
+import { useState } from "react";
+import {
+  Menu,
+  X,
+  ArrowRight,
+  ShieldCheck,
+  FileSearch,
+  TrendingUp,
+  Building2,
+  CreditCard,
+  Landmark,
+  Phone,
+  CheckCircle2,
+  Instagram,
+  MessageCircle,
+  ChevronDown,
+  Sparkles,
+} from "lucide-react";
 
-OBJETIVO:
-Transformar o projeto atual em uma plataforma profissional, moderna e luxuosa, com site institucional integrado ao CRM existente.
+const WHATSAPP = "SEU_NUMERO_COM_DDD";
 
-REGRA FUNDAMENTAL:
-NÃO CRIE OUTRO PROJETO.
-NÃO RECONSTRUA O CRM.
-NÃO APAGUE DADOS.
-NÃO SUBSTITUA O SUPABASE.
-NÃO REMOVA FUNCIONALIDADES EXISTENTES.
+const services = [
+  {
+    title: "Limpa Nome",
+    description:
+      "Análise de restrições cadastrais e avaliação das possibilidades de regularização do CPF ou CNPJ.",
+    icon: ShieldCheck,
+  },
+  {
+    title: "Score de Crédito",
+    description:
+      "Análise dos fatores que podem influenciar a pontuação de crédito e orientação financeira.",
+    icon: TrendingUp,
+  },
+  {
+    title: "Rating Bancário",
+    description:
+      "Avaliação da classificação de risco e do relacionamento financeiro com instituições.",
+    icon: Building2,
+  },
+  {
+    title: "Bacen / SCR",
+    description:
+      "Análise das informações registradas no Sistema de Informações de Créditos do Banco Central.",
+    icon: Landmark,
+  },
+  {
+    title: "CCF",
+    description:
+      "Orientação sobre registros no Cadastro de Emitentes de Cheques sem Fundos.",
+    icon: CreditCard,
+  },
+  {
+    title: "Cadin",
+    description:
+      "Orientação sobre pendências e registros no Cadastro Informativo de créditos não quitados.",
+    icon: FileSearch,
+  },
+  {
+    title: "Diagnóstico Financeiro",
+    description:
+      "Análise individualizada da situação cadastral e financeira para identificar alternativas possíveis.",
+    icon: Sparkles,
+  },
+];
 
-1. AUDITORIA INICIAL
-Antes de modificar qualquer arquivo:
-- Analise toda a estrutura do projeto.
-- Identifique as páginas, componentes e rotas.
-- Analise o Supabase e suas tabelas.
-- Verifique autenticação e permissões.
-- Identifique como funciona o cadastro atual de clientes e leads.
-- Preserve todas as funcionalidades existentes.
+const categories = [
+  "Limpa Nome",
+  "Score de Crédito",
+  "Rating Bancário",
+  "CPF e CNPJ",
+  "Bacen/SCR",
+  "CCF",
+  "Cadin",
+  "Diagnóstico Financeiro",
+];
 
-2. IDENTIDADE VISUAL
-A marca oficial será exclusivamente:
-DTM DESCOMPLICA CRÉDITO.
+export default function App() {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [form, setForm] = useState({
+    nome: "",
+    telefone: "",
+    tipo: "CPF",
+    valor: "",
+    credor: "",
+    servico: "",
+    consentimento: false,
+  });
 
-Remova referências ao nome Daiene da identidade visual, títulos, cabeçalhos, rodapés e SEO.
+  const whatsappLink = `https://wa.me/${WHATSAPP}`;
 
-Utilize:
-- Magenta.
-- Rosa sofisticado.
-- Vinho.
-- Branco.
-- Detalhes elegantes.
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
+    const target = e.target as HTMLInputElement;
+    setForm({
+      ...form,
+      [target.name]:
+        target.type === "checkbox" ? target.checked : target.value,
+    });
+  };
 
-Crie uma identidade visual luxuosa, moderna, profissional e responsiva.
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
 
-3. SITE INSTITUCIONAL
-Reformule a parte pública do site utilizando como referência de organização comercial:
-https://arrudacred.com.br/
+    if (!form.consentimento) {
+      alert("É necessário aceitar o aviso de privacidade.");
+      return;
+    }
 
-Não copie textos, identidade visual ou elementos exclusivos.
+    const message = `
+Olá! Gostaria de solicitar um diagnóstico financeiro.
 
-Crie:
-- Página inicial.
-- Sobre nós.
-- Serviços.
-- Como funciona.
-- Perguntas frequentes.
-- Blog DTM.
-- Contato.
-- Política de privacidade.
-- Termos de uso.
+Nome: ${form.nome}
+Telefone: ${form.telefone}
+Cadastro: ${form.tipo}
+Valor aproximado: ${form.valor}
+Credor: ${form.credor}
+Serviço: ${form.servico}
+    `;
 
-4. SERVIÇOS
-Apresente individualmente:
-- Limpa Nome.
-- Score de Crédito.
-- Rating Bancário.
-- Bacen/SCR.
-- CCF.
-- Cadin.
-- Diagnóstico Financeiro.
+    window.open(
+      `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(message)}`,
+      "_blank"
+    );
+  };
 
-Cada serviço deverá possuir explicação própria, clara e profissional.
+  return (
+    <div className="min-h-screen bg-white text-[#42152f]">
+      <header className="fixed top-0 z-50 w-full border-b border-pink-100 bg-white/95 backdrop-blur">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4">
+          <a href="#" className="leading-tight">
+            <span className="block text-2xl font-black tracking-tight text-[#b51b70]">
+              DTM
+            </span>
+            <span className="text-[10px] font-bold tracking-[3px] text-[#641b43]">
+              DESCOMPLICA CRÉDITO
+            </span>
+          </a>
 
-Não prometa resultados garantidos, aprovação de crédito ou exclusão definitiva de dívidas.
+          <nav className="hidden items-center gap-8 text-sm font-semibold md:flex">
+            <a href="#inicio">Início</a>
+            <a href="#servicos">Serviços</a>
+            <a href="#sobre">Sobre nós</a>
+            <a href="#blog">Blog</a>
+            <a href="#contato">Contato</a>
+          </nav>
 
-5. FORMULÁRIO DE DIAGNÓSTICO
+          <a
+            href={whatsappLink}
+            target="_blank"
+            rel="noreferrer"
+            className="hidden rounded-full bg-[#b51b70] px-6 py-3 text-sm font-bold text-white transition hover:bg-[#791344] md:block"
+          >
+            Fale conosco
+          </a>
 
-Destaque na página inicial:
+          <button
+            className="md:hidden"
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label="Abrir menu"
+          >
+            {menuOpen ? <X /> : <Menu />}
+          </button>
+        </div>
 
-QUER REGULARIZAR SEU NOME?
-FAÇA SEU DIAGNÓSTICO!
+        {menuOpen && (
+          <nav className="flex flex-col gap-4 border-t border-pink-100 bg-white p-6 md:hidden">
+            {["inicio", "servicos", "sobre", "blog", "contato"].map(
+              (item) => (
+                <a
+                  key={item}
+                  href={`#${item}`}
+                  onClick={() => setMenuOpen(false)}
+                  className="font-semibold capitalize"
+                >
+                  {item === "inicio" ? "Início" : item}
+                </a>
+              )
+            )}
+          </nav>
+        )}
+      </header>
 
-Campos:
-- Primeiro nome.
-- Telefone/WhatsApp.
-- Tipo de cadastro: CPF ou CNPJ.
-- Valor aproximado da dívida.
-- Empresa ou instituição credora.
-- Serviço desejado.
+      <main>
+        <section
+          id="inicio"
+          className="relative overflow-hidden bg-gradient-to-br from-[#4b1235] via-[#80154f] to-[#bd267b] px-5 pb-20 pt-36 text-white md:pb-28 md:pt-44"
+        >
+          <div className="absolute -right-32 -top-20 h-96 w-96 rounded-full border border-white/10" />
+          <div className="absolute -right-20 -top-10 h-72 w-72 rounded-full border border-white/10" />
 
-Botão:
-QUERO FAZER MEU DIAGNÓSTICO.
+          <div className="relative mx-auto grid max-w-7xl items-center gap-12 md:grid-cols-2">
+            <div>
+              <span className="mb-6 inline-block rounded-full border border-white/30 px-5 py-2 text-xs font-bold tracking-widest">
+                CONSULTORIA E ANÁLISE FINANCEIRA
+              </span>
 
-Inclua consentimento para tratamento de dados e aviso de privacidade.
+              <h1 className="max-w-2xl text-4xl font-black leading-tight md:text-6xl">
+                Seu próximo capítulo financeiro começa com uma boa análise.
+              </h1>
 
-INTEGRAÇÃO OBRIGATÓRIA:
-Conecte o formulário ao CRM e ao Supabase JÁ EXISTENTES.
+              <p className="mt-6 max-w-xl text-lg leading-relaxed text-pink-100">
+                Conheça nossos serviços de diagnóstico e orientação para
+                regularização cadastral e análise de crédito.
+              </p>
 
-Os contatos deverão aparecer automaticamente no cadastro de leads atual.
+              <div className="mt-9 flex flex-wrap gap-4">
+                <a
+                  href="#diagnostico"
+                  className="rounded-full bg-white px-7 py-4 font-bold text-[#84164e] transition hover:bg-pink-100"
+                >
+                  Fazer diagnóstico <ArrowRight className="ml-2 inline" size={18} />
+                </a>
 
-Não crie outro banco de dados, outro CRM ou outra tabela de leads se já existir estrutura compatível.
+                <a
+                  href={whatsappLink}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="rounded-full border border-white/50 px-7 py-4 font-bold transition hover:bg-white/10"
+                >
+                  Falar pelo WhatsApp
+                </a>
+              </div>
+            </div>
 
-Preserve as regras de segurança e permissões do Supabase.
+            <div className="rounded-3xl border border-white/20 bg-white/10 p-8 shadow-2xl backdrop-blur">
+              <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-white text-[#b51b70]">
+                <ShieldCheck size={30} />
+              </div>
 
-6. BLOG DTM
+              <h2 className="text-2xl font-bold">
+                Clareza para suas decisões financeiras.
+              </h2>
 
-Crie categorias:
-- Limpa Nome.
-- Score.
-- Rating Bancário.
-- CPF e CNPJ.
-- Bacen/SCR.
-- CCF.
-- Cadin.
-- Diagnóstico Financeiro.
+              <p className="mt-4 leading-relaxed text-pink-100">
+                Cada situação merece uma avaliação individual. Nossa proposta
+                é apresentar informações claras e orientar você sobre as
+                possibilidades existentes.
+              </p>
 
-Implemente estrutura para publicação e edição de artigos pelo painel administrativo existente, se possível.
+              <div className="mt-8 space-y-4">
+                {[
+                  "Análise individualizada",
+                  "Atendimento personalizado",
+                  "Transparência nas informações",
+                ].map((item) => (
+                  <div key={item} className="flex items-center gap-3">
+                    <CheckCircle2 size={20} />
+                    <span>{item}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
 
-Não crie outro painel administrativo.
+        <section id="servicos" className="px-5 py-20 md:py-28">
+          <div className="mx-auto max-w-7xl">
+            <div className="mx-auto mb-14 max-w-2xl text-center">
+              <span className="font-bold uppercase tracking-[3px] text-[#b51b70]">
+                Nossas soluções
+              </span>
+              <h2 className="mt-4 text-3xl font-black md:text-5xl">
+                Conheça nossos serviços
+              </h2>
+              <p className="mt-5 text-gray-600">
+                Soluções de análise e orientação para diferentes necessidades
+                cadastrais e financeiras.
+              </p>
+            </div>
 
-7. SEO E GOOGLE
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {services.map((service) => {
+                const Icon = service.icon;
 
-Implemente:
-- Títulos e descrições SEO individuais.
-- URLs amigáveis.
-- Sitemap XML.
-- Robots.txt.
-- Dados estruturados.
-- Open Graph.
-- Imagens otimizadas.
-- Carregamento rápido.
-- Responsividade.
-- Estrutura adequada para indexação no Google.
+                return (
+                  <article
+                    key={service.title}
+                    className="group rounded-3xl border border-pink-100 bg-white p-8 shadow-sm transition hover:-translate-y-1 hover:shadow-xl"
+                  >
+                    <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-pink-50 text-[#b51b70] transition group-hover:bg-[#b51b70] group-hover:text-white">
+                      <Icon size={27} />
+                    </div>
 
-8. CRM E SISTEMA EXISTENTE
+                    <h3 className="text-xl font-bold">{service.title}</h3>
 
-PRESERVE INTEGRALMENTE:
-- CRM atual.
-- Supabase.
-- Login.
-- Autenticação.
-- Permissões de usuários.
-- Cadastro de clientes.
-- Cadastro de leads.
-- Simuladores.
-- Painel administrativo.
-- Integrações.
-- Banco de dados.
-- Todas as funcionalidades existentes.
+                    <p className="mt-4 min-h-20 leading-relaxed text-gray-600">
+                      {service.description}
+                    </p>
 
-Não exclua tabelas, registros, componentes ou funcionalidades.
+                    <a
+                      href={whatsappLink}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="mt-6 inline-flex items-center gap-2 font-bold text-[#b51b70]"
+                    >
+                      Saiba mais <ArrowRight size={17} />
+                    </a>
+                  </article>
+                );
+              })}
+            </div>
+          </div>
+        </section>
 
-Não altere configurações de produção sem necessidade.
+        <section
+          id="diagnostico"
+          className="bg-[#fff5fa] px-5 py-20 md:py-28"
+        >
+          <div className="mx-auto grid max-w-7xl items-center gap-12 md:grid-cols-2">
+            <div>
+              <span className="font-bold uppercase tracking-[3px] text-[#b51b70]">
+                Comece agora
+              </span>
 
-Caso alguma mudança exija migração, preserve os dados e a compatibilidade com a estrutura atual.
+              <h2 className="mt-4 text-3xl font-black leading-tight md:text-5xl">
+                Quer regularizar seu nome?
+                <span className="block text-[#b51b70]">
+                  Faça seu diagnóstico!
+                </span>
+              </h2>
 
-9. DESIGN
+              <p className="mt-6 leading-relaxed text-gray-600">
+                Preencha seus dados para iniciar o atendimento. Nossa equipe
+                poderá avaliar sua solicitação e orientar sobre os próximos
+                passos.
+              </p>
+            </div>
 
-Quero um site:
-- Luxuoso.
-- Elegante.
-- Moderno.
-- Leve.
-- Profissional.
-- Responsivo.
+            <form
+              onSubmit={handleSubmit}
+              className="rounded-3xl bg-white p-7 shadow-xl md:p-10"
+            >
+              <div className="grid gap-5 sm:grid-cols-2">
+                <input
+                  required
+                  name="nome"
+                  value={form.nome}
+                  onChange={handleChange}
+                  placeholder="Primeiro nome"
+                  className="form-input"
+                />
 
-Utilize cards sofisticados, tipografia profissional, ícones consistentes, botões destacados e navegação intuitiva.
+                <input
+                  required
+                  name="telefone"
+                  value={form.telefone}
+                  onChange={handleChange}
+                  placeholder="Telefone / WhatsApp"
+                  className="form-input"
+                />
 
-Evite excesso de animações, poluição visual e aparência genérica de template.
+                <select
+                  name="tipo"
+                  value={form.tipo}
+                  onChange={handleChange}
+                  className="form-input"
+                >
+                  <option value="CPF">CPF</option>
+                  <option value="CNPJ">CNPJ</option>
+                </select>
 
-10. SEGURANÇA E TRANSPARÊNCIA
+                <input
+                  name="valor"
+                  value={form.valor}
+                  onChange={handleChange}
+                  placeholder="Valor aproximado da dívida"
+                  className="form-input"
+                />
 
-Não invente depoimentos, avaliações, parceiros ou certificações.
+                <input
+                  name="credor"
+                  value={form.credor}
+                  onChange={handleChange}
+                  placeholder="Empresa ou instituição credora"
+                  className="form-input sm:col-span-2"
+                />
 
-Não utilize logotipos de instituições como se fossem parceiras.
+                <select
+                  required
+                  name="servico"
+                  value={form.servico}
+                  onChange={handleChange}
+                  className="form-input sm:col-span-2"
+                >
+                  <option value="">Selecione o serviço desejado</option>
+                  {services.map((service) => (
+                    <option key={service.title} value={service.title}>
+                      {service.title}
+                    </option>
+                  ))}
+                </select>
+              </div>
 
-Não prometa aprovação de crédito, aumento garantido de score ou exclusão garantida de dívidas.
+              <label className="mt-6 flex items-start gap-3 text-sm text-gray-600">
+                <input
+                  required
+                  type="checkbox"
+                  name="consentimento"
+                  checked={form.consentimento}
+                  onChange={handleChange}
+                  className="mt-1 accent-[#b51b70]"
+                />
+                <span>
+                  Autorizo o tratamento dos meus dados para atendimento desta
+                  solicitação e declaro que li o aviso de privacidade.
+                </span>
+              </label>
 
-Proteja os dados dos clientes e não exponha credenciais privadas no frontend.
+              <button
+                type="submit"
+                className="mt-7 w-full rounded-full bg-[#b51b70] px-6 py-4 font-bold text-white transition hover:bg-[#781442]"
+              >
+                QUERO FAZER MEU DIAGNÓSTICO
+              </button>
 
-11. EXECUÇÃO
+              <p className="mt-4 text-center text-xs text-gray-400">
+                Seus dados devem ser tratados conforme a legislação aplicável.
+              </p>
+            </form>
+          </div>
+        </section>
 
-Faça as alterações diretamente no projeto existente.
+        <section id="sobre" className="px-5 py-20 md:py-28">
+          <div className="mx-auto max-w-4xl text-center">
+            <span className="font-bold uppercase tracking-[3px] text-[#b51b70]">
+              Conheça a DTM
+            </span>
 
-Não entregue apenas planejamento ou sugestões.
+            <h2 className="mt-4 text-3xl font-black md:text-5xl">
+              Informação e transparência em cada etapa.
+            </h2>
 
-Implemente o máximo possível sem comprometer o sistema.
+            <p className="mt-7 text-lg leading-relaxed text-gray-600">
+              A DTM Descomplica Crédito trabalha com análise e orientação
+              financeira, buscando apresentar informações claras sobre
+              situações cadastrais e possibilidades de regularização.
+              Cada atendimento é avaliado individualmente.
+            </p>
+          </div>
+        </section>
 
-Ao finalizar:
-- Verifique erros de compilação.
-- Corrija erros de navegação.
-- Teste todas as páginas.
-- Teste o formulário.
-- Verifique a integração com os leads do CRM.
-- Confira o funcionamento do Supabase.
-- Teste login e autenticação.
-- Verifique permissões.
-- Confira a versão mobile.
+        <section id="blog" className="bg-[#fff5fa] px-5 py-20">
+          <div className="mx-auto max-w-7xl">
+            <div className="text-center">
+              <span className="font-bold uppercase tracking-[3px] text-[#b51b70]">
+                Informação
+              </span>
+              <h2 className="mt-4 text-3xl font-black md:text-5xl">
+                Blog DTM
+              </h2>
+              <p className="mt-4 text-gray-600">
+                Conteúdos para entender melhor sua situação financeira.
+              </p>
+            </div>
 
-Não declare testes como concluídos se não foram executados.
+            <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              {categories.map((category) => (
+                <a
+                  key={category}
+                  href={whatsappLink}
+                  className="flex items-center justify-between rounded-2xl border border-pink-100 bg-white p-6 font-bold transition hover:border-[#b51b70] hover:text-[#b51b70]"
+                >
+                  {category}
+                  <ArrowRight size={18} />
+                </a>
+              ))}
+            </div>
+          </div>
+        </section>
 
-12. RELATÓRIO FINAL
+        <section className="px-5 py-20">
+          <div className="mx-auto max-w-5xl rounded-3xl bg-gradient-to-r from-[#571332] to-[#b51b70] px-8 py-14 text-center text-white md:px-16">
+            <h2 className="text-3xl font-black md:text-4xl">
+              Sua análise começa com uma conversa.
+            </h2>
 
-Informe:
-- O que foi alterado.
-- Quais páginas foram criadas.
-- Quais funcionalidades foram implementadas.
-- Como ficou a integração com o CRM.
-- Se o Supabase foi preservado.
-- Quais testes foram executados.
-- Quais erros foram corrigidos.
-- O que ainda depende de configuração.
+            <p className="mx-auto mt-5 max-w-xl text-pink-100">
+              Entre em contato para conhecer nossos serviços e esclarecer
+              suas dúvidas.
+            </p>
 
-PRIORIDADE ABSOLUTA:
+            <a
+              href={whatsappLink}
+              target="_blank"
+              rel="noreferrer"
+              className="mt-8 inline-flex items-center gap-3 rounded-full bg-white px-8 py-4 font-bold text-[#8d174e]"
+            >
+              <MessageCircle size={20} />
+              Conversar pelo WhatsApp
+            </a>
+          </div>
+        </section>
 
-Transformar a DTM DESCOMPLICA CRÉDITO em uma plataforma profissional, elegante e confiável, com site institucional integrado ao CRM atual.
+        <section id="contato" className="bg-[#fff5fa] px-5 py-16">
+          <div className="mx-auto max-w-7xl text-center">
+            <h2 className="text-3xl font-black">Fale com a DTM</h2>
 
-PRESERVE TUDO O QUE JÁ FUNCIONA.
+            <p className="mt-4 text-gray-600">
+              Estamos disponíveis para receber sua solicitação.
+            </p>
 
+            <a
+              href={whatsappLink}
+              target="_blank"
+              rel="noreferrer"
+              className="mt-7 inline-flex items-center gap-3 rounded-full bg-[#b51b70] px-8 py-4 font-bold text-white"
+            >
+              <Phone size={19} />
+              Atendimento WhatsApp
+            </a>
+          </div>
+        </section>
+      </main>
 
+      <footer className="bg-[#351025] px-5 py-12 text-white">
+        <div className="mx-auto grid max-w-7xl gap-10 md:grid-cols-3">
+          <div>
+            <h2 className="text-3xl font-black text-pink-400">DTM</h2>
+            <p className="mt-2 text-xs font-bold tracking-[3px]">
+              DESCOMPLICA CRÉDITO
+            </p>
+            <p className="mt-5 text-sm leading-relaxed text-pink-100">
+              Análise e orientação financeira com transparência.
+            </p>
+          </div>
 
+          <div>
+            <h3 className="font-bold">Navegação</h3>
+            <div className="mt-5 flex flex-col gap-3 text-sm text-pink-100">
+              <a href="#inicio">Início</a>
+              <a href="#servicos">Serviços</a>
+              <a href="#sobre">Sobre nós</a>
+              <a href="#blog">Blog DTM</a>
+              <a href="#contato">Contato</a>
+            </div>
+          </div>
 
+          <div>
+            <h3 className="font-bold">Informações legais</h3>
+            <div className="mt-5 flex flex-col gap-3 text-sm text-pink-100">
+              <a href="/politica-de-privacidade">
+                Política de Privacidade
+              </a>
+              <a href="/termos-de-uso">Termos de Uso</a>
+            </div>
+          </div>
+        </div>
 
+        <div className="mx-auto mt-12 max-w-7xl border-t border-white/10 pt-7 text-center text-xs text-pink-200">
+          © {new Date().getFullYear()} DTM Descomplica Crédito. Todos os
+          direitos reservados.
+          <p className="mt-3">
+            Os serviços estão sujeitos à análise individual. Não há garantia
+            de aprovação de crédito ou de resultados específicos.
+          </p>
+        </div>
+      </footer>
 
+      <a
+        href={whatsappLink}
+        target="_blank"
+        rel="noreferrer"
+        aria-label="WhatsApp"
+        className="fixed bottom-6 right-6 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-green-600 text-white shadow-xl transition hover:scale-110"
+      >
+        <MessageCircle size={27} />
+      </a>
 
+      <style>{`
+        html { scroll-behavior: smooth; }
+        body { margin: 0; }
+        .form-input {
+          width: 100%;
+          min-width: 0;
+          border: 1px solid #f1d6e4;
+          border-radius: 12px;
+          padding: 15px;
+          outline: none;
+          color: #42152f;
+          background: white;
+        }
+        .form-input:focus {
+          border-color: #b51b70;
+          box-shadow: 0 0 0 3px rgba(181,27,112,.08);
+        }
+      `}</style>
+    </div>
+  );
+}
