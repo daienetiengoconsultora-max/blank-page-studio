@@ -33,7 +33,7 @@ export function MapaRentabilidade({ userId }: { userId: string }) {
       supabase.from("simulations").select("*").eq("owner_id", userId).order("created_at", { ascending: false }).limit(500),
     ]);
     if (!l.error) setLeads((l.data ?? []) as Lead[]);
-    if (!s.error) setSaved(((s.data ?? []) as SavedSimulation[]).filter(item => item.details?["module"] === "mapa_rentabilidade"));
+    if (!s.error) setSaved(((s.data ?? []) as SavedSimulation[]).filter(item => item.details?.["module"] === "mapa_rentabilidade"));
     if (l.error || s.error) setError("Não foi possível carregar clientes ou histórico. Confira as permissões e migrações do Supabase.");
   }
   useEffect(() => { void load(); }, [userId]);
