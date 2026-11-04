@@ -14,15 +14,15 @@ export function SiteLayout({ children }: { children: ReactNode }) {
   const [open, setOpen] = useState(false);
   return (
     <div className="min-h-screen bg-background font-sans text-foreground">
-      <header className="sticky top-0 z-40 border-b border-border bg-background/90 backdrop-blur">
+      <header className="sticky top-0 z-40 border-b-2 border-accent bg-background/95 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4">
           <Link to="/" className="flex items-center gap-2">
-            <span className="grid h-9 w-9 place-items-center rounded-full bg-brand font-display text-sm font-bold text-primary-foreground">DTM</span>
-            <span className="font-display text-lg font-semibold text-wine">Consultoria Financeira</span>
+            <span className="grid h-10 w-10 place-items-center rounded-full bg-primary font-display text-sm font-bold text-primary-foreground ring-2 ring-accent ring-offset-2 ring-offset-background">DTM</span>
+            <span className="border-b-2 border-accent pb-1 font-display text-lg font-semibold text-primary">Consultoria Financeira</span>
           </Link>
           <nav className="hidden items-center gap-6 text-sm font-medium md:flex">
             {NAV.map((n) => (
-              <Link key={n.to} to={n.to} className="text-muted-foreground hover:text-primary" activeProps={{ className: "text-primary" }}>{n.label}</Link>
+              <Link key={n.to} to={n.to} className="text-muted-foreground transition-colors hover:text-brand-purple" activeProps={{ className: "font-semibold text-brand-purple" }}>{n.label}</Link>
             ))}
             <Link to="/" hash="diagnostico" className="rounded-full bg-primary px-5 py-2.5 text-primary-foreground shadow-elegant hover:opacity-90">Diagnóstico</Link>
           </nav>
@@ -38,19 +38,19 @@ export function SiteLayout({ children }: { children: ReactNode }) {
         )}
       </header>
       <main>{children}</main>
-      <footer className="bg-wine px-5 py-12 text-sm text-wine-foreground/80">
+      <footer className="bg-primary px-5 py-12 text-sm text-primary-foreground/90">
         <div className="mx-auto grid max-w-6xl gap-8 md:grid-cols-3">
           <div>
-            <p className="font-display text-xl font-semibold text-wine-foreground">{BRAND}</p>
+            <p className="font-display text-xl font-semibold text-primary-foreground decoration-accent underline decoration-2 underline-offset-8">{BRAND}</p>
             <p className="mt-3 leading-6">Consultoria em regularização de nome e diagnóstico financeiro. Atendimento em todo o Brasil.</p>
             <p className="mt-3 text-xs leading-5">Não garantimos aprovação de crédito, aumento de score ou exclusão de dívidas. Cada caso depende de análise.</p>
           </div>
           <div className="flex flex-col gap-2">
-            <Link to="/servicos">Serviços</Link><Link to="/blog">Blog DTM</Link><Link to="/sobre">Sobre nós</Link>
-            <Link to="/privacidade">Política de privacidade</Link><Link to="/termos">Termos de uso</Link>
+            <Link className="transition-colors hover:text-accent" to="/servicos">Serviços</Link><Link className="transition-colors hover:text-accent" to="/blog">Blog DTM</Link><Link className="transition-colors hover:text-accent" to="/sobre">Sobre nós</Link>
+            <Link className="transition-colors hover:text-accent" to="/privacidade">Política de privacidade</Link><Link className="transition-colors hover:text-accent" to="/termos">Termos de uso</Link>
           </div>
           <div className="flex flex-col items-start gap-3">
-            <a href={whatsappLink()} target="_blank" rel="noreferrer" className="rounded-full bg-primary px-5 py-2.5 font-semibold text-primary-foreground">WhatsApp {WHATSAPP_DISPLAY}</a>
+            <a href={whatsappLink()} target="_blank" rel="noreferrer" className="rounded-full bg-accent px-5 py-2.5 font-semibold text-primary transition-colors hover:bg-brand-purple hover:text-primary-foreground">WhatsApp {WHATSAPP_DISPLAY}</a>
             <Link to="/acesso-vendedor" className="text-xs opacity-60 hover:opacity-100">Acesso restrito</Link>
           </div>
         </div>
@@ -63,9 +63,9 @@ export function SiteLayout({ children }: { children: ReactNode }) {
 
 export function PageHero({ eyebrow, title, text }: { eyebrow: string; title: string; text?: string | undefined }) {
   return (
-    <section className="bg-brand px-5 py-16 text-primary-foreground md:py-20">
+    <section className="dtm-purple-panel relative overflow-hidden px-5 py-16 md:py-20">
       <div className="mx-auto max-w-4xl">
-        <p className="text-xs font-semibold uppercase tracking-[0.25em] opacity-80">{eyebrow}</p>
+        <p className="text-xs font-semibold uppercase tracking-[0.25em] text-accent">{eyebrow}</p>
         <h1 className="mt-3 font-display text-4xl font-semibold leading-tight md:text-5xl">{title}</h1>
         {text && <p className="mt-4 max-w-2xl text-base leading-7 opacity-90">{text}</p>}
       </div>
