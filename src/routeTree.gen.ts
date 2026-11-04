@@ -10,14 +10,18 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
+import { Route as AcessoRouteImport } from './routes/acesso'
 import { Route as ComoFuncionaRouteImport } from './routes/como-funciona'
 import { Route as ContatoRouteImport } from './routes/contato'
 import { Route as PerguntasFrequentesRouteImport } from './routes/perguntas-frequentes'
 import { Route as PrivacidadeRouteImport } from './routes/privacidade'
+import { Route as RedefinirSenhaRouteImport } from './routes/redefinir-senha'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as SobreRouteImport } from './routes/sobre'
 import { Route as TermosRouteImport } from './routes/termos'
 import { Route as ValoresRouteImport } from './routes/valores'
+import { Route as AuthenticatedCrmRouteImport } from './routes/_authenticated/crm'
 import { Route as BlogIndexRouteImport } from './routes/blog.index'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 import { Route as ServicosIndexRouteImport } from './routes/servicos.index'
@@ -26,6 +30,15 @@ import { Route as ServicosSlugRouteImport } from './routes/servicos.$slug'
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
+  id: '/_authenticated',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AcessoRoute = AcessoRouteImport.update({
+  id: '/acesso',
+  path: '/acesso',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ComoFuncionaRoute = ComoFuncionaRouteImport.update({
@@ -48,6 +61,11 @@ const PrivacidadeRoute = PrivacidadeRouteImport.update({
   path: '/privacidade',
   getParentRoute: () => rootRouteImport,
 } as any)
+const RedefinirSenhaRoute = RedefinirSenhaRouteImport.update({
+  id: '/redefinir-senha',
+  path: '/redefinir-senha',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
@@ -67,6 +85,11 @@ const ValoresRoute = ValoresRouteImport.update({
   id: '/valores',
   path: '/valores',
   getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedCrmRoute = AuthenticatedCrmRouteImport.update({
+  id: '/crm',
+  path: '/crm',
+  getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const BlogIndexRoute = BlogIndexRouteImport.update({
   id: '/blog/',
@@ -91,14 +114,17 @@ const ServicosSlugRoute = ServicosSlugRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/acesso': typeof AcessoRoute
   '/como-funciona': typeof ComoFuncionaRoute
   '/contato': typeof ContatoRoute
   '/perguntas-frequentes': typeof PerguntasFrequentesRoute
   '/privacidade': typeof PrivacidadeRoute
+  '/redefinir-senha': typeof RedefinirSenhaRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/sobre': typeof SobreRoute
   '/termos': typeof TermosRoute
   '/valores': typeof ValoresRoute
+  '/crm': typeof AuthenticatedCrmRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/servicos/$slug': typeof ServicosSlugRoute
   '/blog/': typeof BlogIndexRoute
@@ -106,14 +132,17 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/acesso': typeof AcessoRoute
   '/como-funciona': typeof ComoFuncionaRoute
   '/contato': typeof ContatoRoute
   '/perguntas-frequentes': typeof PerguntasFrequentesRoute
   '/privacidade': typeof PrivacidadeRoute
+  '/redefinir-senha': typeof RedefinirSenhaRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/sobre': typeof SobreRoute
   '/termos': typeof TermosRoute
   '/valores': typeof ValoresRoute
+  '/crm': typeof AuthenticatedCrmRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/servicos/$slug': typeof ServicosSlugRoute
   '/blog': typeof BlogIndexRoute
@@ -122,14 +151,18 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
+  '/acesso': typeof AcessoRoute
   '/como-funciona': typeof ComoFuncionaRoute
   '/contato': typeof ContatoRoute
   '/perguntas-frequentes': typeof PerguntasFrequentesRoute
   '/privacidade': typeof PrivacidadeRoute
+  '/redefinir-senha': typeof RedefinirSenhaRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/sobre': typeof SobreRoute
   '/termos': typeof TermosRoute
   '/valores': typeof ValoresRoute
+  '/_authenticated/crm': typeof AuthenticatedCrmRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/servicos/$slug': typeof ServicosSlugRoute
   '/blog/': typeof BlogIndexRoute
@@ -139,14 +172,17 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/acesso'
     | '/como-funciona'
     | '/contato'
     | '/perguntas-frequentes'
     | '/privacidade'
+    | '/redefinir-senha'
     | '/sitemap.xml'
     | '/sobre'
     | '/termos'
     | '/valores'
+    | '/crm'
     | '/blog/$slug'
     | '/servicos/$slug'
     | '/blog/'
@@ -154,14 +190,17 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/acesso'
     | '/como-funciona'
     | '/contato'
     | '/perguntas-frequentes'
     | '/privacidade'
+    | '/redefinir-senha'
     | '/sitemap.xml'
     | '/sobre'
     | '/termos'
     | '/valores'
+    | '/crm'
     | '/blog/$slug'
     | '/servicos/$slug'
     | '/blog'
@@ -169,14 +208,18 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/_authenticated'
+    | '/acesso'
     | '/como-funciona'
     | '/contato'
     | '/perguntas-frequentes'
     | '/privacidade'
+    | '/redefinir-senha'
     | '/sitemap.xml'
     | '/sobre'
     | '/termos'
     | '/valores'
+    | '/_authenticated/crm'
     | '/blog/$slug'
     | '/servicos/$slug'
     | '/blog/'
@@ -185,10 +228,13 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
+  AcessoRoute: typeof AcessoRoute
   ComoFuncionaRoute: typeof ComoFuncionaRoute
   ContatoRoute: typeof ContatoRoute
   PerguntasFrequentesRoute: typeof PerguntasFrequentesRoute
   PrivacidadeRoute: typeof PrivacidadeRoute
+  RedefinirSenhaRoute: typeof RedefinirSenhaRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   SobreRoute: typeof SobreRoute
   TermosRoute: typeof TermosRoute
@@ -206,6 +252,20 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/acesso': {
+      id: '/acesso'
+      path: '/acesso'
+      fullPath: '/acesso'
+      preLoaderRoute: typeof AcessoRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/como-funciona': {
@@ -236,6 +296,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PrivacidadeRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/redefinir-senha': {
+      id: '/redefinir-senha'
+      path: '/redefinir-senha'
+      fullPath: '/redefinir-senha'
+      preLoaderRoute: typeof RedefinirSenhaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/sitemap.xml': {
       id: '/sitemap.xml'
       path: '/sitemap.xml'
@@ -263,6 +330,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/valores'
       preLoaderRoute: typeof ValoresRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/crm': {
+      id: '/_authenticated/crm'
+      path: '/crm'
+      fullPath: '/crm'
+      preLoaderRoute: typeof AuthenticatedCrmRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
     '/blog/': {
       id: '/blog/'
@@ -295,12 +369,26 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface AuthenticatedRouteRouteChildren {
+  AuthenticatedCrmRoute: typeof AuthenticatedCrmRoute
+}
+
+const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedCrmRoute: AuthenticatedCrmRoute,
+}
+
+const AuthenticatedRouteRouteWithChildren =
+  AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
+  AcessoRoute: AcessoRoute,
   ComoFuncionaRoute: ComoFuncionaRoute,
   ContatoRoute: ContatoRoute,
   PerguntasFrequentesRoute: PerguntasFrequentesRoute,
   PrivacidadeRoute: PrivacidadeRoute,
+  RedefinirSenhaRoute: RedefinirSenhaRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   SobreRoute: SobreRoute,
   TermosRoute: TermosRoute,
