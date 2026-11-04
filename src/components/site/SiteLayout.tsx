@@ -61,7 +61,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
   );
 }
 
-export function PageHero({ eyebrow, title, text }: { eyebrow: string; title: string; text?: string }) {
+export function PageHero({ eyebrow, title, text }: { eyebrow: string; title: string; text?: string | undefined }) {
   return (
     <section className="bg-brand px-5 py-16 text-primary-foreground md:py-20">
       <div className="mx-auto max-w-4xl">

@@ -33,7 +33,7 @@ export function MapaRentabilidade({ userId }: { userId: string }) {
       supabase.from("simulations").select("*").eq("owner_id", userId).order("created_at", { ascending: false }).limit(500),
     ]);
     if (!l.error) setLeads((l.data ?? []) as Lead[]);
-    if (!s.error) setSaved(((s.data ?? []) as SavedSimulation[]).filter(item => item.details?.module === "mapa_rentabilidade"));
+    if (!s.error) setSaved(((s.data ?? []) as SavedSimulation[]).filter(item => item.details?["module"] === "mapa_rentabilidade"));
     if (l.error || s.error) setError("Não foi possível carregar clientes ou histórico. Confira as permissões e migrações do Supabase.");
   }
   useEffect(() => { void load(); }, [userId]);
@@ -133,7 +133,7 @@ export function MapaRentabilidade({ userId }: { userId: string }) {
       </form>}
       {tab === "historico" && <div className="p-5 sm:p-7">
         <div className="mb-4 flex flex-wrap items-center justify-between gap-3"><div><h3 className="font-semibold text-[#641B2D]">Simulações salvas</h3><p className="text-xs text-[#766D64]">Cada registro permanece vinculado ao cadastro do cliente.</p></div><select value={selectedLead} onChange={e => setSelectedLead(e.target.value)} className="max-w-xs rounded-xl border border-[#DED5C9] bg-white px-3 py-2 text-sm"><option value="">Todos os clientes</option>{leads.map(l => <option key={l.id} value={l.id}>{l.full_name}</option>)}</select></div>
-        {history.length ? <div className="overflow-x-auto"><table className="w-full min-w-[680px] text-left text-xs"><thead><tr className="border-b border-[#EAE3D9] text-[#766D64]"><th className="p-3">Cliente</th><th className="p-3">Administradora</th><th className="p-3">Crédito</th><th className="p-3">Parcela estimada</th><th className="p-3">Data</th></tr></thead><tbody>{history.map(s => <tr key={s.id} className="border-b border-[#F0EBE4]"><td className="p-3 font-medium">{leads.find(l => l.id === s.lead_id)?.full_name ?? "Cliente"}</td><td className="p-3">{String(s.details.administrator ?? "—")}</td><td className="p-3">{money(Number(s.requested_amount ?? 0))}</td><td className="p-3">{money(Number(s.details.monthly_payment_estimate ?? 0))}</td><td className="p-3">{new Date(s.created_at).toLocaleDateString("pt-BR")}</td></tr>)}</tbody></table></div> : <p className="rounded-xl bg-[#F8F4ED] p-5 text-sm text-[#766D64]">Ainda não há simulações salvas para este filtro.</p>}
+        {history.length ? <div className="overflow-x-auto"><table className="w-full min-w-[680px] text-left text-xs"><thead><tr className="border-b border-[#EAE3D9] text-[#766D64]"><th className="p-3">Cliente</th><th className="p-3">Administradora</th><th className="p-3">Crédito</th><th className="p-3">Parcela estimada</th><th className="p-3">Data</th></tr></thead><tbody>{history.map(s => <tr key={s.id} className="border-b border-[#F0EBE4]"><td className="p-3 font-medium">{leads.find(l => l.id === s.lead_id)?.full_name ?? "Cliente"}</td><td className="p-3">{String(s.details["administrator"] ?? "—")}</td><td className="p-3">{money(Number(s.requested_amount ?? 0))}</td><td className="p-3">{money(Number(s.details["monthly_payment_estimate"] ?? 0))}</td><td className="p-3">{new Date(s.created_at).toLocaleDateString("pt-BR")}</td></tr>)}</tbody></table></div> : <p className="rounded-xl bg-[#F8F4ED] p-5 text-sm text-[#766D64]">Ainda não há simulações salvas para este filtro.</p>}
       </div>}
 
     </div>
