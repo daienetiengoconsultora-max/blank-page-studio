@@ -2,6 +2,7 @@ import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
+import { DashboardModule } from "@/components/crm/DashboardModule";
 import { LeadsModule } from "@/components/crm/LeadsModule";
 import { ContractsModule } from "@/components/crm/ContractsModule";
 import { ProcessesModule } from "@/components/crm/ProcessesModule";
@@ -11,10 +12,10 @@ import { ReportsModule } from "@/components/crm/ReportsModule";
 export const Route = createFileRoute("/_authenticated/crm")({
   head: () => ({
     meta: [
-      { title: "CRM | DTM CONSULTORIA FINANCEIRA" },
-      { name: "description", content: "Área interna da DTM." },
-      { property: "og:title", content: "CRM | DTM CONSULTORIA FINANCEIRA" },
-      { property: "og:description", content: "Área interna da DTM." },
+      { title: "CRM | DTM DESCOMPLICA CRÉDITO" },
+      { name: "description", content: "Área administrativa da DTM Descomplica Crédito." },
+      { property: "og:title", content: "CRM | DTM DESCOMPLICA CRÉDITO" },
+      { property: "og:description", content: "Área administrativa da DTM." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "robots", content: "noindex, nofollow" },
@@ -24,6 +25,7 @@ export const Route = createFileRoute("/_authenticated/crm")({
 });
 
 const TABS = [
+  ["painel", "Painel"],
   ["leads", "Leads e clientes"],
   ["contratos", "Contratos"],
   ["processos", "Processos"],
@@ -31,9 +33,11 @@ const TABS = [
   ["relatorios", "Relatórios"],
 ] as const;
 
+type Tab = (typeof TABS)[number][0];
+
 function Crm() {
   const { user } = Route.useRouteContext();
-  const [tab, setTab] = useState<(typeof TABS)[number][0]>("leads");
+  const [tab, setTab] = useState<Tab>("painel");
   const qc = useQueryClient();
   const navigate = useNavigate();
 
@@ -48,7 +52,7 @@ function Crm() {
     <div className="min-h-screen bg-secondary">
       <header className="bg-primary text-primary-foreground">
         <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-3 px-5 py-4">
-          <p className="font-display text-lg font-semibold">DTM CONSULTORIA FINANCEIRA · CRM</p>
+          <p className="font-display text-lg font-semibold">DTM DESCOMPLICA CRÉDITO · CRM</p>
           <button
             onClick={signOut}
             className="rounded-full border border-primary-foreground/40 px-4 py-1.5 text-sm"
@@ -57,18 +61,19 @@ function Crm() {
           </button>
         </div>
         <nav className="mx-auto flex max-w-7xl gap-1 overflow-x-auto px-5">
-          {TABS.map(([k, l]) => (
+          {TABS.map(([k, label]) => (
             <button
               key={k}
               onClick={() => setTab(k)}
               className={`whitespace-nowrap rounded-t-xl px-4 py-2 text-sm font-semibold ${tab === k ? "bg-secondary text-primary" : "text-primary-foreground/80 hover:text-primary-foreground"}`}
             >
-              {l}
+              {label}
             </button>
           ))}
         </nav>
       </header>
       <main className="mx-auto max-w-7xl px-5 py-6">
+        {tab === "painel" && <DashboardModule onNavigate={setTab} />}
         {tab === "leads" && <LeadsModule userId={user.id} />}
         {tab === "contratos" && <ContractsModule userId={user.id} />}
         {tab === "processos" && <ProcessesModule userId={user.id} />}
