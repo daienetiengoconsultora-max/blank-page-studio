@@ -4,7 +4,7 @@ import { FAQ, seo } from "@/lib/site";
 
 export const Route = createFileRoute("/perguntas-frequentes")({
   head: () => ({
-    ...seo("/perguntas-frequentes", "Perguntas frequentes | DTM Descomplica Crédito", "Tire suas dúvidas sobre Limpa Nome, score, diagnóstico financeiro e proteção de dados."),
+    ...seo("/perguntas-frequentes", "Perguntas frequentes | DTM CONSULTORIA FINANCEIRA", "Tire suas dúvidas sobre Limpa Nome, score, diagnóstico financeiro e proteção de dados."),
     scripts: [{ type: "application/ld+json", children: JSON.stringify({ "@context": "https://schema.org", "@type": "FAQPage", mainEntity: FAQ.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })) }) }],
   }),
   component: () => (

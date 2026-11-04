@@ -51,7 +51,6 @@ export function SiteLayout({ children }: { children: ReactNode }) {
           </div>
           <div className="flex flex-col items-start gap-3">
             <a href={whatsappLink()} target="_blank" rel="noreferrer" className="rounded-full bg-accent px-5 py-2.5 font-semibold text-primary transition-colors hover:bg-brand-purple hover:text-primary-foreground">WhatsApp {WHATSAPP_DISPLAY}</a>
-            <Link to="/acesso-vendedor" className="text-xs opacity-60 hover:opacity-100">Acesso restrito</Link>
           </div>
         </div>
         <p className="mx-auto mt-10 max-w-6xl text-xs opacity-60">© {new Date().getFullYear()} {BRAND}. Todos os direitos reservados.</p>

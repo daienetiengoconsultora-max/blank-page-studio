@@ -3,7 +3,7 @@ import { TextPage } from "@/components/site/TextPage";
 import { seo } from "@/lib/site";
 
 export const Route = createFileRoute("/privacidade")({
-  head: () => seo("/privacidade", "Política de privacidade | DTM Descomplica Crédito", "Como a DTM Descomplica Crédito coleta, usa e protege seus dados pessoais, conforme a LGPD."),
+  head: () => seo("/privacidade", "Política de privacidade | DTM CONSULTORIA FINANCEIRA", "Como a DTM CONSULTORIA FINANCEIRA coleta, usa e protege seus dados pessoais, conforme a LGPD."),
   component: () => (
     <TextPage eyebrow="LGPD" title="Política de privacidade">
       <h2>Dados coletados</h2><p>Primeiro nome, telefone/WhatsApp, tipo de cadastro (CPF ou CNPJ), valor aproximado da dívida, credor e serviço de interesse, informados voluntariamente no formulário.</p>

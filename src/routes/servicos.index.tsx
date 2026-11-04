@@ -3,7 +3,7 @@ import { PageHero, SiteLayout } from "@/components/site/SiteLayout";
 import { SERVICES, seo } from "@/lib/site";
 
 export const Route = createFileRoute("/servicos/")({
-  head: () => seo("/servicos", "Serviços | DTM Descomplica Crédito", "Limpa Nome, Score, Rating Bancário, Bacen/SCR, CCF, Cadin e Diagnóstico Financeiro explicados com transparência."),
+  head: () => seo("/servicos", "Serviços | DTM CONSULTORIA FINANCEIRA", "Limpa Nome, Score, Rating Bancário, Bacen/SCR, CCF, Cadin e Diagnóstico Financeiro explicados com transparência."),
   component: () => (
     <SiteLayout>
       <PageHero eyebrow="Serviços" title="Soluções para regularizar sua vida financeira" text="Cada serviço começa com análise individual. Não prometemos resultados garantidos." />

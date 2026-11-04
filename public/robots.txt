@@ -1,7 +1,5 @@
 User-agent: *
 Allow: /
-Disallow: /painel
-Disallow: /acesso-vendedor
 
 User-agent: Googlebot
 Allow: /

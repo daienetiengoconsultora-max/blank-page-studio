@@ -3,7 +3,7 @@ import { TextPage } from "@/components/site/TextPage";
 import { seo } from "@/lib/site";
 
 export const Route = createFileRoute("/como-funciona")({
-  head: () => seo("/como-funciona", "Como funciona | DTM Descomplica Crédito", "Veja o passo a passo do diagnóstico financeiro da DTM: formulário, contato pelo WhatsApp, análise e orientação."),
+  head: () => seo("/como-funciona", "Como funciona | DTM CONSULTORIA FINANCEIRA", "Veja o passo a passo do diagnóstico financeiro da DTM: formulário, contato pelo WhatsApp, análise e orientação."),
   component: () => (
     <TextPage eyebrow="Como funciona" title="Do primeiro contato à orientação">
       <h2>1. Formulário</h2><p>Você informa nome, WhatsApp, tipo de cadastro, valor aproximado e credor. Leva menos de um minuto.</p>
