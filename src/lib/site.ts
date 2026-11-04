@@ -1,5 +1,5 @@
 export const SITE_URL = "https://descomplicacredito.lovable.app";
-export const BRAND = "DTM Descomplica Crédito";
+export const BRAND = "DTM Consultoria Financeira";
 export const WHATSAPP_NUMBER = "5527998737600";
 export const WHATSAPP_DISPLAY = "(27) 99873-7600";
 export const whatsappLink = (text = "Olá! Quero fazer meu diagnóstico financeiro.") =>
