@@ -10,9 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as AcessoVendedorRouteImport } from './routes/acesso-vendedor'
 import { Route as ComoFuncionaRouteImport } from './routes/como-funciona'
-import { Route as PainelRouteImport } from './routes/painel'
 import { Route as PerguntasFrequentesRouteImport } from './routes/perguntas-frequentes'
 import { Route as PrivacidadeRouteImport } from './routes/privacidade'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
@@ -28,19 +26,9 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AcessoVendedorRoute = AcessoVendedorRouteImport.update({
-  id: '/acesso-vendedor',
-  path: '/acesso-vendedor',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const ComoFuncionaRoute = ComoFuncionaRouteImport.update({
   id: '/como-funciona',
   path: '/como-funciona',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const PainelRoute = PainelRouteImport.update({
-  id: '/painel',
-  path: '/painel',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PerguntasFrequentesRoute = PerguntasFrequentesRouteImport.update({
@@ -91,9 +79,7 @@ const ServicosSlugRoute = ServicosSlugRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/acesso-vendedor': typeof AcessoVendedorRoute
   '/como-funciona': typeof ComoFuncionaRoute
-  '/painel': typeof PainelRoute
   '/perguntas-frequentes': typeof PerguntasFrequentesRoute
   '/privacidade': typeof PrivacidadeRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -106,9 +92,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/acesso-vendedor': typeof AcessoVendedorRoute
   '/como-funciona': typeof ComoFuncionaRoute
-  '/painel': typeof PainelRoute
   '/perguntas-frequentes': typeof PerguntasFrequentesRoute
   '/privacidade': typeof PrivacidadeRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -122,9 +106,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/acesso-vendedor': typeof AcessoVendedorRoute
   '/como-funciona': typeof ComoFuncionaRoute
-  '/painel': typeof PainelRoute
   '/perguntas-frequentes': typeof PerguntasFrequentesRoute
   '/privacidade': typeof PrivacidadeRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -139,9 +121,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
-    | '/acesso-vendedor'
     | '/como-funciona'
-    | '/painel'
     | '/perguntas-frequentes'
     | '/privacidade'
     | '/sitemap.xml'
@@ -154,9 +134,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/acesso-vendedor'
     | '/como-funciona'
-    | '/painel'
     | '/perguntas-frequentes'
     | '/privacidade'
     | '/sitemap.xml'
@@ -169,9 +147,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
-    | '/acesso-vendedor'
     | '/como-funciona'
-    | '/painel'
     | '/perguntas-frequentes'
     | '/privacidade'
     | '/sitemap.xml'
@@ -185,9 +161,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  AcessoVendedorRoute: typeof AcessoVendedorRoute
   ComoFuncionaRoute: typeof ComoFuncionaRoute
-  PainelRoute: typeof PainelRoute
   PerguntasFrequentesRoute: typeof PerguntasFrequentesRoute
   PrivacidadeRoute: typeof PrivacidadeRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
@@ -208,25 +182,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/acesso-vendedor': {
-      id: '/acesso-vendedor'
-      path: '/acesso-vendedor'
-      fullPath: '/acesso-vendedor'
-      preLoaderRoute: typeof AcessoVendedorRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/como-funciona': {
       id: '/como-funciona'
       path: '/como-funciona'
       fullPath: '/como-funciona'
       preLoaderRoute: typeof ComoFuncionaRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/painel': {
-      id: '/painel'
-      path: '/painel'
-      fullPath: '/painel'
-      preLoaderRoute: typeof PainelRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/perguntas-frequentes': {
@@ -297,9 +257,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  AcessoVendedorRoute: AcessoVendedorRoute,
   ComoFuncionaRoute: ComoFuncionaRoute,
-  PainelRoute: PainelRoute,
   PerguntasFrequentesRoute: PerguntasFrequentesRoute,
   PrivacidadeRoute: PrivacidadeRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
