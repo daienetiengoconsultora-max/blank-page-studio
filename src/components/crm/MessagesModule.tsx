@@ -12,7 +12,10 @@ export function MessagesModule({ userId }: { userId: string }) {
   const tpls = useQuery({
     queryKey: ["crm", "templates"],
     queryFn: async () => {
-      const { data, error } = await supabase.from("message_templates").select("*").order("created_at");
+      const { data, error } = await supabase
+        .from("message_templates")
+        .select("*")
+        .order("created_at");
       if (error) throw error;
       return data;
     },
@@ -32,7 +35,13 @@ export function MessagesModule({ userId }: { userId: string }) {
     const t = tpls.data?.find((x) => x.id === tId);
     if (!t) return setText("");
     const p = procs.find((x) => x.lead_id === lId);
-    setText(fillTemplate(t.body, { nome: l?.full_name.split(" ")[0], status: l ? stageLabel(l.status) : "", data: p?.expected_date ? fmtDate(p.expected_date) : "" }));
+    setText(
+      fillTemplate(t.body, {
+        nome: l?.full_name.split(" ")[0],
+        status: l ? stageLabel(l.status) : "",
+        data: p?.expected_date ? fmtDate(p.expected_date) : "",
+      }),
+    );
   }
 
   async function copy() {
@@ -41,7 +50,13 @@ export function MessagesModule({ userId }: { userId: string }) {
   }
   async function register() {
     if (!lead || !text) return setInfo("Escolha cliente e mensagem.");
-    const { error } = await supabase.from("message_logs").insert({ lead_id: lead.id, owner_id: userId, template_key: tpl?.key ?? null, body: text, status });
+    const { error } = await supabase.from("message_logs").insert({
+      lead_id: lead.id,
+      owner_id: userId,
+      template_key: tpl?.key ?? null,
+      body: text,
+      status,
+    });
     setInfo(error ? error.message : "Envio registrado no histórico do cliente.");
     void qc.invalidateQueries({ queryKey: ["crm"] });
   }
@@ -57,21 +72,107 @@ export function MessagesModule({ userId }: { userId: string }) {
     <Card title="Mensagens">
       <ErrorNote error={tpls.error} />
       <div className="grid gap-3 sm:grid-cols-2">
-        <Field label="Cliente"><select className={input} value={leadId} onChange={(e) => { setLeadId(e.target.value); compose(e.target.value, tplId); }}><option value="">Escolha</option>{leads.map((l) => <option key={l.id} value={l.id}>{l.full_name}</option>)}</select></Field>
-        <Field label="Modelo"><select className={input} value={tplId} onChange={(e) => { setTplId(e.target.value); setEditTpl(false); compose(leadId, e.target.value); }}><option value="">Escolha</option>{(tpls.data ?? []).map((t) => <option key={t.id} value={t.id}>{t.title}</option>)}</select></Field>
+        <Field label="Cliente">
+          <select
+            className={input}
+            value={leadId}
+            onChange={(e) => {
+              setLeadId(e.target.value);
+              compose(e.target.value, tplId);
+            }}
+          >
+            <option value="">Escolha</option>
+            {leads.map((l) => (
+              <option key={l.id} value={l.id}>
+                {l.full_name}
+              </option>
+            ))}
+          </select>
+        </Field>
+        <Field label="Modelo">
+          <select
+            className={input}
+            value={tplId}
+            onChange={(e) => {
+              setTplId(e.target.value);
+              setEditTpl(false);
+              compose(leadId, e.target.value);
+            }}
+          >
+            <option value="">Escolha</option>
+            {(tpls.data ?? []).map((t) => (
+              <option key={t.id} value={t.id}>
+                {t.title}
+              </option>
+            ))}
+          </select>
+        </Field>
       </div>
-      {editTpl && <p className="mt-3 text-xs text-muted-foreground">Editando o modelo. Use {"{nome} {status} {data}"}.</p>}
-      <textarea className={`${input} mt-3 h-40`} value={text} onChange={(e) => setText(e.target.value)} />
+      {editTpl && (
+        <p className="mt-3 text-xs text-muted-foreground">
+          Editando o modelo. Use {"{nome} {status} {data}"}.
+        </p>
+      )}
+      <textarea
+        className={`${input} mt-3 h-40`}
+        value={text}
+        onChange={(e) => setText(e.target.value)}
+      />
       <div className="mt-3 flex flex-wrap items-center gap-2">
         {editTpl ? (
-          <><button className={btn} onClick={saveTpl}>Salvar modelo</button><button className={btnGhost} onClick={() => { setEditTpl(false); compose(leadId, tplId); }}>Cancelar</button></>
+          <>
+            <button className={btn} onClick={saveTpl}>
+              Salvar modelo
+            </button>
+            <button
+              className={btnGhost}
+              onClick={() => {
+                setEditTpl(false);
+                compose(leadId, tplId);
+              }}
+            >
+              Cancelar
+            </button>
+          </>
         ) : (
           <>
-            <button className={btn} onClick={copy} disabled={!text}>Copiar</button>
-            {lead && <a className={btnGhost} href={`https://wa.me/55${onlyDigits(lead.phone).replace(/^55/, "")}?text=${encodeURIComponent(text)}`} target="_blank" rel="noreferrer">Abrir WhatsApp</a>}
-            <select className={`${input} w-40`} value={status} onChange={(e) => setStatus(e.target.value)} aria-label="Status do envio"><option value="copiada">Copiada</option><option value="enviada">Enviada</option><option value="respondida">Respondida</option></select>
-            <button className={btnGhost} onClick={register}>Registrar envio</button>
-            {tpl && <button className="text-xs text-brand-purple underline" onClick={() => { setText(tpl.body); setEditTpl(true); }}>Editar modelo</button>}
+            <button className={btn} onClick={copy} disabled={!text}>
+              Copiar
+            </button>
+            {lead && (
+              <a
+                className={btnGhost}
+                href={`https://wa.me/55${onlyDigits(lead.phone).replace(/^55/, "")}?text=${encodeURIComponent(text)}`}
+                target="_blank"
+                rel="noreferrer"
+              >
+                Abrir WhatsApp
+              </a>
+            )}
+            <select
+              className={`${input} w-40`}
+              value={status}
+              onChange={(e) => setStatus(e.target.value)}
+              aria-label="Status do envio"
+            >
+              <option value="copiada">Copiada</option>
+              <option value="enviada">Enviada</option>
+              <option value="respondida">Respondida</option>
+            </select>
+            <button className={btnGhost} onClick={register}>
+              Registrar envio
+            </button>
+            {tpl && (
+              <button
+                className="text-xs text-brand-purple underline"
+                onClick={() => {
+                  setText(tpl.body);
+                  setEditTpl(true);
+                }}
+              >
+                Editar modelo
+              </button>
+            )}
           </>
         )}
       </div>

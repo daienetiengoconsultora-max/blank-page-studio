@@ -29,7 +29,11 @@ function Reset() {
     const hash = new URLSearchParams(url.hash.slice(1));
     const err = hash.get("error_code") ?? url.searchParams.get("error_code");
     if (err) {
-      setMsg(err === "otp_expired" ? "Este link expirou ou já foi usado. Peça um novo." : "Link inválido. Peça um novo.");
+      setMsg(
+        err === "otp_expired"
+          ? "Este link expirou ou já foi usado. Peça um novo."
+          : "Link inválido. Peça um novo.",
+      );
       return;
     }
     const code = url.searchParams.get("code");
@@ -70,13 +74,23 @@ function Reset() {
         <h1 className="font-display text-2xl font-semibold text-primary">Nova senha</h1>
         {ready && (
           <form onSubmit={submit}>
-            <label className="mt-6 block text-sm font-medium">Nova senha<input name="p" type="password" className={field} autoComplete="new-password" /></label>
-            <label className="mt-4 block text-sm font-medium">Repita a senha<input name="p2" type="password" className={field} autoComplete="new-password" /></label>
-            <button className="mt-6 w-full rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground">Salvar senha</button>
+            <label className="mt-6 block text-sm font-medium">
+              Nova senha
+              <input name="p" type="password" className={field} autoComplete="new-password" />
+            </label>
+            <label className="mt-4 block text-sm font-medium">
+              Repita a senha
+              <input name="p2" type="password" className={field} autoComplete="new-password" />
+            </label>
+            <button className="mt-6 w-full rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground">
+              Salvar senha
+            </button>
           </form>
         )}
         {msg && <p className="mt-4 text-sm text-muted-foreground">{msg}</p>}
-        <Link to="/acesso" className="mt-6 block text-center text-xs text-muted-foreground">Ir para o login</Link>
+        <Link to="/acesso" className="mt-6 block text-center text-xs text-muted-foreground">
+          Ir para o login
+        </Link>
       </div>
     </main>
   );

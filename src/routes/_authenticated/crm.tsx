@@ -49,11 +49,20 @@ function Crm() {
       <header className="bg-primary text-primary-foreground">
         <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-3 px-5 py-4">
           <p className="font-display text-lg font-semibold">DTM CONSULTORIA FINANCEIRA · CRM</p>
-          <button onClick={signOut} className="rounded-full border border-primary-foreground/40 px-4 py-1.5 text-sm">Sair</button>
+          <button
+            onClick={signOut}
+            className="rounded-full border border-primary-foreground/40 px-4 py-1.5 text-sm"
+          >
+            Sair
+          </button>
         </div>
         <nav className="mx-auto flex max-w-7xl gap-1 overflow-x-auto px-5">
           {TABS.map(([k, l]) => (
-            <button key={k} onClick={() => setTab(k)} className={`whitespace-nowrap rounded-t-xl px-4 py-2 text-sm font-semibold ${tab === k ? "bg-secondary text-primary" : "text-primary-foreground/80 hover:text-primary-foreground"}`}>
+            <button
+              key={k}
+              onClick={() => setTab(k)}
+              className={`whitespace-nowrap rounded-t-xl px-4 py-2 text-sm font-semibold ${tab === k ? "bg-secondary text-primary" : "text-primary-foreground/80 hover:text-primary-foreground"}`}
+            >
               {l}
             </button>
           ))}

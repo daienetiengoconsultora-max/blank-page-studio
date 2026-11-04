@@ -77,7 +77,10 @@ export function ContactForm() {
   const field =
     "mt-1 w-full rounded-xl border border-input bg-background px-4 py-3 text-sm outline-none focus:border-ring";
   return (
-    <form onSubmit={submit} className="rounded-3xl bg-card p-6 text-card-foreground shadow-elegant md:p-8">
+    <form
+      onSubmit={submit}
+      className="rounded-3xl bg-card p-6 text-card-foreground shadow-elegant md:p-8"
+    >
       <div className="grid gap-4 sm:grid-cols-2">
         <label className="text-sm font-medium">
           Nome
@@ -85,7 +88,14 @@ export function ContactForm() {
         </label>
         <label className="text-sm font-medium">
           Telefone / WhatsApp
-          <input name="phone" required inputMode="tel" maxLength={20} placeholder="(27) 99999-9999" className={field} />
+          <input
+            name="phone"
+            required
+            inputMode="tel"
+            maxLength={20}
+            placeholder="(27) 99999-9999"
+            className={field}
+          />
         </label>
         <label className="text-sm font-medium">
           E-mail
@@ -100,7 +110,13 @@ export function ContactForm() {
         </label>
         <label className="text-sm font-medium sm:col-span-2">
           Mensagem
-          <textarea name="message" rows={4} maxLength={1500} className={field} placeholder="Conte brevemente a sua situação" />
+          <textarea
+            name="message"
+            rows={4}
+            maxLength={1500}
+            className={field}
+            placeholder="Conte brevemente a sua situação"
+          />
         </label>
       </div>
       <label className="mt-5 flex items-start gap-3 text-xs leading-5 text-muted-foreground">
@@ -126,7 +142,12 @@ export function ContactForm() {
       </button>
       <p className="mt-3 text-center text-xs text-muted-foreground">
         Prefere conversar agora?{" "}
-        <a href={whatsappLink()} target="_blank" rel="noreferrer" className="font-semibold text-primary underline">
+        <a
+          href={whatsappLink()}
+          target="_blank"
+          rel="noreferrer"
+          className="font-semibold text-primary underline"
+        >
           Fale pelo WhatsApp
         </a>
       </p>

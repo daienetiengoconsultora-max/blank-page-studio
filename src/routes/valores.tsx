@@ -30,7 +30,9 @@ function Valores() {
             ] as const
           ).map(([t, doc, v]) => (
             <div key={doc} className="dtm-card rounded-3xl p-8">
-              <p className="text-xs font-semibold uppercase tracking-[0.25em] text-brand-purple">{doc}</p>
+              <p className="text-xs font-semibold uppercase tracking-[0.25em] text-brand-purple">
+                {doc}
+              </p>
               <h2 className="mt-2 font-display text-2xl font-semibold text-primary">{t}</h2>
               <p className="mt-4 font-display text-4xl font-semibold text-primary">{brl(v)}</p>
             </div>
@@ -38,15 +40,29 @@ function Valores() {
         </div>
         <div className="mx-auto mt-10 max-w-4xl space-y-4 text-sm leading-7">
           <h2 className="font-display text-2xl font-semibold text-primary">Formas de pagamento</h2>
-          <p>À vista ou no cartão de crédito. No cartão, os juros da máquina ficam por conta do cliente.</p>
+          <p>
+            À vista ou no cartão de crédito. No cartão, os juros da máquina ficam por conta do
+            cliente.
+          </p>
           <h2 className="font-display text-2xl font-semibold text-primary">Importante</h2>
           <ul className="list-disc space-y-2 pl-5">
-            <li>Os valores referem-se aos honorários da consultoria. A inclusão ou não de custas processuais é definida no contrato.</li>
-            <li>Prazos informados são estimativas que dependem da análise do advogado parceiro e do Poder Judiciário.</li>
-            <li>Não há garantia de suspensão, liminar, exclusão de registros ou aprovação de crédito.</li>
+            <li>
+              Os valores referem-se aos honorários da consultoria. A inclusão ou não de custas
+              processuais é definida no contrato.
+            </li>
+            <li>
+              Prazos informados são estimativas que dependem da análise do advogado parceiro e do
+              Poder Judiciário.
+            </li>
+            <li>
+              Não há garantia de suspensão, liminar, exclusão de registros ou aprovação de crédito.
+            </li>
             <li>A DTM CONSULTORIA FINANCEIRA não é escritório de advocacia.</li>
           </ul>
-          <Link to="/contato" className="mt-4 inline-block rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground">
+          <Link
+            to="/contato"
+            className="mt-4 inline-block rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground"
+          >
             Fale conosco
           </Link>
         </div>

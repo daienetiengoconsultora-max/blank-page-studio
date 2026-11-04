@@ -15,7 +15,15 @@ export const btn =
 export const btnGhost =
   "rounded-full border border-border px-4 py-2 text-sm font-semibold text-primary hover:bg-secondary";
 
-export function Card({ title, children, actions }: { title?: string; children: ReactNode; actions?: ReactNode }) {
+export function Card({
+  title,
+  children,
+  actions,
+}: {
+  title?: string;
+  children: ReactNode;
+  actions?: ReactNode;
+}) {
   return (
     <section className="rounded-3xl border border-border bg-background p-5 shadow-elegant">
       {(title || actions) && (
@@ -42,7 +50,10 @@ export function useLeads() {
   return useQuery({
     queryKey: ["crm", "leads"],
     queryFn: async () => {
-      const { data, error } = await supabase.from("leads").select("*").order("created_at", { ascending: false });
+      const { data, error } = await supabase
+        .from("leads")
+        .select("*")
+        .order("created_at", { ascending: false });
       if (error) throw error;
       return data;
     },
@@ -51,5 +62,9 @@ export function useLeads() {
 
 export function ErrorNote({ error }: { error: unknown }) {
   if (!error) return null;
-  return <p className="text-sm text-destructive">Não foi possível carregar: {(error as Error).message}</p>;
+  return (
+    <p className="text-sm text-destructive">
+      Não foi possível carregar: {(error as Error).message}
+    </p>
+  );
 }
