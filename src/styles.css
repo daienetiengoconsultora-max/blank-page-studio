@@ -160,3 +160,52 @@
 @utility shadow-elegant {
   box-shadow: var(--shadow-elegant);
 }
+
+/* Aplicação visível da paleta oficial DTM em componentes e páginas. */
+@utility text-brand-purple {
+  color: oklch(0.512 0.071 297.1);
+}
+@utility bg-brand-purple {
+  background-color: oklch(0.512 0.071 297.1);
+}
+@utility border-brand-rose {
+  border-color: oklch(0.678 0.054 21.6);
+}
+@utility bg-brand-rose {
+  background-color: oklch(0.678 0.054 21.6);
+}
+@utility text-brand-rose {
+  color: oklch(0.678 0.054 21.6);
+}
+@utility ring-brand-rose {
+  --tw-ring-color: oklch(0.678 0.054 21.6);
+}
+
+@layer components {
+  .dtm-section-heading {
+    color: var(--primary);
+    text-decoration: underline;
+    text-decoration-color: var(--accent);
+    text-decoration-thickness: 3px;
+    text-underline-offset: 0.45rem;
+  }
+  .dtm-card {
+    border: 1px solid color-mix(in oklch, var(--accent) 55%, transparent);
+    background: var(--card);
+    box-shadow: 0 10px 28px -22px var(--primary);
+  }
+  .dtm-card:hover {
+    border-color: var(--ring);
+    box-shadow: var(--shadow-elegant);
+  }
+  .dtm-purple-panel {
+    background: linear-gradient(135deg, var(--primary), var(--ring));
+    color: var(--primary-foreground);
+  }
+  .dtm-rose-rule {
+    height: 3px;
+    width: 3.5rem;
+    border-radius: 999px;
+    background: var(--accent);
+  }
+}
