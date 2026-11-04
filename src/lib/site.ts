@@ -259,8 +259,16 @@ export const FAQ = [
     a: "Sim. Atendemos pessoas físicas e empresas, considerando as particularidades de cada cadastro.",
   },
   {
-    q: "Quanto custa o diagnóstico financeiro?",
-    a: "O diagnóstico financeiro custa R$ 29,99. A equipe explica as etapas e as condições antes de iniciar o atendimento.",
+    q: "Quanto custa?",
+    a: "Os valores informativos são R$ 850 para pessoa física (CPF) e R$ 950 para pessoa jurídica (CNPJ), pagos à vista ou no cartão (os juros da máquina ficam por conta do cliente). As condições finais constam no contrato.",
+  },
+  {
+    q: "Em quanto tempo vejo resultado?",
+    a: "Não há prazo garantido. Qualquer prazo informado é uma estimativa que depende da análise do advogado parceiro e do andamento no Poder Judiciário. Não prometemos suspensão, liminar ou aprovação de crédito.",
+  },
+  {
+    q: "A DTM é um escritório de advocacia?",
+    a: "Não. A DTM CONSULTORIA FINANCEIRA presta consultoria e orientação financeira. Quando há medida judicial, ela é conduzida por advogado(a) parceiro(a).",
   },
   {
     q: "Meus dados ficam protegidos?",

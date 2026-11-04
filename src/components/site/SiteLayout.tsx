@@ -3,11 +3,12 @@ import { useState, type ReactNode } from "react";
 import { BRAND, WHATSAPP_DISPLAY, whatsappLink } from "@/lib/site";
 
 const NAV = [
-  { to: "/servicos", label: "Serviços" },
+  { to: "/", label: "Início" },
   { to: "/como-funciona", label: "Como funciona" },
-  { to: "/sobre", label: "Sobre nós" },
-  { to: "/blog", label: "Blog DTM" },
-  { to: "/perguntas-frequentes", label: "Dúvidas" },
+  { to: "/valores", label: "Valores e condições" },
+  { to: "/perguntas-frequentes", label: "FAQ" },
+  { to: "/sobre", label: "Sobre" },
+  { to: "/contato", label: "Fale conosco" },
 ] as const;
 
 export function SiteLayout({ children }: { children: ReactNode }) {
@@ -30,17 +31,17 @@ export function SiteLayout({ children }: { children: ReactNode }) {
                 key={n.to}
                 to={n.to}
                 className="text-muted-foreground transition-colors hover:text-brand-purple"
+                activeOptions={{ exact: true }}
                 activeProps={{ className: "font-semibold text-brand-purple" }}
               >
                 {n.label}
               </Link>
             ))}
             <Link
-              to="/"
-              hash="diagnostico"
+              to="/contato"
               className="rounded-full bg-primary px-5 py-2.5 text-primary-foreground shadow-elegant hover:opacity-90"
             >
-              Diagnóstico
+              Fale conosco
             </Link>
           </nav>
           <button
@@ -64,12 +65,11 @@ export function SiteLayout({ children }: { children: ReactNode }) {
               </Link>
             ))}
             <Link
-              to="/"
-              hash="diagnostico"
+              to="/contato"
               onClick={() => setOpen(false)}
               className="mt-2 rounded-full bg-primary px-5 py-2.5 text-center text-sm font-semibold text-primary-foreground"
             >
-              Fazer diagnóstico
+              Fale conosco
             </Link>
           </nav>
         )}
@@ -91,6 +91,9 @@ export function SiteLayout({ children }: { children: ReactNode }) {
             </p>
           </div>
           <div className="flex flex-col gap-2">
+            <Link className="transition-colors hover:text-accent" to="/valores">
+              Valores e condições
+            </Link>
             <Link className="transition-colors hover:text-accent" to="/servicos">
               Serviços
             </Link>
@@ -119,7 +122,11 @@ export function SiteLayout({ children }: { children: ReactNode }) {
           </div>
         </div>
         <p className="mx-auto mt-10 max-w-6xl text-xs opacity-60">
-          © {new Date().getFullYear()} {BRAND}. Todos os direitos reservados.
+          © {new Date().getFullYear()} {BRAND}. Todos os direitos reservados. A DTM não é escritório
+          de advocacia.{" "}
+          <Link to="/acesso" className="underline-offset-4 hover:underline">
+            Área restrita
+          </Link>
         </p>
       </footer>
       <a

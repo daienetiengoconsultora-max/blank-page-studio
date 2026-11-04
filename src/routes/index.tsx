@@ -1,13 +1,13 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site/SiteLayout";
-import { DiagnosticForm } from "@/components/site/DiagnosticForm";
+import { ContactForm } from "@/components/site/ContactForm";
 import { BRAND, POSTS, SERVICES, SITE_URL, WHATSAPP_NUMBER, seo } from "@/lib/site";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     ...seo(
       "/",
-      "DTM Consultoria Financeira | Limpa Nome e Diagnóstico Financeiro",
+      "DTM CONSULTORIA FINANCEIRA | Dê um fôlego para o seu nome",
       "Regularize seu nome com orientação transparente: Limpa Nome, Score, Rating Bancário, Bacen/SCR, CCF e Cadin. Conheça os serviços de orientação para CPF e CNPJ.",
     ),
     scripts: [
@@ -44,7 +44,7 @@ function Home() {
             <p className="text-xs font-semibold uppercase tracking-[0.3em] text-accent">{BRAND}</p>
             <div className="dtm-rose-rule mt-4" />
             <h1 className="mt-4 font-display text-4xl font-semibold leading-tight md:text-6xl">
-              Quer regularizar seu nome? Faça seu diagnóstico!
+              Dê um fôlego para o seu nome
             </h1>
             <p className="mt-5 max-w-lg text-base leading-7 opacity-90">
               Orientação clara e honesta para entender sua situação de crédito e escolher o melhor
@@ -57,7 +57,7 @@ function Home() {
             </ul>
           </div>
           <div id="diagnostico" className="scroll-mt-24">
-            <DiagnosticForm />
+            <ContactForm />
           </div>
         </div>
       </section>
@@ -95,10 +95,10 @@ function Home() {
           </h2>
           <ol className="mt-10 grid gap-5 md:grid-cols-4">
             {[
-              "Você envia o formulário",
-              "Entramos em contato pelo WhatsApp",
+              "Você envia sua mensagem",
+              "Retornamos pelo WhatsApp",
               "Analisamos sua situação",
-              "Você recebe a orientação",
+              "Orientação e próximos passos",
             ].map((t, i) => (
               <li key={t} className="dtm-card rounded-3xl p-6">
                 <span className="font-display text-3xl text-brand-purple">0{i + 1}</span>
@@ -113,6 +113,17 @@ function Home() {
           >
             Ver detalhes →
           </Link>
+        </div>
+      </section>
+
+      <section className="px-5 py-20">
+        <div className="mx-auto max-w-6xl">
+          <h2 className="dtm-section-heading inline-block font-display text-3xl font-semibold md:text-4xl">
+            Depoimentos
+          </h2>
+          <div className="dtm-card mt-8 rounded-3xl p-8 text-sm leading-7 text-muted-foreground">
+            Em breve, relatos de clientes reais, publicados somente com autorização.
+          </div>
         </div>
       </section>
 

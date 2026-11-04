@@ -1,14 +1,5 @@
 User-agent: *
 Allow: /
-
-User-agent: Googlebot
-Allow: /
-
-User-agent: Bingbot
-Allow: /
-
-User-agent: Twitterbot
-Allow: /
-
-User-agent: facebookexternalhit
-Allow: /
+Disallow: /crm
+Disallow: /acesso
+Disallow: /redefinir-senha
