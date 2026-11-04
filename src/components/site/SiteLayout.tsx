@@ -18,7 +18,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
         <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4">
           <Link to="/" className="flex items-center gap-2">
             <span className="grid h-10 w-10 place-items-center rounded-full bg-primary font-display text-sm font-bold text-primary-foreground ring-2 ring-accent ring-offset-2 ring-offset-background">DTM</span>
-            <span className="border-b-2 border-accent pb-1 font-display text-lg font-semibold text-primary">Consultoria Financeira</span>
+            <span className="border-b-2 border-accent pb-1 font-display text-lg font-semibold text-primary">Descomplica Crédito</span>
           </Link>
           <nav className="hidden items-center gap-6 text-sm font-medium md:flex">
             {NAV.map((n) => (
