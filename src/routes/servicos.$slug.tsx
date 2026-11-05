@@ -12,7 +12,7 @@ export const Route = createFileRoute("/servicos/$slug")({
     loaderData
       ? seo(
           `/servicos/${params.slug}`,
-          `${loaderData.name} | DTM DESCOMPLICA CRÉDITO`,
+          `${loaderData.name} | DTM CONSULTORIA FINANCEIRA`,
           loaderData.short,
         )
       : { meta: [{ title: "Serviço não encontrado" }, { name: "robots", content: "noindex" }] },
