@@ -69,9 +69,9 @@
   --radius: 0.875rem;
   /* Cores extraídas da logo oficial: azul-marinho, roxo, rosa e dourado. */
   --brand-navy: oklch(0.332 0.099 264.9);
-  --brand-purple: oklch(0.440 0.193 322.2);
-  --brand-pink: oklch(0.669 0.186 355.3);
-  --brand-gold: oklch(0.763 0.148 75.9);
+  --brand-purple: oklch(0.512 0.071 297.1);
+  --brand-pink: oklch(0.720 0.145 355.0);
+  --brand-gold: oklch(0.755 0.115 78.0);
   --brand-cream: oklch(0.983 0.019 87.5);
   /* Identidade visual oficial DTM Consultoria Financeira */
   --background: oklch(0.991 0.000 89.9); /* #FCFCFC */
@@ -114,9 +114,9 @@
 
 .dark {
   --brand-navy: oklch(0.332 0.099 264.9);
-  --brand-purple: oklch(0.440 0.193 322.2);
-  --brand-pink: oklch(0.669 0.186 355.3);
-  --brand-gold: oklch(0.763 0.148 75.9);
+  --brand-purple: oklch(0.512 0.071 297.1);
+  --brand-pink: oklch(0.720 0.145 355.0);
+  --brand-gold: oklch(0.755 0.115 78.0);
   --brand-cream: oklch(0.983 0.019 87.5);
   --background: oklch(0.245 0.045 268);
   --foreground: oklch(0.955 0.025 99.5);
