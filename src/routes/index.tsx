@@ -173,7 +173,7 @@ function Home() {
                 </Link>
                 <Link
                   to="/servicos/$slug"
-n                  params={{ slug: "rating-bancario" }}
+                  params={{ slug: "rating-bancario" }}
                   className="rounded-full border border-primary px-5 py-2.5 text-sm font-semibold text-primary"
                 >
                   Rating Bancário
