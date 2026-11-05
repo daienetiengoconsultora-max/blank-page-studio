@@ -6,8 +6,8 @@ export const Route = createFileRoute("/valores")({
   head: () =>
     seo(
       "/valores",
-      "Valores e condições | DTM Consultoria Financeira",
-      "Conheça como funciona a apresentação de valores e condições dos serviços da DTM Consultoria Financeira.",
+      "Valores e condições | DTM Assessoria e Consultoria em Regularização de Dados de Crédito",
+      "Conheça como funciona a apresentação de valores e condições dos serviços da DTM Assessoria e Consultoria em Regularização de Dados de Crédito.",
     ),
   component: Valores,
 });
@@ -47,7 +47,7 @@ function Valores() {
           <ul className="list-disc space-y-2 pl-5">
             <li>O diagnóstico não garante aumento de score, aprovação de crédito ou exclusão de registros.</li>
             <li>Qualquer serviço adicional depende de análise individual e aceite prévio do cliente.</li>
-            <li>A DTM CONSULTORIA FINANCEIRA presta consultoria e orientação; não é escritório de advocacia.</li>
+            <li>A DTM Assessoria e Consultoria em Regularização de Dados de Crédito presta consultoria e orientação; não é escritório de advocacia.</li>
           </ul>
         </div>
       </section>
