@@ -78,7 +78,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "DTM Consultoria Financeira | Limpa Nome, Score e Diagnóstico" },
+      { title: "DTM Consultoria Financeira | Limpa Nome, Score, Rating e Diagnóstico" },
       {
         name: "description",
         content:
