@@ -7,13 +7,13 @@ export const Route = createFileRoute("/servicos/")({
     seo(
       "/servicos",
       "Serviços | DTM CONSULTORIA FINANCEIRA",
-      "Limpa Nome, Score, Rating Bancário, Bacen/SCR, CCF, Cadin e Diagnóstico Financeiro explicados com transparência.",
+      "Limpa Nome, Score, Rating Comercial e Bancário, Bacen/SCR, CCF, Cadin e Diagnóstico Financeiro explicados com transparência.",
     ),
   component: () => (
     <SiteLayout>
       <PageHero
         eyebrow="Serviços"
-        title="Soluções para regularizar sua vida financeira"
+        title="Serviços para entender e organizar sua situação financeira"
         text="Cada serviço começa com análise individual. Não prometemos resultados garantidos."
       />
       <section className="mx-auto grid max-w-6xl gap-5 px-5 py-16 sm:grid-cols-2">
