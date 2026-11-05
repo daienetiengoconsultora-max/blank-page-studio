@@ -7,8 +7,8 @@ export const Route = createFileRoute("/contato")({
   head: () =>
     seo(
       "/contato",
-      "Fale conosco | DTM CONSULTORIA FINANCEIRA",
-      "Envie sua mensagem para a DTM CONSULTORIA FINANCEIRA ou fale pelo WhatsApp.",
+      "Fale conosco | DTM Assessoria e Consultoria em Regularização de Dados de Crédito",
+      "Envie sua mensagem para a DTM Assessoria e Consultoria em Regularização de Dados de Crédito ou fale pelo WhatsApp.",
     ),
   component: () => (
     <SiteLayout>
