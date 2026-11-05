@@ -240,7 +240,7 @@
   content: "";
   position: fixed;
   inset: 0;
-  z-index: -1;
+  z-index: 0;
   pointer-events: none;
   background-image: url("/logo-dtm-consultoria-financeira.svg");
   background-repeat: no-repeat;
@@ -248,6 +248,13 @@
   background-size: min(62vw, 440px) auto;
   opacity: 0.055;
 }
+ .dtm-site-watermark > header,
+.dtm-site-watermark > main,
+.dtm-site-watermark > footer {
+  position: relative;
+  z-index: 1;
+}
+
 @media (max-width: 640px) {
   .dtm-site-watermark::before {
     background-size: min(78vw, 300px) auto;
