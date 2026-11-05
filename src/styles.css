@@ -67,36 +67,38 @@
 
 :root {
   --radius: 0.875rem;
-  /* Cores extraídas da logo oficial: azul-marinho, roxo, rosa e dourado. */
-  --brand-navy: oklch(0.332 0.099 264.9);
-  --brand-purple: oklch(0.512 0.071 297.1);
-  --brand-pink: oklch(0.720 0.145 355.0);
-  --brand-gold: oklch(0.755 0.115 78.0);
-  --brand-cream: oklch(0.983 0.019 87.5);
-  /* Identidade visual oficial DTM Consultoria Financeira */
-  --background: oklch(0.991 0.000 89.9); /* #FCFCFC */
-  --foreground: oklch(0.409 0.000 89.9); /* #4A4A4A */
-  --card: oklch(0.955 0.025 99.5); /* #F4F1DE */
-  --card-foreground: oklch(0.409 0.000 89.9);
-  --popover: oklch(0.991 0.000 89.9);
-  --popover-foreground: oklch(0.409 0.000 89.9);
-  --primary: oklch(0.359 0.080 268.3); /* #2B3A67 */
-  --primary-foreground: oklch(0.991 0.000 89.9);
-  --secondary: oklch(0.955 0.025 99.5); /* #F4F1DE */
-  --secondary-foreground: oklch(0.359 0.080 268.3);
-  --muted: oklch(0.955 0.025 99.5);
-  --muted-foreground: oklch(0.409 0.000 89.9);
-  --accent: oklch(0.678 0.054 21.6); /* #B78B89 */
-  --accent-foreground: oklch(0.359 0.080 268.3);
-  --wine: oklch(0.359 0.080 268.3); /* Mantém compatibilidade com classes existentes */
-  --wine-foreground: oklch(0.991 0.000 89.9);
+  /* Paleta completa DTM: azul-marinho, roxo, rosa, dourado, creme, branco e grafite. */
+  --brand-navy: oklch(0.359 0.080 268.3); /* #2B3A67 */
+  --brand-purple: oklch(0.512 0.071 297.1); /* #6B5E8B */
+  --brand-pink: oklch(0.692 0.166 356.1); /* #E96A9F */
+  --brand-gold: oklch(0.761 0.140 73.7); /* #E6A23A */
+  --brand-rose: oklch(0.678 0.054 21.6); /* #B78B89 */
+  --brand-cream: oklch(0.955 0.025 99.5); /* #F4F1DE */
+  --brand-white: oklch(0.991 0.000 89.9); /* #FCFCFC */
+  --brand-ink: oklch(0.409 0.000 89.9); /* #4A4A4A */
+  --background: var(--brand-white);
+  --foreground: var(--brand-ink);
+  --card: var(--brand-cream);
+  --card-foreground: var(--brand-ink);
+  --popover: var(--brand-white);
+  --popover-foreground: var(--brand-ink);
+  --primary: var(--brand-navy);
+  --primary-foreground: var(--brand-white);
+  --secondary: var(--brand-cream);
+  --secondary-foreground: var(--brand-navy);
+  --muted: var(--brand-cream);
+  --muted-foreground: var(--brand-ink);
+  --accent: var(--brand-rose);
+  --accent-foreground: var(--brand-navy);
+  --wine: var(--brand-purple);
+  --wine-foreground: var(--brand-white);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(0.678 0.054 21.6 / 35%);
-  --input: oklch(0.678 0.054 21.6 / 45%);
-  --ring: oklch(0.512 0.071 297.1); /* #6B5E8B */
-  --gradient-brand: linear-gradient(135deg, oklch(0.359 0.080 268.3), oklch(0.512 0.071 297.1));
-  --shadow-elegant: 0 18px 45px -22px oklch(0.359 0.080 268.3 / 35%);
+  --border: color-mix(in oklch, var(--brand-rose) 42%, white);
+  --input: color-mix(in oklch, var(--brand-purple) 30%, white);
+  --ring: var(--brand-purple);
+  --gradient-brand: linear-gradient(115deg, var(--brand-navy) 0%, var(--brand-purple) 42%, var(--brand-pink) 76%, var(--brand-gold) 100%);
+  --shadow-elegant: 0 18px 45px -22px color-mix(in oklch, var(--brand-navy) 38%, transparent);
   --chart-1: oklch(0.359 0.080 268.3);
   --chart-2: oklch(0.512 0.071 297.1);
   --chart-3: oklch(0.678 0.054 21.6);
@@ -113,11 +115,14 @@
 }
 
 .dark {
-  --brand-navy: oklch(0.332 0.099 264.9);
+  --brand-navy: oklch(0.359 0.080 268.3);
   --brand-purple: oklch(0.512 0.071 297.1);
-  --brand-pink: oklch(0.720 0.145 355.0);
-  --brand-gold: oklch(0.755 0.115 78.0);
-  --brand-cream: oklch(0.983 0.019 87.5);
+  --brand-pink: oklch(0.692 0.166 356.1);
+  --brand-gold: oklch(0.761 0.140 73.7);
+  --brand-rose: oklch(0.678 0.054 21.6);
+  --brand-cream: oklch(0.955 0.025 99.5);
+  --brand-white: oklch(0.991 0.000 89.9);
+  --brand-ink: oklch(0.409 0.000 89.9);
   --background: oklch(0.245 0.045 268);
   --foreground: oklch(0.955 0.025 99.5);
   --card: oklch(0.295 0.050 268);
@@ -172,46 +177,27 @@
   box-shadow: var(--shadow-elegant);
 }
 
-/* Aplicação visível da paleta oficial DTM em componentes e páginas. */
-@utility text-brand-purple {
-  color: oklch(0.512 0.071 297.1);
-}
-@utility bg-brand-purple {
-  background-color: oklch(0.512 0.071 297.1);
-}
-@utility border-brand-rose {
-  border-color: oklch(0.678 0.054 21.6);
-}
-@utility bg-brand-rose {
-  background-color: oklch(0.678 0.054 21.6);
-}
-@utility text-brand-rose {
-  color: oklch(0.678 0.054 21.6);
-}
-@utility ring-brand-rose {
-  --tw-ring-color: oklch(0.678 0.054 21.6);
-}
-
-@utility text-brand-gold {
-  color: var(--brand-gold);
-}
-@utility bg-brand-gold {
-  background-color: var(--brand-gold);
-}
-@utility border-brand-gold {
-  border-color: var(--brand-gold);
-}
-@utility text-brand-pink {
-  color: var(--brand-pink);
-}
-@utility bg-brand-pink {
-  background-color: var(--brand-pink);
-}
-@utility border-brand-pink {
-  border-color: var(--brand-pink);
-}
+/* Utilitários para aplicar cada cor oficial de forma consistente no site. */
+@utility text-brand-navy { color: var(--brand-navy); }
+@utility bg-brand-navy { background-color: var(--brand-navy); }
+@utility border-brand-navy { border-color: var(--brand-navy); }
+@utility text-brand-purple { color: var(--brand-purple); }
+@utility bg-brand-purple { background-color: var(--brand-purple); }
+@utility border-brand-purple { border-color: var(--brand-purple); }
+@utility text-brand-pink { color: var(--brand-pink); }
+@utility bg-brand-pink { background-color: var(--brand-pink); }
+@utility border-brand-pink { border-color: var(--brand-pink); }
+@utility text-brand-gold { color: var(--brand-gold); }
+@utility bg-brand-gold { background-color: var(--brand-gold); }
+@utility border-brand-gold { border-color: var(--brand-gold); }
+@utility text-brand-rose { color: var(--brand-rose); }
+@utility bg-brand-rose { background-color: var(--brand-rose); }
+@utility border-brand-rose { border-color: var(--brand-rose); }
+@utility bg-brand-cream { background-color: var(--brand-cream); }
+@utility bg-brand-white { background-color: var(--brand-white); }
+@utility text-brand-ink { color: var(--brand-ink); }
 @utility bg-brand-spectrum {
-  background-image: linear-gradient(115deg, var(--brand-navy) 0%, var(--brand-purple) 38%, var(--brand-pink) 72%, var(--brand-gold) 100%);
+  background-image: linear-gradient(115deg, var(--brand-navy) 0%, var(--brand-purple) 42%, var(--brand-pink) 76%, var(--brand-gold) 100%);
 }
 
 @layer components {
@@ -233,7 +219,7 @@
     box-shadow: var(--shadow-elegant);
   }
   .dtm-purple-panel {
-    background: linear-gradient(118deg, var(--brand-navy) 0%, var(--brand-purple) 48%, var(--brand-pink) 100%);
+    background: var(--gradient-brand);
     color: var(--primary-foreground);
   }
   .dtm-rose-rule {
