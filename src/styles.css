@@ -229,3 +229,28 @@
     background: linear-gradient(90deg, var(--brand-pink), var(--brand-gold));
   }
 }
+
+
+/* Marca-d'água institucional: logo completa, discreta e sem interferir nos cliques. */
+.dtm-site-watermark {
+  position: relative;
+  isolation: isolate;
+}
+.dtm-site-watermark::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image: url("/logo-dtm-consultoria-financeira.svg");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: min(62vw, 440px) auto;
+  opacity: 0.055;
+}
+@media (max-width: 640px) {
+  .dtm-site-watermark::before {
+    background-size: min(78vw, 300px) auto;
+    opacity: 0.045;
+  }
+}
