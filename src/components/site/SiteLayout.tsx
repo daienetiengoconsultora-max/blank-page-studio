@@ -4,10 +4,12 @@ import { BRAND, WHATSAPP_DISPLAY, whatsappLink } from "@/lib/site";
 
 const NAV = [
   { to: "/", label: "Início" },
+  { to: "/servicos", label: "Serviços" },
   { to: "/como-funciona", label: "Como funciona" },
   { to: "/valores", label: "Valores e condições" },
   { to: "/perguntas-frequentes", label: "FAQ" },
   { to: "/sobre", label: "Sobre" },
+  { to: "/blog", label: "Blog" },
   { to: "/contato", label: "Fale conosco" },
 ] as const;
 
@@ -15,7 +17,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
   const [open, setOpen] = useState(false);
   return (
     <div className="min-h-screen bg-background font-sans text-foreground">
-      <header className="sticky top-0 z-40 border-b-2 border-accent bg-background/95 backdrop-blur">
+      <header className="sticky top-0 z-40 border-b-2 border-brand-gold bg-background/95 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4">
           <Link to="/" className="flex min-w-0 items-center" aria-label="DTM Consultoria Financeira - Início">
             <img
@@ -23,7 +25,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
               alt="DTM Consultoria Financeira"
               width="260"
               height="241"
-              className="block h-16 w-auto max-w-[190px] object-contain object-center sm:h-20 sm:max-w-[230px]"
+              className="block h-20 w-20 shrink-0 object-contain object-center sm:h-24 sm:w-24"
               fetchPriority="high"
             />
           </Link>
@@ -77,7 +79,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
         )}
       </header>
       <main>{children}</main>
-      <footer className="bg-primary px-5 py-12 text-sm text-primary-foreground/90">
+      <footer className="bg-brand-spectrum px-5 py-12 text-sm text-white">
         <div className="mx-auto grid max-w-6xl gap-8 md:grid-cols-3">
           <div>
             <div className="inline-flex rounded-xl bg-[#fffaf0] p-2">
@@ -86,7 +88,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
                 alt="DTM Consultoria Financeira"
                 width="260"
                 height="241"
-                className="block h-24 w-auto max-w-full object-contain object-center"
+                className="block h-32 w-32 max-w-full object-contain object-center sm:h-36 sm:w-36"
                 loading="lazy"
               />
             </div>
@@ -124,7 +126,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
               href={whatsappLink()}
               target="_blank"
               rel="noreferrer"
-              className="rounded-full bg-accent px-5 py-2.5 font-semibold text-primary transition-colors hover:bg-brand-purple hover:text-primary-foreground"
+              className="rounded-full bg-brand-gold px-5 py-2.5 font-semibold text-[#17264f] transition-colors hover:bg-brand-pink hover:text-white"
             >
               WhatsApp {WHATSAPP_DISPLAY}
             </a>
