@@ -7,7 +7,7 @@ export const Route = createFileRoute("/")({
   head: () => ({
     ...seo(
       "/",
-      "DTM CONSULTORIA FINANCEIRA | Limpamos o seu CPF ou CNPJ para você ter um fôlego financeiro e tentar voltar ao mercado de crédito.",
+      "DTM Assessoria e Consultoria em Regularização de Dados de Crédito | Limpamos o seu CPF ou CNPJ para você ter um fôlego financeiro e tentar voltar ao mercado de crédito.",
       "Orientação transparente para CPF e CNPJ: Limpa Nome, Score, Rating Comercial e Bancário, Bacen/SCR, CCF, Cadin e Diagnóstico Financeiro.",
     ),
     scripts: [
