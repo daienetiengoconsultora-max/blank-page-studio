@@ -9,6 +9,7 @@ import { ProcessesModule } from "@/components/crm/ProcessesModule";
 import { MessagesModule } from "@/components/crm/MessagesModule";
 import { ReportsModule } from "@/components/crm/ReportsModule";
 import { TasksModule } from "@/components/crm/TasksModule";
+import { ServicesModule } from "@/components/crm/ServicesModule";
 
 export const Route = createFileRoute("/_authenticated/crm")({
   head: () => ({
@@ -29,6 +30,7 @@ const TABS = [
   ["painel", "Painel"],
   ["leads", "Leads e clientes"],
   ["tarefas", "Agenda e tarefas"],
+  ["servicos", "Serviços DTM"],
   ["contratos", "Contratos"],
   ["processos", "Processos"],
   ["mensagens", "Mensagens"],
@@ -77,7 +79,8 @@ function Crm() {
       <main className="mx-auto max-w-7xl px-5 py-6">
         {tab === "painel" && <DashboardModule onNavigate={setTab} />}
         {tab === "leads" && <LeadsModule userId={user.id} />}
-        {tab === "tarefas" && <TasksModule userId={user.id} /> }
+        {tab === "tarefas" && <TasksModule userId={user.id} />}
+        {tab === "servicos" && <ServicesModule userId={user.id} />}
         {tab === "contratos" && <ContractsModule userId={user.id} />}
         {tab === "processos" && <ProcessesModule userId={user.id} />}
         {tab === "mensagens" && <MessagesModule userId={user.id} />}
