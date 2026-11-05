@@ -16,7 +16,7 @@ const NAV = [
 export function SiteLayout({ children }: { children: ReactNode }) {
   const [open, setOpen] = useState(false);
   return (
-    <div className="min-h-screen bg-background font-sans text-foreground">
+    <div className="dtm-site-watermark min-h-screen bg-background font-sans text-foreground">
       <header className="sticky top-0 z-40 border-b-2 border-brand-gold bg-background/95 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4">
           <Link to="/" className="flex min-w-0 items-center" aria-label="DTM Consultoria Financeira - Início">
@@ -25,7 +25,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
               alt="DTM Consultoria Financeira"
               width="260"
               height="241"
-              className="block h-[112px] w-[121px] shrink-0 object-contain object-center sm:h-[132px] sm:w-[143px]"
+              className="block h-[82px] w-[88px] shrink-0 object-contain object-center sm:h-[94px] sm:w-[102px]"
               fetchPriority="high"
             />
           </Link>
@@ -88,7 +88,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
                 alt="DTM Consultoria Financeira"
                 width="260"
                 height="241"
-                className="block h-40 w-[172px] max-w-full object-contain object-center sm:h-44 sm:w-[190px]"
+                className="block h-28 w-[120px] max-w-full object-contain object-center sm:h-32 sm:w-[138px]"
                 loading="lazy"
               />
             </div>
