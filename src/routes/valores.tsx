@@ -7,7 +7,7 @@ export const Route = createFileRoute("/valores")({
     seo(
       "/valores",
       "Valores do diagnóstico financeiro | DTM Consultoria Financeira",
-      "Conheça o valor do diagnóstico financeiro da DTM Consultoria Financeira. Serviços adicionais são avaliados individualmente e informados antes da contratação.",
+      "Conheça como funciona a apresentação de valores e condições dos serviços da DTM Consultoria Financeira.",
     ),
   component: Valores,
 });
@@ -17,8 +17,8 @@ function Valores() {
     <SiteLayout>
       <PageHero
         eyebrow="Valores e condições"
-        title="Transparência desde o primeiro contato"
-        text="Você sabe o valor antes de contratar. Cada situação é analisada individualmente."
+        title="Valores claros antes de contratar"
+        text="Cada atendimento começa pela compreensão da sua necessidade. Os valores são informados antes de qualquer contratação."
       />
       <section className="px-5 py-16">
         <div className="dtm-card mx-auto max-w-3xl rounded-3xl p-8 text-center">
@@ -43,7 +43,7 @@ function Valores() {
         </div>
         <div className="mx-auto mt-10 max-w-3xl space-y-4 text-sm leading-7">
           <h2 className="font-display text-2xl font-semibold text-primary">Formas de pagamento</h2>
-          <p>O diagnóstico é pago antecipadamente por Pix ou cartão. Boleto pode ser avaliado exclusivamente para pessoa jurídica, mediante aprovação prévia do jurídico.</p>
+          <p>As formas de pagamento disponíveis e as condições são informadas durante o atendimento, antes da contratação.</p>
           <h2 className="font-display text-2xl font-semibold text-primary">Importante</h2>
           <ul className="list-disc space-y-2 pl-5">
             <li>O diagnóstico não garante aumento de score, aprovação de crédito ou exclusão de registros.</li>
