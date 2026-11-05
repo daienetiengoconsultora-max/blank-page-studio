@@ -63,6 +63,17 @@ export const SERVICES: Service[] = [
     steps: ["Leitura do relatório", "Pontos de atenção", "Plano de hábitos", "Revisão periódica"],
   },
   {
+    slug: "rating-comercial",
+    name: "Rating Comercial",
+    short: "Orientação para compreender avaliações comerciais e informações cadastrais usadas em relações entre empresas.",
+    body: [
+      "O rating comercial pode reunir critérios de risco e histórico de relacionamento utilizados por fornecedores, parceiros e empresas.",
+      "Ajudamos a interpretar as informações disponíveis, identificar divergências cadastrais e organizar os dados para uma avaliação mais clara.",
+      "Cada empresa utiliza critérios próprios. A DTM não controla a classificação atribuída por terceiros nem garante aprovação comercial."
+    ],
+    steps: ["Levantamento cadastral", "Análise das informações", "Identificação de divergências", "Orientação de próximos passos"]
+  },
+  {
     slug: "rating-bancario",
     name: "Rating Bancário",
     short: "Saiba como os bancos avaliam seu risco interno e como se preparar para pedir crédito.",
@@ -268,7 +279,7 @@ export const FAQ = [
   },
   {
     q: "A DTM é um escritório de advocacia?",
-    a: "Não. A DTM DESCOMPLICA CRÉDITO presta consultoria e orientação financeira. Quando há medida judicial, ela é conduzida por advogado(a) parceiro(a).",
+    a: "Não. A DTM CONSULTORIA FINANCEIRA presta consultoria e orientação financeira. Quando há medida judicial, ela é conduzida por advogado(a) parceiro(a).",
   },
   {
     q: "Meus dados ficam protegidos?",
