@@ -18,7 +18,18 @@ export function SiteLayout({ children }: { children: ReactNode }) {
   return (
     <div className="dtm-site-watermark min-h-screen bg-background font-sans text-foreground">
       <header className="sticky top-0 z-40 border-b-2 border-brand-gold bg-background/95 backdrop-blur">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-2">
+        <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-5 py-2">
+          <Link to="/" className="flex min-w-0 shrink-0 items-center gap-2" aria-label={`${BRAND} - Início`}>
+            <img
+              src="/logo-dtm-consultoria-financeira.svg"
+              alt="Logo DTM"
+              width="260"
+              height="241"
+              className="h-auto w-12 shrink-0 object-contain object-center sm:w-14"
+              fetchPriority="high"
+            />
+            <span className="max-w-[130px] text-xs font-bold leading-tight text-brand-purple sm:max-w-none sm:text-sm">{BRAND}</span>
+          </Link>
           <nav className="hidden items-center gap-4 text-sm font-medium lg:flex">
             {NAV.map((n) => (
               <Link
@@ -71,7 +82,17 @@ export function SiteLayout({ children }: { children: ReactNode }) {
       <main>{children}</main>
       <footer className="bg-brand-spectrum px-5 py-12 text-sm text-white">
         <div className="mx-auto grid max-w-6xl gap-8 md:grid-cols-3">
-          <div>
+          <div className="min-w-0">
+            <div className="mb-3 inline-flex max-w-full items-center justify-center rounded-xl border border-brand-gold bg-brand-cream p-2">
+              <img
+                src="/logo-dtm-consultoria-financeira.svg"
+                alt="Logo DTM Consultoria Financeira"
+                width="260"
+                height="241"
+                className="block h-auto w-28 max-w-full object-contain object-center sm:w-36"
+                loading="lazy"
+              />
+            </div>
             <p className="mt-3 leading-6">
               Consultoria em regularização de nome e diagnóstico financeiro. Atendimento em todo o
               Brasil.
