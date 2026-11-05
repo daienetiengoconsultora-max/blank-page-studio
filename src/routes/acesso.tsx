@@ -7,9 +7,9 @@ export const Route = createFileRoute("/acesso")({
   ssr: false,
   head: () => ({
     meta: [
-      { title: "Área restrita | DTM DESCOMPLICA CRÉDITO" },
+      { title: "Área restrita | DTM CONSULTORIA FINANCEIRA" },
       { name: "description", content: "Acesso restrito da equipe DTM." },
-      { property: "og:title", content: "Área restrita | DTM DESCOMPLICA CRÉDITO" },
+      { property: "og:title", content: "Área restrita | DTM CONSULTORIA FINANCEIRA" },
       { property: "og:description", content: "Acesso restrito da equipe DTM." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
