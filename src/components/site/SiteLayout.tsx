@@ -17,13 +17,15 @@ export function SiteLayout({ children }: { children: ReactNode }) {
     <div className="min-h-screen bg-background font-sans text-foreground">
       <header className="sticky top-0 z-40 border-b-2 border-accent bg-background/95 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4">
-          <Link to="/" className="flex items-center gap-2">
-            <span className="grid h-10 w-10 place-items-center rounded-full bg-primary font-display text-sm font-bold text-primary-foreground ring-2 ring-accent ring-offset-2 ring-offset-background">
-              DTM
-            </span>
-            <span className="border-b-2 border-accent pb-1 font-display text-lg font-semibold text-primary">
-              Consultoria Financeira
-            </span>
+          <Link to="/" className="flex items-center" aria-label="DTM Consultoria Financeira - Início">
+            <img
+              src="/logo-dtm-consultoria-financeira.svg"
+              alt="DTM Consultoria Financeira"
+              width="150"
+              height="139"
+              className="h-12 w-auto object-contain sm:h-14"
+              fetchPriority="high"
+            />
           </Link>
           <nav className="hidden items-center gap-6 text-sm font-medium md:flex">
             {NAV.map((n) => (
@@ -78,9 +80,16 @@ export function SiteLayout({ children }: { children: ReactNode }) {
       <footer className="bg-primary px-5 py-12 text-sm text-primary-foreground/90">
         <div className="mx-auto grid max-w-6xl gap-8 md:grid-cols-3">
           <div>
-            <p className="font-display text-xl font-semibold text-primary-foreground decoration-accent underline decoration-2 underline-offset-8">
-              {BRAND}
-            </p>
+            <div className="inline-flex rounded-xl bg-[#fffaf0] p-2">
+              <img
+                src="/logo-dtm-consultoria-financeira.svg"
+                alt="DTM Consultoria Financeira"
+                width="130"
+                height="121"
+                className="h-20 w-auto object-contain"
+                loading="lazy"
+              />
+            </div>
             <p className="mt-3 leading-6">
               Consultoria em regularização de nome e diagnóstico financeiro. Atendimento em todo o
               Brasil.
