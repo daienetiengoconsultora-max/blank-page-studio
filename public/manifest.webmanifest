@@ -1,7 +1,7 @@
 {
-  "name": "DTM Descomplica Crédito",
-  "short_name": "DTM Crédito",
-  "description": "Orientação sobre crédito, diagnóstico financeiro e serviços DTM.",
+  "name": "DTM Consultoria Financeira",
+  "short_name": "DTM Consultoria",
+  "description": "Consultoria financeira, diagnóstico de crédito e orientação para CPF e CNPJ.",
   "lang": "pt-BR",
   "start_url": "/",
   "scope": "/",
