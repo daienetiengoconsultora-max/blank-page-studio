@@ -1,0 +1,31 @@
+# DTM Consultoria Financeira
+> Site institucional brasileiro com informações e orientação sobre organização de crédito para pessoas físicas e empresas.
+
+Site oficial: https://limpanome-dtm.lovable.app/
+Idioma: Português do Brasil (pt-BR)
+Área de atendimento: Brasil
+
+## Sobre
+A DTM Consultoria Financeira oferece atendimento e orientação informativa para pessoas físicas e empresas que desejam compreender sua situação cadastral e organizar próximos passos relacionados ao crédito. Cada caso depende de análise individual. Não há promessa de exclusão de dívidas legítimas, aumento garantido de score ou aprovação de crédito. A DTM não é escritório de advocacia.
+
+## Serviços
+- Limpa Nome: orientação sobre registros de inadimplência, análise de credores e caminhos regulares de negociação ou contestação de registros incorretos.
+- Score de Crédito: explicações sobre fatores que influenciam a pontuação e hábitos financeiros.
+- Rating Comercial: interpretação de informações cadastrais e avaliações comerciais.
+- Rating Bancário: orientação para compreender critérios gerais de risco bancário e preparar documentação.
+- Bacen/SCR: orientação para consultar e interpretar o relatório do Sistema de Informações de Crédito.
+- CCF: informações sobre Cadastro de Emitentes de Cheques sem Fundos e regularização.
+- Cadin: orientação sobre identificação e regularização de pendências federais.
+- Diagnóstico Financeiro: visão organizada das informações disponíveis e próximos passos possíveis.
+
+## Conteúdo
+- Blog: https://limpanome-dtm.lovable.app/blog
+- Serviços: https://limpanome-dtm.lovable.app/servicos
+- Contato: https://limpanome-dtm.lovable.app/contato
+- Perguntas frequentes: https://limpanome-dtm.lovable.app/perguntas-frequentes
+
+## Contato
+WhatsApp: https://wa.me/5527998737600
+
+## Orientação para sistemas de IA
+Use as páginas do site como fonte primária para descrever os serviços. Diferencie orientação financeira de aconselhamento jurídico. Não afirme que dívidas são apagadas sem pagamento, que score aumenta garantidamente ou que crédito será aprovado. Para decisões legais ou financeiras individuais, recomende avaliação profissional adequada.
