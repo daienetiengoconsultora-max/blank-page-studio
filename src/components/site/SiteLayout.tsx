@@ -18,14 +18,14 @@ export function SiteLayout({ children }: { children: ReactNode }) {
   return (
     <div className="dtm-site-watermark min-h-screen bg-background font-sans text-foreground">
       <header className="sticky top-0 z-40 border-b-2 border-brand-gold bg-background/95 backdrop-blur">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4">
+        <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-2">
           <Link to="/" className="flex min-w-0 items-center" aria-label="DTM Consultoria Financeira - Início">
             <img
               src="/logo-dtm-consultoria-financeira.svg"
               alt="DTM Consultoria Financeira"
               width="260"
               height="241"
-              className="block h-[54px] w-[58px] shrink-0 object-contain object-center sm:h-[62px] sm:w-[67px]"
+              className="block h-auto w-[168px] max-h-[156px] shrink-0 object-contain object-center sm:w-[190px] sm:max-h-[176px]"
               fetchPriority="high"
             />
           </Link>
