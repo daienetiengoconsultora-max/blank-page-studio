@@ -44,7 +44,8 @@ function Home() {
             <p className="text-xs font-semibold uppercase tracking-[0.3em] text-accent">{BRAND}</p>
             <div className="dtm-rose-rule mt-4" />
             <h1 className="mt-4 font-display text-3xl font-semibold leading-tight md:text-5xl">
-              Limpamos o seu CPF ou CNPJ para você ter um fôlego financeiro e tentar voltar ao mercado de crédito.
+              Limpamos o seu CPF ou CNPJ para você ter um fôlego financeiro e tentar voltar ao
+              mercado de crédito.
             </h1>
             <p className="mt-5 max-w-lg text-base leading-7 opacity-90">
               Orientação clara e honesta para entender sua situação de crédito e escolher o melhor

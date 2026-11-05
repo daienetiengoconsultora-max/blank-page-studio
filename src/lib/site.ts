@@ -65,13 +65,19 @@ export const SERVICES: Service[] = [
   {
     slug: "rating-comercial",
     name: "Rating Comercial",
-    short: "Orientação para compreender avaliações comerciais e informações cadastrais usadas em relações entre empresas.",
+    short:
+      "Orientação para compreender avaliações comerciais e informações cadastrais usadas em relações entre empresas.",
     body: [
       "O rating comercial pode reunir critérios de risco e histórico de relacionamento utilizados por fornecedores, parceiros e empresas.",
       "Ajudamos a interpretar as informações disponíveis, identificar divergências cadastrais e organizar os dados para uma avaliação mais clara.",
-      "Cada empresa utiliza critérios próprios. A DTM não controla a classificação atribuída por terceiros nem garante aprovação comercial."
+      "Cada empresa utiliza critérios próprios. A DTM não controla a classificação atribuída por terceiros nem garante aprovação comercial.",
     ],
-    steps: ["Levantamento cadastral", "Análise das informações", "Identificação de divergências", "Orientação de próximos passos"]
+    steps: [
+      "Levantamento cadastral",
+      "Análise das informações",
+      "Identificação de divergências",
+      "Orientação de próximos passos",
+    ],
   },
   {
     slug: "rating-bancario",
@@ -271,7 +277,7 @@ export const FAQ = [
   },
   {
     q: "Quanto custa?",
-    a: "O valor do diagnóstico e de qualquer serviço é informado diretamente no atendimento, após entendermos sua necessidade e antes de qualquer contratação. Você decide se deseja prosseguir."
+    a: "O valor do diagnóstico e de qualquer serviço é informado diretamente no atendimento, após entendermos sua necessidade e antes de qualquer contratação. Você decide se deseja prosseguir.",
   },
   {
     q: "Em quanto tempo vejo resultado?",
