@@ -1,6 +1,6 @@
 // Endereço publicado confirmado na Lovable; troque quando houver domínio próprio confirmado.
 export const SITE_URL = "https://limpanome-dtm.lovable.app";
-export const BRAND = "DTM CONSULTORIA FINANCEIRA";
+export const BRAND = "DTM Assessoria e Consultoria em Regularização de Dados de Crédito";
 export const WHATSAPP_NUMBER = "5527998737600";
 export const WHATSAPP_DISPLAY = "(27) 99873-7600";
 export const whatsappLink = (text = "Olá! Quero fazer meu diagnóstico financeiro.") =>
@@ -279,7 +279,7 @@ export const FAQ = [
   },
   {
     q: "A DTM é um escritório de advocacia?",
-    a: "Não. A DTM CONSULTORIA FINANCEIRA presta consultoria e orientação financeira. Quando há medida judicial, ela é conduzida por advogado(a) parceiro(a).",
+    a: "Não. A DTM Assessoria e Consultoria em Regularização de Dados de Crédito presta consultoria e orientação financeira. Quando há medida judicial, ela é conduzida por advogado(a) parceiro(a).",
   },
   {
     q: "Meus dados ficam protegidos?",
