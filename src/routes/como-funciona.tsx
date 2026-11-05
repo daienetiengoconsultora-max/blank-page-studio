@@ -6,7 +6,7 @@ export const Route = createFileRoute("/como-funciona")({
   head: () =>
     seo(
       "/como-funciona",
-      "Como funciona | DTM CONSULTORIA FINANCEIRA",
+      "Como funciona | DTM Assessoria e Consultoria em Regularização de Dados de Crédito",
       "Veja o passo a passo do diagnóstico financeiro da DTM: formulário, contato pelo WhatsApp, análise e orientação.",
     ),
   component: () => (
