@@ -6,7 +6,7 @@ export const Route = createFileRoute("/valores")({
   head: () =>
     seo(
       "/valores",
-      "Valores do diagnóstico financeiro | DTM Consultoria Financeira",
+      "Valores e condições | DTM Consultoria Financeira",
       "Conheça como funciona a apresentação de valores e condições dos serviços da DTM Consultoria Financeira.",
     ),
   component: Valores,
@@ -28,7 +28,6 @@ function Valores() {
           <h2 className="mt-3 font-display text-3xl font-semibold text-primary">
             Análise inicial da sua situação
           </h2>
-          <p className="mt-4 font-display text-5xl font-semibold text-primary">R$ 29,99</p>
           <p className="mx-auto mt-4 max-w-xl text-sm leading-7 text-muted-foreground">
             O diagnóstico reúne informações relevantes para entender seu cenário e indicar
             possíveis próximos passos. Serviços adicionais, quando recomendados, têm escopo e
