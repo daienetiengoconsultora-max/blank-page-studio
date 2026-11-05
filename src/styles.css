@@ -245,8 +245,8 @@
   background-image: url("/__l5e/assets-v1/87c36554-3afb-4979-8bed-c860552a31e8/dtm-logo-mark-transparent.png");
   background-repeat: no-repeat;
   background-position: center center;
-  background-size: min(62vw, 440px) auto;
-  opacity: 0.055;
+  background-size: min(70vw, 560px) auto;
+  opacity: 0.09;
 }
  .dtm-site-watermark > header,
 .dtm-site-watermark > main,
@@ -257,7 +257,7 @@
 
 @media (max-width: 640px) {
   .dtm-site-watermark::before {
-    background-size: min(78vw, 300px) auto;
-    opacity: 0.045;
+    background-size: min(86vw, 340px) auto;
+    opacity: 0.07;
   }
 }
