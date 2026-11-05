@@ -41,7 +41,8 @@ export function DocumentsModule({ userId }: { userId: string }) {
     if (stored.error) { setBusy(false); setMessage(stored.error.message); return; }
     const saved = await supabase.from("client_documents").insert({
       lead_id: leadId, owner_id: userId, file_name: file.name, storage_path: path,
-      content_type: file.type, category, status: "enviado",
+      content_type: file.type, status: "enviado",
+      ...(category ? { category } : {}),
     });
     if (saved.error) {
       await supabase.storage.from(BUCKET).remove([path]);
