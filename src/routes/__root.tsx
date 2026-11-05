@@ -78,14 +78,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "DTM Consultoria Financeira | Limpa Nome, Score e Diagnóstico Financeiro" },
+      { title: "DTM Descomplica Crédito | Limpa Nome, Score e Diagnóstico" },
       {
         name: "description",
         content:
-          "DTM Consultoria Financeira: serviços de regularização de nome, score, rating bancário, Bacen/SCR, CCF e Cadin. Conheça nossos serviços.",
+          "DTM Descomplica Crédito: orientação sobre Limpa Nome, Score, Bacen/SCR, Rating Comercial e Bancário, CCF e Cadin. Atendimento transparente para CPF e CNPJ.",
       },
-      { name: "author", content: "DTM Consultoria Financeira" },
+      { name: "author", content: "DTM Descomplica Crédito" },
       { name: "robots", content: "index, follow, max-image-preview:large" },
+      { name: "theme-color", content: "#2B3A67" },
+      { name: "mobile-web-app-capable", content: "yes" },
+      { name: "apple-mobile-web-app-capable", content: "yes" },
+      { name: "apple-mobile-web-app-status-bar-style", content: "default" },
       { property: "og:title", content: "DTM Consultoria Financeira" },
       {
         property: "og:description",
