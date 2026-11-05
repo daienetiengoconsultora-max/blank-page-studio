@@ -4,7 +4,7 @@ import { brl, fmtDate, needsAlert, stageLabel } from "@/lib/crm";
 import { Card, ErrorNote, useLeads } from "./shared";
 import { useProcesses } from "./ProcessesModule";
 
-type Props = { onNavigate: (tab: "leads" | "tarefas" | "servicos" | "contratos" | "processos" | "mensagens" | "relatorios") => void };
+type Props = { onNavigate: (tab: "leads" | "funil" | "tarefas" | "servicos" | "documentos" | "contratos" | "financeiro" | "processos" | "mensagens" | "relatorios") => void };
 
 export function DashboardModule({ onNavigate }: Props) {
   const leadsQuery = useLeads();
@@ -61,9 +61,12 @@ export function DashboardModule({ onNavigate }: Props) {
           <div className="grid gap-2 sm:grid-cols-2">
             {[
               ["leads", "Clientes e leads", "Cadastrar, pesquisar e atualizar atendimentos"],
+              ["funil", "Funil de atendimento", "Visualizar clientes por etapa e acompanhar conversões"],
               ["tarefas", "Agenda e tarefas", "Organizar retornos, prazos e pendências por cliente"],
               ["servicos", "Serviços DTM", "Acompanhar Limpa Nome, Score, Bacen e Ratings"],
+              ["documentos", "Documentos", "Guardar e consultar arquivos privados dos clientes"],
               ["contratos", "Contratos", "Gerar, revisar e baixar contratos em PDF"],
+              ["financeiro", "Financeiro", "Visualizar valores contratados e pendentes"],
               ["processos", "Processos", "Acompanhar etapas e datas estimadas"],
               ["mensagens", "Mensagens", "Preparar WhatsApp e registrar contatos"],
               ["relatorios", "Relatórios", "Consultar indicadores e conversão"],
