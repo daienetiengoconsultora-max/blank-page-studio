@@ -18,9 +18,9 @@ const FinanceModule = lazy(() => import("@/components/crm/FinanceModule").then((
 export const Route = createFileRoute("/_authenticated/crm")({
   head: () => ({
     meta: [
-      { title: "CRM | DTM DESCOMPLICA CRÉDITO" },
-      { name: "description", content: "Área administrativa da DTM Descomplica Crédito." },
-      { property: "og:title", content: "CRM | DTM DESCOMPLICA CRÉDITO" },
+      { title: "CRM | DTM CONSULTORIA FINANCEIRA" },
+      { name: "description", content: "Área administrativa da DTM Consultoria Financeira." },
+      { property: "og:title", content: "CRM | DTM CONSULTORIA FINANCEIRA" },
       { property: "og:description", content: "Área administrativa da DTM." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
@@ -63,7 +63,7 @@ function Crm() {
     <div className="min-h-screen bg-secondary">
       <header className="bg-primary text-primary-foreground">
         <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-3 px-5 py-4">
-          <p className="font-display text-lg font-semibold">DTM DESCOMPLICA CRÉDITO · CRM</p>
+          <p className="font-display text-lg font-semibold">DTM CONSULTORIA FINANCEIRA · CRM</p>
           <button
             onClick={signOut}
             className="rounded-full border border-primary-foreground/40 px-4 py-1.5 text-sm"
