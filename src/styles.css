@@ -67,6 +67,12 @@
 
 :root {
   --radius: 0.875rem;
+  /* Cores extraídas da logo oficial: azul-marinho, roxo, rosa e dourado. */
+  --brand-navy: oklch(0.332 0.099 264.9);
+  --brand-purple: oklch(0.440 0.193 322.2);
+  --brand-pink: oklch(0.669 0.186 355.3);
+  --brand-gold: oklch(0.763 0.148 75.9);
+  --brand-cream: oklch(0.983 0.019 87.5);
   /* Identidade visual oficial DTM Consultoria Financeira */
   --background: oklch(0.991 0.000 89.9); /* #FCFCFC */
   --foreground: oklch(0.409 0.000 89.9); /* #4A4A4A */
@@ -107,6 +113,11 @@
 }
 
 .dark {
+  --brand-navy: oklch(0.332 0.099 264.9);
+  --brand-purple: oklch(0.440 0.193 322.2);
+  --brand-pink: oklch(0.669 0.186 355.3);
+  --brand-gold: oklch(0.763 0.148 75.9);
+  --brand-cream: oklch(0.983 0.019 87.5);
   --background: oklch(0.245 0.045 268);
   --foreground: oklch(0.955 0.025 99.5);
   --card: oklch(0.295 0.050 268);
@@ -181,16 +192,39 @@
   --tw-ring-color: oklch(0.678 0.054 21.6);
 }
 
+@utility text-brand-gold {
+  color: var(--brand-gold);
+}
+@utility bg-brand-gold {
+  background-color: var(--brand-gold);
+}
+@utility border-brand-gold {
+  border-color: var(--brand-gold);
+}
+@utility text-brand-pink {
+  color: var(--brand-pink);
+}
+@utility bg-brand-pink {
+  background-color: var(--brand-pink);
+}
+@utility border-brand-pink {
+  border-color: var(--brand-pink);
+}
+@utility bg-brand-spectrum {
+  background-image: linear-gradient(115deg, var(--brand-navy) 0%, var(--brand-purple) 38%, var(--brand-pink) 72%, var(--brand-gold) 100%);
+}
+
 @layer components {
   .dtm-section-heading {
     color: var(--primary);
     text-decoration: underline;
-    text-decoration-color: var(--accent);
+    text-decoration-color: var(--brand-gold);
     text-decoration-thickness: 3px;
     text-underline-offset: 0.45rem;
   }
   .dtm-card {
-    border: 1px solid color-mix(in oklch, var(--accent) 55%, transparent);
+    border: 1px solid color-mix(in oklch, var(--brand-pink) 42%, transparent);
+    border-top: 3px solid var(--brand-gold);
     background: var(--card);
     box-shadow: 0 10px 28px -22px var(--primary);
   }
@@ -199,13 +233,13 @@
     box-shadow: var(--shadow-elegant);
   }
   .dtm-purple-panel {
-    background: linear-gradient(135deg, var(--primary), var(--ring));
+    background: linear-gradient(118deg, var(--brand-navy) 0%, var(--brand-purple) 48%, var(--brand-pink) 100%);
     color: var(--primary-foreground);
   }
   .dtm-rose-rule {
     height: 3px;
     width: 3.5rem;
     border-radius: 999px;
-    background: var(--accent);
+    background: linear-gradient(90deg, var(--brand-pink), var(--brand-gold));
   }
 }
