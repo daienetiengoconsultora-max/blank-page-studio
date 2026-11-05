@@ -25,11 +25,11 @@ export function SiteLayout({ children }: { children: ReactNode }) {
               alt="DTM Consultoria Financeira"
               width="260"
               height="241"
-              className="block h-[76px] w-[82px] shrink-0 object-contain object-center sm:h-[92px] sm:w-[100px]"
+              className="block h-[112px] w-[121px] shrink-0 object-contain object-center sm:h-[132px] sm:w-[143px]"
               fetchPriority="high"
             />
           </Link>
-          <nav className="hidden items-center gap-6 text-sm font-medium md:flex">
+          <nav className="hidden items-center gap-4 text-sm font-medium lg:flex">
             {NAV.map((n) => (
               <Link
                 key={n.to}
@@ -49,7 +49,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
             </Link>
           </nav>
           <button
-            className="md:hidden rounded-md border border-border px-3 py-2 text-sm"
+            className="rounded-md border border-brand-purple px-3 py-2 text-sm text-brand-purple lg:hidden"
             onClick={() => setOpen(!open)}
             aria-label="Abrir menu"
           >
@@ -57,7 +57,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
           </button>
         </div>
         {open && (
-          <nav className="flex flex-col gap-1 border-t border-border px-5 py-3 md:hidden">
+          <nav className="flex flex-col gap-1 border-t border-brand-pink/40 bg-brand-cream px-5 py-3 lg:hidden">
             {NAV.map((n) => (
               <Link
                 key={n.to}
@@ -82,13 +82,13 @@ export function SiteLayout({ children }: { children: ReactNode }) {
       <footer className="bg-brand-spectrum px-5 py-12 text-sm text-white">
         <div className="mx-auto grid max-w-6xl gap-8 md:grid-cols-3">
           <div>
-            <div className="inline-flex rounded-xl bg-[#fffaf0] p-2">
+            <div className="inline-flex rounded-xl border border-brand-gold bg-brand-cream p-2">
               <img
                 src="/logo-dtm-consultoria-financeira.svg"
                 alt="DTM Consultoria Financeira"
                 width="260"
                 height="241"
-                className="block h-36 w-[155px] max-w-full object-contain object-center sm:h-40 sm:w-[172px]"
+                className="block h-40 w-[172px] max-w-full object-contain object-center sm:h-44 sm:w-[190px]"
                 loading="lazy"
               />
             </div>
@@ -168,7 +168,7 @@ export function PageHero({
   return (
     <section className="dtm-purple-panel relative overflow-hidden px-5 py-16 md:py-20">
       <div className="mx-auto max-w-4xl">
-        <p className="text-xs font-semibold uppercase tracking-[0.25em] text-accent">{eyebrow}</p>
+        <p className="text-xs font-semibold uppercase tracking-[0.25em] text-brand-gold">{eyebrow}</p>
         <h1 className="mt-3 font-display text-4xl font-semibold leading-tight md:text-5xl">
           {title}
         </h1>
