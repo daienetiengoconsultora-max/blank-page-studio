@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { DiagnosticForm } from "@/components/site/DiagnosticForm";
-import { BRAND, POSTS, SERVICES, SITE_URL, TRUST_POINTS, WHATSAPP_NUMBER, seo, whatsappLink } from "@/lib/site";
+import { BRAND, POSTS, SERVICES, SITE_URL, TESTIMONIALS, TRUST_POINTS, WHATSAPP_NUMBER, seo, whatsappLink } from "@/lib/site";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -173,7 +173,7 @@ function Home() {
                 </Link>
                 <Link
                   to="/servicos/$slug"
-                  params={{ slug: "rating-bancario" }}
+n                  params={{ slug: "rating-bancario" }}
                   className="rounded-full border border-primary px-5 py-2.5 text-sm font-semibold text-primary"
                 >
                   Rating Bancário
@@ -228,12 +228,19 @@ function Home() {
           <h2 className="dtm-section-heading inline-block font-display text-3xl font-semibold md:text-4xl">
             Depoimentos
           </h2>
-          <div className="dtm-card mt-8 rounded-3xl p-8 text-sm leading-7 text-muted-foreground">
-            <p className="font-medium text-primary">Em breve, relatos de clientes reais.</p>
-            <p className="mt-2">
-              Publicamos depoimentos somente com autorização expressa. Se você já foi atendido e quiser
-              compartilhar sua experiência, fale conosco pelo WhatsApp.
-            </p>
+          <div className="mt-8 grid gap-5 md:grid-cols-1">
+            {TESTIMONIALS.map((t) => (
+              <div key={t.name} className="dtm-card rounded-3xl p-8">
+                <p className="text-sm leading-7 text-muted-foreground">“{t.text}”</p>
+                <div className="mt-5 flex flex-wrap items-center justify-between gap-3">
+                  <div>
+                    <p className="font-semibold text-primary">{t.name}</p>
+                    <p className="text-xs text-muted-foreground">{t.location}</p>
+                  </div>
+                  <p className="text-xs font-medium text-brand-purple">{t.result}</p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
