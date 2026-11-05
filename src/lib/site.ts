@@ -1,6 +1,6 @@
 // Endereço publicado confirmado na Lovable; troque quando houver domínio próprio confirmado.
 export const SITE_URL = "https://descomplicacreditoo.lovable.app";
-export const BRAND = "DTM CONSULTORIA FINANCEIRA";
+export const BRAND = "DTM DESCOMPLICA CRÉDITO";
 export const WHATSAPP_NUMBER = "5527998737600";
 export const WHATSAPP_DISPLAY = "(27) 99873-7600";
 export const whatsappLink = (text = "Olá! Quero fazer meu diagnóstico financeiro.") =>
@@ -260,7 +260,7 @@ export const FAQ = [
   },
   {
     q: "Quanto custa?",
-    a: "Os valores informativos são R$ 850 para pessoa física (CPF) e R$ 950 para pessoa jurídica (CNPJ), pagos à vista ou no cartão (os juros da máquina ficam por conta do cliente). As condições finais constam no contrato.",
+    a: "O diagnóstico financeiro custa R$ 29,99. O valor de qualquer serviço adicional é informado após a análise individual, antes de qualquer contratação.",
   },
   {
     q: "Em quanto tempo vejo resultado?",
@@ -268,7 +268,7 @@ export const FAQ = [
   },
   {
     q: "A DTM é um escritório de advocacia?",
-    a: "Não. A DTM CONSULTORIA FINANCEIRA presta consultoria e orientação financeira. Quando há medida judicial, ela é conduzida por advogado(a) parceiro(a).",
+    a: "Não. A DTM DESCOMPLICA CRÉDITO presta consultoria e orientação financeira. Quando há medida judicial, ela é conduzida por advogado(a) parceiro(a).",
   },
   {
     q: "Meus dados ficam protegidos?",
