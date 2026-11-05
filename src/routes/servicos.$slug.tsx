@@ -25,6 +25,11 @@ function ServicePage() {
     <SiteLayout>
       <PageHero eyebrow="Serviço" title={s.name} text={s.short} />
       <section className="mx-auto max-w-3xl px-5 py-16">
+        {s.forWho && (
+          <p className="mb-6 rounded-2xl bg-secondary px-4 py-3 text-sm font-medium text-primary">
+            Para quem: {s.forWho}
+          </p>
+        )}
         {s.body.map((p) => (
           <p key={p} className="mb-5 leading-7">
             {p}
@@ -38,22 +43,29 @@ function ServicePage() {
             </li>
           ))}
         </ol>
-        <div className="mt-10 flex flex-wrap gap-3">
-          <Link
-            to="/"
-            hash="diagnostico"
-            className="rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground"
-          >
-            Fazer diagnóstico
-          </Link>
-          <a
-            href={whatsappLink(`Olá! Quero saber mais sobre ${s.name}.`)}
-            target="_blank"
-            rel="noreferrer"
-            className="rounded-full border border-primary px-6 py-3 text-sm font-semibold text-primary"
-          >
-            Falar no WhatsApp
-          </a>
+        <div className="mt-10 rounded-3xl border border-accent/50 bg-secondary/50 p-6">
+          <p className="text-sm font-semibold text-primary">Próximo passo</p>
+          <p className="mt-2 text-sm leading-6 text-muted-foreground">
+            Faça o diagnóstico. Você recebe o panorama da sua situação e as opções possíveis — com
+            custos explicados — antes de qualquer contratação.
+          </p>
+          <div className="mt-5 flex flex-wrap gap-3">
+            <Link
+              to="/"
+              hash="diagnostico"
+              className="rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground"
+            >
+              Fazer diagnóstico
+            </Link>
+            <a
+              href={whatsappLink(`Olá! Quero saber mais sobre ${s.name}.`)}
+              target="_blank"
+              rel="noreferrer"
+              className="rounded-full border border-primary px-6 py-3 text-sm font-semibold text-primary"
+            >
+              Falar no WhatsApp
+            </a>
+          </div>
         </div>
       </section>
     </SiteLayout>
