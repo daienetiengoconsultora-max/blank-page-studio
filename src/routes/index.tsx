@@ -7,7 +7,7 @@ export const Route = createFileRoute("/")({
   head: () => ({
     ...seo(
       "/",
-      "DTM CONSULTORIA FINANCEIRA | Dê um fôlego para o seu nome",
+      "DTM CONSULTORIA FINANCEIRA | Limpamos o seu CPF ou CNPJ para você ter um fôlego financeiro e tentar voltar ao mercado de crédito.",
       "Regularize seu nome com orientação transparente: Limpa Nome, Score, Rating Bancário, Bacen/SCR, CCF e Cadin. Conheça os serviços de orientação para CPF e CNPJ.",
     ),
     scripts: [
@@ -43,7 +43,7 @@ function Home() {
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.3em] text-accent">{BRAND}</p>
             <div className="dtm-rose-rule mt-4" />
-            <h1 className="mt-4 font-display text-4xl font-semibold leading-tight md:text-6xl">
+            <h1 className="mt-4 font-display text-3xl font-semibold leading-tight md:text-5xl">
               Dê um fôlego para o seu nome
             </h1>
             <p className="mt-5 max-w-lg text-base leading-7 opacity-90">
