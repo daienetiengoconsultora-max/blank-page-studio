@@ -211,8 +211,16 @@ function LeadDetail({ lead, userId }: { lead: Lead; userId: string }) {
       return [
         ...a.data.map((x) => ({
           id: x.id,
-          kind: x.activity_type,
-          text: x.description,
+          kind: x.description.startsWith("DTM_SERVICE:") ? "Serviço DTM" : x.activity_type,
+          text: (() => {
+            if (!x.description.startsWith("DTM_SERVICE:")) return x.description;
+            try {
+              const service = JSON.parse(x.description.slice("DTM_SERVICE:".length)) as { service?: string; status?: string; notes?: string };
+              return [service.service, service.status, service.notes].filter(Boolean).join(" · ");
+            } catch {
+              return "Registro de serviço DTM";
+            }
+          })(),
           at: x.created_at,
         })),
         ...m.data.map((x) => ({
