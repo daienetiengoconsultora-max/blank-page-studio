@@ -10,9 +10,15 @@
   "theme_color": "#2B3A67",
   "icons": [
     {
-      "src": "/favicon.svg",
-      "sizes": "any",
-      "type": "image/svg+xml",
+      "src": "/favicon.png",
+      "sizes": "64x64",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/__l5e/assets-v1/87c36554-3afb-4979-8bed-c860552a31e8/dtm-logo-mark-transparent.png",
+      "sizes": "640x640",
+      "type": "image/png",
       "purpose": "any"
     }
   ]
