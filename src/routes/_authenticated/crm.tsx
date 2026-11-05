@@ -1,15 +1,19 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useQueryClient } from "@tanstack/react-query";
-import { useState } from "react";
+import { lazy, Suspense, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
-import { DashboardModule } from "@/components/crm/DashboardModule";
-import { LeadsModule } from "@/components/crm/LeadsModule";
-import { ContractsModule } from "@/components/crm/ContractsModule";
-import { ProcessesModule } from "@/components/crm/ProcessesModule";
-import { MessagesModule } from "@/components/crm/MessagesModule";
-import { ReportsModule } from "@/components/crm/ReportsModule";
-import { TasksModule } from "@/components/crm/TasksModule";
-import { ServicesModule } from "@/components/crm/ServicesModule";
+
+const DashboardModule = lazy(() => import("@/components/crm/DashboardModule").then((m) => ({ default: m.DashboardModule })));
+const LeadsModule = lazy(() => import("@/components/crm/LeadsModule").then((m) => ({ default: m.LeadsModule })));
+const ContractsModule = lazy(() => import("@/components/crm/ContractsModule").then((m) => ({ default: m.ContractsModule })));
+const ProcessesModule = lazy(() => import("@/components/crm/ProcessesModule").then((m) => ({ default: m.ProcessesModule })));
+const MessagesModule = lazy(() => import("@/components/crm/MessagesModule").then((m) => ({ default: m.MessagesModule })));
+const ReportsModule = lazy(() => import("@/components/crm/ReportsModule").then((m) => ({ default: m.ReportsModule })));
+const TasksModule = lazy(() => import("@/components/crm/TasksModule").then((m) => ({ default: m.TasksModule })));
+const ServicesModule = lazy(() => import("@/components/crm/ServicesModule").then((m) => ({ default: m.ServicesModule })));
+const FunnelModule = lazy(() => import("@/components/crm/FunnelModule").then((m) => ({ default: m.FunnelModule })));
+const DocumentsModule = lazy(() => import("@/components/crm/DocumentsModule").then((m) => ({ default: m.DocumentsModule })));
+const FinanceModule = lazy(() => import("@/components/crm/FinanceModule").then((m) => ({ default: m.FinanceModule })));
 
 export const Route = createFileRoute("/_authenticated/crm")({
   head: () => ({
@@ -29,9 +33,12 @@ export const Route = createFileRoute("/_authenticated/crm")({
 const TABS = [
   ["painel", "Painel"],
   ["leads", "Leads e clientes"],
+  ["funil", "Funil"],
   ["tarefas", "Agenda e tarefas"],
   ["servicos", "Serviços DTM"],
+  ["documentos", "Documentos"],
   ["contratos", "Contratos"],
+  ["financeiro", "Financeiro"],
   ["processos", "Processos"],
   ["mensagens", "Mensagens"],
   ["relatorios", "Relatórios"],
@@ -64,11 +71,12 @@ function Crm() {
             Sair
           </button>
         </div>
-        <nav className="mx-auto flex max-w-7xl gap-1 overflow-x-auto px-5">
+        <nav className="mx-auto flex max-w-7xl gap-1 overflow-x-auto px-5" aria-label="Navegação do CRM">
           {TABS.map(([k, label]) => (
             <button
               key={k}
               onClick={() => setTab(k)}
+              aria-current={tab === k ? "page" : undefined}
               className={`whitespace-nowrap rounded-t-xl px-4 py-2 text-sm font-semibold ${tab === k ? "bg-secondary text-primary" : "text-primary-foreground/80 hover:text-primary-foreground"}`}
             >
               {label}
@@ -77,14 +85,19 @@ function Crm() {
         </nav>
       </header>
       <main className="mx-auto max-w-7xl px-5 py-6">
-        {tab === "painel" && <DashboardModule onNavigate={setTab} />}
-        {tab === "leads" && <LeadsModule userId={user.id} />}
-        {tab === "tarefas" && <TasksModule userId={user.id} />}
-        {tab === "servicos" && <ServicesModule userId={user.id} />}
-        {tab === "contratos" && <ContractsModule userId={user.id} />}
-        {tab === "processos" && <ProcessesModule userId={user.id} />}
-        {tab === "mensagens" && <MessagesModule userId={user.id} />}
-        {tab === "relatorios" && <ReportsModule />}
+        <Suspense fallback={<div className="rounded-2xl border border-border bg-background p-6 text-sm text-muted-foreground">Abrindo módulo…</div>}>
+          {tab === "painel" && <DashboardModule onNavigate={setTab} />}
+          {tab === "leads" && <LeadsModule userId={user.id} />}
+          {tab === "funil" && <FunnelModule />}
+          {tab === "tarefas" && <TasksModule userId={user.id} />}
+          {tab === "servicos" && <ServicesModule userId={user.id} />}
+          {tab === "documentos" && <DocumentsModule userId={user.id} />}
+          {tab === "contratos" && <ContractsModule userId={user.id} />}
+          {tab === "financeiro" && <FinanceModule />}
+          {tab === "processos" && <ProcessesModule userId={user.id} />}
+          {tab === "mensagens" && <MessagesModule userId={user.id} />}
+          {tab === "relatorios" && <ReportsModule />}
+        </Suspense>
       </main>
     </div>
   );
