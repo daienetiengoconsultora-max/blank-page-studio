@@ -35,7 +35,7 @@ function Valores() {
           </p>
           <Link
             to="/contato"
-            className="mt-7 inline-block rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground"
+            className="mt-7 inline-block rounded-full bg-brand-spectrum px-6 py-3 text-sm font-semibold text-white"
           >
             Solicitar atendimento
           </Link>
