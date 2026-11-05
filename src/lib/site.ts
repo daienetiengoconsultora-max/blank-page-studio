@@ -1,6 +1,7 @@
 // Endereço publicado confirmado na Lovable; troque quando houver domínio próprio confirmado.
 export const SITE_URL = "https://limpanome-dtm.lovable.app";
 export const BRAND = "DTM Assessoria e Consultoria em Regularização de Dados de Crédito";
+export const BRAND_SHORT = "DTM CONSULTORIA FINANCEIRA";
 export const WHATSAPP_NUMBER = "5527998737600";
 export const WHATSAPP_DISPLAY = "(27) 99873-7600";
 export const whatsappLink = (text = "Olá! Quero fazer meu diagnóstico financeiro.") =>
@@ -30,6 +31,7 @@ export type Service = {
   short: string;
   body: string[];
   steps: string[];
+  forWho?: string;
 };
 
 export const SERVICES: Service[] = [
@@ -39,64 +41,68 @@ export const SERVICES: Service[] = [
     short:
       "Orientação para identificar, negociar e regularizar dívidas que deixam o CPF ou CNPJ negativado.",
     body: [
-      "Levantamos em quais cadastros de inadimplência o seu nome aparece, quais são os credores e os valores informados.",
-      "Com esse panorama, orientamos sobre caminhos possíveis: negociação direta, acordos, verificação de prazos e contestação de registros indevidos quando houver base legal.",
-      "Cada caso é analisado individualmente. Não há garantia de exclusão de dívidas — dívidas legítimas precisam ser negociadas ou pagas.",
+      "O primeiro passo é saber exatamente onde o seu nome aparece: Serasa, SPC, Boa Vista, cartórios e outros cadastros. Muita gente negocia a dívida errada primeiro.",
+      "Levantamos credores, valores informados, datas e possíveis inconsistências. Com esse panorama, orientamos os caminhos reais: negociação direta, acordos, verificação de prazos e contestação de registros indevidos quando houver base.",
+      "Cada caso é analisado individualmente. Dívidas legítimas precisam ser negociadas ou pagas — não existe atalho legal que apague o que é devido. Nosso trabalho é organizar o caminho com clareza e segurança.",
     ],
     steps: [
-      "Consulta dos registros",
-      "Análise de credores e prazos",
-      "Plano de regularização",
-      "Acompanhamento",
+      "Consulta dos registros nos principais birôs",
+      "Análise de credores, valores e prazos",
+      "Plano de regularização priorizado",
+      "Acompanhamento e orientação",
     ],
+    forWho: "Pessoas físicas e empresas com restrições em birôs de crédito",
   },
   {
     slug: "score-de-credito",
     name: "Score de Crédito",
     short:
-      "Entenda o que influencia sua pontuação e quais hábitos podem ajudar a melhorá-la com o tempo.",
+      "Entenda o que realmente influencia sua pontuação e quais hábitos costumam ajudar a melhorá-la com o tempo.",
     body: [
-      "O score é calculado pelos birôs de crédito com base no histórico de pagamentos, dívidas em aberto, Cadastro Positivo e uso do crédito.",
-      "Analisamos seu cenário e orientamos sobre atitudes que costumam pesar positivamente, como pagar contas em dia e manter dados atualizados.",
-      "Ninguém pode garantir aumento de score: a pontuação é definida pelos birôs, e a evolução depende do seu comportamento financeiro.",
+      "O score é calculado pelos birôs (Serasa, SPC, Boa Vista) com base em histórico de pagamentos, dívidas em aberto, Cadastro Positivo e uso do crédito. Cada um tem seu modelo.",
+      "Analisamos o seu cenário atual e orientamos sobre atitudes que pesam positivamente: pagar contas em dia, manter dados atualizados, usar o Cadastro Positivo e evitar excesso de consultas em pouco tempo.",
+      "Ninguém pode garantir aumento de score. A pontuação é definida pelos birôs e a evolução depende do seu comportamento financeiro ao longo do tempo.",
     ],
-    steps: ["Leitura do relatório", "Pontos de atenção", "Plano de hábitos", "Revisão periódica"],
+    steps: ["Leitura do relatório atual", "Pontos de atenção identificados", "Plano de hábitos recomendados", "Revisão periódica"],
+    forWho: "Quem quer entender e melhorar a pontuação de forma realista",
   },
   {
     slug: "rating-comercial",
     name: "Rating Comercial",
     short: "Orientação para compreender avaliações comerciais e informações cadastrais usadas em relações entre empresas.",
     body: [
-      "O rating comercial pode reunir critérios de risco e histórico de relacionamento utilizados por fornecedores, parceiros e empresas.",
-      "Ajudamos a interpretar as informações disponíveis, identificar divergências cadastrais e organizar os dados para uma avaliação mais clara.",
-      "Cada empresa utiliza critérios próprios. A DTM não controla a classificação atribuída por terceiros nem garante aprovação comercial."
+      "O rating comercial reúne critérios de risco e histórico de relacionamento utilizados por fornecedores, parceiros e empresas na hora de conceder prazo, crédito ou fechar negócio.",
+      "É diferente do score de pessoa física. Aqui entram dados cadastrais, histórico de pagamentos empresariais, protestos, restrições e a forma como a empresa se apresenta no mercado.",
+      "Ajudamos a interpretar as informações disponíveis, identificar divergências cadastrais e organizar os dados para uma avaliação mais clara. Cada empresa usa critérios próprios — a DTM não controla a classificação de terceiros nem garante aprovação comercial.",
     ],
-    steps: ["Levantamento cadastral", "Análise das informações", "Identificação de divergências", "Orientação de próximos passos"]
+    steps: ["Levantamento cadastral completo", "Análise das informações disponíveis", "Identificação de divergências", "Orientação de próximos passos"],
+    forWho: "Empresas, MEI e autônomos que precisam de credibilidade comercial",
   },
   {
     slug: "rating-bancario",
     name: "Rating Bancário",
     short: "Saiba como os bancos avaliam seu risco interno e como se preparar para pedir crédito.",
     body: [
-      "Cada banco possui sua própria classificação de risco (rating), baseada no relacionamento, movimentação, endividamento e informações do SCR.",
-      "Ajudamos a organizar documentos, entender o seu perfil e preparar o relacionamento com as instituições antes de uma solicitação de crédito.",
-      "A decisão de crédito é sempre da instituição financeira.",
+      "O rating bancário é a classificação de risco que cada banco atribui internamente ao cliente. Ele considera relacionamento, movimentação da conta, endividamento, histórico e informações do SCR (Bacen).",
+      "Não é o mesmo que o score dos birôs. Mesmo com score alto, um rating baixo em um banco específico pode travar aprovação de cartão, empréstimo ou financiamento.",
+      "Ajudamos a organizar documentos, entender o perfil e preparar o relacionamento com as instituições antes de uma solicitação. A decisão final de crédito é sempre da instituição financeira.",
     ],
     steps: [
-      "Diagnóstico do perfil",
-      "Organização financeira",
-      "Preparação documental",
-      "Orientação de relacionamento",
+      "Diagnóstico do perfil atual",
+      "Organização financeira e documental",
+      "Preparação para o relacionamento bancário",
+      "Orientação de próximos passos",
     ],
+    forWho: "Pessoas e empresas que precisam de crédito bancário e não conseguem aprovação",
   },
   {
     slug: "bacen-scr",
     name: "Bacen / SCR",
     short: "Interpretação do seu relatório no Sistema de Informações de Crédito do Banco Central.",
     body: [
-      "O SCR (Registrato) reúne as operações de crédito informadas pelas instituições ao Banco Central, incluindo valores vencidos e prejuízos.",
-      "Ajudamos você a emitir e interpretar o relatório, identificar informações divergentes e orientar o pedido de correção junto à instituição responsável.",
-      "Informações corretas permanecem no sistema pelo prazo regulamentar.",
+      "O SCR (acessado pelo Registrato) reúne as operações de crédito informadas pelas instituições ao Banco Central: valores a vencer, vencidos e prejuízos.",
+      "Muita gente só olha o score e não vê o que o banco realmente enxerga no SCR. Informações desatualizadas ou erradas podem prejudicar análises de crédito.",
+      "Ajudamos a emitir e interpretar o relatório, identificar divergências e orientar o pedido de correção junto à instituição responsável. Informações corretas permanecem no sistema pelo prazo regulamentar.",
     ],
     steps: [
       "Emissão do Registrato",
@@ -104,13 +110,14 @@ export const SERVICES: Service[] = [
       "Identificação de divergências",
       "Orientação de correção",
     ],
+    forWho: "Quem quer entender o que os bancos veem sobre suas operações de crédito",
   },
   {
     slug: "ccf",
     name: "CCF",
     short: "Orientação sobre o Cadastro de Emitentes de Cheques sem Fundos e como regularizar.",
     body: [
-      "O CCF registra pessoas e empresas que emitiram cheques devolvidos por falta de fundos, entre outros motivos.",
+      "O CCF registra pessoas e empresas que emitiram cheques devolvidos por falta de fundos, entre outros motivos. Esse registro atrapalha a emissão de novos cheques e pode pesar em análises.",
       "Orientamos sobre como identificar os cheques registrados, quitar com o beneficiário e solicitar a exclusão ao banco com o comprovante adequado.",
     ],
     steps: [
@@ -119,13 +126,14 @@ export const SERVICES: Service[] = [
       "Quitação e comprovação",
       "Pedido de exclusão ao banco",
     ],
+    forWho: "Quem tem cheques devolvidos e precisa regularizar o CCF",
   },
   {
     slug: "cadin",
     name: "Cadin",
     short: "Regularização de pendências com órgãos e entidades públicas federais.",
     body: [
-      "O Cadin reúne pendências com órgãos públicos federais, como tributos e débitos com autarquias.",
+      "O Cadin reúne pendências com órgãos públicos federais (tributos, autarquias e outros). Estar no Cadin pode bloquear crédito em bancos públicos e alguns benefícios.",
       "Ajudamos a identificar qual órgão gerou o registro e orientamos sobre parcelamentos, quitação ou contestação pelos canais oficiais.",
     ],
     steps: [
@@ -134,6 +142,7 @@ export const SERVICES: Service[] = [
       "Opções de regularização",
       "Acompanhamento da baixa",
     ],
+    forWho: "Pessoas e empresas com restrições junto à administração pública federal",
   },
   {
     slug: "diagnostico-financeiro",
@@ -141,8 +150,8 @@ export const SERVICES: Service[] = [
     short:
       "Uma visão completa da sua situação de crédito para decidir o próximo passo com segurança.",
     body: [
-      "Reunimos as informações de cadastros de inadimplência, SCR, score e endividamento em um único panorama.",
-      "A partir dele, você recebe uma orientação clara sobre prioridades e caminhos possíveis, com linguagem simples e sem promessas de resultado.",
+      "Reunimos as informações de cadastros de inadimplência, SCR, score e endividamento em um único panorama. Muita gente tenta resolver a dívida errada primeiro.",
+      "A partir dele, você recebe uma orientação clara sobre prioridades e caminhos possíveis, com linguagem simples e sem promessas de resultado. Custos e opções são explicados antes de qualquer contratação.",
     ],
     steps: [
       "Coleta de informações",
@@ -150,6 +159,7 @@ export const SERVICES: Service[] = [
       "Relatório explicado",
       "Recomendação de próximos passos",
     ],
+    forWho: "Quem quer clareza antes de qualquer decisão ou contratação",
   },
 ];
 
@@ -197,6 +207,7 @@ export const POSTS: Post[] = [
     content: [
       "O rating é a nota de risco que cada instituição atribui ao cliente. Ela considera relacionamento, renda, endividamento e as informações do SCR.",
       "Organizar a vida financeira e concentrar a movimentação podem contribuir para um perfil mais favorável ao longo do tempo.",
+      "Muita gente limpa o nome nos birôs e continua sem aprovação porque o rating interno do banco continua baixo. Entender essa diferença muda a estratégia.",
     ],
   },
   {
@@ -259,30 +270,46 @@ export const POSTS: Post[] = [
 export const FAQ = [
   {
     q: "Vocês garantem a limpeza do nome?",
-    a: "Não. Nenhuma empresa séria pode garantir exclusão de dívidas, aumento de score ou aprovação de crédito. Orientamos os caminhos legais e acompanhamos o processo.",
+    a: "Não. Nenhuma empresa séria pode garantir exclusão de dívidas, aumento de score ou aprovação de crédito. Orientamos os caminhos legais e acompanhamos o processo com transparência.",
   },
   {
     q: "Como funciona o diagnóstico?",
-    a: "Você preenche o formulário, nossa equipe entra em contato pelo WhatsApp, coleta as informações necessárias e apresenta um panorama da sua situação com os próximos passos.",
+    a: "Você preenche o formulário (leva menos de 1 minuto), nossa equipe retorna pelo WhatsApp, coleta as informações necessárias e apresenta um panorama da sua situação com os próximos passos e custos antes de qualquer contratação.",
   },
   {
     q: "Atendem CPF e CNPJ?",
-    a: "Sim. Atendemos pessoas físicas e empresas, considerando as particularidades de cada cadastro.",
+    a: "Sim. Atendemos pessoas físicas e empresas (incluindo MEI e autônomos), considerando as particularidades de cada cadastro. Muitas vezes é preciso olhar os dois juntos.",
   },
   {
     q: "Quanto custa?",
-    a: "O valor do diagnóstico e de qualquer serviço é informado diretamente no atendimento, após entendermos sua necessidade e antes de qualquer contratação. Você decide se deseja prosseguir."
+    a: "O valor do diagnóstico e de qualquer serviço é informado diretamente no atendimento, após entendermos sua necessidade e antes de qualquer contratação. Você decide se deseja prosseguir. Não há cobrança escondida.",
   },
   {
     q: "Em quanto tempo vejo resultado?",
-    a: "Não há prazo garantido. Qualquer prazo informado é uma estimativa que depende da análise do advogado parceiro e do andamento no Poder Judiciário. Não prometemos suspensão, liminar ou aprovação de crédito.",
+    a: "Não há prazo garantido. Qualquer prazo informado é uma estimativa que depende da análise do caso, do advogado parceiro (quando necessário) e do andamento. Não prometemos suspensão, liminar ou aprovação de crédito.",
   },
   {
     q: "A DTM é um escritório de advocacia?",
-    a: "Não. A DTM Assessoria e Consultoria em Regularização de Dados de Crédito presta consultoria e orientação financeira. Quando há medida judicial, ela é conduzida por advogado(a) parceiro(a).",
+    a: "Não. A DTM presta consultoria e orientação financeira. Quando há medida judicial, ela é conduzida por advogado(a) parceiro(a) devidamente habilitado.",
   },
   {
     q: "Meus dados ficam protegidos?",
     a: "Sim. Usamos seus dados apenas para retornar o contato e conduzir o atendimento, conforme a nossa Política de Privacidade e a LGPD.",
   },
+  {
+    q: "Qual a diferença entre score e rating bancário?",
+    a: "O score é calculado pelos birôs de crédito (Serasa, SPC, Boa Vista) e é público para o consumidor. O rating bancário é a classificação interna de cada banco, baseada em relacionamento, SCR e outros critérios. Um pode estar bom e o outro não.",
+  },
+  {
+    q: "Vocês atendem todo o Brasil?",
+    a: "Sim. O atendimento é 100% digital pelo WhatsApp, para qualquer lugar do Brasil.",
+  },
+];
+
+export const TRUST_POINTS = [
+  "Análise individual de cada caso",
+  "Sem promessas milagrosas",
+  "Custos e opções explicados antes de contratar",
+  "Atendimento humano pelo WhatsApp",
+  "Orientação clara para CPF e CNPJ",
 ];
