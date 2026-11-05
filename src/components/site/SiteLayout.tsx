@@ -25,7 +25,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
               alt="DTM Consultoria Financeira"
               width="260"
               height="241"
-              className="block h-auto w-[168px] max-h-[156px] shrink-0 object-contain object-center sm:w-[190px] sm:max-h-[176px]"
+              className="block h-auto w-[68px] max-h-[64px] shrink-0 object-contain object-center sm:w-[78px] sm:max-h-[72px]"
               fetchPriority="high"
             />
           </Link>
