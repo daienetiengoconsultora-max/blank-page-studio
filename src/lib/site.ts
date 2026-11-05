@@ -1,11 +1,21 @@
 // Endereço publicado confirmado na Lovable; troque quando houver domínio próprio confirmado.
 export const SITE_URL = "https://limpanome-dtm.lovable.app";
-export const BRAND = "DTM Assessoria e Consultoria em Regularização de Dados de Crédito";
+export const BRAND = "DTM Consultoria e Regularização de Crédito";
 export const BRAND_SHORT = "DTM CONSULTORIA FINANCEIRA";
 export const WHATSAPP_NUMBER = "5527998737600";
 export const WHATSAPP_DISPLAY = "(27) 99873-7600";
 export const whatsappLink = (text = "Olá! Quero fazer meu diagnóstico financeiro.") =>
   `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
+
+export const COMPANY = {
+  legalName: "DTM Consultoria e Regularização de Crédito",
+  cnpj: "69.554.451/0001-77",
+  address: "Rua Pedro Palácios, Vitória - ES",
+  years: 5,
+  diagnoses: "mais de 2.000",
+};
+
+export const DIAGNOSTIC_PRICE = "R$ 24,99";
 
 export function seo(path: string, title: string, description: string, type = "website") {
   const url = `${SITE_URL}${path}`;
@@ -281,12 +291,12 @@ export const FAQ = [
     a: "Sim. Atendemos pessoas físicas e empresas (incluindo MEI e autônomos), considerando as particularidades de cada cadastro. Muitas vezes é preciso olhar os dois juntos.",
   },
   {
-    q: "Quanto custa?",
-    a: "O valor do diagnóstico e de qualquer serviço é informado diretamente no atendimento, após entendermos sua necessidade e antes de qualquer contratação. Você decide se deseja prosseguir. Não há cobrança escondida.",
+    q: "Quanto custa o diagnóstico?",
+    a: `O Diagnóstico Financeiro custa ${DIAGNOSTIC_PRICE}. Serviços adicionais, quando recomendados, têm valores apresentados separadamente antes de qualquer contratação. Você decide se deseja prosseguir.`,
   },
   {
     q: "Em quanto tempo vejo resultado?",
-    a: "Não há prazo garantido. Qualquer prazo informado é uma estimativa que depende da análise do caso, do advogado parceiro (quando necessário) e do andamento. Não prometemos suspensão, liminar ou aprovação de crédito.",
+    a: "Não há prazo garantido. Qualquer prazo informado é uma estimativa que depende da análise do caso e do andamento. Não prometemos suspensão, liminar ou aprovação de crédito.",
   },
   {
     q: "A DTM é um escritório de advocacia?",
@@ -307,9 +317,18 @@ export const FAQ = [
 ];
 
 export const TRUST_POINTS = [
-  "Análise individual de cada caso",
+  "Mais de 2.000 diagnósticos realizados",
+  "5 anos de atuação",
   "Sem promessas milagrosas",
-  "Custos e opções explicados antes de contratar",
+  "Custos claros antes de contratar",
   "Atendimento humano pelo WhatsApp",
-  "Orientação clara para CPF e CNPJ",
+];
+
+export const TESTIMONIALS = [
+  {
+    name: "Maria Antônia",
+    location: "Rio Grande do Sul",
+    text: "Eu estava com o nome sujo e sem saber por onde começar. O diagnóstico da DTM me mostrou exatamente o que pesava mais e quais passos faziam sentido. Consegui organizar as negociações com clareza e hoje já vejo diferença no meu score. Atendimento humano e sem enrolação.",
+    result: "Organização das dívidas e evolução no score após o plano orientado",
+  },
 ];
