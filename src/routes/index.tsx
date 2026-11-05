@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site/SiteLayout";
-import { ContactForm } from "@/components/site/ContactForm";
+import { DiagnosticForm } from "@/components/site/DiagnosticForm";
 import { BRAND, POSTS, SERVICES, SITE_URL, WHATSAPP_NUMBER, seo } from "@/lib/site";
 
 export const Route = createFileRoute("/")({
@@ -44,20 +44,20 @@ function Home() {
             <p className="text-xs font-semibold uppercase tracking-[0.3em] text-accent">{BRAND}</p>
             <div className="dtm-rose-rule mt-4" />
             <h1 className="mt-4 font-display text-3xl font-semibold leading-tight md:text-5xl">
-              Dê um fôlego para o seu nome
+              Limpamos o seu CPF ou CNPJ para você ter um fôlego financeiro e tentar voltar ao mercado de crédito.
             </h1>
             <p className="mt-5 max-w-lg text-base leading-7 opacity-90">
               Orientação clara e honesta para entender sua situação de crédito e escolher o melhor
               caminho — para CPF e CNPJ.
             </p>
             <ul className="mt-6 space-y-2 text-sm opacity-90">
-              <li>✓ Análise de cadastros, SCR e score</li>
-              <li>✓ Explicação sem letras miúdas</li>
-              <li>✓ Sem promessas de resultado garantido</li>
+              <li>✓ Análise de CPF/CNPJ, birôs de crédito e SCR</li>
+              <li>✓ Orientação clara e atendimento humano</li>
+              <li>✓ Cada caso passa por análise individual</li>
             </ul>
           </div>
           <div id="diagnostico" className="scroll-mt-24">
-            <ContactForm />
+            <DiagnosticForm />
           </div>
         </div>
       </section>
