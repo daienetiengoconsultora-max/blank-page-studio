@@ -6,8 +6,8 @@ export const Route = createFileRoute("/valores")({
   head: () =>
     seo(
       "/valores",
-      "Valores do diagnóstico financeiro | DTM Descomplica Crédito",
-      "Conheça o valor do diagnóstico financeiro da DTM Descomplica Crédito. Serviços adicionais são avaliados individualmente e informados antes da contratação.",
+      "Valores do diagnóstico financeiro | DTM Consultoria Financeira",
+      "Conheça o valor do diagnóstico financeiro da DTM Consultoria Financeira. Serviços adicionais são avaliados individualmente e informados antes da contratação.",
     ),
   component: Valores,
 });
@@ -48,7 +48,7 @@ function Valores() {
           <ul className="list-disc space-y-2 pl-5">
             <li>O diagnóstico não garante aumento de score, aprovação de crédito ou exclusão de registros.</li>
             <li>Qualquer serviço adicional depende de análise individual e aceite prévio do cliente.</li>
-            <li>A DTM DESCOMPLICA CRÉDITO presta consultoria e orientação; não é escritório de advocacia.</li>
+            <li>A DTM CONSULTORIA FINANCEIRA presta consultoria e orientação; não é escritório de advocacia.</li>
           </ul>
         </div>
       </section>
