@@ -1,24 +1,31 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { TextPage } from "@/components/site/TextPage";
-import { seo, whatsappLink } from "@/lib/site";
+import { COMPANY, seo, whatsappLink } from "@/lib/site";
 
 export const Route = createFileRoute("/sobre")({
   head: () =>
     seo(
       "/sobre",
-      "Sobre nós | DTM Assessoria e Consultoria em Regularização de Dados de Crédito",
-      "Conheça a DTM: orientação transparente para regularização de nome, rating comercial e bancário e diagnóstico financeiro. Sem promessas milagrosas.",
+      "Sobre nós | DTM Consultoria e Regularização de Crédito",
+      "Conheça a DTM: orientação transparente para regularização de nome, rating comercial e bancário e diagnóstico financeiro. 5 anos de atuação e mais de 2.000 diagnósticos.",
     ),
   component: () => (
     <TextPage
       eyebrow="Sobre nós"
       title="Crédito explicado com clareza"
-      intro="A DTM Assessoria e Consultoria em Regularização de Dados de Crédito existe para traduzir o mundo do crédito em decisões simples e seguras."
+      intro="A DTM Consultoria e Regularização de Crédito existe para traduzir o mundo do crédito em decisões simples e seguras."
     >
       <p>
         Atendemos pessoas físicas e empresas (incluindo MEI e autônomos) que querem entender sua
         situação de crédito, regularizar pendências e se preparar para novas oportunidades — sem
         ilusões e sem pressão.
+      </p>
+
+      <h2>Quem somos</h2>
+      <p>
+        {COMPANY.legalName} · CNPJ {COMPANY.cnpj}<br />
+        {COMPANY.address}<br />
+        {COMPANY.years} anos de atuação · {COMPANY.diagnoses} diagnósticos realizados
       </p>
 
       <h2>O que nos diferencia</h2>
