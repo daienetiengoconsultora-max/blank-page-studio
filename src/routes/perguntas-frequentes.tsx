@@ -6,7 +6,7 @@ export const Route = createFileRoute("/perguntas-frequentes")({
   head: () => ({
     ...seo(
       "/perguntas-frequentes",
-      "Perguntas frequentes | DTM CONSULTORIA FINANCEIRA",
+      "Perguntas frequentes | DTM Assessoria e Consultoria em Regularização de Dados de Crédito",
       "Tire suas dúvidas sobre Limpa Nome, score, diagnóstico financeiro e proteção de dados.",
     ),
     scripts: [
