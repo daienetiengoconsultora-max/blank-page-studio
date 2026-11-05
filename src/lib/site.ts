@@ -271,7 +271,7 @@ export const FAQ = [
   },
   {
     q: "Quanto custa?",
-    a: "O diagnóstico financeiro custa R$ 29,99. O valor de qualquer serviço adicional é informado após a análise individual, antes de qualquer contratação.",
+    a: "O valor do diagnóstico e de qualquer serviço é informado diretamente no atendimento, após entendermos sua necessidade e antes de qualquer contratação. Você decide se deseja prosseguir."
   },
   {
     q: "Em quanto tempo vejo resultado?",
