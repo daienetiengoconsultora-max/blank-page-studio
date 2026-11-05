@@ -22,7 +22,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
           <Link to="/" className="flex min-w-0 shrink-0 items-center gap-2" aria-label={`${BRAND} - Início`}>
             <img
               src="/logo-dtm-consultoria-financeira.svg"
-              alt="Logo DTM"
+              alt="Logo DTM Assessoria e Consultoria em Regularização de Dados de Crédito"
               width="260"
               height="241"
               className="h-auto w-12 shrink-0 object-contain object-center sm:w-14"
@@ -86,7 +86,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
             <div className="mb-3 inline-flex max-w-full items-center justify-center rounded-xl border border-brand-gold bg-brand-cream p-2">
               <img
                 src="/logo-dtm-consultoria-financeira.svg"
-                alt="Logo DTM Consultoria Financeira"
+                alt="Logo DTM Assessoria e Consultoria em Regularização de Dados de Crédito"
                 width="260"
                 height="241"
                 className="block h-auto w-28 max-w-full object-contain object-center sm:w-36"
