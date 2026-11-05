@@ -104,7 +104,7 @@ export function TasksModule({ userId }: { userId: string }) {
     else refresh();
   }
 
-  const overdueCount = (tasks.data ?? []).filter((t) => t.activity_type === PENDING && t.due_at && new Date(t.due_at) < now).length;
+  const overdueCount = (tasks.data ?? []).filter((t) => !t.description.startsWith(DONE_PREFIX) && t.due_at && new Date(t.due_at) < now).length;
   const openCount = (tasks.data ?? []).filter((t) => !t.description.startsWith(DONE_PREFIX)).length;
 
   return (
