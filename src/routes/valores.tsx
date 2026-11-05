@@ -43,7 +43,7 @@ function Valores() {
         </div>
         <div className="mx-auto mt-10 max-w-3xl space-y-4 text-sm leading-7">
           <h2 className="font-display text-2xl font-semibold text-primary">Formas de pagamento</h2>
-          <p>O pagamento do diagnóstico é antecipado. As opções disponíveis são informadas no atendimento.</p>
+          <p>O diagnóstico é pago antecipadamente por Pix ou cartão. Boleto pode ser avaliado exclusivamente para pessoa jurídica, mediante aprovação prévia do jurídico.</p>
           <h2 className="font-display text-2xl font-semibold text-primary">Importante</h2>
           <ul className="list-disc space-y-2 pl-5">
             <li>O diagnóstico não garante aumento de score, aprovação de crédito ou exclusão de registros.</li>
