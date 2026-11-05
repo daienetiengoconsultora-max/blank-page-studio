@@ -14,8 +14,8 @@ type TaskRow = {
   created_at: string;
 };
 
-const PENDING = "tarefa_pendente";
-const DONE = "tarefa_concluida";
+const TASK_TYPE = "tarefa";
+const DONE_PREFIX = "[CONCLUÍDA] ";
 
 function localDateTime(value: string | null) {
   if (!value) return "";
@@ -36,7 +36,7 @@ export function TasksModule({ userId }: { userId: string }) {
       const { data, error } = await supabase
         .from("lead_activities")
         .select("id, lead_id, owner_id, activity_type, description, due_at, created_at")
-        .in("activity_type", [PENDING, DONE])
+        .eq("activity_type", TASK_TYPE)
         .order("due_at", { ascending: true, nullsFirst: false });
       if (error) throw error;
       return data as TaskRow[];
@@ -47,10 +47,11 @@ export function TasksModule({ userId }: { userId: string }) {
   const rows = useMemo(() => {
     const all = tasks.data ?? [];
     return all.filter((task) => {
-      const overdue = task.activity_type === PENDING && !!task.due_at && new Date(task.due_at) < now;
-      if (filter === "abertas") return task.activity_type === PENDING;
+      const done = task.description.startsWith(DONE_PREFIX);
+      const overdue = !done && !!task.due_at && new Date(task.due_at) < now;
+      if (filter === "abertas") return !done;
       if (filter === "atrasadas") return overdue;
-      if (filter === "concluidas") return task.activity_type === DONE;
+      if (filter === "concluidas") return done;
       return true;
     });
   }, [tasks.data, filter]);
@@ -75,7 +76,7 @@ export function TasksModule({ userId }: { userId: string }) {
       : await supabase.from("lead_activities").insert({
           lead_id: leadId,
           owner_id: userId,
-          activity_type: PENDING,
+          activity_type: TASK_TYPE,
           description,
           due_at: dueAt,
         });
@@ -89,8 +90,9 @@ export function TasksModule({ userId }: { userId: string }) {
   }
 
   async function toggle(task: TaskRow) {
-    const next = task.activity_type === DONE ? PENDING : DONE;
-    const { error } = await supabase.from("lead_activities").update({ activity_type: next }).eq("id", task.id);
+    const done = task.description.startsWith(DONE_PREFIX);
+    const description = done ? task.description.slice(DONE_PREFIX.length) : DONE_PREFIX + task.description;
+    const { error } = await supabase.from("lead_activities").update({ description }).eq("id", task.id);
     if (error) setErrorText(error.message);
     else refresh();
   }
@@ -103,14 +105,14 @@ export function TasksModule({ userId }: { userId: string }) {
   }
 
   const overdueCount = (tasks.data ?? []).filter((t) => t.activity_type === PENDING && t.due_at && new Date(t.due_at) < now).length;
-  const openCount = (tasks.data ?? []).filter((t) => t.activity_type === PENDING).length;
+  const openCount = (tasks.data ?? []).filter((t) => !t.description.startsWith(DONE_PREFIX)).length;
 
   return (
     <div className="space-y-5">
       <div className="grid gap-3 sm:grid-cols-3">
         <div className="rounded-2xl border border-border bg-background p-4"><p className="text-xs text-muted-foreground">Tarefas abertas</p><p className="mt-1 text-2xl font-semibold text-primary">{openCount}</p></div>
         <div className="rounded-2xl border border-border bg-background p-4"><p className="text-xs text-muted-foreground">Atrasadas</p><p className="mt-1 text-2xl font-semibold text-destructive">{overdueCount}</p></div>
-        <div className="rounded-2xl border border-border bg-background p-4"><p className="text-xs text-muted-foreground">Concluídas</p><p className="mt-1 text-2xl font-semibold text-primary">{(tasks.data ?? []).filter((t) => t.activity_type === DONE).length}</p></div>
+        <div className="rounded-2xl border border-border bg-background p-4"><p className="text-xs text-muted-foreground">Concluídas</p><p className="mt-1 text-2xl font-semibold text-primary">{(tasks.data ?? []).filter((t) => t.description.startsWith(DONE_PREFIX)).length}</p></div>
       </div>
       <Card title="Agenda de tarefas e retornos" actions={<button className={btn} onClick={() => setEditing("new")}>+ Nova tarefa</button>}>
         <div className="mb-4 flex flex-wrap gap-2">
@@ -144,17 +146,18 @@ export function TasksModule({ userId }: { userId: string }) {
           <ul className="space-y-2">
             {rows.map((task) => {
               const lead = leads.find((item) => item.id === task.lead_id);
-              const overdue = task.activity_type === PENDING && !!task.due_at && new Date(task.due_at) < now;
+              const done = task.description.startsWith(DONE_PREFIX);
+              const overdue = !done && !!task.due_at && new Date(task.due_at) < now;
               return <li key={task.id} className={`rounded-2xl border p-4 ${overdue ? "border-destructive bg-destructive/5" : "border-border"}`}>
                 <div className="flex flex-wrap items-start justify-between gap-3">
                   <div className="min-w-0">
-                    <p className="font-semibold text-primary">{task.description}</p>
+                    <p className="font-semibold text-primary">{done ? task.description.slice(DONE_PREFIX.length) : task.description}</p>
                     <p className="mt-1 text-xs text-muted-foreground">{lead?.full_name ?? "Cliente não localizado"} · {task.due_at ? new Date(task.due_at).toLocaleString("pt-BR") : "Sem prazo"}</p>
-                    <p className={`mt-1 text-xs font-semibold ${overdue ? "text-destructive" : "text-muted-foreground"}`}>{task.activity_type === DONE ? "Concluída" : overdue ? "Prazo vencido" : "Pendente"}</p>
+                    <p className={`mt-1 text-xs font-semibold ${overdue ? "text-destructive" : "text-muted-foreground"}`}>{done ? "Concluída" : overdue ? "Prazo vencido" : "Pendente"}</p>
                   </div>
                   <div className="flex flex-wrap gap-2">
                     <button className={btnGhost} onClick={() => setEditing(task)}>Editar</button>
-                    <button className={btn} onClick={() => void toggle(task)}>{task.activity_type === DONE ? "Reabrir" : "Concluir"}</button>
+                    <button className={btn} onClick={() => void toggle(task)}>{done ? "Reabrir" : "Concluir"}</button>
                     <button className="px-2 text-xs text-destructive underline" onClick={() => void remove(task)}>Excluir</button>
                   </div>
                 </div>
