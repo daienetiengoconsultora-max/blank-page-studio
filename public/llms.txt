@@ -1,4 +1,4 @@
-# DTM Consultoria Financeira
+# DTM Assessoria e Consultoria em Regularização de Dados de Crédito
 > Site institucional brasileiro com informações e orientação sobre organização de crédito para pessoas físicas e empresas.
 
 Site oficial: https://limpanome-dtm.lovable.app/
@@ -6,7 +6,7 @@ Idioma: Português do Brasil (pt-BR)
 Área de atendimento: Brasil
 
 ## Sobre
-A DTM Consultoria Financeira oferece atendimento e orientação informativa para pessoas físicas e empresas que desejam compreender sua situação cadastral e organizar próximos passos relacionados ao crédito. Cada caso depende de análise individual. Não há promessa de exclusão de dívidas legítimas, aumento garantido de score ou aprovação de crédito. A DTM não é escritório de advocacia.
+A DTM Assessoria e Consultoria em Regularização de Dados de Crédito oferece atendimento e orientação informativa para pessoas físicas e empresas que desejam compreender sua situação cadastral e organizar próximos passos relacionados ao crédito. Cada caso depende de análise individual. Não há promessa de exclusão de dívidas legítimas, aumento garantido de score ou aprovação de crédito. A DTM não é escritório de advocacia.
 
 ## Serviços
 - Limpa Nome: orientação sobre registros de inadimplência, análise de credores e caminhos regulares de negociação ou contestação de registros incorretos.
