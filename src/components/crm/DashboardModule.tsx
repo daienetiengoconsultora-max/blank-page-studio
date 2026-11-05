@@ -4,7 +4,7 @@ import { brl, fmtDate, needsAlert, stageLabel } from "@/lib/crm";
 import { Card, ErrorNote, useLeads } from "./shared";
 import { useProcesses } from "./ProcessesModule";
 
-type Props = { onNavigate: (tab: "leads" | "tarefas" | "contratos" | "processos" | "mensagens" | "relatorios") => void };
+type Props = { onNavigate: (tab: "leads" | "tarefas" | "servicos" | "contratos" | "processos" | "mensagens" | "relatorios") => void };
 
 export function DashboardModule({ onNavigate }: Props) {
   const leadsQuery = useLeads();
@@ -62,6 +62,7 @@ export function DashboardModule({ onNavigate }: Props) {
             {[
               ["leads", "Clientes e leads", "Cadastrar, pesquisar e atualizar atendimentos"],
               ["tarefas", "Agenda e tarefas", "Organizar retornos, prazos e pendências por cliente"],
+              ["servicos", "Serviços DTM", "Acompanhar Limpa Nome, Score, Bacen e Ratings"],
               ["contratos", "Contratos", "Gerar, revisar e baixar contratos em PDF"],
               ["processos", "Processos", "Acompanhar etapas e datas estimadas"],
               ["mensagens", "Mensagens", "Preparar WhatsApp e registrar contatos"],
