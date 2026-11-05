@@ -90,15 +90,15 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "mobile-web-app-capable", content: "yes" },
       { name: "apple-mobile-web-app-capable", content: "yes" },
       { name: "apple-mobile-web-app-status-bar-style", content: "default" },
-      { property: "og:title", content: "DTM Consultoria Financeira" },
+      { property: "og:title", content: "DTM Descomplica Crédito" },
       {
         property: "og:description",
-        content: "Consultoria financeira com atendimento transparente e orientação especializada.",
+        content: "Orientação transparente sobre Limpa Nome, Score, Bacen/SCR e organização do crédito.",
       },
       { property: "og:type", content: "website" },
       { property: "og:locale", content: "pt_BR" },
       { name: "twitter:card", content: "summary_large_image" },
-      { property: "og:site_name", content: "DTM Consultoria Financeira" },
+      { property: "og:site_name", content: "DTM Descomplica Crédito" },
     ],
     links: [
       {
@@ -112,7 +112,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         href: "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap",
       },
       { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" },
-      { rel: "apple-touch-icon", type: "image/svg+xml", href: "/favicon.svg" },
+      { rel: "manifest", href: "/manifest.webmanifest" },
+      
     ],
   }),
   shellComponent: RootShell,
