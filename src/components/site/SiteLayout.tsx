@@ -1,6 +1,8 @@
 import { Link } from "@tanstack/react-router";
 import { useState, type ReactNode } from "react";
 import { BRAND, WHATSAPP_DISPLAY, whatsappLink } from "@/lib/site";
+import logoMark from "@/assets/dtm-logo-mark.png.asset.json";
+import logoFull from "@/assets/dtm-logo-full.png.asset.json";
 
 const NAV = [
   { to: "/", label: "Início" },
@@ -21,11 +23,11 @@ export function SiteLayout({ children }: { children: ReactNode }) {
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-5 py-2">
           <Link to="/" className="flex min-w-0 shrink-0 items-center gap-2" aria-label={`${BRAND} - Início`}>
             <img
-              src="/logo-dtm-consultoria-financeira.svg"
-              alt="Logo DTM"
-              width="260"
-              height="241"
-              className="h-auto w-12 shrink-0 object-contain object-center sm:w-14"
+              src={logoMark.url}
+              alt="Símbolo DTM: escudo com gráfico de crescimento e seta em alta"
+              width="640"
+              height="640"
+              className="h-11 w-11 shrink-0 rounded-xl border border-brand-gold object-cover sm:h-12 sm:w-12"
               fetchPriority="high"
             />
             <span className="max-w-[130px] text-xs font-bold leading-tight text-brand-purple sm:max-w-none sm:text-sm">{BRAND}</span>
@@ -85,10 +87,10 @@ export function SiteLayout({ children }: { children: ReactNode }) {
           <div className="min-w-0">
             <div className="mb-3 inline-flex max-w-full items-center justify-center rounded-xl border border-brand-gold bg-brand-cream p-2">
               <img
-                src="/logo-dtm-consultoria-financeira.svg"
+                src={logoFull.url}
                 alt="Logo DTM Consultoria Financeira"
-                width="260"
-                height="241"
+                width="1312"
+                height="1391"
                 className="block h-auto w-28 max-w-full object-contain object-center sm:w-36"
                 loading="lazy"
               />
