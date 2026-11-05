@@ -3,3 +3,5 @@ Allow: /
 Disallow: /crm
 Disallow: /acesso
 Disallow: /redefinir-senha
+
+Sitemap: https://descomplicacreditoo.lovable.app/sitemap.xml
