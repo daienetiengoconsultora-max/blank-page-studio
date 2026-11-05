@@ -19,16 +19,6 @@ export function SiteLayout({ children }: { children: ReactNode }) {
     <div className="dtm-site-watermark min-h-screen bg-background font-sans text-foreground">
       <header className="sticky top-0 z-40 border-b-2 border-brand-gold bg-background/95 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-2">
-          <Link to="/" className="flex min-w-0 items-center" aria-label="DTM Consultoria Financeira - Início">
-            <img
-              src="/logo-dtm-consultoria-financeira.svg"
-              alt="DTM Consultoria Financeira"
-              width="260"
-              height="241"
-              className="block w-[12px] h-auto max-h-none shrink-0 object-contain object-center"
-              fetchPriority="high"
-            />
-          </Link>
           <nav className="hidden items-center gap-4 text-sm font-medium lg:flex">
             {NAV.map((n) => (
               <Link
@@ -82,16 +72,6 @@ export function SiteLayout({ children }: { children: ReactNode }) {
       <footer className="bg-brand-spectrum px-5 py-12 text-sm text-white">
         <div className="mx-auto grid max-w-6xl gap-8 md:grid-cols-3">
           <div>
-            <div className="inline-flex rounded-xl border border-brand-gold bg-brand-cream p-2">
-              <img
-                src="/logo-dtm-consultoria-financeira.svg"
-                alt="DTM Consultoria Financeira"
-                width="260"
-                height="241"
-                className="block h-24 w-[104px] max-w-full object-contain object-center sm:h-28 sm:w-[120px]"
-                loading="lazy"
-              />
-            </div>
             <p className="mt-3 leading-6">
               Consultoria em regularização de nome e diagnóstico financeiro. Atendimento em todo o
               Brasil.
