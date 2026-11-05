@@ -71,13 +71,26 @@ function Crm() {
             Sair
           </button>
         </div>
-        <nav className="mx-auto flex max-w-7xl gap-1 overflow-x-auto px-5" aria-label="Navegação do CRM">
+        <div className="mx-auto max-w-7xl px-5 pb-3 sm:hidden">
+          <label className="sr-only" htmlFor="crm-mobile-navigation">Abrir módulo</label>
+          <select
+            id="crm-mobile-navigation"
+            value={tab}
+            onChange={(event) => setTab(event.target.value as Tab)}
+            className="min-h-11 w-full rounded-xl border border-primary-foreground/30 bg-primary px-3 py-2 text-sm font-semibold text-primary-foreground"
+          >
+            {TABS.map(([key, label]) => (
+              <option key={key} value={key}>{label}</option>
+            ))}
+          </select>
+        </div>
+        <nav className="mx-auto hidden max-w-7xl gap-1 overflow-x-auto px-5 sm:flex" aria-label="Navegação do CRM">
           {TABS.map(([k, label]) => (
             <button
               key={k}
               onClick={() => setTab(k)}
               aria-current={tab === k ? "page" : undefined}
-              className={`whitespace-nowrap rounded-t-xl px-4 py-2 text-sm font-semibold ${tab === k ? "bg-secondary text-primary" : "text-primary-foreground/80 hover:text-primary-foreground"}`}
+              className={`min-h-11 whitespace-nowrap rounded-t-xl px-4 py-2 text-sm font-semibold ${tab === k ? "bg-secondary text-primary" : "text-primary-foreground/80 hover:text-primary-foreground"}`}
             >
               {label}
             </button>
