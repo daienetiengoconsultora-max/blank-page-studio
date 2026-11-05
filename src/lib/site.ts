@@ -1,5 +1,5 @@
 // Endereço publicado confirmado na Lovable; troque quando houver domínio próprio confirmado.
-export const SITE_URL = "https://descomplicacreditoo.lovable.app";
+export const SITE_URL = "https://limpanome-dtm.lovable.app";
 export const BRAND = "DTM CONSULTORIA FINANCEIRA";
 export const WHATSAPP_NUMBER = "5527998737600";
 export const WHATSAPP_DISPLAY = "(27) 99873-7600";
