@@ -29,9 +29,9 @@ function Valores() {
             Análise inicial da sua situação
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-sm leading-7 text-muted-foreground">
-            O diagnóstico reúne informações relevantes para entender seu cenário e indicar
-            possíveis próximos passos. Serviços adicionais, quando recomendados, têm escopo e
-            valores apresentados separadamente antes de qualquer contratação.
+            O diagnóstico reúne informações relevantes para entender seu cenário e indicar possíveis
+            próximos passos. Serviços adicionais, quando recomendados, têm escopo e valores
+            apresentados separadamente antes de qualquer contratação.
           </p>
           <Link
             to="/contato"
@@ -42,12 +42,23 @@ function Valores() {
         </div>
         <div className="mx-auto mt-10 max-w-3xl space-y-4 text-sm leading-7">
           <h2 className="font-display text-2xl font-semibold text-primary">Formas de pagamento</h2>
-          <p>As formas de pagamento disponíveis e as condições são informadas durante o atendimento, antes da contratação.</p>
+          <p>
+            As formas de pagamento disponíveis e as condições são informadas durante o atendimento,
+            antes da contratação.
+          </p>
           <h2 className="font-display text-2xl font-semibold text-primary">Importante</h2>
           <ul className="list-disc space-y-2 pl-5">
-            <li>O diagnóstico não garante aumento de score, aprovação de crédito ou exclusão de registros.</li>
-            <li>Qualquer serviço adicional depende de análise individual e aceite prévio do cliente.</li>
-            <li>A DTM CONSULTORIA FINANCEIRA presta consultoria e orientação; não é escritório de advocacia.</li>
+            <li>
+              O diagnóstico não garante aumento de score, aprovação de crédito ou exclusão de
+              registros.
+            </li>
+            <li>
+              Qualquer serviço adicional depende de análise individual e aceite prévio do cliente.
+            </li>
+            <li>
+              A DTM CONSULTORIA FINANCEIRA presta consultoria e orientação; não é escritório de
+              advocacia.
+            </li>
           </ul>
         </div>
       </section>

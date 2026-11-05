@@ -93,7 +93,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:title", content: "DTM Consultoria Financeira" },
       {
         property: "og:description",
-        content: "Orientação transparente sobre Limpa Nome, Score, Bacen/SCR e organização do crédito.",
+        content:
+          "Orientação transparente sobre Limpa Nome, Score, Bacen/SCR e organização do crédito.",
       },
       { property: "og:type", content: "website" },
       { property: "og:locale", content: "pt_BR" },
