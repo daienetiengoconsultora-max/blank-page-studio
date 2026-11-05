@@ -42,12 +42,14 @@ export function SiteLayout({ children }: { children: ReactNode }) {
                 {n.label}
               </Link>
             ))}
-            <Link
-              to="/contato"
+            <a
+              href={whatsappLink()}
+              target="_blank"
+              rel="noreferrer"
               className="rounded-full bg-brand-spectrum px-5 py-2.5 text-white shadow-elegant hover:opacity-90"
             >
-              Fale conosco
-            </Link>
+              WhatsApp
+            </a>
           </nav>
           <button
             className="rounded-md border border-brand-purple px-3 py-2 text-sm text-brand-purple lg:hidden"
@@ -69,13 +71,15 @@ export function SiteLayout({ children }: { children: ReactNode }) {
                 {n.label}
               </Link>
             ))}
-            <Link
-              to="/contato"
+            <a
+              href={whatsappLink()}
+              target="_blank"
+              rel="noreferrer"
               onClick={() => setOpen(false)}
               className="mt-2 rounded-full bg-brand-spectrum px-5 py-2.5 text-center text-sm font-semibold text-white"
             >
-              Fale conosco
-            </Link>
+              WhatsApp
+            </a>
           </nav>
         )}
       </header>
@@ -94,12 +98,12 @@ export function SiteLayout({ children }: { children: ReactNode }) {
               />
             </div>
             <p className="mt-3 leading-6">
-              Consultoria em regularização de nome e diagnóstico financeiro. Atendimento em todo o
-              Brasil.
+              Consultoria em regularização de nome, rating comercial e bancário e diagnóstico
+              financeiro. Atendimento em todo o Brasil.
             </p>
             <p className="mt-3 text-xs leading-5">
               Não garantimos aprovação de crédito, aumento de score ou exclusão de dívidas. Cada
-              caso depende de análise.
+              caso depende de análise individual.
             </p>
           </div>
           <div className="flex flex-col gap-2">
@@ -108,6 +112,9 @@ export function SiteLayout({ children }: { children: ReactNode }) {
             </Link>
             <Link className="transition-colors hover:text-accent" to="/servicos">
               Serviços
+            </Link>
+            <Link className="transition-colors hover:text-accent" to="/como-funciona">
+              Como funciona
             </Link>
             <Link className="transition-colors hover:text-accent" to="/blog">
               Blog DTM
@@ -131,6 +138,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
             >
               WhatsApp {WHATSAPP_DISPLAY}
             </a>
+            <p className="text-xs opacity-80">Atendimento digital • Todo o Brasil</p>
           </div>
         </div>
         <p className="mx-auto mt-10 max-w-6xl text-xs opacity-60">
