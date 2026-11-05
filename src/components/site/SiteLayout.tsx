@@ -25,7 +25,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
               alt="DTM Consultoria Financeira"
               width="260"
               height="241"
-              className="block h-20 w-20 shrink-0 object-contain object-center sm:h-24 sm:w-24"
+              className="block h-[76px] w-[82px] shrink-0 object-contain object-center sm:h-[92px] sm:w-[100px]"
               fetchPriority="high"
             />
           </Link>
@@ -43,7 +43,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
             ))}
             <Link
               to="/contato"
-              className="rounded-full bg-primary px-5 py-2.5 text-primary-foreground shadow-elegant hover:opacity-90"
+              className="rounded-full bg-brand-spectrum px-5 py-2.5 text-white shadow-elegant hover:opacity-90"
             >
               Fale conosco
             </Link>
@@ -71,7 +71,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
             <Link
               to="/contato"
               onClick={() => setOpen(false)}
-              className="mt-2 rounded-full bg-primary px-5 py-2.5 text-center text-sm font-semibold text-primary-foreground"
+              className="mt-2 rounded-full bg-brand-spectrum px-5 py-2.5 text-center text-sm font-semibold text-white"
             >
               Fale conosco
             </Link>
@@ -88,7 +88,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
                 alt="DTM Consultoria Financeira"
                 width="260"
                 height="241"
-                className="block h-32 w-32 max-w-full object-contain object-center sm:h-36 sm:w-36"
+                className="block h-36 w-[155px] max-w-full object-contain object-center sm:h-40 sm:w-[172px]"
                 loading="lazy"
               />
             </div>
