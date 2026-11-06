@@ -4,6 +4,7 @@ export const BRAND = "DTM Consultoria e Regularização de Crédito";
 export const BRAND_SHORT = "DTM CONSULTORIA FINANCEIRA";
 export const WHATSAPP_NUMBER = "5527998737600";
 export const WHATSAPP_DISPLAY = "(27) 99873-7600";
+export const RESPONSE_TIME = "em até 2 horas em dias úteis";
 export const whatsappLink = (text = "Olá! Quero fazer meu diagnóstico financeiro.") =>
   `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
 
@@ -290,6 +291,10 @@ export const FAQ = [
     a: "Você preenche o formulário (leva menos de 1 minuto) ou manda mensagem no WhatsApp. Nossa equipe retorna, coleta as informações necessárias e apresenta o panorama da sua situação com os próximos passos.",
   },
   {
+    q: "Em quanto tempo vocês respondem?",
+    a: `Respondemos pelo WhatsApp ${RESPONSE_TIME}. Em horários de pico ou finais de semana o retorno pode demorar um pouco mais.`,
+  },
+  {
     q: "Atendem CPF e CNPJ?",
     a: "Sim. Atendemos pessoas físicas e empresas (incluindo MEI e autônomos). Muitas vezes é preciso olhar os dois cadastros juntos.",
   },
@@ -324,7 +329,7 @@ export const TRUST_POINTS = [
   "5 anos de atuação",
   "Sem promessas milagrosas",
   "Custos claros antes de contratar",
-  "Atendimento humano pelo WhatsApp",
+  "Resposta em até 2h em dias úteis",
 ];
 
 export const TESTIMONIALS = [
