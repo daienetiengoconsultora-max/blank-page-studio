@@ -15,8 +15,6 @@ export const COMPANY = {
   diagnoses: "mais de 2.000",
 };
 
-export const DIAGNOSTIC_PRICE = "R$ 24,99";
-
 export function seo(path: string, title: string, description: string, type = "website") {
   const url = `${SITE_URL}${path}`;
   return {
@@ -161,7 +159,8 @@ export const SERVICES: Service[] = [
       "Uma visão completa da sua situação de crédito para decidir o próximo passo com segurança.",
     body: [
       "Reunimos as informações de cadastros de inadimplência, SCR, score e endividamento em um único panorama. Muita gente tenta resolver a dívida errada primeiro.",
-      "A partir dele, você recebe uma orientação clara sobre prioridades e caminhos possíveis, com linguagem simples e sem promessas de resultado. Custos e opções são explicados antes de qualquer contratação.",
+      "Você recebe um panorama claro: o que aparece nos birôs, o que pesa no SCR, como está o score e quais caminhos fazem mais sentido no seu caso. Tudo explicado em linguagem simples.",
+      "Custos e opções de continuidade são apresentados antes de qualquer contratação. Você
     ],
     steps: [
       "Coleta de informações",
@@ -283,16 +282,20 @@ export const FAQ = [
     a: "Não. Nenhuma empresa séria pode garantir exclusão de dívidas, aumento de score ou aprovação de crédito. Orientamos os caminhos legais e acompanhamos o processo com transparência.",
   },
   {
+    q: "O que eu recebo no Diagnóstico Financeiro?",
+    a: "Você recebe um panorama claro da sua situação: o que aparece nos birôs de crédito, como está o SCR (Bacen), o score e quais caminhos fazem mais sentido no seu caso. Tudo explicado em linguagem simples, com prioridades e próximos passos. Custos de eventuais serviços adicionais são apresentados antes de qualquer contratação.",
+  },
+  {
     q: "Como funciona o diagnóstico?",
-    a: "Você preenche o formulário (leva menos de 1 minuto), nossa equipe retorna pelo WhatsApp, coleta as informações necessárias e apresenta um panorama da sua situação com os próximos passos e custos antes de qualquer contratação.",
+    a: "Você preenche o formulário (leva menos de 1 minuto) ou manda mensagem no WhatsApp. Nossa equipe retorna, coleta as informações necessárias e apresenta o panorama da sua situação com os próximos passos.",
   },
   {
     q: "Atendem CPF e CNPJ?",
-    a: "Sim. Atendemos pessoas físicas e empresas (incluindo MEI e autônomos), considerando as particularidades de cada cadastro. Muitas vezes é preciso olhar os dois juntos.",
+    a: "Sim. Atendemos pessoas físicas e empresas (incluindo MEI e autônomos). Muitas vezes é preciso olhar os dois cadastros juntos.",
   },
   {
-    q: "Quanto custa o diagnóstico?",
-    a: `O Diagnóstico Financeiro custa ${DIAGNOSTIC_PRICE}. Serviços adicionais, quando recomendados, têm valores apresentados separadamente antes de qualquer contratação. Você decide se deseja prosseguir.`,
+    q: "Quais formas de pagamento?",
+    a: "As formas de pagamento disponíveis (como Pix e cartão) são informadas durante o atendimento, antes da contratação.",
   },
   {
     q: "Em quanto tempo vejo resultado?",
@@ -331,4 +334,25 @@ export const TESTIMONIALS = [
     text: "Eu estava com o nome sujo e sem saber por onde começar. O diagnóstico da DTM me mostrou exatamente o que pesava mais e quais passos faziam sentido. Consegui organizar as negociações com clareza e hoje já vejo diferença no meu score. Atendimento humano e sem enrolação.",
     result: "Organização das dívidas e evolução no score após o plano orientado",
   },
+  {
+    name: "Carlos Eduardo",
+    location: "Espírito Santo",
+    text: "Minha empresa estava com restrição e isso atrapalhava prazo com fornecedor. Eles olharam o CNPJ e o meu CPF juntos, explicaram o rating comercial e o que dava para resolver primeiro. Foi o primeiro atendimento em que eu realmente entendi o cenário.",
+    result: "Clareza sobre CNPJ + caminho priorizado para regularização",
+  },
+  {
+    name: "Juliana M.",
+    location: "São Paulo",
+    text: "Já tinha tentado sozinha e só me confundia mais. No diagnóstico eles separaram o que era negativação, o que era SCR e o que era score. Saí com um plano simples e realista. Recomendo para quem está cansado de promessa vazia.",
+    result: "Panorama completo e plano realista de próximos passos",
+  },
+];
+
+export const DIAGNOSTIC_DELIVERABLES = [
+  "Leitura dos principais birôs de crédito",
+  "Análise do SCR (Bacen)",
+  "Situação do score e pontos de atenção",
+  "Prioridades claras do que resolver primeiro",
+  "Orientação dos caminhos possíveis no seu caso",
+  "Explicação em linguagem simples, sem enrolação",
 ];
