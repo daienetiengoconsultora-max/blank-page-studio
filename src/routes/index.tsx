@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { DiagnosticForm } from "@/components/site/DiagnosticForm";
-import { BRAND, SERVICES, SITE_URL, WHATSAPP_NUMBER, seo, whatsappLink } from "@/lib/site";
+import { BRAND, SERVICES, SITE_URL, WHATSAPP_NUMBER, seo } from "@/lib/site";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -47,9 +47,6 @@ function Home() {
             <div className="mt-7 flex flex-wrap gap-3">
               <a href="#diagnostico" className="rounded-full bg-white px-6 py-3 text-sm font-semibold text-brand-purple shadow-md">
                 Solicitar atendimento
-              </a>
-              <a href={whatsappLink()} target="_blank" rel="noreferrer" className="rounded-full bg-[#25D366] px-6 py-3 text-sm font-semibold text-white">
-                Falar pelo WhatsApp
               </a>
             </div>
             <p className="mt-5 text-xs text-white/75">Atendimento digital • Todo o Brasil • Análise individual</p>
@@ -123,9 +120,6 @@ function Home() {
           <p className="mt-3 text-sm leading-6 text-muted-foreground">
             A DTM presta orientação e consultoria. A análise é individual, e decisões sobre registros ou concessão de crédito cabem às instituições e órgãos responsáveis.
           </p>
-          <a href={whatsappLink()} target="_blank" rel="noreferrer" className="mt-6 inline-flex rounded-full bg-[#25D366] px-6 py-3 text-sm font-semibold text-white">
-            Conversar com a DTM
-          </a>
         </div>
       </section>
     </SiteLayout>
