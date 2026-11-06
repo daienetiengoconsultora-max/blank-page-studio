@@ -1,12 +1,12 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { TextPage } from "@/components/site/TextPage";
-import { seo, whatsappLink } from "@/lib/site";
+import { RESPONSE_TIME, seo, whatsappLink } from "@/lib/site";
 
 export const Route = createFileRoute("/como-funciona")({
   head: () =>
     seo(
       "/como-funciona",
-      "Como funciona | DTM Assessoria e Consultoria em Regularização de Dados de Crédito",
+      "Como funciona | DTM Consultoria e Regularização de Crédito",
       "Veja o passo a passo do diagnóstico financeiro da DTM: formulário, contato pelo WhatsApp, análise e orientação clara — sem compromisso inicial.",
     ),
   component: () => (
@@ -24,8 +24,7 @@ export const Route = createFileRoute("/como-funciona")({
 
       <h2>2. Contato humano</h2>
       <p>
-        Nossa equipe retorna pelo WhatsApp para entender melhor o seu caso. Sem robô, sem script
-        engessado.
+        Nossa equipe retorna pelo WhatsApp {RESPONSE_TIME}. Sem robô, sem script engessado.
       </p>
 
       <h2>3. Análise com autorização</h2>
