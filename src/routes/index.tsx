@@ -130,6 +130,15 @@ function Home() {
             </div>
 
             <div className="dtm-card flex flex-col items-center rounded-2xl p-5 text-center">
+              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#4285F4]/10">
+                <span className="text-lg font-bold text-[#4285F4]">G</span>
+              </div>
+              <p className="mt-3 text-sm font-semibold text-primary">Google</p>
+              <p className="mt-1 text-xs font-medium text-emerald-600">Bem avaliada</p>
+              <p className="mt-1 text-[11px] text-muted-foreground">Avaliações positivas de clientes</p>
+            </div>
+
+            <div className="dtm-card flex flex-col items-center rounded-2xl p-5 text-center">
               <div className="flex h-12 w-12 items-center justify-center rounded-full bg-brand-purple/10">
                 <span className="text-lg font-bold text-brand-purple">2.000+</span>
               </div>
@@ -145,6 +154,33 @@ function Home() {
               <p className="mt-3 text-sm font-semibold text-primary">De atuação</p>
               <p className="mt-1 text-xs font-medium text-emerald-600">Mercado financeiro</p>
               <p className="mt-1 text-[11px] text-muted-foreground">Consultoria e regularização</p>
+            </div>
+
+            <div className="dtm-card flex flex-col items-center rounded-2xl p-5 text-center">
+              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-sky-500/10">
+                <span className="text-sm font-bold text-sky-600">CNPJ</span>
+              </div>
+              <p className="mt-3 text-sm font-semibold text-primary">Empresa formal</p>
+              <p className="mt-1 text-xs font-medium text-emerald-600">CNPJ ativo</p>
+              <p className="mt-1 text-[11px] text-muted-foreground">Regularizada na Receita Federal</p>
+            </div>
+
+            <div className="dtm-card flex flex-col items-center rounded-2xl p-5 text-center">
+              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-violet-500/10">
+                <span className="text-sm font-bold text-violet-600">LGPD</span>
+              </div>
+              <p className="mt-3 text-sm font-semibold text-primary">Proteção de dados</p>
+              <p className="mt-1 text-xs font-medium text-emerald-600">Conformidade</p>
+              <p className="mt-1 text-[11px] text-muted-foreground">Dados tratados com segurança</p>
+            </div>
+
+            <div className="dtm-card flex flex-col items-center rounded-2xl p-5 text-center">
+              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#25D366]/15">
+                <span className="text-sm font-bold text-[#25D366]">WA</span>
+              </div>
+              <p className="mt-3 text-sm font-semibold text-primary">Atendimento humano</p>
+              <p className="mt-1 text-xs font-medium text-emerald-600">WhatsApp direto</p>
+              <p className="mt-1 text-[11px] text-muted-foreground">Sem robô, com equipe real</p>
             </div>
           </div>
         </div>
