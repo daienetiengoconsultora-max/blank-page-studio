@@ -66,10 +66,6 @@ const SEALS = [
 
 const WHY_TRUST = [
   {
-    title: "Sem promessas milagrosas",
-    text: "Não garantimos aprovação de crédito, aumento de score ou exclusão automática de dívidas. Cada caso é analisado com honestidade.",
-  },
-  {
     title: "Custos antes de contratar",
     text: "Você recebe o panorama e as opções com valores claros antes de qualquer contratação. Sem surpresa no meio do caminho.",
   },
