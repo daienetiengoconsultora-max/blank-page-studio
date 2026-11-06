@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
-import { brl, fmtDate, needsAlert, stageLabel } from "@/lib/crm";
+import { brl, fmtDate, needsAlert, needsFollowUp, stageLabel } from "@/lib/crm";
 import { Card, ErrorNote, useLeads } from "./shared";
 import { useProcesses } from "./ProcessesModule";
 
@@ -22,7 +22,10 @@ export function DashboardModule({ onNavigate }: Props) {
   const contracts = contractsQuery.data ?? [];
   const signed = contracts.filter((c) => c.status === "assinado" || c.status === "arquivado");
   const openLeads = leads.filter((l) => !["concluido", "nao_fechou"].includes(l.status));
-  const awaiting = leads.filter((l) => ["novo", "em_atendimento"].includes(l.status));
+  const awaiting = leads.filter((l) =>
+    ["novo", "diagnostico", "proposta", "em_atendimento", "aguardando_cliente"].includes(l.status),
+  );
+  const followUps = leads.filter((l) => needsFollowUp(l.last_contact_at, l.status));
   const alerts = processes.filter((p) => p.status !== "concluido" && needsAlert(p.expected_date));
   const revenue = signed.reduce((sum, c) => sum + Number(c.amount || 0), 0);
   const today = new Date();
@@ -52,9 +55,9 @@ export function DashboardModule({ onNavigate }: Props) {
       <ErrorNote error={leadsQuery.error ?? processesQuery.error ?? contractsQuery.error} />
       <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
         {stat("Clientes cadastrados", String(leads.length), `${monthLeads.length} novos neste mês`)}
-        {stat("Atendimentos em aberto", String(openLeads.length), `${awaiting.length} aguardando primeiro retorno`)}
-        {stat("Contratos assinados", String(signed.length), `${contracts.length} contratos no total`)}
-        {stat("Total contratado", brl(revenue), "Com base nos contratos assinados/arquivados")}
+        {stat("Atendimentos em aberto", String(openLeads.length), `${awaiting.length} em etapas iniciais`)}
+        {stat("Precisam de follow-up", String(followUps.length), "Sem contato há 3+ dias")}
+        {stat("Total contratado", brl(revenue), `${signed.length} contratos assinados/arquivados`)}
       </div>
       <div className="grid gap-5 xl:grid-cols-2">
         <Card title="Atalhos rápidos">
@@ -94,16 +97,16 @@ export function DashboardModule({ onNavigate }: Props) {
           <button className="mt-3 text-sm font-semibold text-primary underline" onClick={() => onNavigate("processos")}>Abrir processos</button>
         </Card>
       </div>
-      <Card title="Clientes que precisam de acompanhamento">
-        {awaiting.length === 0 ? <p className="text-sm text-muted-foreground">Não há clientes nas etapas iniciais.</p> : (
+      <Card title={`Follow-up pendente (${followUps.length})`}>
+        {followUps.length === 0 ? <p className="text-sm text-muted-foreground">Nenhum cliente precisa de follow-up agora.</p> : (
           <ul className="divide-y divide-border">
-            {awaiting.slice(0, 8).map((l) => <li key={l.id} className="flex flex-wrap items-center justify-between gap-2 py-3 text-sm">
-              <span><strong className="text-primary">{l.full_name}</strong><span className="block text-xs text-muted-foreground">{l.phone} · {l.client_type}</span></span>
+            {followUps.slice(0, 8).map((l) => <li key={l.id} className="flex flex-wrap items-center justify-between gap-2 py-3 text-sm">
+              <span><strong className="text-primary">{l.full_name}</strong><span className="block text-xs text-muted-foreground">{l.phone} · {l.source ?? "origem não informada"}</span></span>
               <span className="rounded-full bg-secondary px-3 py-1 text-xs font-semibold text-brand-purple">{stageLabel(l.status)}</span>
             </li>)}
           </ul>
         )}
-        <button className="mt-3 text-sm font-semibold text-primary underline" onClick={() => onNavigate("leads")}>Ver todos os clientes</button>
+        <button className="mt-3 text-sm font-semibold text-primary underline" onClick={() => onNavigate("leads")}>Abrir leads e fazer follow-up</button>
       </Card>
     </div>
   );
