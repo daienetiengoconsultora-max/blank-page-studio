@@ -14,7 +14,6 @@ const schema = z.object({
       (v) => v.replace(/\D/g, "").length >= 10 && v.replace(/\D/g, "").length <= 13,
       "Telefone inválido",
     ),
-  kind: z.enum(["CPF", "CNPJ"]),
   debt: z.string().max(20),
   creditor: z.string().trim().max(60),
   service: z.string().min(2, "Escolha o serviço"),
@@ -32,7 +31,6 @@ export function DiagnosticForm() {
     const parsed = schema.safeParse({
       name: f.get("name"),
       phone: f.get("phone"),
-      kind: f.get("kind"),
       debt: String(f.get("debt") ?? ""),
       creditor: f.get("creditor") ?? "",
       service: f.get("service"),
@@ -44,7 +42,7 @@ export function DiagnosticForm() {
     const d = parsed.data;
     const debtNum = Number(d.debt.replace(/\./g, "").replace(",", "."));
     const objective =
-      `Diagnóstico: ${d.service} · ${d.kind}${d.creditor ? ` · Credor: ${d.creditor}` : ""}`.slice(
+      `Diagnóstico: ${d.service}${d.creditor ? ` · Credor: ${d.creditor}` : ""}`.slice(
         0,
         100,
       );
@@ -104,13 +102,6 @@ export function DiagnosticForm() {
             placeholder="(27) 99999-9999"
             className={field}
           />
-        </label>
-        <label className="text-sm font-medium">
-          Tipo de cadastro
-          <select name="kind" className={field}>
-            <option>CPF</option>
-            <option>CNPJ</option>
-          </select>
         </label>
         <label className="text-sm font-medium">
           Valor aproximado da dívida
