@@ -160,7 +160,7 @@ export const SERVICES: Service[] = [
     body: [
       "Reunimos as informações de cadastros de inadimplência, SCR, score e endividamento em um único panorama. Muita gente tenta resolver a dívida errada primeiro.",
       "Você recebe um panorama claro: o que aparece nos birôs, o que pesa no SCR, como está o score e quais caminhos fazem mais sentido no seu caso. Tudo explicado em linguagem simples.",
-      "Custos e opções de continuidade são apresentados antes de qualquer contratação. Você
+      "Custos e opções de continuidade são apresentados antes de qualquer contratação. Você decide se deseja seguir.",
     ],
     steps: [
       "Coleta de informações",
