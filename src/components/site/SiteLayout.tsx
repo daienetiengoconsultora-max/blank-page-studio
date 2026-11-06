@@ -5,7 +5,6 @@ import { BRAND, COMPANY, WHATSAPP_DISPLAY, whatsappLink } from "@/lib/site";
 const NAV = [
   { to: "/", label: "Início" },
   { to: "/servicos", label: "Serviços" },
-  { to: "/como-funciona", label: "Como funciona" },
   { to: "/valores", label: "Valores e condições" },
   { to: "/perguntas-frequentes", label: "FAQ" },
   { to: "/sobre", label: "Sobre" },
@@ -113,9 +112,6 @@ export function SiteLayout({ children }: { children: ReactNode }) {
             </Link>
             <Link className="transition-colors hover:text-accent" to="/servicos">
               Serviços
-            </Link>
-            <Link className="transition-colors hover:text-accent" to="/como-funciona">
-              Como funciona
             </Link>
             <Link className="transition-colors hover:text-accent" to="/blog">
               Blog DTM
