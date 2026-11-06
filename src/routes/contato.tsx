@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteLayout, PageHero } from "@/components/site/SiteLayout";
 import { ContactForm } from "@/components/site/ContactForm";
-import { RESPONSE_TIME, WHATSAPP_DISPLAY, seo, whatsappLink } from "@/lib/site";
+import { WHATSAPP_DISPLAY, seo, whatsappLink } from "@/lib/site";
 
 export const Route = createFileRoute("/contato")({
   head: () =>
@@ -25,9 +25,6 @@ export const Route = createFileRoute("/contato")({
               Prefere o WhatsApp?
             </h2>
             <p>Atendimento pelo número {WHATSAPP_DISPLAY}.</p>
-            <p className="text-muted-foreground">
-              Respondemos {RESPONSE_TIME}.
-            </p>
             <a
               href={whatsappLink()}
               target="_blank"
