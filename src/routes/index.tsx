@@ -248,7 +248,7 @@ function Home() {
           <h2 className="font-display text-xl font-semibold md:text-2xl">Garantias de transparência</h2>
           <div className="mt-6 grid gap-3 sm:grid-cols-3">
             <div className="rounded-xl border border-accent/40 bg-secondary/30 p-4">
-              <p className="text-sm font-semibold text-primary">Diagnóstico sem compromisso</p>
+              <p className="text-sm font-semibold text-primary">Análise individualizada</p>
               <p className="mt-1 text-xs text-muted-foreground">Você entende a situação antes de decidir</p>
             </div>
             <div className="rounded-xl border border-accent/40 bg-secondary/30 p-4">
@@ -269,7 +269,7 @@ function Home() {
             Pronto para entender sua situação de crédito?
           </h2>
           <p className="mt-3 text-sm opacity-90">
-            Diagnóstico sem compromisso. Custos e opções explicados antes de qualquer contratação.
+            Custos e opções explicados antes de qualquer contratação.
           </p>
           <div className="mt-6 flex flex-wrap justify-center gap-3">
             <a
