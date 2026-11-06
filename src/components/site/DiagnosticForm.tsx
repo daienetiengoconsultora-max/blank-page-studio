@@ -3,7 +3,7 @@ import { Link } from "@tanstack/react-router";
 import { z } from "zod";
 import { supabase } from "@/integrations/supabase/client";
 import { supabaseConfigured } from "@/lib/supabase-ready";
-import { RESPONSE_TIME, SERVICES, whatsappLink } from "@/lib/site";
+import { SERVICES, whatsappLink } from "@/lib/site";
 
 const schema = z.object({
   name: z.string().trim().min(2, "Informe seu primeiro nome").max(60),
@@ -69,8 +69,7 @@ export function DiagnosticForm() {
       <div className="rounded-3xl border-t-4 border-brand-gold bg-card p-8 text-card-foreground shadow-elegant">
         <p className="font-display text-2xl font-semibold text-wine">Recebemos seu pedido!</p>
         <p className="mt-3 text-sm leading-6 text-muted-foreground">
-          Nossa equipe vai entrar em contato pelo WhatsApp informado {RESPONSE_TIME}. Se preferir,
-          fale agora:
+          Nossa equipe vai entrar em contato pelo WhatsApp informado. Se preferir, fale agora:
         </p>
         <a
           href={whatsappLink()}
