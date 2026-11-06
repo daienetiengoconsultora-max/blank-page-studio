@@ -61,7 +61,6 @@ const SEALS = [
   { icon: "WA", color: "#25D366", title: "Atendimento humano", badge: "WhatsApp direto", sub: "Sem robô, com equipe real" },
   { icon: "100%", color: "#DC2626", title: "Transparência", badge: "Custos claros", sub: "Valores antes de qualquer contratação" },
   { icon: "BR", color: "#16A34A", title: "Todo o Brasil", badge: "Atendimento digital", sub: "De qualquer estado do país" },
-  { icon: "✓", color: "#0F766E", title: "Sem milagre", badge: "Ética primeiro", sub: "Não prometemos o impossível" },
   { icon: "24h", color: "#EA580C", title: "Retorno rápido", badge: "Resposta ágil", sub: "Equipe atende pelo WhatsApp" },
 ];
 
