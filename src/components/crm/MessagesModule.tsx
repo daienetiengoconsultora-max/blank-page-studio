@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
-import { fillTemplate, fmtDate, onlyDigits, stageLabel } from "@/lib/crm";
+import { fillTemplate, fmtDate, leadWhatsAppLink, stageLabel } from "@/lib/crm";
 import { Card, ErrorNote, Field, btn, btnGhost, input, useLeads } from "./shared";
 import { useProcesses } from "./ProcessesModule";
 
@@ -23,7 +23,7 @@ export function MessagesModule({ userId }: { userId: string }) {
   const [leadId, setLeadId] = useState("");
   const [tplId, setTplId] = useState("");
   const [text, setText] = useState("");
-  const [status, setStatus] = useState("copiada");
+  const [status, setStatus] = useState("enviada");
   const [info, setInfo] = useState("");
   const [editTpl, setEditTpl] = useState(false);
 
@@ -48,18 +48,38 @@ export function MessagesModule({ userId }: { userId: string }) {
     await navigator.clipboard.writeText(text).catch(() => undefined);
     setInfo("Mensagem copiada. Cole no WhatsApp e depois registre o envio.");
   }
-  async function register() {
+
+  async function register(nextStatus = status) {
     if (!lead || !text) return setInfo("Escolha cliente e mensagem.");
     const { error } = await supabase.from("message_logs").insert({
       lead_id: lead.id,
       owner_id: userId,
       template_key: tpl?.key ?? null,
       body: text,
-      status,
+      status: nextStatus,
     });
+    if (!error) {
+      await supabase
+        .from("leads")
+        .update({ last_contact_at: new Date().toISOString() })
+        .eq("id", lead.id);
+      await supabase.from("lead_activities").insert({
+        lead_id: lead.id,
+        owner_id: userId,
+        activity_type: "whatsapp",
+        description: `Mensagem (${nextStatus}): ${text.slice(0, 280)}`,
+      });
+    }
     setInfo(error ? error.message : "Envio registrado no histórico do cliente.");
     void qc.invalidateQueries({ queryKey: ["crm"] });
   }
+
+  async function openWhatsAppAndLog() {
+    if (!lead || !text) return setInfo("Escolha cliente e mensagem.");
+    await register("enviada");
+    window.open(leadWhatsAppLink(lead.phone, text), "_blank", "noopener,noreferrer");
+  }
+
   async function saveTpl() {
     if (!tpl) return;
     await supabase.from("message_templates").update({ body: text }).eq("id", tpl.id);
@@ -140,14 +160,9 @@ export function MessagesModule({ userId }: { userId: string }) {
               Copiar
             </button>
             {lead && (
-              <a
-                className={btnGhost}
-                href={`https://wa.me/55${onlyDigits(lead.phone).replace(/^55/, "")}?text=${encodeURIComponent(text)}`}
-                target="_blank"
-                rel="noreferrer"
-              >
-                Abrir WhatsApp
-              </a>
+              <button className={btnGhost} onClick={() => void openWhatsAppAndLog()} disabled={!text}>
+                Abrir WhatsApp e registrar
+              </button>
             )}
             <select
               className={`${input} w-40`}
@@ -159,7 +174,7 @@ export function MessagesModule({ userId }: { userId: string }) {
               <option value="enviada">Enviada</option>
               <option value="respondida">Respondida</option>
             </select>
-            <button className={btnGhost} onClick={register}>
+            <button className={btnGhost} onClick={() => void register()}>
               Registrar envio
             </button>
             {tpl && (
