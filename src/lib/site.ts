@@ -10,7 +10,7 @@ export const whatsappLink = (text = "Olá! Quero fazer meu diagnóstico financei
 export const COMPANY = {
   legalName: "DTM Consultoria e Regularização de Crédito",
   cnpj: "69.554.451/0001-77",
-  address: "Rua Pedro Palácios, Vitória - ES",
+  address: "Rua Pedro Palácios",
   years: 5,
   diagnoses: "mais de 2.000",
 };
