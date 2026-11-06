@@ -106,10 +106,6 @@ export function SiteLayout({ children }: { children: ReactNode }) {
               CNPJ {COMPANY.cnpj}<br />
               {COMPANY.address}
             </p>
-            <p className="mt-3 text-xs leading-5">
-              Não garantimos aprovação de crédito, aumento de score ou exclusão de dívidas. Cada
-              caso depende de análise individual.
-            </p>
           </div>
           <div className="flex flex-col gap-2">
             <Link className="transition-colors hover:text-accent" to="/valores">
