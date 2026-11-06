@@ -1,6 +1,6 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { PageHero, SiteLayout } from "@/components/site/SiteLayout";
-import { SERVICES, seo, whatsappLink } from "@/lib/site";
+import { SERVICES, seo } from "@/lib/site";
 
 export const Route = createFileRoute("/servicos/$slug")({
   loader: ({ params }) => {
@@ -57,14 +57,6 @@ function ServicePage() {
             >
               Fazer diagnóstico
             </Link>
-            <a
-              href={whatsappLink(`Olá! Quero saber mais sobre ${s.name}.`)}
-              target="_blank"
-              rel="noreferrer"
-              className="rounded-full border border-primary px-6 py-3 text-sm font-semibold text-primary"
-            >
-              Falar no WhatsApp
-            </a>
           </div>
         </div>
       </section>
