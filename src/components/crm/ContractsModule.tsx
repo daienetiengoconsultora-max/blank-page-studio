@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
-import { CONTRACT_STATUS, brl, fillTemplate, fmtDate, priceFor } from "@/lib/crm";
+import { CONTRACT_STATUS, brl, fillTemplate, fmtDate, leadWhatsAppLink, priceFor } from "@/lib/crm";
 import { SITE_URL } from "@/lib/site";
 import {
   Card,
@@ -21,6 +21,7 @@ type ContractRow = Contract & {
   client_signer_name?: string | null;
   company_signed_at?: string | null;
   company_signer_name?: string | null;
+  client_selfie_base64?: string | null;
 };
 
 function varsFor(lead: Lead, c: { number: string; amount: number; contract_date: string }) {
@@ -60,6 +61,11 @@ function signUrl(token: string) {
   return `${SITE_URL}/assinar/${token}`;
 }
 
+function linkMessage(url: string, name?: string) {
+  const first = name?.split(" ")[0] ?? "cliente";
+  return `Olá, ${first}! Segue o link para assinar o contrato da DTM Consultoria:\n\n${url}\n\nNo link você lê o contrato, tira uma foto do rosto e assina.`;
+}
+
 export function ContractsModule({ userId }: { userId: string }) {
   const qc = useQueryClient();
   const { data: leads = [] } = useLeads();
@@ -93,6 +99,7 @@ export function ContractsModule({ userId }: { userId: string }) {
   const [msg, setMsg] = useState("");
   const [open, setOpen] = useState<string | null>(null);
   const [busyId, setBusyId] = useState<string | null>(null);
+  const [selfieOf, setSelfieOf] = useState<string | null>(null);
   const refresh = () => qc.invalidateQueries({ queryKey: ["crm"] });
 
   async function create() {
@@ -125,36 +132,64 @@ export function ContractsModule({ userId }: { userId: string }) {
     void refresh();
   }
 
-  async function generateLink(contractId: string) {
-    setBusyId(contractId);
-    setMsg("");
+  async function ensureToken(contractId: string) {
     const { data, error } = await supabase.rpc("generate_contract_sign_token", {
       p_contract_id: contractId,
     });
-    setBusyId(null);
-    if (error) {
-      setMsg(error.message);
-      return;
-    }
-    const token = String(data);
-    const url = signUrl(token);
-    try {
-      await navigator.clipboard.writeText(url);
-      setMsg("Link de assinatura copiado. Envie ao cliente pelo WhatsApp.");
-    } catch {
-      setMsg(`Link gerado: ${url}`);
-    }
-    void refresh();
+    if (error) throw new Error(error.message);
+    return String(data);
   }
 
-  async function copyLink(token: string) {
-    const url = signUrl(token);
+  async function generateLink(contractId: string) {
+    setBusyId(contractId);
+    setMsg("");
     try {
-      await navigator.clipboard.writeText(url);
-      setMsg("Link copiado.");
-    } catch {
-      setMsg(url);
+      const token = await ensureToken(contractId);
+      const url = signUrl(token);
+      try {
+        await navigator.clipboard.writeText(url);
+        setMsg("Link de assinatura copiado.");
+      } catch {
+        setMsg(`Link gerado: ${url}`);
+      }
+      void refresh();
+    } catch (e) {
+      setMsg((e as Error).message);
     }
+    setBusyId(null);
+  }
+
+  async function sendWhatsApp(contractId: string, lead?: Lead) {
+    if (!lead?.phone) return setMsg("Cliente sem telefone cadastrado.");
+    setBusyId(contractId);
+    try {
+      const token = await ensureToken(contractId);
+      const url = signUrl(token);
+      const text = linkMessage(url, lead.full_name);
+      window.open(leadWhatsAppLink(lead.phone, text), "_blank", "noopener,noreferrer");
+      setMsg("WhatsApp aberto com o link do contrato.");
+      void refresh();
+    } catch (e) {
+      setMsg((e as Error).message);
+    }
+    setBusyId(null);
+  }
+
+  async function sendEmail(contractId: string, lead?: Lead) {
+    if (!lead?.email) return setMsg("Cliente sem e-mail cadastrado.");
+    setBusyId(contractId);
+    try {
+      const token = await ensureToken(contractId);
+      const url = signUrl(token);
+      const subject = encodeURIComponent("Assinatura do contrato - DTM Consultoria");
+      const body = encodeURIComponent(linkMessage(url, lead.full_name));
+      window.location.href = `mailto:${lead.email}?subject=${subject}&body=${body}`;
+      setMsg("E-mail aberto com o link do contrato.");
+      void refresh();
+    } catch (e) {
+      setMsg((e as Error).message);
+    }
+    setBusyId(null);
   }
 
   async function companySign(contractId: string) {
@@ -173,9 +208,8 @@ export function ContractsModule({ userId }: { userId: string }) {
   return (
     <div className="space-y-5">
       <p className="rounded-2xl border border-accent bg-card p-4 text-sm">
-        Modelo de contrato é uma <strong>minuta sujeita à revisão do advogado parceiro</strong>. Não
-        utilize como versão definitiva sem essa validação. O cliente assina só pelo link público —
-        sem acesso ao CRM.
+        Gere o contrato no CRM, envie o link por <strong>WhatsApp</strong> ou <strong>e-mail</strong>.
+        O cliente assina na página pública com foto do rosto — sem acesso ao CRM.
       </p>
       <Card title="Novo contrato">
         <div className="flex flex-wrap gap-2">
@@ -244,6 +278,7 @@ export function ContractsModule({ userId }: { userId: string }) {
                     <span className="mt-1 block text-xs text-muted-foreground">
                       Cliente: {clientOk ? `assinou (${c.client_signer_name})` : "pendente"} · DTM:{" "}
                       {companyOk ? `assinou (${c.company_signer_name})` : "pendente"}
+                      {c.client_selfie_base64 ? " · selfie ok" : ""}
                     </span>
                   </span>
                   <span className="flex flex-wrap gap-2">
@@ -266,11 +301,20 @@ export function ContractsModule({ userId }: { userId: string }) {
                     >
                       {c.sign_token ? "Copiar link" : "Gerar link"}
                     </button>
-                    {c.sign_token && (
-                      <button className={btnGhost} onClick={() => void copyLink(c.sign_token!)}>
-                        Link
-                      </button>
-                    )}
+                    <button
+                      className={btnGhost}
+                      disabled={busyId === c.id}
+                      onClick={() => void sendWhatsApp(c.id, lead)}
+                    >
+                      WhatsApp
+                    </button>
+                    <button
+                      className={btnGhost}
+                      disabled={busyId === c.id}
+                      onClick={() => void sendEmail(c.id, lead)}
+                    >
+                      E-mail
+                    </button>
                     {!companyOk && (
                       <button
                         className={btnGhost}
@@ -278,6 +322,11 @@ export function ContractsModule({ userId }: { userId: string }) {
                         onClick={() => void companySign(c.id)}
                       >
                         Assinar DTM
+                      </button>
+                    )}
+                    {c.client_selfie_base64 && (
+                      <button className={btnGhost} onClick={() => setSelfieOf(selfieOf === c.id ? null : c.id)}>
+                        {selfieOf === c.id ? "Ocultar selfie" : "Ver selfie"}
                       </button>
                     )}
                     <button
@@ -291,6 +340,15 @@ export function ContractsModule({ userId }: { userId: string }) {
                     </button>
                   </span>
                 </div>
+                {selfieOf === c.id && c.client_selfie_base64 && (
+                  <div className="mt-3">
+                    <img
+                      src={c.client_selfie_base64}
+                      alt="Selfie da assinatura"
+                      className="max-h-56 rounded-xl border border-border"
+                    />
+                  </div>
+                )}
                 {open === c.id && <ContractEditor c={c} onSave={(p) => update(c.id, p)} />}
               </li>
             );
