@@ -45,7 +45,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
               href={whatsappLink()}
               target="_blank"
               rel="noreferrer"
-              className="rounded-full bg-brand-spectrum px-5 py-2.5 text-white shadow-elegant hover:opacity-90"
+              className="rounded-full bg-[#25D366] px-5 py-2.5 text-white shadow-elegant hover:bg-[#1DA851]"
             >
               WhatsApp
             </a>
@@ -53,7 +53,8 @@ export function SiteLayout({ children }: { children: ReactNode }) {
           <button
             className="rounded-md border border-brand-purple px-3 py-2 text-sm text-brand-purple lg:hidden"
             onClick={() => setOpen(!open)}
-            aria-label="Abrir menu"
+            aria-label={open ? "Fechar menu" : "Abrir menu"}
+            aria-expanded={open}
           >
             Menu
           </button>
@@ -74,7 +75,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
               target="_blank"
               rel="noreferrer"
               onClick={() => setOpen(false)}
-              className="mt-2 rounded-full bg-brand-spectrum px-5 py-2.5 text-center text-sm font-semibold text-white"
+              className="mt-2 rounded-full bg-[#25D366] px-5 py-2.5 text-center text-sm font-semibold text-white hover:bg-[#1DA851]"
             >
               WhatsApp
             </a>
@@ -120,7 +121,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
               href={whatsappLink()}
               target="_blank"
               rel="noreferrer"
-              className="rounded-full bg-brand-gold px-5 py-2.5 font-semibold text-[#17264f] transition-colors hover:bg-brand-pink hover:text-white"
+              className="rounded-full bg-[#25D366] px-5 py-2.5 font-semibold text-white transition-colors hover:bg-[#1DA851]"
             >
               WhatsApp {WHATSAPP_DISPLAY}
             </a>
