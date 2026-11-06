@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as AcessoRouteImport } from './routes/acesso'
+import { Route as AssinarTokenRouteImport } from './routes/assinar.$token'
 import { Route as ComoFuncionaRouteImport } from './routes/como-funciona'
 import { Route as ContatoRouteImport } from './routes/contato'
 import { Route as PerguntasFrequentesRouteImport } from './routes/perguntas-frequentes'
@@ -39,6 +40,11 @@ const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
 const AcessoRoute = AcessoRouteImport.update({
   id: '/acesso',
   path: '/acesso',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AssinarTokenRoute = AssinarTokenRouteImport.update({
+  id: '/assinar/$token',
+  path: '/assinar/$token',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ComoFuncionaRoute = ComoFuncionaRouteImport.update({
@@ -115,6 +121,7 @@ const ServicosSlugRoute = ServicosSlugRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/acesso': typeof AcessoRoute
+  '/assinar/$token': typeof AssinarTokenRoute
   '/como-funciona': typeof ComoFuncionaRoute
   '/contato': typeof ContatoRoute
   '/perguntas-frequentes': typeof PerguntasFrequentesRoute
@@ -133,6 +140,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/acesso': typeof AcessoRoute
+  '/assinar/$token': typeof AssinarTokenRoute
   '/como-funciona': typeof ComoFuncionaRoute
   '/contato': typeof ContatoRoute
   '/perguntas-frequentes': typeof PerguntasFrequentesRoute
@@ -153,6 +161,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/acesso': typeof AcessoRoute
+  '/assinar/$token': typeof AssinarTokenRoute
   '/como-funciona': typeof ComoFuncionaRoute
   '/contato': typeof ContatoRoute
   '/perguntas-frequentes': typeof PerguntasFrequentesRoute
@@ -173,6 +182,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/acesso'
+    | '/assinar/$token'
     | '/como-funciona'
     | '/contato'
     | '/perguntas-frequentes'
@@ -191,6 +201,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/acesso'
+    | '/assinar/$token'
     | '/como-funciona'
     | '/contato'
     | '/perguntas-frequentes'
@@ -210,6 +221,7 @@ export interface FileRouteTypes {
     | '/'
     | '/_authenticated'
     | '/acesso'
+    | '/assinar/$token'
     | '/como-funciona'
     | '/contato'
     | '/perguntas-frequentes'
@@ -230,6 +242,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
   AcessoRoute: typeof AcessoRoute
+  AssinarTokenRoute: typeof AssinarTokenRoute
   ComoFuncionaRoute: typeof ComoFuncionaRoute
   ContatoRoute: typeof ContatoRoute
   PerguntasFrequentesRoute: typeof PerguntasFrequentesRoute
@@ -266,6 +279,13 @@ declare module '@tanstack/react-router' {
       path: '/acesso'
       fullPath: '/acesso'
       preLoaderRoute: typeof AcessoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/assinar/$token': {
+      id: '/assinar/$token'
+      path: '/assinar/$token'
+      fullPath: '/assinar/$token'
+      preLoaderRoute: typeof AssinarTokenRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/como-funciona': {
@@ -384,6 +404,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
   AcessoRoute: AcessoRoute,
+  AssinarTokenRoute: AssinarTokenRoute,
   ComoFuncionaRoute: ComoFuncionaRoute,
   ContatoRoute: ContatoRoute,
   PerguntasFrequentesRoute: PerguntasFrequentesRoute,
