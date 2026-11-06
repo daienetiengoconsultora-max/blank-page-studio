@@ -90,5 +90,5 @@ begin
 end;
 $$;
 
-revoke all on function public.sign complement_contract_as_client(text, text, text, boolean, text, text) from public;
--- fix typo below
+revoke all on function public.sign_contract_as_client(text, text, text, boolean, text, text) from public;
+grant execute on function public.sign_contract_as_client(text, text, text, boolean, text, text) to anon, authenticated;
