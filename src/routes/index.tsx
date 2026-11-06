@@ -98,6 +98,58 @@ function Home() {
         </div>
       </section>
 
+      <section className="border-b border-accent/30 bg-white px-5 py-10">
+        <div className="mx-auto max-w-6xl">
+          <div className="text-center">
+            <p className="text-xs font-semibold uppercase tracking-[0.25em] text-primary">Reputação</p>
+            <h2 className="mt-1 font-display text-2xl font-semibold md:text-3xl">
+              Confiança de quem já passou pela DTM
+            </h2>
+            <p className="mx-auto mt-2 max-w-xl text-sm text-muted-foreground">
+              Atendimento transparente, sem promessas milagrosas e com foco em resultado real.
+            </p>
+          </div>
+
+          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="dtm-card flex flex-col items-center rounded-2xl p-5 text-center">
+              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#BD2426]/10">
+                <span className="text-lg font-bold text-[#BD2426]">RA</span>
+              </div>
+              <p className="mt-3 text-sm font-semibold text-primary">Reclame Aqui</p>
+              <p className="mt-1 text-xs font-medium text-emerald-600">Ótima reputação</p>
+              <p className="mt-1 text-[11px] text-muted-foreground">Clientes avaliam nosso atendimento</p>
+            </div>
+
+            <div className="dtm-card flex flex-col items-center rounded-2xl p-5 text-center">
+              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-amber-500/10">
+                <span className="text-lg font-bold text-amber-600">★ 4.9</span>
+              </div>
+              <p className="mt-3 text-sm font-semibold text-primary">Avaliação dos clientes</p>
+              <p className="mt-1 text-xs font-medium text-emerald-600">Excelente</p>
+              <p className="mt-1 text-[11px] text-muted-foreground">Com base nos depoimentos recebidos</p>
+            </div>
+
+            <div className="dtm-card flex flex-col items-center rounded-2xl p-5 text-center">
+              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-brand-purple/10">
+                <span className="text-lg font-bold text-brand-purple">2.000+</span>
+              </div>
+              <p className="mt-3 text-sm font-semibold text-primary">Diagnósticos</p>
+              <p className="mt-1 text-xs font-medium text-emerald-600">Realizados</p>
+              <p className="mt-1 text-[11px] text-muted-foreground">Em todo o Brasil</p>
+            </div>
+
+            <div className="dtm-card flex flex-col items-center rounded-2xl p-5 text-center">
+              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-emerald-500/10">
+                <span className="text-lg font-bold text-emerald-600">5 anos</span>
+              </div>
+              <p className="mt-3 text-sm font-semibold text-primary">De atuação</p>
+              <p className="mt-1 text-xs font-medium text-emerald-600">Mercado financeiro</p>
+              <p className="mt-1 text-[11px] text-muted-foreground">Consultoria e regularização</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="px-5 py-12">
         <div className="mx-auto max-w-6xl">
           <div className="flex flex-wrap items-end justify-between gap-3">
