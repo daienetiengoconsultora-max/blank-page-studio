@@ -17,7 +17,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
   const [open, setOpen] = useState(false);
   return (
     <div className="dtm-site-watermark min-h-screen bg-background font-sans text-foreground">
-      <header className="sticky top-0 z-40 border-b-2 border-brand-gold bg-background/95 backdrop-blur">
+      <header className="sticky top-0 z-40 bg-background/95 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-5 py-2">
           <Link to="/" className="flex min-w-0 shrink-0 items-center gap-2" aria-label={`${BRAND} - Início`}>
             <img
