@@ -101,7 +101,7 @@ function Crm() {
         <Suspense fallback={<div className="rounded-2xl border border-border bg-background p-6 text-sm text-muted-foreground">Abrindo módulo…</div>}>
           {tab === "painel" && <DashboardModule onNavigate={setTab} />}
           {tab === "leads" && <LeadsModule userId={user.id} />}
-          {tab === "funil" && <FunnelModule />}
+          {tab === "funil" && <FunnelModule userId={user.id} />}
           {tab === "tarefas" && <TasksModule userId={user.id} />}
           {tab === "servicos" && <ServicesModule userId={user.id} />}
           {tab === "documentos" && <DocumentsModule userId={user.id} />}
