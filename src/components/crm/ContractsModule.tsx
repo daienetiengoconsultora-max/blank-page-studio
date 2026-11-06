@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { CONTRACT_STATUS, brl, fillTemplate, fmtDate, priceFor } from "@/lib/crm";
+import { SITE_URL } from "@/lib/site";
 import {
   Card,
   ErrorNote,
@@ -13,6 +14,14 @@ import {
   type Contract,
   type Lead,
 } from "./shared";
+
+type ContractRow = Contract & {
+  sign_token?: string | null;
+  client_signed_at?: string | null;
+  client_signer_name?: string | null;
+  company_signed_at?: string | null;
+  company_signer_name?: string | null;
+};
 
 function varsFor(lead: Lead, c: { number: string; amount: number; contract_date: string }) {
   return {
@@ -47,6 +56,10 @@ async function downloadPdf(c: Contract, lead: Lead | undefined) {
   doc.save(`${c.number}.pdf`);
 }
 
+function signUrl(token: string) {
+  return `${SITE_URL}/assinar/${token}`;
+}
+
 export function ContractsModule({ userId }: { userId: string }) {
   const qc = useQueryClient();
   const { data: leads = [] } = useLeads();
@@ -58,7 +71,7 @@ export function ContractsModule({ userId }: { userId: string }) {
         .select("*")
         .order("created_at", { ascending: false });
       if (error) throw error;
-      return data;
+      return data as ContractRow[];
     },
   });
   const template = useQuery({
@@ -79,6 +92,7 @@ export function ContractsModule({ userId }: { userId: string }) {
   const [tplText, setTplText] = useState("");
   const [msg, setMsg] = useState("");
   const [open, setOpen] = useState<string | null>(null);
+  const [busyId, setBusyId] = useState<string | null>(null);
   const refresh = () => qc.invalidateQueries({ queryKey: ["crm"] });
 
   async function create() {
@@ -94,12 +108,14 @@ export function ContractsModule({ userId }: { userId: string }) {
     setMsg(error ? error.message : "Contrato criado. Revise o texto antes de enviar.");
     void refresh();
   }
+
   async function saveTpl() {
     if (!template.data) return;
     await supabase.from("contract_templates").update({ body: tplText }).eq("id", template.data.id);
     setEditingTpl(false);
     void refresh();
   }
+
   async function update(
     id: string,
     patch: Partial<Pick<Contract, "status" | "amount" | "body" | "contract_date">>,
@@ -109,11 +125,57 @@ export function ContractsModule({ userId }: { userId: string }) {
     void refresh();
   }
 
+  async function generateLink(contractId: string) {
+    setBusyId(contractId);
+    setMsg("");
+    const { data, error } = await supabase.rpc("generate_contract_sign_token", {
+      p_contract_id: contractId,
+    });
+    setBusyId(null);
+    if (error) {
+      setMsg(error.message);
+      return;
+    }
+    const token = String(data);
+    const url = signUrl(token);
+    try {
+      await navigator.clipboard.writeText(url);
+      setMsg("Link de assinatura copiado. Envie ao cliente pelo WhatsApp.");
+    } catch {
+      setMsg(`Link gerado: ${url}`);
+    }
+    void refresh();
+  }
+
+  async function copyLink(token: string) {
+    const url = signUrl(token);
+    try {
+      await navigator.clipboard.writeText(url);
+      setMsg("Link copiado.");
+    } catch {
+      setMsg(url);
+    }
+  }
+
+  async function companySign(contractId: string) {
+    setBusyId(contractId);
+    setMsg("");
+    const { error } = await supabase.rpc("sign_contract_as_company", {
+      p_contract_id: contractId,
+      p_signer_name: "DTM Consultoria e Regularização de Crédito",
+    });
+    setBusyId(null);
+    if (error) setMsg(error.message);
+    else setMsg("Assinatura da DTM registrada.");
+    void refresh();
+  }
+
   return (
     <div className="space-y-5">
       <p className="rounded-2xl border border-accent bg-card p-4 text-sm">
         Modelo de contrato é uma <strong>minuta sujeita à revisão do advogado parceiro</strong>. Não
-        utilize como versão definitiva sem essa validação.
+        utilize como versão definitiva sem essa validação. O cliente assina só pelo link público —
+        sem acesso ao CRM.
       </p>
       <Card title="Novo contrato">
         <div className="flex flex-wrap gap-2">
@@ -171,12 +233,18 @@ export function ContractsModule({ userId }: { userId: string }) {
         <ul className="divide-y divide-border">
           {(contracts.data ?? []).map((c) => {
             const lead = leads.find((l) => l.id === c.lead_id);
+            const clientOk = !!c.client_signed_at;
+            const companyOk = !!c.company_signed_at;
             return (
               <li key={c.id} className="py-3 text-sm">
                 <div className="flex flex-wrap items-center justify-between gap-2">
                   <span>
                     <strong className="text-primary">{c.number}</strong> · {lead?.full_name ?? "—"}{" "}
                     · {fmtDate(c.contract_date)} · {brl(c.amount)}
+                    <span className="mt-1 block text-xs text-muted-foreground">
+                      Cliente: {clientOk ? `assinou (${c.client_signer_name})` : "pendente"} · DTM:{" "}
+                      {companyOk ? `assinou (${c.company_signer_name})` : "pendente"}
+                    </span>
                   </span>
                   <span className="flex flex-wrap gap-2">
                     <select
@@ -192,12 +260,33 @@ export function ContractsModule({ userId }: { userId: string }) {
                       ))}
                     </select>
                     <button
+                      className={btn}
+                      disabled={busyId === c.id}
+                      onClick={() => void generateLink(c.id)}
+                    >
+                      {c.sign_token ? "Copiar link" : "Gerar link"}
+                    </button>
+                    {c.sign_token && (
+                      <button className={btnGhost} onClick={() => void copyLink(c.sign_token!)}>
+                        Link
+                      </button>
+                    )}
+                    {!companyOk && (
+                      <button
+                        className={btnGhost}
+                        disabled={busyId === c.id}
+                        onClick={() => void companySign(c.id)}
+                      >
+                        Assinar DTM
+                      </button>
+                    )}
+                    <button
                       className={btnGhost}
                       onClick={() => setOpen(open === c.id ? null : c.id)}
                     >
                       {open === c.id ? "Fechar" : "Editar"}
                     </button>
-                    <button className={btn} onClick={() => void downloadPdf(c, lead)}>
+                    <button className={btnGhost} onClick={() => void downloadPdf(c, lead)}>
                       PDF
                     </button>
                   </span>
