@@ -1,7 +1,18 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { DiagnosticForm } from "@/components/site/DiagnosticForm";
-import { BRAND, POSTS, SERVICES, SITE_URL, TESTIMONIALS, TRUST_POINTS, WHATSAPP_NUMBER, seo, whatsappLink } from "@/lib/site";
+import {
+  BRAND,
+  DIAGNOSTIC_DELIVERABLES,
+  POSTS,
+  SERVICES,
+  SITE_URL,
+  TESTIMONIALS,
+  TRUST_POINTS,
+  WHATSAPP_NUMBER,
+  seo,
+  whatsappLink,
+} from "@/lib/site";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -90,6 +101,33 @@ function Home() {
 
       <section className="px-5 py-20">
         <div className="mx-auto max-w-6xl">
+          <p className="text-xs font-semibold uppercase tracking-[0.25em] text-primary">Diagnóstico</p>
+          <h2 className="dtm-section-heading mt-2 inline-block font-display text-3xl font-semibold md:text-4xl">
+            O que você recebe no Diagnóstico Financeiro
+          </h2>
+          <p className="mt-3 max-w-2xl text-muted-foreground">
+            Um panorama claro da sua situação, sem enrolação. Você entende o cenário e decide o próximo passo com segurança.
+          </p>
+          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {DIAGNOSTIC_DELIVERABLES.map((item) => (
+              <div key={item} className="dtm-card rounded-2xl p-5 text-sm leading-6">
+                <span className="text-brand-purple">✓</span> {item}
+              </div>
+            ))}
+          </div>
+          <div className="mt-8">
+            <a
+              href="#diagnostico"
+              className="inline-block rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground"
+            >
+              Começar meu diagnóstico
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section className="px-5 py-20">
+        <div className="mx-auto max-w-6xl">
           <p className="text-xs font-semibold uppercase tracking-[0.25em] text-primary">Serviços</p>
           <h2 className="dtm-section-heading mt-2 inline-block font-display text-3xl font-semibold md:text-4xl">
             Como podemos ajudar
@@ -153,7 +191,7 @@ function Home() {
         <div className="mx-auto max-w-6xl">
           <div className="grid items-center gap-10 md:grid-cols-2">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.25em] text-primary">Para empresas</p>
+              <p className="text-xs font-semibold uppercase tracking-[0.25em] text-primary">MEI, autônomo e empresas</p>
               <h2 className="mt-2 font-display text-3xl font-semibold md:text-4xl">
                 Rating Comercial e CNPJ também importam
               </h2>
@@ -228,16 +266,14 @@ function Home() {
           <h2 className="dtm-section-heading inline-block font-display text-3xl font-semibold md:text-4xl">
             Depoimentos
           </h2>
-          <div className="mt-8 grid gap-5 md:grid-cols-1">
+          <div className="mt-8 grid gap-5 md:grid-cols-3">
             {TESTIMONIALS.map((t) => (
-              <div key={t.name} className="dtm-card rounded-3xl p-8">
+              <div key={t.name} className="dtm-card rounded-3xl p-6">
                 <p className="text-sm leading-7 text-muted-foreground">“{t.text}”</p>
-                <div className="mt-5 flex flex-wrap items-center justify-between gap-3">
-                  <div>
-                    <p className="font-semibold text-primary">{t.name}</p>
-                    <p className="text-xs text-muted-foreground">{t.location}</p>
-                  </div>
-                  <p className="text-xs font-medium text-brand-purple">{t.result}</p>
+                <div className="mt-5">
+                  <p className="font-semibold text-primary">{t.name}</p>
+                  <p className="text-xs text-muted-foreground">{t.location}</p>
+                  <p className="mt-2 text-xs font-medium text-brand-purple">{t.result}</p>
                 </div>
               </div>
             ))}
