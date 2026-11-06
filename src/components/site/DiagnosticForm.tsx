@@ -15,7 +15,6 @@ const schema = z.object({
       "Telefone inválido",
     ),
   debt: z.string().max(20),
-  creditor: z.string().trim().max(60),
   service: z.string().min(2, "Escolha o serviço"),
   consent: z.literal(true, { message: "É necessário aceitar o tratamento de dados" }),
 });
@@ -32,7 +31,6 @@ export function DiagnosticForm() {
       name: f.get("name"),
       phone: f.get("phone"),
       debt: String(f.get("debt") ?? ""),
-      creditor: f.get("creditor") ?? "",
       service: f.get("service"),
       consent: f.get("consent") === "on",
     });
@@ -42,7 +40,7 @@ export function DiagnosticForm() {
     const d = parsed.data;
     const debtNum = Number(d.debt.replace(/\./g, "").replace(",", "."));
     const objective =
-      `Diagnóstico: ${d.service}${d.creditor ? ` · Credor: ${d.creditor}` : ""}`.slice(
+      `Diagnóstico: ${d.service}`.slice(
         0,
         100,
       );
@@ -112,10 +110,6 @@ export function DiagnosticForm() {
             placeholder="Ex.: 5.000"
             className={field}
           />
-        </label>
-        <label className="text-sm font-medium">
-          Empresa ou instituição credora
-          <input name="creditor" maxLength={60} className={field} />
         </label>
         <label className="text-sm font-medium">
           Serviço desejado
