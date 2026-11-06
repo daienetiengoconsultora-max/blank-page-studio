@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { TextPage } from "@/components/site/TextPage";
-import { RESPONSE_TIME, seo, whatsappLink } from "@/lib/site";
+import { seo, whatsappLink } from "@/lib/site";
 
 export const Route = createFileRoute("/como-funciona")({
   head: () =>
@@ -24,7 +24,8 @@ export const Route = createFileRoute("/como-funciona")({
 
       <h2>2. Contato humano</h2>
       <p>
-        Nossa equipe retorna pelo WhatsApp {RESPONSE_TIME}. Sem robô, sem script engessado.
+        Nossa equipe retorna pelo WhatsApp para entender melhor o seu caso. Sem robô, sem script
+        engessado.
       </p>
 
       <h2>3. Análise com autorização</h2>
