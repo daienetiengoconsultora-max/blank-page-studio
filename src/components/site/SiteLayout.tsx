@@ -19,7 +19,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
           <Link to="/" className="flex min-w-0 shrink-0 items-center gap-2" aria-label={`${BRAND} - Início`}>
             <img
               src="/logo-dtm-consultoria-financeira.svg"
-              alt="Logo DTM Consultoria e Regularização de Crédito"
+              alt="Logo DTM Soluções Financeiras"
               width="260"
               height="241"
               className="h-auto w-12 shrink-0 object-contain object-center sm:w-14"
