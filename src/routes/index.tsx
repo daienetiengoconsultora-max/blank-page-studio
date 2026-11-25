@@ -45,7 +45,7 @@ function Home() {
               organizar informações e conhecer os caminhos possíveis para CPF ou CNPJ.
             </p>
             <div className="mt-7 flex flex-wrap gap-3">
-              <a href="#diagnostico" className="rounded-full bg-white px-6 py-3 text-sm font-semibold text-brand-purple shadow-md">
+              <a href="#diagnostico" className="rounded-full bg-[#C6A15B] px-6 py-3 text-sm font-semibold text-[#080808] shadow-md hover:bg-[#E4C77E]">
                 Solicitar atendimento
               </a>
             </div>
