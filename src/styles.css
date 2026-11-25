@@ -39,3 +39,15 @@
 .dtm-site-watermark::before { content:""; position:fixed; inset:0; z-index:0; pointer-events:none; background-image:url("/logo-dtm-consultoria-financeira.svg"); background-repeat:no-repeat; background-position:center center; background-size:min(62vw,440px) auto; opacity:.02; }
 .dtm-site-watermark > header,.dtm-site-watermark > main,.dtm-site-watermark > footer { position:relative; z-index:1; }
 @media (max-width:640px) { .dtm-site-watermark::before { background-size:min(78vw,300px) auto; opacity:.015; } }
+
+
+/* Legibilidade: textos secundários em superfícies claras devem ser pretos.
+   A navegação sobre o cabeçalho escuro permanece branca para manter contraste. */
+.dtm-site-watermark .dtm-card .text-muted-foreground,
+.dtm-site-watermark .bg-white .text-muted-foreground,
+.dtm-site-watermark .bg-brand-white .text-muted-foreground {
+  color: #101010 !important;
+}
+.dtm-site-watermark header nav .text-muted-foreground {
+  color: #FFFFFF !important;
+}
