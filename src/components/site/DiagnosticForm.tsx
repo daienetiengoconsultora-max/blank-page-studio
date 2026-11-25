@@ -71,7 +71,7 @@ export function DiagnosticForm() {
           href={whatsappLink()}
           target="_blank"
           rel="noreferrer"
-          className="mt-5 inline-block rounded-full bg-brand-spectrum px-6 py-3 text-sm font-semibold text-white"
+          className="mt-5 inline-block rounded-full bg-brand-gold px-6 py-3 text-sm font-semibold text-brand-ink"
         >
           Abrir WhatsApp
         </a>
@@ -79,7 +79,7 @@ export function DiagnosticForm() {
     );
 
   const field =
-    "mt-1 w-full rounded-xl border border-input bg-background px-4 py-3 text-sm outline-none focus:border-brand-purple focus:ring-2 focus:ring-brand-pink/30";
+    "mt-1 w-full rounded-xl border border-input bg-white text-brand-ink placeholder:text-neutral-500 px-4 py-3 text-sm outline-none focus:border-brand-gold focus:ring-2 focus:ring-brand-gold/30";
   return (
     <form
       onSubmit={submit}
@@ -137,7 +137,7 @@ export function DiagnosticForm() {
       )}
       <button
         disabled={state === "sending"}
-        className="mt-6 w-full rounded-full bg-brand-spectrum px-6 py-4 text-sm font-bold uppercase tracking-wide text-white shadow-elegant hover:opacity-90 disabled:opacity-60"
+        className="mt-6 w-full rounded-full bg-brand-gold px-6 py-4 text-sm font-bold uppercase tracking-wide text-brand-ink shadow-elegant hover:opacity-90 disabled:opacity-60"
       >
         {state === "sending" ? "Enviando..." : "Quero fazer meu diagnóstico"}
       </button>
