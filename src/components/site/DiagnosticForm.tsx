@@ -83,7 +83,7 @@ export function DiagnosticForm() {
   return (
     <form
       onSubmit={submit}
-      className="rounded-3xl border border-brand-rose/40 border-t-4 border-t-brand-gold bg-card p-6 text-card-foreground shadow-elegant md:p-8"
+      className="rounded-3xl border border-brand-gold/40 border-t-4 border-t-brand-gold bg-card p-6 text-card-foreground shadow-elegant md:p-8"
     >
       <div className="grid gap-4 sm:grid-cols-2">
         <label className="text-sm font-medium">
