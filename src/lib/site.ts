@@ -1,6 +1,6 @@
 // Endereço publicado confirmado na Lovable; troque quando houver domínio próprio confirmado.
 export const SITE_URL = "https://limpanome-dtm.lovable.app";
-export const BRAND = "DTM Consultoria e Regularização de Crédito";
+export const BRAND = "DTM Soluções Financeiras";
 export const BRAND_SHORT = "DTM CONSULTORIA FINANCEIRA";
 export const WHATSAPP_NUMBER = "5527998737600";
 export const WHATSAPP_DISPLAY = "(27) 99873-7600";
@@ -8,7 +8,7 @@ export const whatsappLink = (text = "Olá! Quero fazer meu diagnóstico financei
   `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
 
 export const COMPANY = {
-  legalName: "DTM Consultoria e Regularização de Crédito",
+  legalName: "DTM Soluções Financeiras",
   cnpj: "69.554.451/0001-77",
   address: "Pedro Palácios Brasil",
   years: 5,
