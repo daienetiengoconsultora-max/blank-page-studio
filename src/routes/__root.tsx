@@ -86,7 +86,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { name: "author", content: "DTM Soluções Financeiras" },
       { name: "robots", content: "index, follow, max-image-preview:large" },
-      { name: "theme-color", content: "#0C101A" },
+      { name: "theme-color", content: "#080808" },
       { name: "mobile-web-app-capable", content: "yes" },
       { name: "apple-mobile-web-app-capable", content: "yes" },
       { name: "apple-mobile-web-app-status-bar-style", content: "default" },
