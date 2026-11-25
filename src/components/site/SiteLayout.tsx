@@ -20,9 +20,9 @@ export function SiteLayout({ children }: { children: ReactNode }) {
             <img
               src="/logo-dtm-consultoria-financeira.svg"
               alt="Logo DTM Soluções Financeiras"
-              width="260"
-              height="241"
-              className="h-auto w-12 shrink-0 object-contain object-center sm:w-14"
+              width="520"
+              height="216"
+              className="h-auto w-20 shrink-0 object-contain object-center sm:w-24"
               fetchPriority="high"
             />
             <span className="max-w-[130px] text-xs font-bold leading-tight text-brand-purple sm:max-w-none sm:text-sm">{BRAND}</span>
