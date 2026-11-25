@@ -7,7 +7,7 @@ export const Route = createFileRoute("/")({
   head: () => ({
     ...seo(
       "/",
-      "DTM Consultoria Financeira | Orientação e Regularização de Crédito",
+      "DTM Soluções Financeiras | Orientação e Regularização de Crédito",
       "Conheça os serviços da DTM para CPF e CNPJ: Limpa Nome, Score, Rating Bancário, Bacen/SCR, CCF e Cadin. Informação clara e atendimento individual.",
     ),
     scripts: [{
