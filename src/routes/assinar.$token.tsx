@@ -164,7 +164,6 @@ function SignContractPage() {
       p_signer_name: name,
       p_signer_doc: doc,
       p_accept: accept,
-      p_ip: null,
       p_selfie_base64: selfie,
     });
     setSending(false);

@@ -17,7 +17,7 @@ export function DocumentsModule({ userId }: { userId: string }) {
   const qc = useQueryClient();
   const { data: leads = [] } = useLeads();
   const [leadId, setLeadId] = useState("");
-  const [category, setCategory] = useState(CATEGORIES[0]);
+  const [category, setCategory] = useState(CATEGORIES[0] ?? "Outros");
   const [busy, setBusy] = useState(false);
   const [message, setMessage] = useState("");
   const docs = useQuery({
