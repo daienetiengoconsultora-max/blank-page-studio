@@ -69,6 +69,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
       <footer className="bg-brand-spectrum px-5 py-12 text-sm text-white">
         <div className="mx-auto grid max-w-6xl gap-8 md:grid-cols-3">
           <div className="min-w-0">
+            <img src="/logo-dtm-consultoria-financeira.svg" alt="DTM Soluções Financeiras" width="520" height="216" className="mb-5 h-auto w-56 max-w-full rounded-xl shadow-lg sm:w-64" loading="lazy" />
             <p className="mt-3 leading-6">
               Consultoria em regularização de nome, rating comercial e bancário e diagnóstico
               financeiro. Atendimento em todo o Brasil.
