@@ -78,19 +78,19 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "DTM Consultoria Financeira | Limpa Nome, Score, Rating e Diagnóstico" },
+      { title: "DTM Soluções Financeiras | Limpa Nome, Score, Rating e Diagnóstico" },
       {
         name: "description",
         content:
-          "DTM Consultoria Financeira: orientação sobre Limpa Nome, Score, Bacen/SCR, Rating Comercial e Bancário, CCF e Cadin. Atendimento transparente para CPF e CNPJ.",
+          "DTM Soluções Financeiras: orientação sobre Limpa Nome, Score, Bacen/SCR, Rating Comercial e Bancário, CCF e Cadin. Atendimento transparente para CPF e CNPJ.",
       },
-      { name: "author", content: "DTM Consultoria Financeira" },
+      { name: "author", content: "DTM Soluções Financeiras" },
       { name: "robots", content: "index, follow, max-image-preview:large" },
       { name: "theme-color", content: "#0C101A" },
       { name: "mobile-web-app-capable", content: "yes" },
       { name: "apple-mobile-web-app-capable", content: "yes" },
       { name: "apple-mobile-web-app-status-bar-style", content: "default" },
-      { property: "og:title", content: "DTM Consultoria Financeira" },
+      { property: "og:title", content: "DTM Soluções Financeiras" },
       {
         property: "og:description",
         content: "Orientação transparente sobre Limpa Nome, Score, Bacen/SCR e organização do crédito.",
@@ -98,7 +98,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:type", content: "website" },
       { property: "og:locale", content: "pt_BR" },
       { name: "twitter:card", content: "summary_large_image" },
-      { property: "og:site_name", content: "DTM Consultoria Financeira" },
+      { property: "og:site_name", content: "DTM Soluções Financeiras" },
     ],
     links: [
       {
