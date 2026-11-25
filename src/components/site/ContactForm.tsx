@@ -75,11 +75,11 @@ export function ContactForm() {
     );
 
   const field =
-    "mt-1 w-full rounded-xl border border-input bg-background px-4 py-3 text-sm outline-none focus:border-brand-purple focus:ring-2 focus:ring-brand-pink/30";
+    "mt-1 w-full rounded-xl border border-input bg-white text-brand-ink px-4 py-3 text-sm outline-none focus:border-brand-gold focus:ring-2 focus:ring-brand-gold/30";
   return (
     <form
       onSubmit={submit}
-      className="rounded-3xl border border-brand-rose/40 border-t-4 border-t-brand-gold bg-card p-6 text-card-foreground shadow-elegant md:p-8"
+      className="rounded-3xl border border-brand-gold/40 border-t-4 border-t-brand-gold bg-card p-6 text-card-foreground shadow-elegant md:p-8"
     >
       <div className="grid gap-4 sm:grid-cols-2">
         <label className="text-sm font-medium">
