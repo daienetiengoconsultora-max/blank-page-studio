@@ -1,22 +1,7 @@
 @import "tailwindcss" source(none);
 @source "../src";
 @import "tw-animate-css";
-
 @custom-variant dark (&:is(.dark *));
-
-/*
- * Design system definition.
- *
- * The @theme inline block maps CSS custom properties to Tailwind utility
- * classes (e.g. --color-primary -> bg-primary, text-primary).
- *
- * The :root and .dark blocks define the actual color values using oklch.
- * All colors MUST use oklch format.
- *
- * To add a new semantic color:
- * 1. Add the variable to :root (light value) and .dark (dark value)
- * 2. Register it in @theme inline as --color-<name>: var(--<name>)
- */
 
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
@@ -45,7 +30,6 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-  --color-ring-offset-background: var(--background);
   --color-chart-1: var(--chart-1);
   --color-chart-2: var(--chart-2);
   --color-chart-3: var(--chart-3);
@@ -67,132 +51,118 @@
 
 :root {
   --radius: 0.875rem;
-  /* Paleta DTM inspirada na referência enviada: azul-noite, dourado, cobre e off-white. */
-  --brand-navy-deep: oklch(0.141 0.016 270.3); /* #070910 */
-  --brand-navy: oklch(0.174 0.022 267.3); /* #0C101A */
-  --brand-purple: oklch(0.340 0.032 30.9); /* #47322E — marrom profundo */
-  --brand-pink: oklch(0.475 0.056 71.8); /* #705738 — bronze */
-  --brand-gold: oklch(0.736 0.095 74.9); /* #CDA163 */
-  --brand-gold-light: oklch(0.827 0.093 80.3); /* #E6C07F */
-  --brand-rose: oklch(0.666 0.029 32.3); /* #A58E89 — taupe acobreado */
-  --brand-cream: oklch(0.891 0.033 79.3); /* #E7D9C3 */
-  --brand-white: oklch(0.991 0.001 286.4); /* #FCFCFD */
-  --brand-ink: oklch(0.228 0.007 346); /* #1F1B1D */
-  --background: var(--brand-white);
-  --foreground: var(--brand-ink);
-  --card: var(--brand-cream);
-  --card-foreground: var(--brand-ink);
-  --popover: var(--brand-white);
-  --popover-foreground: var(--brand-ink);
-  --primary: var(--brand-navy);
-  --primary-foreground: var(--brand-white);
-  --secondary: var(--brand-cream);
-  --secondary-foreground: var(--brand-navy);
-  --muted: var(--brand-cream);
-  --muted-foreground: var(--brand-ink);
-  --accent: var(--brand-rose);
-  --accent-foreground: var(--brand-navy);
-  --wine: var(--brand-purple);
-  --wine-foreground: var(--brand-white);
+  /* Identidade DTM: preto, dourado e branco. */
+  --brand-navy-deep: #080808;
+  --brand-navy: #111111;
+  --brand-purple: #C6A15B;
+  --brand-pink: #C6A15B;
+  --brand-gold: #C6A15B;
+  --brand-gold-light: #E4C77E;
+  --brand-rose: #A9823E;
+  --brand-cream: #FFFFFF;
+  --brand-white: #FFFFFF;
+  --brand-ink: #111111;
+  --background: #FFFFFF;
+  --foreground: #111111;
+  --card: #FFFFFF;
+  --card-foreground: #111111;
+  --popover: #FFFFFF;
+  --popover-foreground: #111111;
+  --primary: #080808;
+  --primary-foreground: #FFFFFF;
+  --secondary: #F7F7F7;
+  --secondary-foreground: #111111;
+  --muted: #F7F7F7;
+  --muted-foreground: #555555;
+  --accent: #C6A15B;
+  --accent-foreground: #080808;
+  --wine: #C6A15B;
+  --wine-foreground: #080808;
   --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: color-mix(in oklch, var(--brand-rose) 42%, white);
-  --input: color-mix(in oklch, var(--brand-purple) 30%, white);
-  --ring: var(--brand-gold);
-  --gradient-brand: linear-gradient(115deg, var(--brand-navy-deep) 0%, var(--brand-navy) 46%, var(--brand-ink) 78%, var(--brand-purple) 100%);
-  --shadow-elegant: 0 18px 45px -22px color-mix(in oklch, var(--brand-navy) 38%, transparent);
-  --chart-1: var(--brand-navy);
-  --chart-2: var(--brand-purple);
-  --chart-3: var(--brand-rose);
-  --chart-4: var(--brand-gold);
-  --chart-5: var(--brand-ink);
-  --sidebar: var(--brand-navy);
-  --sidebar-foreground: var(--brand-white);
-  --sidebar-primary: var(--brand-gold);
-  --sidebar-primary-foreground: var(--brand-navy);
-  --sidebar-accent: var(--brand-purple);
-  --sidebar-accent-foreground: var(--brand-white);
-  --sidebar-border: color-mix(in oklch, var(--brand-white) 16%, transparent);
-  --sidebar-ring: var(--brand-gold);
+  --destructive-foreground: #FFFFFF;
+  --border: #D8C59D;
+  --input: #D8D8D8;
+  --ring: #C6A15B;
+  --gradient-brand: linear-gradient(120deg, #050505 0%, #111111 65%, #242424 100%);
+  --shadow-elegant: 0 18px 45px -22px rgb(0 0 0 / 32%);
+  --chart-1: #080808;
+  --chart-2: #C6A15B;
+  --chart-3: #777777;
+  --chart-4: #E4C77E;
+  --chart-5: #FFFFFF;
+  --sidebar: #080808;
+  --sidebar-foreground: #FFFFFF;
+  --sidebar-primary: #C6A15B;
+  --sidebar-primary-foreground: #080808;
+  --sidebar-accent: #242424;
+  --sidebar-accent-foreground: #FFFFFF;
+  --sidebar-border: rgb(255 255 255 / 16%);
+  --sidebar-ring: #C6A15B;
 }
 
 .dark {
-  --background: var(--brand-navy-deep);
-  --foreground: var(--brand-white);
-  --card: var(--brand-ink);
-  --card-foreground: var(--brand-white);
-  --popover: var(--brand-ink);
-  --popover-foreground: var(--brand-white);
-  --primary: var(--brand-gold);
-  --primary-foreground: var(--brand-navy);
-  --secondary: var(--brand-purple);
-  --secondary-foreground: var(--brand-white);
-  --muted: var(--brand-purple);
-  --muted-foreground: var(--brand-cream);
-  --accent: var(--brand-pink);
-  --accent-foreground: var(--brand-white);
-  --wine: var(--brand-gold-light);
-  --wine-foreground: var(--brand-navy);
+  --background: #080808;
+  --foreground: #FFFFFF;
+  --card: #151515;
+  --card-foreground: #FFFFFF;
+  --popover: #151515;
+  --popover-foreground: #FFFFFF;
+  --primary: #C6A15B;
+  --primary-foreground: #080808;
+  --secondary: #242424;
+  --secondary-foreground: #FFFFFF;
+  --muted: #242424;
+  --muted-foreground: #D0D0D0;
+  --accent: #C6A15B;
+  --accent-foreground: #080808;
+  --wine: #E4C77E;
+  --wine-foreground: #080808;
   --destructive: oklch(0.704 0.191 22.216);
-  --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: color-mix(in oklch, var(--brand-rose) 35%, transparent);
-  --input: color-mix(in oklch, var(--brand-rose) 45%, transparent);
-  --ring: var(--brand-gold);
-  --chart-1: var(--brand-gold);
-  --chart-2: var(--brand-rose);
-  --chart-3: var(--brand-cream);
-  --chart-4: var(--brand-pink);
-  --chart-5: var(--brand-white);
-  --sidebar: var(--brand-navy-deep);
-  --sidebar-foreground: var(--brand-white);
-  --sidebar-primary: var(--brand-gold);
-  --sidebar-primary-foreground: var(--brand-navy);
-  --sidebar-accent: var(--brand-purple);
-  --sidebar-accent-foreground: var(--brand-white);
-  --sidebar-border: color-mix(in oklch, var(--brand-white) 16%, transparent);
-  --sidebar-ring: var(--brand-gold);
+  --destructive-foreground: #FFFFFF;
+  --border: rgb(198 161 91 / 40%);
+  --input: rgb(255 255 255 / 24%);
+  --ring: #C6A15B;
+  --chart-1: #C6A15B;
+  --chart-2: #FFFFFF;
+  --chart-3: #A0A0A0;
+  --chart-4: #E4C77E;
+  --chart-5: #080808;
+  --sidebar: #080808;
+  --sidebar-foreground: #FFFFFF;
+  --sidebar-primary: #C6A15B;
+  --sidebar-primary-foreground: #080808;
+  --sidebar-accent: #242424;
+  --sidebar-accent-foreground: #FFFFFF;
+  --sidebar-border: rgb(255 255 255 / 16%);
+  --sidebar-ring: #C6A15B;
 }
 
 @layer base {
-  * {
-    border-color: var(--color-border);
-  }
-
-  body {
-    background-color: var(--color-background);
-    color: var(--color-foreground);
-  }
+  * { border-color: var(--color-border); }
+  body { background-color: var(--color-background); color: var(--color-foreground); }
 }
 
-@utility bg-brand {
-  background-image: var(--gradient-brand);
-}
-@utility shadow-elegant {
-  box-shadow: var(--shadow-elegant);
-}
-
-/* Utilitários para aplicar cada cor oficial de forma consistente no site. */
+@utility bg-brand { background-image: var(--gradient-brand); }
+@utility shadow-elegant { box-shadow: var(--shadow-elegant); }
 @utility text-brand-navy { color: var(--brand-navy); }
 @utility bg-brand-navy { background-color: var(--brand-navy); }
 @utility border-brand-navy { border-color: var(--brand-navy); }
-@utility text-brand-purple { color: var(--brand-purple); }
-@utility bg-brand-purple { background-color: var(--brand-purple); }
-@utility border-brand-purple { border-color: var(--brand-purple); }
-@utility text-brand-pink { color: var(--brand-pink); }
-@utility bg-brand-pink { background-color: var(--brand-pink); }
-@utility border-brand-pink { border-color: var(--brand-pink); }
+@utility text-brand-purple { color: var(--brand-gold); }
+@utility bg-brand-purple { background-color: var(--brand-gold); }
+@utility border-brand-purple { border-color: var(--brand-gold); }
+@utility text-brand-pink { color: var(--brand-gold); }
+@utility bg-brand-pink { background-color: var(--brand-gold); }
+@utility border-brand-pink { border-color: var(--brand-gold); }
 @utility text-brand-gold { color: var(--brand-gold); }
 @utility bg-brand-gold { background-color: var(--brand-gold); }
 @utility border-brand-gold { border-color: var(--brand-gold); }
-@utility text-brand-rose { color: var(--brand-rose); }
-@utility bg-brand-rose { background-color: var(--brand-rose); }
-@utility border-brand-rose { border-color: var(--brand-rose); }
-@utility bg-brand-cream { background-color: var(--brand-cream); }
-@utility bg-brand-white { background-color: var(--brand-white); }
-@utility text-brand-ink { color: var(--brand-ink); }
-@utility bg-brand-spectrum {
-  background-image: var(--gradient-brand);
-}
+@utility text-brand-rose { color: var(--brand-gold); }
+@utility bg-brand-rose { background-color: var(--brand-gold); }
+@utility border-brand-rose { border-color: var(--brand-gold); }
+@utility bg-brand-cream { background-color: #FFFFFF; }
+@utility bg-brand-white { background-color: #FFFFFF; }
+@utility text-brand-ink { color: #111111; }
+@utility bg-brand-spectrum { background-image: var(--gradient-brand); }
 
 @layer components {
   .dtm-section-heading {
@@ -203,33 +173,25 @@
     text-underline-offset: 0.45rem;
   }
   .dtm-card {
-    border: 1px solid color-mix(in oklch, var(--brand-pink) 42%, transparent);
+    border: 1px solid rgb(198 161 91 / 42%);
     border-top: 3px solid var(--brand-gold);
     background: var(--card);
     box-shadow: 0 10px 28px -22px var(--primary);
   }
-  .dtm-card:hover {
-    border-color: var(--ring);
-    box-shadow: var(--shadow-elegant);
-  }
+  .dtm-card:hover { border-color: var(--ring); box-shadow: var(--shadow-elegant); }
   .dtm-purple-panel {
     background: var(--gradient-brand);
-    color: var(--primary-foreground);
+    color: #FFFFFF;
   }
   .dtm-rose-rule {
     height: 3px;
     width: 3.5rem;
     border-radius: 999px;
-    background: linear-gradient(90deg, var(--brand-gold), var(--brand-gold-light));
+    background: linear-gradient(90deg, #C6A15B, #E4C77E);
   }
 }
 
-
-/* Marca-d'água institucional: logo completa, discreta e sem interferir nos cliques. */
-.dtm-site-watermark {
-  position: relative;
-  isolation: isolate;
-}
+.dtm-site-watermark { position: relative; isolation: isolate; }
 .dtm-site-watermark::before {
   content: "";
   position: fixed;
@@ -240,18 +202,12 @@
   background-repeat: no-repeat;
   background-position: center center;
   background-size: min(62vw, 440px) auto;
-  opacity: 0.055;
+  opacity: 0.035;
 }
- .dtm-site-watermark > header,
+.dtm-site-watermark > header,
 .dtm-site-watermark > main,
-.dtm-site-watermark > footer {
-  position: relative;
-  z-index: 1;
-}
+.dtm-site-watermark > footer { position: relative; z-index: 1; }
 
 @media (max-width: 640px) {
-  .dtm-site-watermark::before {
-    background-size: min(78vw, 300px) auto;
-    opacity: 0.045;
-  }
+  .dtm-site-watermark::before { background-size: min(78vw, 300px) auto; opacity: 0.025; }
 }
