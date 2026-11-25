@@ -51,3 +51,68 @@
 .dtm-site-watermark header nav .text-muted-foreground {
   color: #FFFFFF !important;
 }
+
+
+/* WhatsApp flutuante: maior, verde oficial e fácil de localizar em todas as páginas. */
+.dtm-site-watermark a[href*="wa.me"],
+.dtm-site-watermark a[href*="whatsapp.com"],
+.dtm-site-watermark a[href*="api.whatsapp"] {
+  position: fixed !important;
+  right: max(22px, env(safe-area-inset-right)) !important;
+  bottom: max(24px, env(safe-area-inset-bottom)) !important;
+  z-index: 9999 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 72px !important;
+  height: 72px !important;
+  min-width: 72px !important;
+  min-height: 72px !important;
+  border-radius: 9999px !important;
+  background: #25D366 !important;
+  color: #FFFFFF !important;
+  border: 3px solid #FFFFFF !important;
+  box-shadow: 0 5px 22px rgb(0 0 0 / 42%), 0 0 0 5px rgb(37 211 102 / 18%) !important;
+  animation: dtm-whatsapp-float 3s ease-in-out infinite, dtm-whatsapp-pulse 2s ease-out infinite !important;
+}
+.dtm-site-watermark a[href*="wa.me"] svg,
+.dtm-site-watermark a[href*="whatsapp.com"] svg,
+.dtm-site-watermark a[href*="api.whatsapp"] svg {
+  width: 38px !important;
+  height: 38px !important;
+  color: #FFFFFF !important;
+  stroke: #FFFFFF !important;
+}
+@keyframes dtm-whatsapp-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-7px); }
+}
+@keyframes dtm-whatsapp-pulse {
+  0%, 100% { box-shadow: 0 5px 22px rgb(0 0 0 / 42%), 0 0 0 5px rgb(37 211 102 / 18%); }
+  50% { box-shadow: 0 5px 24px rgb(0 0 0 / 48%), 0 0 0 10px rgb(37 211 102 / 0%); }
+}
+@media (max-width: 640px) {
+  .dtm-site-watermark a[href*="wa.me"],
+  .dtm-site-watermark a[href*="whatsapp.com"],
+  .dtm-site-watermark a[href*="api.whatsapp"] {
+    width: 76px !important;
+    height: 76px !important;
+    min-width: 76px !important;
+    min-height: 76px !important;
+    right: max(18px, env(safe-area-inset-right)) !important;
+    bottom: max(22px, env(safe-area-inset-bottom)) !important;
+  }
+  .dtm-site-watermark a[href*="wa.me"] svg,
+  .dtm-site-watermark a[href*="whatsapp.com"] svg,
+  .dtm-site-watermark a[href*="api.whatsapp"] svg {
+    width: 41px !important;
+    height: 41px !important;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .dtm-site-watermark a[href*="wa.me"],
+  .dtm-site-watermark a[href*="whatsapp.com"],
+  .dtm-site-watermark a[href*="api.whatsapp"] {
+    animation: none !important;
+  }
+}
