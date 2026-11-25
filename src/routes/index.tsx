@@ -32,11 +32,11 @@ const HOME_SERVICES = SERVICES.filter((s) =>
 function Home() {
   return (
     <SiteLayout>
-      <section className="dtm-purple-panel px-5 py-14 md:py-20">
+      <section className="dtm-gold-panel px-5 py-14 md:py-20">
         <div className="mx-auto grid max-w-6xl items-center gap-10 md:grid-cols-[1.1fr_.9fr]">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.25em] text-brand-gold">{BRAND}</p>
-            <div className="dtm-rose-rule mt-3" />
+            <div className="dtm-gold-rule mt-3" />
             <h1 className="mt-4 font-display text-3xl font-semibold leading-tight md:text-5xl">
               Clareza para entender sua situação de crédito.
             </h1>
@@ -62,7 +62,7 @@ function Home() {
 
       <section className="mx-auto max-w-6xl px-5 py-14">
         <div className="mx-auto max-w-2xl text-center">
-          <p className="text-xs font-semibold uppercase tracking-[0.25em] text-brand-purple">Nossos serviços</p>
+          <p className="text-xs font-semibold uppercase tracking-[0.25em] text-brand-gold">Nossos serviços</p>
           <h2 className="mt-2 font-display text-2xl font-semibold text-primary md:text-3xl">
             Encontre a orientação que procura
           </h2>
@@ -80,12 +80,12 @@ function Home() {
             >
               <h3 className="font-display text-lg font-semibold text-primary">{service.name}</h3>
               <p className="mt-2 text-sm leading-6 text-muted-foreground">{service.short}</p>
-              <span className="mt-4 inline-block text-sm font-semibold text-brand-purple">Conhecer serviço →</span>
+              <span className="mt-4 inline-block text-sm font-semibold text-brand-gold">Conhecer serviço →</span>
             </Link>
           ))}
         </div>
         <div className="mt-8 text-center">
-          <Link to="/servicos" className="inline-flex rounded-full border border-brand-purple px-6 py-3 text-sm font-semibold text-brand-purple hover:bg-brand-purple hover:text-white">
+          <Link to="/servicos" className="inline-flex rounded-full border border-brand-gold px-6 py-3 text-sm font-semibold text-brand-gold hover:bg-brand-gold hover:text-white">
             Ver todos os serviços
           </Link>
         </div>
@@ -98,21 +98,21 @@ function Home() {
             <p className="mt-2 text-sm leading-6 text-brand-ink">
               Consultoria em regularização de dados de crédito, com atendimento humano e informações apresentadas de forma clara.
             </p>
-            <Link to="/sobre" className="mt-3 inline-block text-sm font-semibold text-brand-purple">Conheça a empresa →</Link>
+            <Link to="/sobre" className="mt-3 inline-block text-sm font-semibold text-brand-gold">Conheça a empresa →</Link>
           </div>
           <div>
             <h2 className="font-display text-xl font-semibold text-primary">Conteúdo e orientação</h2>
             <p className="mt-2 text-sm leading-6 text-brand-ink">
               Acesse artigos sobre crédito, score, registros e organização financeira.
             </p>
-            <Link to="/blog" className="mt-3 inline-block text-sm font-semibold text-brand-purple">Acessar o blog →</Link>
+            <Link to="/blog" className="mt-3 inline-block text-sm font-semibold text-brand-gold">Acessar o blog →</Link>
           </div>
           <div>
             <h2 className="font-display text-xl font-semibold text-primary">Fale conosco</h2>
             <p className="mt-2 text-sm leading-6 text-brand-ink">
               Envie sua solicitação pelo formulário ou converse com nossa equipe pelo WhatsApp.
             </p>
-            <Link to="/contato" className="mt-3 inline-block text-sm font-semibold text-brand-purple">Ir para contato →</Link>
+            <Link to="/contato" className="mt-3 inline-block text-sm font-semibold text-brand-gold">Ir para contato →</Link>
           </div>
         </div>
       </section>
