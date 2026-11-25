@@ -146,39 +146,66 @@ export type Database = {
         Row: {
           amount: number
           body: string
+          client_selfie_base64: string | null
+          client_sign_ip: string | null
+          client_signed_at: string | null
+          client_signer_doc: string | null
+          client_signer_name: string | null
           client_type: string
+          company_sign_ip: string | null
+          company_signed_at: string | null
+          company_signer_name: string | null
           contract_date: string
           created_at: string
           id: string
           lead_id: string
           number: string
           owner_id: string
+          sign_token: string | null
           status: string
           updated_at: string
         }
         Insert: {
           amount: number
           body?: string
+          client_selfie_base64?: string | null
+          client_sign_ip?: string | null
+          client_signed_at?: string | null
+          client_signer_doc?: string | null
+          client_signer_name?: string | null
           client_type?: string
+          company_sign_ip?: string | null
+          company_signed_at?: string | null
+          company_signer_name?: string | null
           contract_date?: string
           created_at?: string
           id?: string
           lead_id: string
           number?: string
           owner_id?: string
+          sign_token?: string | null
           status?: string
           updated_at?: string
         }
         Update: {
           amount?: number
           body?: string
+          client_selfie_base64?: string | null
+          client_sign_ip?: string | null
+          client_signed_at?: string | null
+          client_signer_doc?: string | null
+          client_signer_name?: string | null
           client_type?: string
+          company_sign_ip?: string | null
+          company_signed_at?: string | null
+          company_signer_name?: string | null
           contract_date?: string
           created_at?: string
           id?: string
           lead_id?: string
           number?: string
           owner_id?: string
+          sign_token?: string | null
           status?: string
           updated_at?: string
         }
@@ -808,6 +835,11 @@ export type Database = {
         Args: { p_scope: string }
         Returns: undefined
       }
+      generate_contract_sign_token: {
+        Args: { p_contract_id: string }
+        Returns: string
+      }
+      get_contract_for_signing: { Args: { p_token: string }; Returns: Json }
       is_crm_admin: { Args: never; Returns: boolean }
       is_dtm_owner: { Args: never; Returns: boolean }
       receive_contact_lead: {
@@ -845,6 +877,32 @@ export type Database = {
           p_term_months: number
         }
         Returns: string
+      }
+      sign_contract_as_client:
+        | {
+            Args: {
+              p_accept?: boolean
+              p_ip?: string
+              p_signer_doc: string
+              p_signer_name: string
+              p_token: string
+            }
+            Returns: Json
+          }
+        | {
+            Args: {
+              p_accept?: boolean
+              p_ip?: string
+              p_selfie_base64?: string
+              p_signer_doc: string
+              p_signer_name: string
+              p_token: string
+            }
+            Returns: Json
+          }
+      sign_contract_as_company: {
+        Args: { p_contract_id: string; p_signer_name?: string }
+        Returns: Json
       }
     }
     Enums: {
