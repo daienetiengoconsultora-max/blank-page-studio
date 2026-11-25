@@ -6,14 +6,14 @@ export const Route = createFileRoute("/sobre")({
   head: () =>
     seo(
       "/sobre",
-      "Sobre nós | DTM Consultoria e Regularização de Crédito",
+      "Sobre nós | DTM Soluções Financeiras",
       "Conheça a DTM: orientação transparente para regularização de nome, rating comercial e bancário e diagnóstico financeiro. 5 anos de atuação e mais de 2.000 diagnósticos.",
     ),
   component: () => (
     <TextPage
       eyebrow="Sobre nós"
       title="Crédito explicado com clareza"
-      intro="A DTM Consultoria e Regularização de Crédito existe para traduzir o mundo do crédito em decisões simples e seguras."
+      intro="A DTM Soluções Financeiras existe para traduzir o mundo do crédito em decisões simples e seguras."
     >
       <p>
         Atendemos pessoas físicas e empresas (incluindo MEI e autônomos) que querem entender sua
