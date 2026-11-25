@@ -28,19 +28,19 @@ export function SiteLayout({ children }: { children: ReactNode }) {
             <span className="max-w-[130px] text-xs font-bold leading-tight text-brand-gold sm:max-w-none sm:text-sm">{BRAND}</span>
           </Link>
           <nav className="hidden items-center gap-5 text-sm font-medium lg:flex" aria-label="Navegação principal">
-            <Link to="/" className="text-muted-foreground hover:text-brand-purple" activeOptions={{ exact: true }} activeProps={{ className: "font-semibold text-brand-purple" }}>Início</Link>
+            <Link to="/" className="text-muted-foreground hover:text-brand-gold" activeOptions={{ exact: true }} activeProps={{ className: "font-semibold text-brand-gold" }}>Início</Link>
             <div className="group relative">
-              <Link to="/servicos" className="inline-flex items-center gap-1 py-3 text-muted-foreground hover:text-brand-purple">Serviços <span aria-hidden="true">⌄</span></Link>
+              <Link to="/servicos" className="inline-flex items-center gap-1 py-3 text-muted-foreground hover:text-brand-gold">Serviços <span aria-hidden="true">⌄</span></Link>
               <div className="invisible absolute left-0 top-full z-50 min-w-64 rounded-xl border border-border bg-white p-2 opacity-0 shadow-xl transition group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
                 {SERVICES.map((service) => (
-                  <Link key={service.slug} to="/servicos/$slug" params={{ slug: service.slug }} className="block rounded-lg px-3 py-2 text-sm text-brand-ink hover:bg-brand-cream hover:text-brand-purple">{service.name}</Link>
+                  <Link key={service.slug} to="/servicos/$slug" params={{ slug: service.slug }} className="block rounded-lg px-3 py-2 text-sm text-brand-ink hover:bg-brand-white hover:text-brand-gold">{service.name}</Link>
                 ))}
-                <Link to="/servicos" className="mt-1 block border-t border-border px-3 py-2 text-sm font-semibold text-brand-purple">Todos os serviços →</Link>
+                <Link to="/servicos" className="mt-1 block border-t border-border px-3 py-2 text-sm font-semibold text-brand-gold">Todos os serviços →</Link>
               </div>
             </div>
-            <Link to="/sobre" className="text-muted-foreground hover:text-brand-purple">Sobre</Link>
-            <Link to="/blog" className="text-muted-foreground hover:text-brand-purple">Blog</Link>
-            <Link to="/contato" className="text-muted-foreground hover:text-brand-purple">Contato</Link>
+            <Link to="/sobre" className="text-muted-foreground hover:text-brand-gold">Sobre</Link>
+            <Link to="/blog" className="text-muted-foreground hover:text-brand-gold">Blog</Link>
+            <Link to="/contato" className="text-muted-foreground hover:text-brand-gold">Contato</Link>
           </nav>
           <button
             className="rounded-md border border-brand-gold px-3 py-2 text-sm text-brand-gold lg:hidden"
@@ -52,13 +52,13 @@ export function SiteLayout({ children }: { children: ReactNode }) {
           </button>
         </div>
         {open && (
-          <nav className="flex flex-col gap-1 border-t border-brand-pink/40 bg-brand-cream px-5 py-3 lg:hidden">
+          <nav className="flex flex-col gap-1 border-t border-brand-gold/40 bg-brand-white px-5 py-3 lg:hidden">
             <Link to="/" onClick={() => setOpen(false)} className="py-2 text-sm font-medium">Início</Link>
-            <p className="pt-2 text-xs font-bold uppercase tracking-wider text-brand-purple">Serviços</p>
+            <p className="pt-2 text-xs font-bold uppercase tracking-wider text-brand-gold">Serviços</p>
             {SERVICES.map((service) => (
               <Link key={service.slug} to="/servicos/$slug" params={{ slug: service.slug }} onClick={() => setOpen(false)} className="py-2 pl-3 text-sm font-medium">{service.name}</Link>
             ))}
-            <Link to="/servicos" onClick={() => setOpen(false)} className="py-2 pl-3 text-sm font-semibold text-brand-purple">Todos os serviços</Link>
+            <Link to="/servicos" onClick={() => setOpen(false)} className="py-2 pl-3 text-sm font-semibold text-brand-gold">Todos os serviços</Link>
             <Link to="/sobre" onClick={() => setOpen(false)} className="py-2 text-sm font-medium">Sobre</Link>
             <Link to="/blog" onClick={() => setOpen(false)} className="py-2 text-sm font-medium">Blog</Link>
             <Link to="/contato" onClick={() => setOpen(false)} className="py-2 text-sm font-medium">Contato</Link>
