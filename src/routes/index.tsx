@@ -51,8 +51,11 @@ function Home() {
             </div>
             <p className="mt-5 text-xs text-white/75">Atendimento digital • Todo o Brasil • Análise individual</p>
           </div>
-          <div id="diagnostico" className="scroll-mt-28">
-            <DiagnosticForm />
+          <div className="flex flex-col items-center gap-5">
+            <img src="/logo-dtm-consultoria-financeira.svg" alt="DTM Soluções Financeiras" width="520" height="216" className="h-auto w-64 max-w-full rounded-2xl shadow-xl md:w-80" fetchPriority="high" />
+            <div id="diagnostico" className="w-full scroll-mt-28">
+              <DiagnosticForm />
+            </div>
           </div>
         </div>
       </section>
