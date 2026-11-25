@@ -22,7 +22,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
               alt="Logo DTM Soluções Financeiras"
               width="520"
               height="216"
-              className="h-auto w-20 shrink-0 object-contain object-center sm:w-24"
+              className="h-auto w-28 shrink-0 object-contain object-center sm:w-40"
               fetchPriority="high"
             />
             <span className="max-w-[130px] text-xs font-bold leading-tight text-brand-purple sm:max-w-none sm:text-sm">{BRAND}</span>
