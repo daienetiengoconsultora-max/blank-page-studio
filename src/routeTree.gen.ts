@@ -12,7 +12,6 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as AcessoRouteImport } from './routes/acesso'
-import { Route as AssinarTokenRouteImport } from './routes/assinar.$token'
 import { Route as ComoFuncionaRouteImport } from './routes/como-funciona'
 import { Route as ContatoRouteImport } from './routes/contato'
 import { Route as PerguntasFrequentesRouteImport } from './routes/perguntas-frequentes'
@@ -23,6 +22,7 @@ import { Route as SobreRouteImport } from './routes/sobre'
 import { Route as TermosRouteImport } from './routes/termos'
 import { Route as ValoresRouteImport } from './routes/valores'
 import { Route as AuthenticatedCrmRouteImport } from './routes/_authenticated/crm'
+import { Route as AssinarTokenRouteImport } from './routes/assinar.$token'
 import { Route as BlogIndexRouteImport } from './routes/blog.index'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 import { Route as ServicosIndexRouteImport } from './routes/servicos.index'
@@ -40,11 +40,6 @@ const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
 const AcessoRoute = AcessoRouteImport.update({
   id: '/acesso',
   path: '/acesso',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AssinarTokenRoute = AssinarTokenRouteImport.update({
-  id: '/assinar/$token',
-  path: '/assinar/$token',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ComoFuncionaRoute = ComoFuncionaRouteImport.update({
@@ -97,6 +92,11 @@ const AuthenticatedCrmRoute = AuthenticatedCrmRouteImport.update({
   path: '/crm',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AssinarTokenRoute = AssinarTokenRouteImport.update({
+  id: '/assinar/$token',
+  path: '/assinar/$token',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const BlogIndexRoute = BlogIndexRouteImport.update({
   id: '/blog/',
   path: '/blog/',
@@ -121,7 +121,6 @@ const ServicosSlugRoute = ServicosSlugRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/acesso': typeof AcessoRoute
-  '/assinar/$token': typeof AssinarTokenRoute
   '/como-funciona': typeof ComoFuncionaRoute
   '/contato': typeof ContatoRoute
   '/perguntas-frequentes': typeof PerguntasFrequentesRoute
@@ -132,6 +131,7 @@ export interface FileRoutesByFullPath {
   '/termos': typeof TermosRoute
   '/valores': typeof ValoresRoute
   '/crm': typeof AuthenticatedCrmRoute
+  '/assinar/$token': typeof AssinarTokenRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/servicos/$slug': typeof ServicosSlugRoute
   '/blog/': typeof BlogIndexRoute
@@ -140,7 +140,6 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/acesso': typeof AcessoRoute
-  '/assinar/$token': typeof AssinarTokenRoute
   '/como-funciona': typeof ComoFuncionaRoute
   '/contato': typeof ContatoRoute
   '/perguntas-frequentes': typeof PerguntasFrequentesRoute
@@ -151,6 +150,7 @@ export interface FileRoutesByTo {
   '/termos': typeof TermosRoute
   '/valores': typeof ValoresRoute
   '/crm': typeof AuthenticatedCrmRoute
+  '/assinar/$token': typeof AssinarTokenRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/servicos/$slug': typeof ServicosSlugRoute
   '/blog': typeof BlogIndexRoute
@@ -161,7 +161,6 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/acesso': typeof AcessoRoute
-  '/assinar/$token': typeof AssinarTokenRoute
   '/como-funciona': typeof ComoFuncionaRoute
   '/contato': typeof ContatoRoute
   '/perguntas-frequentes': typeof PerguntasFrequentesRoute
@@ -172,6 +171,7 @@ export interface FileRoutesById {
   '/termos': typeof TermosRoute
   '/valores': typeof ValoresRoute
   '/_authenticated/crm': typeof AuthenticatedCrmRoute
+  '/assinar/$token': typeof AssinarTokenRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/servicos/$slug': typeof ServicosSlugRoute
   '/blog/': typeof BlogIndexRoute
@@ -182,7 +182,6 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/acesso'
-    | '/assinar/$token'
     | '/como-funciona'
     | '/contato'
     | '/perguntas-frequentes'
@@ -193,6 +192,7 @@ export interface FileRouteTypes {
     | '/termos'
     | '/valores'
     | '/crm'
+    | '/assinar/$token'
     | '/blog/$slug'
     | '/servicos/$slug'
     | '/blog/'
@@ -201,7 +201,6 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/acesso'
-    | '/assinar/$token'
     | '/como-funciona'
     | '/contato'
     | '/perguntas-frequentes'
@@ -212,6 +211,7 @@ export interface FileRouteTypes {
     | '/termos'
     | '/valores'
     | '/crm'
+    | '/assinar/$token'
     | '/blog/$slug'
     | '/servicos/$slug'
     | '/blog'
@@ -221,7 +221,6 @@ export interface FileRouteTypes {
     | '/'
     | '/_authenticated'
     | '/acesso'
-    | '/assinar/$token'
     | '/como-funciona'
     | '/contato'
     | '/perguntas-frequentes'
@@ -232,6 +231,7 @@ export interface FileRouteTypes {
     | '/termos'
     | '/valores'
     | '/_authenticated/crm'
+    | '/assinar/$token'
     | '/blog/$slug'
     | '/servicos/$slug'
     | '/blog/'
@@ -242,7 +242,6 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
   AcessoRoute: typeof AcessoRoute
-  AssinarTokenRoute: typeof AssinarTokenRoute
   ComoFuncionaRoute: typeof ComoFuncionaRoute
   ContatoRoute: typeof ContatoRoute
   PerguntasFrequentesRoute: typeof PerguntasFrequentesRoute
@@ -252,6 +251,7 @@ export interface RootRouteChildren {
   SobreRoute: typeof SobreRoute
   TermosRoute: typeof TermosRoute
   ValoresRoute: typeof ValoresRoute
+  AssinarTokenRoute: typeof AssinarTokenRoute
   BlogSlugRoute: typeof BlogSlugRoute
   ServicosSlugRoute: typeof ServicosSlugRoute
   BlogIndexRoute: typeof BlogIndexRoute
@@ -279,13 +279,6 @@ declare module '@tanstack/react-router' {
       path: '/acesso'
       fullPath: '/acesso'
       preLoaderRoute: typeof AcessoRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/assinar/$token': {
-      id: '/assinar/$token'
-      path: '/assinar/$token'
-      fullPath: '/assinar/$token'
-      preLoaderRoute: typeof AssinarTokenRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/como-funciona': {
@@ -358,6 +351,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedCrmRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/assinar/$token': {
+      id: '/assinar/$token'
+      path: '/assinar/$token'
+      fullPath: '/assinar/$token'
+      preLoaderRoute: typeof AssinarTokenRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/blog/': {
       id: '/blog/'
       path: '/blog'
@@ -404,7 +404,6 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
   AcessoRoute: AcessoRoute,
-  AssinarTokenRoute: AssinarTokenRoute,
   ComoFuncionaRoute: ComoFuncionaRoute,
   ContatoRoute: ContatoRoute,
   PerguntasFrequentesRoute: PerguntasFrequentesRoute,
@@ -414,6 +413,7 @@ const rootRouteChildren: RootRouteChildren = {
   SobreRoute: SobreRoute,
   TermosRoute: TermosRoute,
   ValoresRoute: ValoresRoute,
+  AssinarTokenRoute: AssinarTokenRoute,
   BlogSlugRoute: BlogSlugRoute,
   ServicosSlugRoute: ServicosSlugRoute,
   BlogIndexRoute: BlogIndexRoute,
