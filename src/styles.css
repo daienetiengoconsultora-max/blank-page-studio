@@ -11,7 +11,7 @@
 }
 :root {
   --radius: 0.875rem;
-  --brand-navy-deep: #050505; --brand-navy: #101010; --brand-purple: #D4AF37; --brand-pink: #D4AF37; --brand-gold: #D4AF37; --brand-gold-light: #FFE58A; --brand-rose: #B88A18; --brand-cream: #FFFFFF; --brand-white: #FFFFFF; --brand-ink: #101010;
+  --brand-navy-deep: #050505; --brand-navy: #101010; --brand-purple: #D4AF37; --brand-pink: #D4AF37; --brand-gold: #D4AF37; --brand-gold-light: #FFE58A; --brand-rose: #D4AF37; --brand-cream: #FFFFFF; --brand-white: #FFFFFF; --brand-ink: #101010;
   --background: #080808; --foreground: #FFFFFF; --card: #FFFFFF; --card-foreground: #101010; --popover: #FFFFFF; --popover-foreground: #101010;
   --primary: #D4AF37; --primary-foreground: #080808; --secondary: #1B1B1B; --secondary-foreground: #FFFFFF; --muted: #1B1B1B; --muted-foreground: #D0D0D0; --accent: #D4AF37; --accent-foreground: #080808; --wine: #D4AF37; --wine-foreground: #080808;
   --destructive: oklch(0.577 0.245 27.325); --destructive-foreground: #FFFFFF; --border: #B88A18; --input: #D0D0D0; --ring: #D4AF37;
@@ -30,10 +30,10 @@
 @utility bg-brand-cream { background-color:#FFFFFF; } @utility bg-brand-white { background-color:#FFFFFF; } @utility text-brand-ink { color:#101010; } @utility bg-brand-spectrum { background-image:var(--gradient-brand); }
 @layer components {
  .dtm-section-heading { color:var(--primary); text-decoration:underline; text-decoration-color:#D4AF37; text-decoration-thickness:3px; text-underline-offset:.45rem; }
- .dtm-card { border:1px solid rgb(212 175 55 / 48%); border-top:3px solid #D4AF37; background:#FFFFFF; color:#101010; box-shadow:0 10px 28px -22px #000000; }
+ .dtm-card { border:1px solid rgb(212 175 55 / 58%); border-top:3px solid #D4AF37; background:#FFFFFF; color:#101010; box-shadow:0 10px 28px -22px #000000; }
  .dtm-card:hover { border-color:#D4AF37; box-shadow:var(--shadow-elegant); }
- .dtm-purple-panel { background:var(--gradient-brand); color:#FFFFFF; }
- .dtm-rose-rule { height:3px; width:3.5rem; border-radius:999px; background:linear-gradient(90deg,#9D7415,#D4AF37,#FFE58A,#D4AF37); }
+ .dtm-gold-panel { background:var(--gradient-brand); color:#FFFFFF; }
+ .dtm-gold-rule { height:3px; width:3.5rem; border-radius:999px; background:linear-gradient(90deg,#9D7415,#D4AF37,#FFE58A,#D4AF37); }
 }
 .dtm-site-watermark { position:relative; isolation:isolate; background:#080808; color:#FFFFFF; }
 .dtm-site-watermark::before { content:""; position:fixed; inset:0; z-index:0; pointer-events:none; background-image:url("/logo-dtm-consultoria-financeira.svg"); background-repeat:no-repeat; background-position:center center; background-size:min(62vw,440px) auto; opacity:.02; }
