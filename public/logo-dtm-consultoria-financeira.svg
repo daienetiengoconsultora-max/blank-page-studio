@@ -1,19 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="500" viewBox="0 0 1200 500" role="img" aria-labelledby="title desc">
-<title id="title">DTM Soluções Financeiras</title>
-<desc id="desc">Logotipo institucional DTM em preto, dourado e branco.</desc>
-<defs>
-  <linearGradient id="black" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#191919"/><stop offset="1" stop-color="#050505"/></linearGradient>
-  <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#F0D99C"/><stop offset=".48" stop-color="#C6A15B"/><stop offset="1" stop-color="#9D7738"/></linearGradient>
-</defs>
-<rect width="1200" height="500" rx="30" fill="url(#black)"/>
-<path d="M0 92 Q180 0 360 0 M840 500 Q1050 500 1200 390" fill="none" stroke="url(#gold)" stroke-width="3" opacity=".65"/>
-<g fill="url(#gold)">
-  <text x="600" y="260" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="220" letter-spacing="-14">DTM</text>
-  <rect x="875" y="100" width="42" height="80" rx="3"/><rect x="935" y="72" width="42" height="108" rx="3"/><rect x="995" y="38" width="42" height="142" rx="3"/>
-</g>
+<title id="title">DTM Soluções Financeiras</title><desc id="desc">Logotipo institucional DTM em preto, dourado metálico e branco.</desc>
+<defs><linearGradient id="black" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#171717"/><stop offset="1" stop-color="#030303"/></linearGradient><linearGradient id="gold" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#FFF2B2"/><stop offset=".22" stop-color="#E8C65A"/><stop offset=".5" stop-color="#D4AF37"/><stop offset=".76" stop-color="#A87912"/><stop offset="1" stop-color="#F5D976"/></linearGradient></defs>
+<rect width="1200" height="500" rx="30" fill="url(#black)"/><path d="M0 92 Q180 0 360 0 M840 500 Q1050 500 1200 390" fill="none" stroke="url(#gold)" stroke-width="3" opacity=".75"/>
+<g fill="url(#gold)"><text x="600" y="260" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="220" letter-spacing="-14">DTM</text><rect x="875" y="100" width="42" height="80" rx="3"/><rect x="935" y="72" width="42" height="108" rx="3"/><rect x="995" y="38" width="42" height="142" rx="3"/></g>
 <path d="M170 285 C390 300 650 215 1038 150 C1080 143 1090 125 1085 108" fill="none" stroke="url(#gold)" stroke-width="10" stroke-linecap="round"/>
-<text x="600" y="355" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="55" letter-spacing="12" fill="#FFFFFF">SOLUÇÕES FINANCEIRAS</text>
-<path d="M220 390 H475 M725 390 H980" stroke="url(#gold)" stroke-width="3"/>
-<path d="M570 380 l28 22 28-22 28 22 28-22" fill="none" stroke="url(#gold)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="600" y="455" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="22" letter-spacing="4" fill="#E8E8E8">CONFIANÇA • ESTRATÉGIA • SOLUÇÕES</text>
-</svg>
+<text x="600" y="355" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="55" letter-spacing="12" fill="#FFFFFF">SOLUÇÕES FINANCEIRAS</text><path d="M220 390 H475 M725 390 H980" stroke="url(#gold)" stroke-width="3"/><path d="M570 380 l28 22 28-22 28 22 28-22" fill="none" stroke="url(#gold)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><text x="600" y="455" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="22" letter-spacing="4" fill="#FFFFFF">CONFIANÇA • ESTRATÉGIA • SOLUÇÕES</text></svg>
