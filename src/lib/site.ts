@@ -2,8 +2,8 @@
 export const SITE_URL = "https://dtmsolucoes.lovable.app";
 export const BRAND = "DTM Soluções Financeiras";
 export const BRAND_SHORT = "DTM Soluções Financeiras";
-export const WHATSAPP_NUMBER = "5527998737600";
-export const WHATSAPP_DISPLAY = "(27) 99873-7600";
+export const WHATSAPP_NUMBER = "5527981815744";
+export const WHATSAPP_DISPLAY = "(27) 98181-5744";
 export const whatsappLink = (text = "Olá! Quero fazer meu diagnóstico financeiro.") =>
   `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
 
