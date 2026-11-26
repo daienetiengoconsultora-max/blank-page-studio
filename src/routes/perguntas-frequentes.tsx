@@ -6,8 +6,8 @@ export const Route = createFileRoute("/perguntas-frequentes")({
   head: () => ({
     ...seo(
       "/perguntas-frequentes",
-      "Perguntas frequentes | DTM Consultoria e Regularização de Crédito",
-      "Tire suas dúvidas sobre Limpa Nome, score, diagnóstico financeiro e proteção de dados.",
+      "Dúvidas sobre CPF, CNPJ, Score e Limpa Nome | DTM",
+      "Respostas sobre regularização de CPF e CNPJ, score de crédito, rating bancário, diagnóstico financeiro e atendimento da DTM.",
     ),
     scripts: [
       {
