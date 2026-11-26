@@ -13,10 +13,14 @@ export const Route = createFileRoute("/blog/$slug")({
       ? {
           ...seo(
             `/blog/${params.slug}`,
-            `${loaderData.title} | Blog DTM`,
+            `${loaderData.title} | Blog DTM Soluções Financeiras`,
             loaderData.excerpt,
             "article",
           ),
+          meta: [
+            { property: "article:published_time", content: loaderData.date },
+            { property: "article:section", content: loaderData.category },
+          ],
           scripts: [
             {
               type: "application/ld+json",
@@ -24,9 +28,15 @@ export const Route = createFileRoute("/blog/$slug")({
                 "@context": "https://schema.org",
                 "@type": "Article",
                 headline: loaderData.title,
+                description: loaderData.excerpt,
                 datePublished: loaderData.date,
+                inLanguage: "pt-BR",
                 author: { "@type": "Organization", name: BRAND },
-                mainEntityOfPage: `${SITE_URL}/blog/${params.slug}`,
+                publisher: { "@type": "Organization", name: BRAND, url: SITE_URL },
+                mainEntityOfPage: {
+                  "@type": "WebPage",
+                  "@id": `${SITE_URL}/blog/${params.slug}`,
+                },
               }),
             },
           ],
