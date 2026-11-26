@@ -7,7 +7,7 @@ export const Route = createFileRoute("/acesso")({
   ssr: false,
   head: () => ({
     meta: [
-      { title: "Área restrita | DTM CONSULTORIA FINANCEIRA" },
+      { title: "Área restrita | DTM Soluções Financeiras" },
       { name: "description", content: "Acesso restrito." },
       { name: "robots", content: "noindex, nofollow, noarchive" },
     ],
@@ -157,16 +157,16 @@ function Acesso() {
     "mt-1 w-full rounded-xl border border-input bg-background px-4 py-3 text-sm outline-none focus:border-ring";
 
   return (
-    <main className="grid min-h-screen place-items-center bg-secondary px-5">
+    <main className="grid min-h-screen place-items-center bg-[#080808] px-5">
       <form
         onSubmit={submit}
         autoComplete="on"
-        className="w-full max-w-sm rounded-3xl bg-background p-8 shadow-elegant"
+        className="w-full max-w-sm rounded-3xl border border-[#D4AF37]/50 bg-[#101010] p-8 text-white shadow-elegant"
       >
         <p className="text-xs font-semibold uppercase tracking-[0.25em] text-brand-purple">
           Área restrita
         </p>
-        <h1 className="mt-2 font-display text-2xl font-semibold text-primary">
+        <h1 className="mt-2 font-display text-2xl font-semibold text-[#D4AF37]">
           {mode === "login" ? "Entrar" : "Recuperar senha"}
         </h1>
         <p className="mt-2 text-xs text-muted-foreground">Acesso exclusivo do administrador.</p>
@@ -208,7 +208,7 @@ function Acesso() {
 
         <button
           disabled={busy || locked}
-          className="mt-6 w-full rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground disabled:opacity-60"
+          className="mt-6 w-full rounded-full bg-[#D4AF37] px-6 py-3 text-sm font-semibold text-[#080808] disabled:opacity-60"
         >
           {busy ? "Aguarde..." : mode === "login" ? "Entrar" : "Enviar link"}
         </button>
