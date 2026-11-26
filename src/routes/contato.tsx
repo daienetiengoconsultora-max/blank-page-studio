@@ -7,8 +7,8 @@ export const Route = createFileRoute("/contato")({
   head: () =>
     seo(
       "/contato",
-      "Fale conosco | DTM Soluções Financeiras",
-      "Envie sua mensagem para a DTM Soluções Financeiras ou fale pelo WhatsApp.",
+      "Contato DTM Soluções Financeiras | Atendimento para CPF e CNPJ",
+      "Entre em contato com a DTM Soluções Financeiras para tirar dúvidas sobre regularização de CPF e CNPJ, score, rating bancário e diagnóstico financeiro.",
     ),
   component: () => (
     <SiteLayout>
