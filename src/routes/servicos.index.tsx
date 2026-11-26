@@ -6,7 +6,7 @@ export const Route = createFileRoute("/servicos/")({
   head: () =>
     seo(
       "/servicos",
-      "Serviços | DTM CONSULTORIA FINANCEIRA",
+      "Serviços | DTM Soluções Financeiras",
       "Limpa Nome, Score, Rating Comercial e Bancário, Bacen/SCR, CCF, Cadin e Diagnóstico Financeiro explicados com transparência.",
     ),
   component: () => (
