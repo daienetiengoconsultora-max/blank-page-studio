@@ -6,14 +6,14 @@ export const Route = createFileRoute("/termos")({
   head: () =>
     seo(
       "/termos",
-      "Termos de uso | DTM CONSULTORIA FINANCEIRA",
-      "Condições de uso do site e dos serviços de orientação da DTM CONSULTORIA FINANCEIRA.",
+      "Termos de uso | DTM Soluções Financeiras",
+      "Condições de uso do site e dos serviços de orientação financeira da DTM Soluções Financeiras.",
     ),
   component: () => (
     <TextPage eyebrow="Termos" title="Termos de uso">
       <h2>Natureza do serviço</h2>
       <p>
-        A DTM CONSULTORIA FINANCEIRA presta orientação e consultoria. Não somos instituição
+        A DTM Soluções Financeiras presta orientação e consultoria. Não somos instituição
         financeira nem birô de crédito.
       </p>
       <h2>Sem garantia de resultado</h2>
