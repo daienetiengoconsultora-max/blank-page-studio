@@ -1,6 +1,6 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { PageHero, SiteLayout } from "@/components/site/SiteLayout";
-import { SERVICES, seo } from "@/lib/site";
+import { BRAND, SERVICES, SITE_URL, seo } from "@/lib/site";
 
 export const Route = createFileRoute("/servicos/$slug")({
   loader: ({ params }) => {
@@ -10,11 +10,30 @@ export const Route = createFileRoute("/servicos/$slug")({
   },
   head: ({ loaderData, params }) =>
     loaderData
-      ? seo(
-          `/servicos/${params.slug}`,
-          `${loaderData.name} | DTM Soluções Financeiras`,
-          loaderData.short,
-        )
+      ? {
+          ...seo(
+            `/servicos/${params.slug}`,
+            `${loaderData.name} | DTM Soluções Financeiras`,
+            loaderData.short,
+          ),
+          scripts: [{
+            type: "application/ld+json",
+            children: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Service",
+              name: loaderData.name,
+              description: loaderData.short,
+              serviceType: loaderData.name,
+              provider: {
+                "@type": "Organization",
+                name: BRAND,
+                url: SITE_URL,
+              },
+              areaServed: { "@type": "Country", name: "Brasil" },
+              url: `${SITE_URL}/servicos/${params.slug}`,
+            }),
+          }],
+        }
       : { meta: [{ title: "Serviço não encontrado" }, { name: "robots", content: "noindex" }] },
   component: ServicePage,
 });
