@@ -6,8 +6,8 @@ export const Route = createFileRoute("/blog/")({
   head: () =>
     seo(
       "/blog",
-      "Blog DTM | Limpa Nome, Score, SCR e Crédito",
-      "Artigos sobre Limpa Nome, Score, Rating Bancário, CPF e CNPJ, Bacen/SCR, CCF, Cadin e Diagnóstico Financeiro.",
+      "Blog sobre Crédito, CPF, CNPJ e Score | DTM Soluções Financeiras",
+      "Leia conteúdos sobre Limpa Nome, regularização de CPF e CNPJ, score de crédito, rating bancário, Bacen/SCR, CCF, Cadin e organização financeira.",
     ),
   component: BlogPage,
 });
