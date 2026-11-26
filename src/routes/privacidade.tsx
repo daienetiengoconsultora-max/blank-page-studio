@@ -6,8 +6,8 @@ export const Route = createFileRoute("/privacidade")({
   head: () =>
     seo(
       "/privacidade",
-      "Política de privacidade | DTM Assessoria e Consultoria em Regularização de Dados de Crédito",
-      "Como a DTM Assessoria e Consultoria em Regularização de Dados de Crédito coleta, usa e protege seus dados pessoais, conforme a LGPD.",
+      "Política de privacidade | DTM Soluções Financeiras",
+      "Saiba quais dados pessoais a DTM Soluções Financeiras coleta, para quais finalidades e como exercer seus direitos previstos na LGPD.",
     ),
   component: () => (
     <TextPage eyebrow="LGPD" title="Política de privacidade">
