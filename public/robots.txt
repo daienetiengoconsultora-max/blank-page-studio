@@ -5,4 +5,4 @@ Disallow: /acesso
 Disallow: /redefinir-senha
 Disallow: /assinar/
 
-Sitemap: https://limpanome-dtm.lovable.app/sitemap.xml
+Sitemap: https://dtmsolucoes.lovable.app/sitemap.xml

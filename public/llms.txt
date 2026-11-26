@@ -1,7 +1,7 @@
 # DTM Soluções Financeiras
 > Site institucional brasileiro com informações e orientação sobre organização de crédito para pessoas físicas e empresas.
 
-Site oficial: https://limpanome-dtm.lovable.app/
+Site oficial: https://dtmsolucoes.lovable.app/
 Idioma: Português do Brasil (pt-BR)
 Área de atendimento: Brasil
 
@@ -19,10 +19,10 @@ A DTM Soluções Financeiras oferece atendimento e orientação informativa para
 - Diagnóstico Financeiro: visão organizada das informações disponíveis e próximos passos possíveis.
 
 ## Conteúdo
-- Blog: https://limpanome-dtm.lovable.app/blog
-- Serviços: https://limpanome-dtm.lovable.app/servicos
-- Contato: https://limpanome-dtm.lovable.app/contato
-- Perguntas frequentes: https://limpanome-dtm.lovable.app/perguntas-frequentes
+- Blog: https://dtmsolucoes.lovable.app/blog
+- Serviços: https://dtmsolucoes.lovable.app/servicos
+- Contato: https://dtmsolucoes.lovable.app/contato
+- Perguntas frequentes: https://dtmsolucoes.lovable.app/perguntas-frequentes
 
 ## Contato
 WhatsApp: https://wa.me/5527998737600

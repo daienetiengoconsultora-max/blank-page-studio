@@ -18,7 +18,19 @@ export const Route = createFileRoute("/")({
         name: BRAND,
         url: SITE_URL,
         telephone: `+${WHATSAPP_NUMBER}`,
-        areaServed: "BR",
+        areaServed: { "@type": "Country", name: "Brasil" },
+        inLanguage: "pt-BR",
+        description:
+          "Orientação para limpar o nome, entender o score, rating bancário, Bacen/SCR, CCF e Cadin para CPF e CNPJ.",
+        knowsAbout: SERVICES.map((s) => s.name),
+        hasOfferCatalog: {
+          "@type": "OfferCatalog",
+          name: "Serviços",
+          itemListElement: SERVICES.map((s) => ({
+            "@type": "Offer",
+            itemOffered: { "@type": "Service", name: s.name, url: `${SITE_URL}/servicos/${s.slug}` },
+          })),
+        },
       }),
     }],
   }),
