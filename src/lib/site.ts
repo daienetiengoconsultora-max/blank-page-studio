@@ -1,7 +1,7 @@
 // Endereço publicado confirmado na Lovable; troque quando houver domínio próprio confirmado.
 export const SITE_URL = "https://limpanome-dtm.lovable.app";
 export const BRAND = "DTM Soluções Financeiras";
-export const BRAND_SHORT = "DTM CONSULTORIA FINANCEIRA";
+export const BRAND_SHORT = "DTM Soluções Financeiras";
 export const WHATSAPP_NUMBER = "5527998737600";
 export const WHATSAPP_DISPLAY = "(27) 99873-7600";
 export const whatsappLink = (text = "Olá! Quero fazer meu diagnóstico financeiro.") =>
@@ -24,8 +24,11 @@ export function seo(path: string, title: string, description: string, type = "we
       { property: "og:title", content: title },
       { property: "og:description", content: description },
       { property: "og:type", content: type },
+      { property: "og:locale", content: "pt_BR" },
+      { property: "og:site_name", content: BRAND },
       { property: "og:url", content: url },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:url", content: url },
       { name: "twitter:title", content: title },
       { name: "twitter:description", content: description },
     ],
