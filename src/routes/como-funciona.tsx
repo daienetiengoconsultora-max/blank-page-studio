@@ -6,8 +6,8 @@ export const Route = createFileRoute("/como-funciona")({
   head: () =>
     seo(
       "/como-funciona",
-      "Como funciona | DTM Consultoria e Regularização de Crédito",
-      "Veja o passo a passo do diagnóstico financeiro da DTM: formulário, contato pelo WhatsApp, análise e orientação clara — sem compromisso inicial.",
+      "Como funciona o diagnóstico financeiro | DTM Soluções Financeiras",
+      "Conheça as etapas do diagnóstico financeiro da DTM: contato, análise das informações de crédito e orientação para CPF ou CNPJ, com transparência.",
     ),
   component: () => (
     <TextPage eyebrow="Como funciona" title="Do primeiro contato à orientação">
