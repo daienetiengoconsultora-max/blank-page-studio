@@ -7,28 +7,34 @@ export const Route = createFileRoute("/")({
   head: () => ({
     ...seo(
       "/",
-      "DTM Soluções Financeiras | Orientação e Regularização de Crédito",
-      "Conheça os serviços da DTM para CPF e CNPJ: Limpa Nome, Score, Rating Bancário, Bacen/SCR, CCF e Cadin. Informação clara e atendimento individual.",
+      "DTM Soluções Financeiras | Regularização de CPF e CNPJ, Score e Crédito",
+      "Orientação financeira para CPF e CNPJ: regularização de registros, análise de score, rating bancário, Bacen/SCR, CCF e Cadin. Atendimento digital em todo o Brasil.",
     ),
     scripts: [{
       type: "application/ld+json",
       children: JSON.stringify({
         "@context": "https://schema.org",
         "@type": "FinancialService",
+        "@id": `${SITE_URL}/#empresa`,
         name: BRAND,
         url: SITE_URL,
         telephone: `+${WHATSAPP_NUMBER}`,
         areaServed: { "@type": "Country", name: "Brasil" },
         inLanguage: "pt-BR",
         description:
-          "Orientação para limpar o nome, entender o score, rating bancário, Bacen/SCR, CCF e Cadin para CPF e CNPJ.",
+          "Consultoria e orientação financeira para pessoas e empresas que desejam compreender e organizar informações relacionadas ao crédito.",
         knowsAbout: SERVICES.map((s) => s.name),
         hasOfferCatalog: {
           "@type": "OfferCatalog",
-          name: "Serviços",
+          name: "Serviços de orientação financeira",
           itemListElement: SERVICES.map((s) => ({
             "@type": "Offer",
-            itemOffered: { "@type": "Service", name: s.name, url: `${SITE_URL}/servicos/${s.slug}` },
+            itemOffered: {
+              "@type": "Service",
+              name: s.name,
+              description: s.short,
+              url: `${SITE_URL}/servicos/${s.slug}`,
+            },
           })),
         },
       }),
